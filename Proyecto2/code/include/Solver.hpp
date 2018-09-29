@@ -117,47 +117,7 @@ namespace anpi {
 		}
 	}
 
-	/**
-	 * Function that obtains the values of x with a given vector b and a matrix A
-	 * @tparam T type of data
-	 * @param[in] A base matrix that contains the equations
-	 * @param[out] x result of the equations
-	 * @param[in] b factors of the matrix
-	 * @return
-	 */
-    template<typename T>
-    bool solveQR (const anpi::Matrix<T>& A,
-                  std::vector<T>& x,
-                  const std::vector<T>& b) {
-
-        Matrix<T> Q;
-        Matrix<T> R;
-
-        anpi::qr(A, Q, R);
-
-        Matrix<T> QT = Q;
-        QT.transpose();
-
-        std::vector<T> b_primed = QT*b;
-        size_t last_position = b.size()-1;
-
-        x.resize(last_position+1);
-        x[last_position] = b_primed[last_position]/R(last_position,last_position);
-
-        for (size_t i = last_position-1; i >= 0; --i) {
-            T sum = T(0);
-            for (size_t j = last_position; j > i; --j) {
-                sum += R(i,j)*x[j];
-            }
-            x[i] = (b_primed[i]-sum)/R(i,i);
-
-            if (i == 0){
-                return true;
-            }
-        }
-
-        return false;
-    }
+	
 
 }//namespace ANPI
 
