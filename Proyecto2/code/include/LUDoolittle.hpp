@@ -12,9 +12,10 @@
 #include <limits>
 #include <functional>
 #include <algorithm>
-
+#include "Utilities.hpp"
 #include "Exception.hpp"
 #include "Matrix.hpp"
+#include <iostream>
 
 #ifndef ANPI_LU_DOOLITTLE_HPP
 #define ANPI_LU_DOOLITTLE_HPP
@@ -34,7 +35,32 @@ namespace anpi {
                        Matrix<T>& L,
                        Matrix<T>& U) {
 
-    throw anpi::Exception("To be implemented yet");
+      L = LU;
+      U = LU;
+      size_t n = LU.cols();                        //Columns number;
+
+      if (LU.rows() != LU.cols()) throw anpi::Exception("Matrix is not a square!");
+
+      for (size_t i = 0; i < n; ++i) {             //Rows Iterator;
+
+          for (size_t j = 0; j < n; ++j) {         //Columns Iterator;
+
+              if(j>i) {                            //If current position is above the diagonal;
+                  U[i][j] = LU[i][j];              //Add number from LU to U in the correspond space;
+                  L(i,j) = T(0);                      //Setting zero the space in the L matrix;
+              }
+              else if(j==i) {                      //If current position is in the diagonal;
+                  U[i][j] = LU[i][j];              //Setting U's diagonal with LU's number;
+                  L[i][j] = T(1);                     //Setting in one the L's diagonal;
+              }
+              else {                               //If current position is under the diagonal;
+                  U[i][j] = T(0);                     //Setting zero the space in the U matrix;
+                  L[i][j] = LU[i][j];              //dd number from LU to U in the correspond space;
+              }
+          }
+
+      }
+    //throw anpi::Exception("To be implemented yet");
   }
   
   /**
@@ -43,7 +69,7 @@ namespace anpi {
    * a single matrix LU. 
    *
    * The L matrix will have in the Doolittle's LU decomposition a
-   * diagonal of 1's
+   * diagonal of 1'sc
    *
    * @param[in] A a square matrix 
    * @param[out] LU matrix encoding the L and U matrices
@@ -61,7 +87,31 @@ namespace anpi {
                    Matrix<T>& LU,
                    std::vector<size_t>& permut) {
 
-    throw anpi::Exception("To be implemented yet");
+      if (A.rows() != A.cols()) throw anpi::Exception("Matrix is not a square!");
+      permut = std::vector<size_t> (A.rows(),0);    //Initialize the permutation vector
+      for(size_t i = 0; i<permut.size(); ++i){      //Add elements to permutation vector
+          permut[i] = i;
+      }
+
+      LU = A;
+      size_t n = LU.rows();                         //Rows number and Columns number, counter
+      T f;                                          //f = factors for the lower triangular matrix
+
+      pivot(LU,0,0,0,permut);                       //Pivoting
+      for (size_t k = 0; k < n-1; ++k) {            //Column Iterator
+
+          for (size_t i = k+1; i < n ; ++i) {       //Rows Iterator
+              f = LU[i][k]/LU[k][k];
+
+              for (size_t j = k; j < n; ++j) {      //Rows iterator for the elemental operation
+
+                  LU[i][j] = LU[i][j] - f*LU[k][j];
+              }
+              LU[i][k] = f;                          //Filling the lower triangular matrix
+          }
+          pivot(LU,k,0,k,permut);                    //Pivoting
+      }
+    //throw anpi::Exception("To be implemented yet");
   }
 
 }
