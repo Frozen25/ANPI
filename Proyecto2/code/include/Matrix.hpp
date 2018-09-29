@@ -21,7 +21,7 @@
 
 #include <AnpiConfig.hpp>
 #include <Allocator.hpp>
-
+#include "Exception.hpp"
 #include <typeinfo>
 
 namespace anpi
@@ -325,6 +325,16 @@ namespace anpi
     Matrix& operator-=(const Matrix& other);
     
     //@}
+
+    /////////////////////////////////////////// Methods used in the QR implementation
+
+    void compute_minor(const Matrix<T,Alloc>& a, unsigned int d);
+
+    // take c-th column of m, put in v
+    //template<typename T>
+    //void extract_column(std::vector<T>& v, int c);
+
+    void transpose();
 
   private:
 

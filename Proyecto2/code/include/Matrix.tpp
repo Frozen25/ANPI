@@ -446,19 +446,72 @@ namespace anpi
     return c;
   }
 
-  // TODO: Solucionar en la Tarea 04 (Punto 1)
   template<typename T,class Alloc>
   Matrix<T,Alloc> operator*(const Matrix<T,Alloc>& a,
                             const Matrix<T,Alloc>& b) {
-    
-    
-    assert(false && "Not implemented yet");
+
+    if (a.cols() != b.rows()) {
+      throw Exception("A number of columns and B number of rows don't match.");
+    }
+
+    Matrix<T,Alloc> c(a.rows(),b.cols(),anpi::DoNotInitialize);
+    c.fill(T(0));
+
+    for (unsigned int i = 0;     i< a.rows();  ++i)    {
+      for(unsigned int j = 0;    j< b.cols();  ++j)  {
+        for(unsigned int k = 0;  k<a.cols();   ++k){
+          c(i,j) += a(i,k) * b(k,j);
+        }
+      }
+    }
+    return c;
+
   }
 
-  // TODO: Solucionar en la Tarea 04 (Punto 1)
   template<typename T,class Alloc>
   std::vector<T> operator*(const Matrix<T,Alloc>& a,
                            const std::vector<T>& b) {
-    assert(false && "Not implemented yet");
+
+    if (a.cols() != b.size()) {
+      throw anpi::Exception("A number of columns and b size don't match.");
+    }
+
+    std::vector<T> Result(a.rows());
+
+    for (unsigned int i = 0;     i< a.rows();  ++i)  {
+      for(unsigned int k = 0;  k<a.cols();   ++k){
+        Result[i] += a[i][k]*b[k];
+      }
+    }
+    return Result;
+  }
+
+  /////////////////////////////////////////// Methods used in the QR implementation
+
+  template<typename T,class Alloc>
+  void Matrix<T,Alloc>::compute_minor(const Matrix<T,Alloc>& a, unsigned int d) {
+
+    allocate(a.rows(), a.cols());
+    (*this).fill(T(0));
+ 
+    for (unsigned int i = 0; i < d; ++i)
+      (*this)(i,i) = T(1);
+
+    for (unsigned int i = d; i < a.rows(); ++i) {
+      for (unsigned int j = d; j < a.cols(); ++j)
+        (*this)(i,j) = a(i,j);
+    }
+
+  }
+
+  template<typename T,class Alloc>
+  void Matrix<T,Alloc>::transpose() {
+    for (unsigned int i = 0; i < (*this).rows(); ++i) {
+      for (unsigned int j = 0; j < i; ++j) {
+        T t = (*this)(i,j);
+        (*this)(i,j) = (*this)(j,i);
+        (*this)(j,i) = t;
+      }
+    }
   }
 } // namespace ANPI
