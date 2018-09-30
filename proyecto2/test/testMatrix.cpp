@@ -19,6 +19,7 @@
 
 #include "Matrix.hpp"
 #include "Allocator.hpp"
+#include "bits/MatrixArithmetic.hpp"
 
 // Explicit instantiation of all methods of Matrix
 
@@ -289,6 +290,52 @@ void testArithmetic() {
 
 BOOST_AUTO_TEST_CASE(Arithmetic) {
   dispatchTest(testArithmetic);  
+}
+
+template<class M>
+void testSimd() {
+
+  {
+    M a = { {1,2,3},{ 4, 5, 6} };
+    M b = { {7,8,9},{10,11,12} };
+    M r = { {8,10,12},{14,16,18} };
+
+    M c(a);
+    anpi::simd::add(c,b,c) ;
+    BOOST_CHECK(c==r );
+
+    anpi::simd::add(a,b,c) ;
+    BOOST_CHECK(c==r );
+
+    anpi::simd::add(M{ {1,2,3},{ 4, 5, 6} },b,c);
+    BOOST_CHECK(c==r );
+
+    anpi::simd::add(a,M{ {7,8,9},{10,11,12} },c);
+    BOOST_CHECK(c==r );
+  }
+
+  {
+    M a = { {1,2,3},{ 4, 5, 6} };
+    M b = { {7,8,9},{10,11,12} };
+    M r = { {-6,-6,-6},{-6,-6,-6} };
+
+    M c(a);
+    anpi::simd::subtract(c,b,c);
+    BOOST_CHECK( c==r );
+    anpi::simd::subtract(a,b,c);
+    BOOST_CHECK( c==r );
+
+
+    anpi::simd::subtract(M{ {1,2,3},{ 4, 5, 6} },b,c);
+    BOOST_CHECK( c==r );
+
+    anpi::simd::subtract(a,M{ {7,8,9},{10,11,12} },c);
+    BOOST_CHECK( c==r );
+  }
+}
+
+BOOST_AUTO_TEST_CASE(Simd) {
+  dispatchTest(testSimd);
 }
   
 BOOST_AUTO_TEST_SUITE_END()
