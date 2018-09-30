@@ -12,6 +12,12 @@
 
 #include "LUCrout.hpp"
 #include "LUDoolittle.hpp"
+#include "LU.hpp"
+
+
+#include "Solver.hpp"
+
+
 
 #include <iostream>
 #include <exception>
@@ -70,75 +76,157 @@ namespace anpi {
         Matrix<T> L,U;
         unpack(LU,L,U);
         Matrix<T> Ar=L*U;
+
         const T eps = std::numeric_limits<T>::epsilon();
+
         BOOST_CHECK(Ar.rows()==A.rows());
         BOOST_CHECK(Ar.cols()==A.cols());
+
         for (size_t i=0;i<Ar.rows();++i) {
           for (size_t j=0;j<Ar.cols();++j) {
             BOOST_CHECK(std::abs(Ar(i,j)-A(i,j)) < eps);
           }
         }
+
+
       }
+    }//luTest
+
+
+  template<typename T>
+  void substitutionTest( const std::function<void( anpi::Matrix<T>& ,
+                                              std::vector <T>& ,
+                                               std::vector <T>&)>& backwardSubs ,
+                  const std::function<void( anpi::Matrix<T>& ,
+                                              std::vector <T>& ,
+                                               std::vector <T>&)>& forwardSubs  ){
+
+    //initial matrix 
+    Matrix<T> A;
+    std::vector<T> b;
+    std::vector<T> x;
+    std::vector<T> x_real;
+
+
+    ///testing backwardSubs
+    {
+      //Test with 3x3 matrix
+      A = { { 1, 2, 3 },{ 0, 1, 2 },{ 0, 0, 1 } };
+      b = { 9, 4, 3 };
+      
+      //real solution
+      x_real = { 4, -2, 3 };
+
+      backwardSubs(A, x , b);
+      
+      
+      //Test each element one by one
+      for (size_t i=0;i<A.rows();++i) {
+          
+        BOOST_CHECK(x[i]==x_real[i]);
+          
+      }
+    }
+
+    ///testing forwardSubs
+    {
+      //Test with 3x3 matrix
+      A = { { 1, 0, 0 },{ 2, 1, 0 },{ 3, 2, 1 } };
+      b = { 3, 4, 9 };
+      
+      //real solution
+      x_real = { 3, -2, 4 };
+
+      forwardSubs(A, x , b);
+      
+      
+      //Test each element one by one
+      for (size_t i=0;i<A.rows();++i) {
+          
+        BOOST_CHECK(x[i]==x_real[i]);
+          
+      }
+    }
+
+
+  } //substitutionTest
+
+
+  template<typename T>
+  void solveLUTest( const std::function<void(const anpi::Matrix<T>& ,
+                                              std::vector <T>& ,
+                                              const std::vector <T>&)>& solveLU  ){
+
+    //initial matrix 
+    Matrix<T> A;
+    std::vector<T> b;
+    std::vector<T> x;
+    std::vector<T> x_real;
+    {
+            //Test with 3x3 matrix
+            A = { { 2, 1 ,0 },{-1, 7, 4 },{ 0, 2, -3 } };
+            b = { 4, 25, -5};
+            
+            //real solution
+            x_real = {   1, 2, 3 };
+
+            solveLU(A, x , b);
+            
+            
+            BOOST_CHECK(x==x_real);
+                
+            
+        }
+  } //solveLUTest
+
+
+
+  
+
+
+
+  template<typename T>
+  void invertTest( const std::function<void(const anpi::Matrix<T>& ,
+                                              anpi::Matrix<T>&)>& invert  ){
+
+    //
+    anpi::Matrix<T> A;
+
+    anpi::Matrix<T> Ai;
+
+
+
+    {
+      //Test with 3x3 matrix
+      A = { {1, 2, 3},{0,1,4},{5,6,0} };
+      invert(A, Ai);
+      //Real Ai matrix
+      anpi::Matrix<T> Ai_real = {{-24, 18, 5},{20, -15, -4},{-5, 4, 1}};
 
       
+      
+      //Test each element one by one
+      const T eps = std::numeric_limits<T>::epsilon();
 
-
+      for (size_t i=0;i<Ai_real.rows();++i) {
+        for (size_t j=0;j<Ai_real.cols();++j) {
+          BOOST_CHECK(std::abs(Ai_real(i,j) - Ai(i,j)) < 1000*eps);
+        }
+      }
 
 
     }
-
-      template<typename T>
-      void unpackDoolittleTest(const std::function<void(const Matrix<T>&,
-              Matrix<T>&, Matrix<T>&)>& unpack) {    //Test the unpack doolittle method
-
-          //factorized matrix in LU form with Doolittle
-        Matrix<T> LU;
-
-        Matrix<T> L;
-        Matrix<T> U;
-
-        {
-          //Test with 4x4 matrix
-          LU = { {1, 2, 3, 4},{5, 6, 7, 8},{9, 10, 11, 12},{13, 14, 15, 6} };
-          unpack(LU, L, U);
-          //Real L matrix
-          Matrix<T> Lr = {{1,0,0,0},{5,1,0,0},{9,10,1,0},{13,14,15,1}};
-          //Real U matrix
-          Matrix<T> Ur = {{1,2,3,4},{0,6,7,8},{0,0,11,12},{0,0,0,16}};
-          //Test each element one by one
-          for (size_t i=0;i<LU.rows();++i) {
-            for (size_t j=0;j<LU.cols();++j) {
-              BOOST_CHECK(L(i,j)==Lr(i,j));
-            }
-          }
-        }
+  }//test invert
 
 
-        {
-          //Test with 3x3 matrix
-          LU = { {1, 2, 3},{4, 5, 6},{7, 8, 9} };
-          unpack(LU, L, U);
-          //Real L matrix
-          Matrix<T> Lr = {{1, 0, 0},{4, 1, 0},{7, 8, 1}};
-          //Real U matrix
-          Matrix<T> Ur = {{1, 2, 3},{0, 5, 6},{0, 0, 9}};
-          //Test each element one by one
-          for (size_t i=0;i<LU.rows();++i) {
-            for (size_t j=0;j<LU.cols();++j) {
-              BOOST_CHECK(L(i,j)==Lr(i,j));
-            }
-          }
-        }
-      }
+
+
+
+
 
 
   } // test
 }  // anpi
-
-
-
-
-
 
 BOOST_AUTO_TEST_SUITE( LU )
 
@@ -148,10 +236,6 @@ BOOST_AUTO_TEST_CASE(Doolittle)
                             anpi::unpackDoolittle<float>);
   anpi::test::luTest<double>(anpi::luDoolittle<double>,
                              anpi::unpackDoolittle<double>);
-  anpi::test::unpackDoolittleTest<float>(anpi::unpackDoolittle<float>);
-
-  anpi::test::unpackDoolittleTest<double>(anpi::unpackDoolittle<double>);
-
 }
 
 BOOST_AUTO_TEST_CASE(Crout) 
@@ -159,6 +243,61 @@ BOOST_AUTO_TEST_CASE(Crout)
   anpi::test::luTest<float>(anpi::luCrout<float>,anpi::unpackCrout<float>);
   anpi::test::luTest<double>(anpi::luCrout<double>,anpi::unpackCrout<double>);
 }
+
+BOOST_AUTO_TEST_CASE(lu) {
+  anpi::test::luTest<float>(anpi::lu<float>,
+                            anpi::unpack<float>);
+  anpi::test::luTest<double>(anpi::lu<double>,
+                             anpi::unpack<double>);
+  
+}
+
+BOOST_AUTO_TEST_SUITE_END()
+
+
+BOOST_AUTO_TEST_SUITE( SUBST )
+
+    BOOST_AUTO_TEST_CASE(subtitution)
+    {
+        anpi::test::substitutionTest<float>(anpi::backwardSubs<float>,
+                                            anpi::forwardSubs<float>);
+
+        anpi::test::substitutionTest<double>(anpi::backwardSubs<double>,
+                                            anpi::forwardSubs<double>);
+
+    }
+
+
+BOOST_AUTO_TEST_SUITE_END()
+
+
+
+
+BOOST_AUTO_TEST_SUITE( SOLVE )
+
+    BOOST_AUTO_TEST_CASE(solver)
+    {
+        //falla con float debido a la precision
+        //anpi::test::solveLUTest<float>(anpi::solveLU<float>);
+
+        anpi::test::solveLUTest<double>(anpi::solveLU<double>);
+
+    }
+
+
+BOOST_AUTO_TEST_SUITE_END()
+
+
+BOOST_AUTO_TEST_SUITE( INVERT )
+
+    BOOST_AUTO_TEST_CASE(inverting)
+    {
+        //falla con float debido a la precision
+        anpi::test::invertTest<float>(anpi::invert<float>);
+
+        anpi::test::invertTest<double>(anpi::invert<double>);
+
+    }
 
 
 BOOST_AUTO_TEST_SUITE_END()

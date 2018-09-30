@@ -14,27 +14,30 @@
 namespace anpi {
 
 	template<typename T>
-	void backwardsSubs (anpi::Matrix<T>& A,
+	void backwardSubs (anpi::Matrix<T>& A,
 	                    std::vector <T>& x,
 						std::vector <T>& b){
 	  size_t i,j;
 	  size_t n = A.cols();
 
-	  for (i = 0; i<n ; ++i){
-		x[i] = b[n-1]/A[n-1][n-1];
+	  x = std::vector<T> (n,T(0));
+	  T Sum = T(0);
+	  
+	  x[n-1] = b[n-1]/(A[n-1][n-1]);
+
+
+	  for (size_t k = (n-1); k > 0 ; --k){
+	  	i = k-1;
+	  	Sum = b[i];
+
+	  	for(j = i+1 ; j<n ; ++j){
+	  		Sum -= A[i][j] * x[j];
+	  	}
+	  	x[i] = Sum / (A[i][i]);
+	  		  	
 	  }
 
-	  T Sum;
-
-	  for (i=n-1; i>=0; --i){
-	    Sum = T(0);
-
-	    for (j=i+1; j<n; ++j){
-	      Sum -= A[i][j]*x[j];
-	    }    
-
-	      x[i] = Sum / A[i][i];
-    }
+	 
 	} //backwards subs
 
 
@@ -57,7 +60,7 @@ namespace anpi {
 	        x[i] = ( b[i] - s) / A[i][i];
 	   }
 
-	}
+	}//forwardSubs
 
 
 	template<typename T>
@@ -77,8 +80,6 @@ namespace anpi {
 			U.allocate(size, size);
 			unpack(LU, L, U);
 
-
-
 			std::vector<T> Y (size,0);
 
 			std::vector<T> Bperm (size,0);
@@ -87,77 +88,41 @@ namespace anpi {
 			}
 
 			forwardSubs(L, Y, Bperm);
-			backwardsSubs(U, x, Y);
+			backwardSubs(U, x, Y);
 
-	}
+			
+	}//solveLU
 
 
 	template<typename T>
-	void invert(const Matrix<T>& A,
-               Matrix<T>& Ai) {
+	void invert(const anpi::Matrix<T>& A,
+              anpi::Matrix<T>& Ai) {
 
-		const size_t size =  A.cols();
-		//anpi::Matrix<T> I = anpi::identityMatrix(size,size);
+		size_t size =  A.cols();
+		
 
-		std::vector<T> I_j (size,0);
-		std::vector<T> AiT_j (size,0);
-		anpi::Matrix<T> AiT;
+		std::vector<T> I_j (size,T(0));
+		std::vector<T> AiT_j (size,T(0));
+		
 
 		size_t i,j;
-		AiT = A;
+		Ai.allocate(size,size);
 
 		for( i = 0; i< size; ++i){
 			I_j[i] = T(1);
 			solveLU(A, AiT_j, I_j);
-				for( j = 0; j<size; ++j){
-					AiT[j][i] = AiT_j[j];
-				}
+
+			
+
+			for( j = 0; j<size; ++j){
+				Ai[j][i] = AiT_j[j];
+			}
 			I_j[i] = T(0);			
 
 		}
 	}
 
-	/**
-	 * Function that obtains the values of x with a given vector b and a matrix A
-	 * @tparam T type of data
-	 * @param[in] A base matrix that contains the equations
-	 * @param[out] x result of the equations
-	 * @param[in] b factors of the matrix
-	 * @return
-	 */
-    template<typename T>
-    bool solveQR (const anpi::Matrix<T>& A,
-                  std::vector<T>& x,
-                  const std::vector<T>& b) {
-
-        Matrix<T> Q;
-        Matrix<T> R;
-
-        anpi::qr(A, Q, R);
-
-        Matrix<T> QT = Q;
-        QT.transpose();
-
-        std::vector<T> b_primed = QT*b;
-        size_t last_position = b.size()-1;
-
-        x.resize(last_position+1);
-        x[last_position] = b_primed[last_position]/R(last_position,last_position);
-
-        for (size_t i = last_position-1; i >= 0; --i) {
-            T sum = T(0);
-            for (size_t j = last_position; j > i; --j) {
-                sum += R(i,j)*x[j];
-            }
-            x[i] = (b_primed[i]-sum)/R(i,i);
-
-            if (i == 0){
-                return true;
-            }
-        }
-
-        return false;
-    }
+	
 
 }//namespace ANPI
 
