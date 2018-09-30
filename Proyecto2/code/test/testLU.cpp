@@ -92,12 +92,12 @@ namespace anpi {
 
 
     template<typename T>
-    void invertTest(const std::function<void(const Matrix<T>& A,
-                                             Matrix<T>& Ai)>& invert) {    //Test the unpack doolittle method
+    void invertTest(const std::function<void(const Matrix<T>& ,
+                                             Matrix<T>& Ai)>& invert) {    
 
-        //factorized matrix in LU form with Doolittle
+        //initial matrix 
         Matrix<T> AA;
-
+        //calculated inverse matrix
         Matrix<T> AAi;
 
 
@@ -117,6 +117,101 @@ namespace anpi {
             }
         }
     }
+
+
+  template<typename T>
+  void solveLUTest( const std::function<void(const anpi::Matrix<T>& ,
+                                              std::vector <T>& ,
+                                              const std::vector <T>&)>& solveLU  ){
+
+    //initial matrix 
+    Matrix<T> A;
+    std::vector<T> b;
+    std::vector<T> x;
+    std::vector<T> x_real;
+    {
+            //Test with 3x3 matrix
+            A = { { 2, 1 ,0 },{-1, 7, 4 },{ 0, 2, -3 } };
+            b = { 4, 25, -5};
+            
+            //real solution
+            x_real = { 1, 2, 3 };
+
+            solveLU(A, x , b);
+            
+            
+            //Test each element one by one
+            for (size_t i=0;i<A.rows();++i) {
+                
+              BOOST_CHECK(x[i]==x_real[i]);
+                
+            }
+        }
+  } //solveLUTest
+
+
+
+  template<typename T>
+  void substitutionTest( const std::function<void( anpi::Matrix<T>& ,
+                                              std::vector <T>& ,
+                                               std::vector <T>&)>& backwardSubs ,
+                  const std::function<void( anpi::Matrix<T>& ,
+                                              std::vector <T>& ,
+                                               std::vector <T>&)>& forwardSubs  ){
+
+    //initial matrix 
+    Matrix<T> A;
+    std::vector<T> b;
+    std::vector<T> x;
+    std::vector<T> x_real;
+
+
+    ///testing backwardSubs
+    {
+      //Test with 3x3 matrix
+      A = { { 1, 2, 3 },{ 0, 1, 2 },{ 0, 0, 1 } };
+      b = { 9, 4, 3 };
+      
+      //real solution
+      x_real = { 4, -2, 3 };
+
+      backwardSubs(A, x , b);
+      
+      
+      //Test each element one by one
+      for (size_t i=0;i<A.rows();++i) {
+          
+        BOOST_CHECK(x[i]==x_real[i]);
+          
+      }
+    }
+
+    ///testing forwardSubs
+    {
+      //Test with 3x3 matrix
+      A = { { 1, 0, 0 },{ 2, 1, 0 },{ 3, 2, 1 } };
+      b = { 3, 4, 9 };
+      
+      //real solution
+      x_real = { 3, -2, 4 };
+
+      forwardSubs(A, x , b);
+      
+      
+      //Test each element one by one
+      for (size_t i=0;i<A.rows();++i) {
+          
+        BOOST_CHECK(x[i]==x_real[i]);
+          
+      }
+    }
+
+
+
+
+
+  } //substitutionTest
+
 
 
 
@@ -151,16 +246,34 @@ BOOST_AUTO_TEST_CASE(lu) {
 BOOST_AUTO_TEST_SUITE_END()
 
 
+BOOST_AUTO_TEST_SUITE( SUBST )
 
-BOOST_AUTO_TEST_SUITE( inverter )
-
-    BOOST_AUTO_TEST_CASE(inverters)
+    BOOST_AUTO_TEST_CASE(subtitution)
     {
-        anpi::test::invertTest<float>(anpi::invert<float>);
+        anpi::test::substitutionTest<float>(anpi::backwardSubs<float>,
+                                            anpi::forwardSubs<float>);
 
-        anpi::test::invertTest<double>(anpi::invert<double>);
+        anpi::test::substitutionTest<double>(anpi::backwardSubs<double>,
+                                            anpi::forwardSubs<double>);
 
     }
 
 
 BOOST_AUTO_TEST_SUITE_END()
+
+
+
+
+BOOST_AUTO_TEST_SUITE( SOLVE )
+
+    BOOST_AUTO_TEST_CASE(solver)
+    {
+        anpi::test::solveLUTest<float>(anpi::solveLU<float>);
+
+        anpi::test::solveLUTest<double>(anpi::solveLU<double>);
+
+    }
+
+
+BOOST_AUTO_TEST_SUITE_END()
+

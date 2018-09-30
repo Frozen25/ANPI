@@ -14,27 +14,30 @@
 namespace anpi {
 
 	template<typename T>
-	void backwardsSubs (anpi::Matrix<T>& A,
+	void backwardSubs (anpi::Matrix<T>& A,
 	                    std::vector <T>& x,
 						std::vector <T>& b){
 	  size_t i,j;
 	  size_t n = A.cols();
 
-	  for (i = 0; i<n ; ++i){
-		x[i] = b[n-1]/A[n-1][n-1];
+	  x = std::vector<T> (n,T(0));
+	  T Sum = T(0);
+	  
+	  x[n-1] = b[n-1]/(A[n-1][n-1]);
+
+
+	  for (size_t k = (n-1); k > 0 ; --k){
+	  	i = k-1;
+	  	Sum = b[i];
+
+	  	for(j = i+1 ; j<n ; ++j){
+	  		Sum -= A[i][j] * x[j];
+	  	}
+	  	x[i] = Sum / (A[i][i]);
+	  		  	
 	  }
 
-	  T Sum;
-
-	  for (i=n-1; i>=0; --i){
-	    Sum = T(0);
-
-	    for (j=i+1; j<n; ++j){
-	      Sum -= A[i][j]*x[j];
-	    }    
-
-	      x[i] = Sum / A[i][i];
-    }
+	 
 	} //backwards subs
 
 
@@ -57,7 +60,7 @@ namespace anpi {
 	        x[i] = ( b[i] - s) / A[i][i];
 	   }
 
-	}
+	}//forwardSubs
 
 
 	template<typename T>
@@ -70,13 +73,17 @@ namespace anpi {
 			LU.allocate(size,size);
 			std::vector<size_t> permut;
 
+
 			lu(A, LU, permut);
+
+			matrix_show(LU);
+			std::cout << "permut: ";
+			vector_show(permut);
 
 			Matrix<T> L, U;
 			L.allocate(size, size);
 			U.allocate(size, size);
 			unpack(LU, L, U);
-
 
 
 			std::vector<T> Y (size,0);
@@ -87,7 +94,7 @@ namespace anpi {
 			}
 
 			forwardSubs(L, Y, Bperm);
-			backwardsSubs(U, x, Y);
+			backwardSubs(U, x, Y);
 
 	}
 

@@ -71,6 +71,18 @@ namespace anpi {
     return identity;
   }
 
+  //function prints vector
+  template<typename T>
+  void vector_show(std::vector<T> &vect){
+    size_t size = vect.size();
+    for(size_t i = 0; i< size ; ++i){
+        std::cout << vect[i] << " " ;
+      }
+    std::cout << "\n";
+  }
+
+
+
 }
 
 #endif
