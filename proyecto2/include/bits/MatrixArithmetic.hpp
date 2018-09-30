@@ -439,14 +439,7 @@ namespace anpi
 
     #endif
 
-
-
-
-
-
-
-
-    // On-copy implementation c=a+b
+    // On-copy implementation c=a-b
     template<typename T,class Alloc,typename regType>
     inline void subSIMD(const Matrix<T,Alloc>& a, 
                         const Matrix<T,Alloc>& b,
@@ -475,7 +468,7 @@ namespace anpi
       
     }
        
-    // On-copy implementation c=a+b for SIMD-capable types
+    // On-copy implementation c=a-b for SIMD-capable types
     template<typename T,
        class Alloc,
        typename std::enable_if<is_simd_type<T>::value,int>::type=0>
@@ -509,7 +502,7 @@ namespace anpi
       ::anpi::fallback::subtract(a,b,c);
     }
 
-    // In-place implementation a = a+b
+    // In-place implementation a = a-b
     template<typename T,class Alloc>
     inline void subtract(Matrix<T,Alloc>& a,
                     const Matrix<T,Alloc>& b) {
