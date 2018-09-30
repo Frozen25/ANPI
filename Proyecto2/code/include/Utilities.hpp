@@ -51,7 +51,7 @@ namespace anpi {
       std::cout << str << "\n";
       for(size_t i = 0; i < m.rows(); i++) {
           for (size_t j = 0; j < m.cols(); j++) {
-              printf(" %8.3f", m(i,j));
+              printf(" %8.15f", m(i,j));
           }
           printf("\n");
       }
@@ -73,7 +73,7 @@ namespace anpi {
 
   //function prints vector
   template<typename T>
-  void vector_show(std::vector<T> &vect){
+  void vector_show(const std::vector<T> &vect){
     size_t size = vect.size();
     for(size_t i = 0; i< size ; ++i){
         std::cout << vect[i] << " " ;

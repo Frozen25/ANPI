@@ -73,18 +73,12 @@ namespace anpi {
 			LU.allocate(size,size);
 			std::vector<size_t> permut;
 
-
 			lu(A, LU, permut);
-
-			matrix_show(LU);
-			std::cout << "permut: ";
-			vector_show(permut);
 
 			Matrix<T> L, U;
 			L.allocate(size, size);
 			U.allocate(size, size);
 			unpack(LU, L, U);
-
 
 			std::vector<T> Y (size,0);
 
@@ -96,29 +90,33 @@ namespace anpi {
 			forwardSubs(L, Y, Bperm);
 			backwardSubs(U, x, Y);
 
-	}
+			
+	}//solveLU
 
 
 	template<typename T>
-	void invert(const Matrix<T>& A,
-               Matrix<T>& Ai) {
+	void invert(const anpi::Matrix<T>& A,
+              anpi::Matrix<T>& Ai) {
 
-		const size_t size =  A.cols();
-		//anpi::Matrix<T> I = anpi::identityMatrix(size,size);
+		size_t size =  A.cols();
+		
 
-		std::vector<T> I_j (size,0);
-		std::vector<T> AiT_j (size,0);
-		anpi::Matrix<T> AiT;
+		std::vector<T> I_j (size,T(0));
+		std::vector<T> AiT_j (size,T(0));
+		
 
 		size_t i,j;
-		AiT = A;
+		Ai.allocate(size,size);
 
 		for( i = 0; i< size; ++i){
 			I_j[i] = T(1);
 			solveLU(A, AiT_j, I_j);
-				for( j = 0; j<size; ++j){
-					AiT[j][i] = AiT_j[j];
-				}
+
+			
+
+			for( j = 0; j<size; ++j){
+				Ai[j][i] = AiT_j[j];
+			}
 			I_j[i] = T(0);			
 
 		}
