@@ -385,7 +385,7 @@ namespace anpi
 
 
 
-    #ifdef  __AVX__
+#ifdef  __AVX__
     template<>
     inline __m256d __attribute__((__always_inline__))
     mm_sub<double>(__m256d a,__m256d b) {
@@ -436,8 +436,58 @@ namespace anpi
     mm_sub<int8_t>(__m256i a,__m256i b) {
       return _mm256_sub_epi8(a,b);
     }
-
-    #endif
+#elif  defined __SSE2__
+    template<>
+    inline __m128d __attribute__((__always_inline__))
+    mm_sub<double>(__m128d a,__m128d b) {
+      return _mm_sub_pd(a,b);
+    }
+    template<>
+    inline __m128 __attribute__((__always_inline__))
+    mm_sub<float>(__m128 a,__m128 b) {
+      return _mm_sub_ps(a,b);
+    }
+    template<>
+    inline __m128i __attribute__((__always_inline__))
+    mm_sub<std::uint64_t>(__m128i a,__m128i b) {
+      return _mm_sub_epi64(a,b);
+    }
+    template<>
+    inline __m128i __attribute__((__always_inline__))
+    mm_sub<std::int64_t>(__m128i a,__m128i b) {
+      return _mm_sub_epi64(a,b);
+    }
+    template<>
+    inline __m128i __attribute__((__always_inline__))
+    mm_sub<std::uint32_t>(__m128i a,__m128i b) {
+      return _mm_sub_epi32(a,b);
+    }
+    template<>
+    inline __m128i __attribute__((__always_inline__))
+    mm_sub<std::int32_t>(__m128i a,__m128i b) {
+      return _mm_sub_epi16(a,b);
+    }
+    template<>
+    inline __m128i __attribute__((__always_inline__))
+    mm_sub<std::uint16_t>(__m128i a,__m128i b) {
+      return _mm_sub_epi16(a,b);
+    }
+    template<>
+    inline __m128i __attribute__((__always_inline__))
+    mm_sub<std::int16_t>(__m128i a,__m128i b) {
+      return _mm_sub_epi32(a,b);
+    }
+    template<>
+    inline __m128i __attribute__((__always_inline__))
+    mm_sub<std::uint8_t>(__m128i a,__m128i b) {
+      return _mm_sub_epi16(a,b);
+    }
+    template<>
+    inline __m128i __attribute__((__always_inline__))
+    mm_sub<std::int8_t>(__m128i a,__m128i b) {
+      return _mm_sub_epi32(a,b);
+    }
+#endif
 
     // On-copy implementation c=a-b
     template<typename T,class Alloc,typename regType>
@@ -483,6 +533,8 @@ namespace anpi
       if (is_aligned_alloc<Alloc>::value) {        
 #ifdef  __AVX__
         subSIMD<T,Alloc,typename avx_traits<T>::reg_type>(a,b,c);
+#elif  __SSE2__
+        subSIMD<T,Alloc,typename sse2_traits<T>::reg_type>(a,b,c);
 #else
         ::anpi::fallback::subtract(a,b,c);
 #endif
