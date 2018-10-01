@@ -16,6 +16,7 @@
 #include <ostream>
 #include <fstream>
 #include <limits>
+#include <cmath>
 
 #include <Matrix.hpp>
 #include <PlotPy.hpp>
