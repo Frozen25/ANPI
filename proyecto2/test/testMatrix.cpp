@@ -301,16 +301,16 @@ void testSimd() {
     M r = { {8,10,12},{14,16,18} };
 
     M c(a);
-    anpi::simd::add(c,b,c) ;
+    anpi::aimpl::add(c,b,c) ;
     BOOST_CHECK(c==r );
 
-    anpi::simd::add(a,b,c) ;
+    anpi::aimpl::add(a,b,c) ;
     BOOST_CHECK(c==r );
 
-    anpi::simd::add(M{ {1,2,3},{ 4, 5, 6} },b,c);
+    anpi::aimpl::add(M{ {1,2,3},{ 4, 5, 6} },b,c);
     BOOST_CHECK(c==r );
 
-    anpi::simd::add(a,M{ {7,8,9},{10,11,12} },c);
+    anpi::aimpl::add(a,M{ {7,8,9},{10,11,12} },c);
     BOOST_CHECK(c==r );
   }
 
@@ -320,16 +320,15 @@ void testSimd() {
     M r = { {-6,-6,-6},{-6,-6,-6} };
 
     M c(a);
-    anpi::simd::subtract(c,b,c);
+    anpi::aimpl::subtract(c,b,c);
     BOOST_CHECK( c==r );
-    anpi::simd::subtract(a,b,c);
-    BOOST_CHECK( c==r );
-
-
-    anpi::simd::subtract(M{ {1,2,3},{ 4, 5, 6} },b,c);
+    anpi::aimpl::subtract(a,b,c);
     BOOST_CHECK( c==r );
 
-    anpi::simd::subtract(a,M{ {7,8,9},{10,11,12} },c);
+    anpi::aimpl::subtract(M{ {1,2,3},{ 4, 5, 6} },b,c);
+    BOOST_CHECK( c==r );
+
+    anpi::aimpl::subtract(a,M{ {7,8,9},{10,11,12} },c);
     BOOST_CHECK( c==r );
   }
 }
