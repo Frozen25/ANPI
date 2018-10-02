@@ -49,6 +49,12 @@ namespace anpi{
     /// Constructor
     ResistorGrid();
 
+
+    std::size_t extremos(std::size_t row1,
+                            std::size_t col1,
+                            std::size_t row2,
+                            std::size_t col2);
+
     /**
      * Convert a pair of nodes coordinates to an index
      */
