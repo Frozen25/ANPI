@@ -25,7 +25,7 @@ namespace anpi{
     /// Row of the first node
     std::size_t row1;
     /// Column of the first node
-    std::size_t row2;
+    std::size_t col1;
     /// Row of the second node
     std::size_t row2;
     /// Column of the second node
