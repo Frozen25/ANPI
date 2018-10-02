@@ -20,6 +20,7 @@
 
 #include <Matrix.hpp>
 #include <Exception.hpp>
+#include <Utilities.hpp>
 
 int main() {
   // Build the name of the image in the data path
@@ -43,7 +44,7 @@ int main() {
                                                      map.ptr<float>());
   // And transform it to a SIMD-enabled matrix
   anpi::Matrix<float> amap(amapTmp);
-  
+
   cv::waitKey();
   
   return EXIT_SUCCESS;
