@@ -7,7 +7,8 @@
 namespace anpi {
   
   ResistorGrid::ResistorGrid() {
-    //TODO: implementar funcion
+    ResistorGrid::rawMap_ = {{0}};
+    ResistorGrid::
   }
   
   ResistorGrid::~ResistorGrid() {
@@ -39,13 +40,13 @@ namespace anpi {
 
     // Convert the OpenCV matrix into an anpi matrix
     // We have to use the std::allocator to avoid an exact stride
-    anpi::Matrix<float,std::allocator<float> > amapTmp(map.rows,
-                                                       map.cols,
+    anpi::Matrix<float,std::allocator<float> > amapTmp(static_cast<const size_t>(map.rows),
+                                                       static_cast<const size_t>(map.cols),
                                                        map.ptr<float>());
     // And transform it to a SIMD-enabled matrix
     anpi::Matrix<float> amap(amapTmp);
     
-    cv::waitKey();
+    ResistorGrid::rawMap_ = amap;
 
     return true;
   }
