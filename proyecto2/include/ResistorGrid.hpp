@@ -63,7 +63,7 @@ namespace anpi{
     /**
      * Convert an index to the pair of nodes coordinates
      */
-    indexPair indexToNodes(std::size_t idx);
+    indexPair indexToNodes(std::size_t idx); //To implement
 
     /**
      * Construct the grid from the given file
