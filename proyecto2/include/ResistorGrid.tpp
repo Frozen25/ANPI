@@ -29,9 +29,9 @@ namespace anpi {
   
     if ((abs(row2-row1) == 1 || row2-row1 == 0) &&
         (abs(col2-col1) == 1 || col2-col1 == 0)) {
-      if (row2==row1+1 || col2==col1+1) {
+      if (row2 == row1+1 || col2 == col1+1) {
         size_t idmax, idx;
-        size_t n = anpi::ResistorGrid::rawMap_.cols()-1;
+        size_t n = rawMap_.cols()-1;
   
         if(col1 == col2) {    //Vertical case
           idmax = extremos(row1, n, row2, n);
@@ -51,13 +51,36 @@ namespace anpi {
   
   indexPair ResistorGrid::indexToNodes(const std::size_t idx) {
     
-    size_t idmax = 0;
-    size_t i,j, horizontal, vertical;
+    if (((2*rawMap_.cols()*rawMap_.rows())-
+        (rawMap_.cols()+rawMap_.rows())) > idx) {
+      
+      indexPair result;
+      size_t n = rawMap_.cols()-1;
+      size_t horizontal, vertical;
+      
+      for (size_t i = 0;;++i) {
+        vertical = nodesToIndex(i,n,i+1,n);
+        horizontal = nodesToIndex(i,(n-1),i,n);
   
-    do {
-      horizontal = extremos(i,j,i,j+1);
-      vertical = extremos(i,j,i+1,j);
-    } while (idx <= idmax);
+        if (horizontal >= idx){
+          result.row1 = i;
+          result.col1 = (n-1)-(horizontal-idx);
+          result.row2 = i;
+          result.col2 = n-(horizontal-idx);
+          break;
+        } else if (vertical >= idx) {
+          result.row1 = i;
+          result.col1 = n-(vertical-idx);
+          result.row2 = i+1;
+          result.col2 = n-(vertical-idx);
+          break;
+        }
+      }
+      return result;
+      
+    } else {
+      throw anpi::Exception("Idx not in range");
+    }
   }
   
   bool ResistorGrid::build(const std::string filename) {
@@ -80,7 +103,7 @@ namespace anpi {
     // And transform it to a SIMD-enabled matrix
     anpi::Matrix<float> amap(amapTmp);
     
-    ResistorGrid::rawMap_ = amap;
+    rawMap_ = amap;
 
     return true;
   }
