@@ -7,12 +7,9 @@
 namespace anpi {
   
   ResistorGrid::ResistorGrid() {
-    ResistorGrid::rawMap_ = {{0}};
-    ResistorGrid::
-  }
-  
-  ResistorGrid::~ResistorGrid() {
-    //TODO: implementar funcion
+    ResistorGrid::rawMap_(1,1,0);
+    ResistorGrid::A_(1,1,0);
+    ResistorGrid::b_(1,0);
   }
   
   std::size_t ResistorGrid::nodesToIndex(const std::size_t row1,
