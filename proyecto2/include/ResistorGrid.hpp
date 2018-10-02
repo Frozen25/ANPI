@@ -55,21 +55,21 @@ namespace anpi{
     /**
      * Convert a pair of nodes coordinates to an index
      */
-    std::size_t nodesToIndex(const std::size_t row1,
-                             const std::size_t col1,
-                             const std::size_t row2,
-                             const std::size_t col2);
+    std::size_t nodesToIndex(std::size_t row1,
+                             std::size_t col1,
+                             std::size_t row2,
+                             std::size_t col2);
 
     /**
      * Convert an index to the pair of nodes coordinates
      */
-    indexPair indexToNodes(const std::size_t idx);
+    indexPair indexToNodes(std::size_t idx);
 
     /**
      * Construct the grid from the given file
      * @return true if successful or false otherwise
      */
-    bool build(const std::string filename);
+    bool build(std::string filename);
 
     /**
      * Compute the internal data to navigate between the given nodes
