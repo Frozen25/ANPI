@@ -14,13 +14,13 @@ namespace anpi {
 
 
   std::size_t ResistorGrid::extremos(const std::size_t row1,
-                         const std::size_t col1,
-                         const std::size_t row2,
-                         const std::size_t col2) {
+                                     const std::size_t col1,
+                                     const std::size_t row2,
+                                     const std::size_t col2) {
 
-      return (col2-1) + (col2 + 1)*row2 + col2*row1;
+    return (col2-1) + (col2 + 1)*row2 + col2*row1;
 
-    }
+  }
   
   std::size_t ResistorGrid::nodesToIndex(const std::size_t row1,
                                          const std::size_t col1,
@@ -29,49 +29,35 @@ namespace anpi {
   
     if ((abs(row2-row1) == 1 || row2-row1 == 0) &&
         (abs(col2-col1) == 1 || col2-col1 == 0)) {
-      
-      size_t idmax, idx;
-      size_t n = anpi::ResistorGrid::rawMap_.cols();
-      /*
-      if(col1 == col2) {    //Vertical case
-        idmax = (n-1) + (n + 1)*row2 + n*row1;
+      if (row2==row1+1 || col2==col1+1) {
+        size_t idmax, idx;
+        size_t n = anpi::ResistorGrid::rawMap_.cols()-1;
+  
+        if(col1 == col2) {    //Vertical case
+          idmax = extremos(row1, n, row2, n);
+        } else {               //Horizontal case
+          idmax = extremos(row1, (n-1), row2, n);
+        }
+  
         idx = idmax - (n-col2);
+        return idx;
+      } else {
+        throw anpi::Exception("Second pair must be greater than first pair");
       }
-  
-      else {               //Horizontal case
-        idmax = ((col2+(n-row2))-1) + ((col2+(n-row2)) + 1)*row2 + (col2+(n-row2))*row1;
-        idx = idmax - (n-row2);
-      }
-  
-      return idx;
-      */
-      if (col2 == n){
-        return extremos(row1, col1, row2, col2);
-      }
-
-      else if(col1 == col2){    //Vertical case
-
-        size_t fnk, result;
-        fnk = extremos(row1, n, row2, n);    //Where n is equal to newCol2;
-        result = fnk - (n-col2);
-        return result;
-
-      }
-
-      else{               //Horizontal case
-        size_t fnk, result;
-        fnk = extremos(row1, (col1+(n-row2)), row2, (col2+(n-row2)));   //Where (col2+(n-row2)) es equal to new Col2;
-        result = fnk - (n-row2);
-        return result;
-      }
-
     } else {
       throw anpi::Exception("Nodes are not next to each other");
     }
   }
   
   indexPair ResistorGrid::indexToNodes(const std::size_t idx) {
-    //TODO: implementar funcion
+    
+    size_t idmax = 0;
+    size_t i,j, horizontal, vertical;
+  
+    do {
+      horizontal = extremos(i,j,i,j+1);
+      vertical = extremos(i,j,i+1,j);
+    } while (idx <= idmax);
   }
   
   bool ResistorGrid::build(const std::string filename) {
