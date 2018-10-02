@@ -49,9 +49,6 @@ namespace anpi{
     /// Constructor
     ResistorGrid();
 
-    /// Destructor
-    ~ResistorGrid();
-
     /**
      * Convert a pair of nodes coordinates to an index
      */
