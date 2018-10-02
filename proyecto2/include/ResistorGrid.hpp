@@ -55,8 +55,7 @@ namespace anpi{
     std::size_t nodesToIndex(std::size_t row1,
                              std::size_t col1,
                              std::size_t row2,
-                             std::size_t col2,
-                             std::size_t n);
+                             std::size_t col2);
 
     /**
      * Convert an index to the pair of nodes coordinates

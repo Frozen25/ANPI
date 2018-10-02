@@ -15,22 +15,28 @@ namespace anpi {
   std::size_t ResistorGrid::nodesToIndex(const std::size_t row1,
                                          const std::size_t col1,
                                          const std::size_t row2,
-                                         const std::size_t col2,
-                                         const std::size_t n) {
-    if(col1 == col2){    //Vertical case
-
-      size_t fnk, result;
-      fnk = (n-1) + (n + 1)*row2 + n*row1;    //Where n is equal to newCol2;
-      result = fnk - (n-col2);
-      return result;
-
-    }
-
-    else{               //Horizontal case
-      size_t fnk, result;
-      fnk = ((col2+(n-row2))-1) + ((col2+(n-row2)) + 1)*row2 + (col2+(n-row2))*row1;   //Where (col2+(n-row2)) es equal to new Col2;
-      result = fnk - (n-row2);
-      return result;
+                                         const std::size_t col2) {
+  
+    if ((abs(row2-row1) == 1 || row2-row1 == 0) &&
+        (abs(col2-col1) == 1 || col2-col1 == 0)) {
+      
+      size_t idmax, idx;
+      size_t n = anpi::ResistorGrid::rawMap_.cols();
+  
+      if(col1 == col2) {    //Vertical case
+        idmax = (n-1) + (n + 1)*row2 + n*row1;
+        idx = idmax - (n-col2);
+      }
+  
+      else {               //Horizontal case
+        idmax = ((col2+(n-row2))-1) + ((col2+(n-row2)) + 1)*row2 + (col2+(n-row2))*row1;
+        idx = idmax - (n-row2);
+      }
+  
+      return idx;
+      
+    } else {
+      throw anpi::Exception("Nodes are not next to each other");
     }
   }
   
