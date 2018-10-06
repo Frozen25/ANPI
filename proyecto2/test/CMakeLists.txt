@@ -1,9 +1,9 @@
 find_package (Boost COMPONENTS system filesystem unit_test_framework REQUIRED)
 include_directories(${CMAKE_SOURCE_DIR}/include ${Boost_INCLUDE_DIRS})
 
-file(GLOB TEST_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp *.hpp)
+file(GLOB TEST_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp *.hpp *.tpp)
 
-add_executable (tester ${TEST_SRCS})
+add_executable (tester ${TEST_SRCS} testIndex.cpp)
 target_link_libraries (tester
                        anpi
                        ${Boost_FILESYSTEM_LIBRARY}
