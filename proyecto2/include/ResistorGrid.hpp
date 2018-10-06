@@ -39,9 +39,12 @@ namespace anpi{
     Matrix<float> A_;
     /// Vector of the current equation system
     std::vector<float> b_;
-
     /// Raw map data
     Matrix<float> rawMap_;
+    /// Min value of a resistor
+    const size_t minResistor = 1;
+    /// Max value of a resistor
+    const size_t maxResistor = 1000000;
 
   public:
     /// ... constructors and other methods
@@ -52,11 +55,11 @@ namespace anpi{
      * Constructor that initialize a matrix 'A' and a vector 'b' with the size necesary once the rawMap_ is loaded
      */
     ResistorGrid() {
-      size_t ASize = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
-      A_.allocate(ASize,ASize);
+      const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
+      A_.allocate(totalVariables,totalVariables);
       A_.fill(0.0f);
   
-      b_.resize(ASize);
+      b_.resize(totalVariables);
     }
     
     /**
@@ -70,23 +73,23 @@ namespace anpi{
       rawMap_.allocate(rows,cols);
       rawMap_.fill(0.0f);
   
-      size_t ASize = 2*rows*cols-(rows+cols);
+      const size_t totalVariables = 2*rows*cols-(rows+cols);
   
-      A_.allocate(ASize,ASize);
+      A_.allocate(totalVariables,totalVariables);
       A_.fill(0.0f);
   
-      b_.resize(ASize);
+      b_.resize(totalVariables);
     }
 
     /**
-     * Function that returns the index of the resistance at the edges of the grid
-     * @param row1 row of the node left of the resistance
-     * @param col1 column of the node left of the resistance
-     * @param row2 row of the node right of the resistance
-     * @param col2 column of the node right of the resistance
+     * Function that returns the index of the resistor at the edges of the grid
+     * @param row1 row of the node left of the resistor
+     * @param col1 column of the node left of the resistor
+     * @param row2 row of the node right of the resistor
+     * @param col2 column of the node right of the resistor
      * @return
      */
-    std::size_t edgeResistance(std::size_t row1,
+    std::size_t edgeResistor(std::size_t row1,
                                std::size_t col1,
                                std::size_t row2,
                                std::size_t col2) {
@@ -94,12 +97,12 @@ namespace anpi{
     }
 
     /**
-     * Convert a pair of nodes coordinates to an index, unique to each resistance
+     * Convert a pair of nodes coordinates to an index, unique to each resistor
      * @param row1 row of the left node
      * @param col1 column of the left node
      * @param row2 row of the right column
      * @param col2 column of the right column
-     * @return index of the resistance
+     * @return index of the resistor
      */
     std::size_t nodesToIndex(std::size_t row1,
                              std::size_t col1,
@@ -113,9 +116,9 @@ namespace anpi{
           size_t n = rawMap_.cols()-1;
       
           if(col1 == col2) {    //Vertical case
-            idmax = edgeResistance(row1, n, row2, n);
+            idmax = edgeResistor(row1, n, row2, n);
           } else {               //Horizontal case
-            idmax = edgeResistance(row1, (n - 1), row2, n);
+            idmax = edgeResistor(row1, (n - 1), row2, n);
           }
       
           idx = idmax - (n-col2);
@@ -129,9 +132,9 @@ namespace anpi{
     }
 
     /**
-     * Convert an index to the pair of nodes coordinates of the resistance with that index
-     * @param idx index of the resistance
-     * @return struct indePair with the pair of nodes before and after the resistance located in the rawMap_
+     * Convert an index to the pair of nodes coordinates of the resistor with that index
+     * @param idx index of the resistor
+     * @return struct indexPair with the pair of nodes before and after the resistor located in the rawMap_
      */
     indexPair indexToNodes(std::size_t idx) {
   
@@ -166,39 +169,69 @@ namespace anpi{
         throw anpi::Exception("Idx not in range");
       }
     }
+    
+    size_t resistorValue(const std::size_t idx) {
+      
+      const indexPair nodesResistor = indexToNodes(idx);
+      size_t resistorOhm;
+  
+      if(rawMap_(nodesResistor.row1,nodesResistor.col1) == 0) {
+        resistorOhm = ResistorGrid::maxResistor;
+      } else if(rawMap_(nodesResistor.row2,nodesResistor.col2) == 0) {
+        resistorOhm = ResistorGrid::maxResistor;
+      } else {
+        resistorOhm = minResistor;
+      }
+  
+      return resistorOhm;
+    }
 
     /**
      * Construct the grid from the given file
      * @return true if successful or false otherwise
      */
     bool build(const std::string &filename) {
-      // Build the name of the image in the data path
-      std::string mapPath = std::string( ANPI_DATA_PATH ) + filename;
   
-      // Read the image using the OpenCV
-      cv::Mat_<float> map;
+      try {
+        // Build the name of the image in the data path
+        std::string mapPath = std::string( ANPI_DATA_PATH ) + filename;
   
-      cv::imread(mapPath.c_str(),
-                 CV_LOAD_IMAGE_GRAYSCALE).convertTo(map,CV_32FC1);
-      map /= 255.0f; // normalize image range to 0 .. 255
+        // Read the image using the OpenCV
+        cv::Mat_<float> map;
   
-      // Convert the OpenCV matrix into an anpi matrix
-      // We have to use the std::allocator to avoid an exact stride
-      anpi::Matrix<float,std::allocator<float> > amapTmp(static_cast<const size_t>(map.rows),
-                                                         static_cast<const size_t>(map.cols),
-                                                         map.ptr<float>());
-      // And transform it to a SIMD-enabled matrix
-      anpi::Matrix<float> amap(amapTmp);
+        cv::imread(mapPath.c_str(),
+                   CV_LOAD_IMAGE_GRAYSCALE).convertTo(map,CV_32FC1);
+        map /= 255.0f; // normalize image range to 0 .. 255
   
-      rawMap_ = amap;
+        // Convert the OpenCV matrix into an anpi matrix
+        // We have to use the std::allocator to avoid an exact stride
+        anpi::Matrix<float,std::allocator<float> > amapTmp(static_cast<const size_t>(map.rows),
+                                                           static_cast<const size_t>(map.cols),
+                                                           map.ptr<float>());
+        // And transform it to a SIMD-enabled matrix
+        anpi::Matrix<float> amap(amapTmp);
   
-      return true;
+        rawMap_ = amap;
+  
+        return true;
+        
+      } catch (const std::exception &exc){
+        // catch anything thrown within try block that derives from std::exception
+        std::cerr << exc.what();
+        return false;
+      }
     }
 
     /**
      * Compute the internal data to navigate between the given nodes
      */
-    bool navigate(const indexPair& nodes);
+    bool navigate(const indexPair& nodes) {
+      
+      size_t numEquation = 0;
+      const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
+      
+      
+    }
   };
 }
 
