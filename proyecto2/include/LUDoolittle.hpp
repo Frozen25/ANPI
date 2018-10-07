@@ -82,6 +82,45 @@ namespace anpi {
    * @throws anpi::Exception if matrix cannot be decomposed, or input
    *         matrix is not square.
    */
+  
+  template<typename T,typename regType>
+  void luDoolittleSIMD(const Matrix<T>& A,
+                   Matrix<T>& LU,
+                   std::vector<size_t>& permut) {
+
+      if (A.rows() != A.cols()) throw anpi::Exception("Matrix is not a square!");
+      permut = std::vector<size_t> (A.rows(),0);    //Initialize the permutation vector
+      for(size_t i = 0; i<permut.size(); ++i){      //Add elements to permutation vector
+          permut[i] = i;
+      }
+
+      LU = A;
+      size_t n = LU.rows();                         //Rows number and Columns number, counter
+      T f;                                          //f = factors for the lower triangular matrix
+
+      regType element;
+      
+      pivot(LU,0,0,0,permut);                       //Pivoting
+      for (size_t k = 0; k < n-1; ++k) {            //Column Iterator
+
+          for (size_t i = k+1; i < n ; ++i) {       //Rows Iterator
+              f = LU[i][k]/LU[k][k];
+
+              for (size_t j = k; j < n; ++j) {      //Rows iterator for the elemental operation
+
+                  LU[i][j] = LU[i][j] - f*LU[k][j];
+              }
+              LU[i][k] = f;                          //Filling the lower triangular matrix
+          }
+          pivot(LU,k,0,k,permut);                    //Pivoting
+      }
+    //throw anpi::Exception("To be implemented yet");
+  }
+
+
+
+
+
   template<typename T>
   void luDoolittle(const Matrix<T>& A,
                    Matrix<T>& LU,

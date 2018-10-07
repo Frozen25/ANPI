@@ -22,7 +22,19 @@ namespace anpi{
     inline void lu(const Matrix<T>& A,
                    Matrix<T>& LU,
                    std::vector<size_t>& permut){
-        luDoolittle(A, LU, permut);
+
+        #ifdef ANPI_ENABLE_SIMD
+          #ifdef __AVX__
+            luDoolittleSIMD<T, typename avx_traits<T>::reg_type>(A, LU, permut);
+          #else
+            luDoolittle(A, LU, permut);
+          #endif
+        #else
+            luDoolittle(A, LU, permut);
+        #endif
+
+
+        //luDoolittle(A, LU, permut);
     }
     template <typename T>
     inline void unpack(const Matrix<T>& LU,
