@@ -301,6 +301,20 @@ namespace anpi{
         }
       }
     }
+
+
+    /**
+     * This method finds the path from the initial node to final node
+     */
+    template <typename T>
+    void pathFinder(indexPair initialNode, indexPair FinalNode, std::vector<T>& SolVector){
+
+      
+
+    }
+
+
+
   };
 }
 
