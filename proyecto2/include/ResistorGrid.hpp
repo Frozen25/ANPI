@@ -229,8 +229,77 @@ namespace anpi{
       
       size_t numEquation = 0;
       const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
+      bool equationEliminated = false;
+      bool omitEquation = false;
       
-      
+      for(size_t i = 0; i < rawMap_.rows(); ++i) {
+        for(size_t j = 0; i < rawMap_.cols(); ++j) {
+          { //Nodes equations
+            size_t idx;
+            
+            size_t iMinus1 = i-1;
+            size_t jMinus1 = j-1;
+            size_t iPlus1 = i+1;
+            size_t jPlus1 = j+1;
+  
+            if(nodes.row1 == i && nodes.col1 == j) {
+              b_.push_back(1);
+            } else if(nodes.row2 == i && nodes.col2 == j) {
+              b_.push_back(-1);
+            } else {
+              b_.push_back(0);
+              if(!(equationEliminated)) {
+                if((i==0 && j==0) ||
+                   (i==0 && j==rawMap_.cols()-1) ||
+                   (i==rawMap_.rows()-1 && j==0) ||
+                   (i==rawMap_.rows()-1 && j==rawMap_.cols()-1)) {
+                  equationEliminated = true;
+                  omitEquation = true;
+                }
+              }
+            }
+  
+            if(iMinus1 < totalVariables) { // Node has upper resistor
+              if(!(omitEquation)) {
+                idx = nodesToIndex(iMinus1,j,i,j);
+                A_(numEquation,idx) = 1;
+              }
+            }
+            if(jMinus1 < totalVariables) { // Node has left resistor
+              if(!(omitEquation)) {
+                idx = nodesToIndex(i,jMinus1,i,j);
+                A_(numEquation,idx) = 1;
+              }
+            }
+            if(iPlus1 < totalVariables) { // Node has lower resistor
+              if(!(omitEquation)) {
+                idx = nodesToIndex(i,j,iPlus1,j);
+                A_(numEquation,idx) = -1;
+              }
+            }
+            if(jPlus1 < totalVariables) { // Node has right resistor
+              if(!(omitEquation)) {
+                idx = nodesToIndex(i,j,i,jPlus1);
+                A_(numEquation,idx) = -1;
+              }
+            }
+  
+            if (!(omitEquation)) {
+              ++numEquation;
+            } else {
+              omitEquation = false;
+            }
+          }
+          
+          {//Grid
+            size_t idx1;
+            size_t idx2;
+            size_t idx3;
+            size_t idx4;
+            
+          }
+        }
+      }
     }
   };
 }
