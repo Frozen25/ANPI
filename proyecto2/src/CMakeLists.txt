@@ -16,7 +16,7 @@ list(REMOVE_ITEM SRCS "paths.cpp")
 
 include(CheckIncludeFiles)
 
-add_library(anpi STATIC ${SRCS} ${HEADERS} ../include/ResistorGrid.hpp)
+add_library(anpi STATIC ${SRCS} ${HEADERS})
 add_executable(proyecto2 paths.cpp)
 target_link_libraries(proyecto2 anpi ${OpenCV_LIBS} ${Boost_LIBRARIES} python2.7)
 
