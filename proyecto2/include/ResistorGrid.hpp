@@ -15,8 +15,10 @@
 #include <opencv2/core.hpp>    // For cv::Mat
 #include <opencv2/highgui.hpp> // For cv::imread/imshow
 
-#include <Matrix.hpp>
-#include <Exception.hpp>
+#include <include/Matrix.hpp>
+#include <include/Exception.hpp>
+
+#include "Utilities.hpp"
 
 
 namespace anpi{
@@ -54,13 +56,7 @@ namespace anpi{
     /**
      * Constructor that initialize a matrix 'A' and a vector 'b' with the size necesary once the rawMap_ is loaded
      */
-    ResistorGrid() {
-      const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
-      A_.allocate(totalVariables,totalVariables);
-      A_.fill(0.0f);
-  
-      b_.resize(totalVariables);
-    }
+    ResistorGrid() {}
     
     /**
      * Constructor of the class that initialize an empty map of row*cols,
@@ -191,18 +187,18 @@ namespace anpi{
      * @return true if successful or false otherwise
      */
     bool build(const std::string &filename) {
-  
+
       try {
         // Build the name of the image in the data path
-        std::string mapPath = std::string( ANPI_DATA_PATH ) + filename;
-  
+        std::string mapPath = std::string( ANPI_DATA_PATH ) + "/" + filename;
+
         // Read the image using the OpenCV
         cv::Mat_<float> map;
-  
+
         cv::imread(mapPath.c_str(),
                    CV_LOAD_IMAGE_GRAYSCALE).convertTo(map,CV_32FC1);
         map /= 255.0f; // normalize image range to 0 .. 255
-  
+
         // Convert the OpenCV matrix into an anpi matrix
         // We have to use the std::allocator to avoid an exact stride
         anpi::Matrix<float,std::allocator<float> > amapTmp(static_cast<const size_t>(map.rows),
@@ -210,11 +206,20 @@ namespace anpi{
                                                            map.ptr<float>());
         // And transform it to a SIMD-enabled matrix
         anpi::Matrix<float> amap(amapTmp);
-  
+
         rawMap_ = amap;
-  
+
+        // Initialize the other data
+        const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
+        A_.allocate(totalVariables,totalVariables);
+        A_.fill(static_cast<float>(0));
+
+        printf("Finished building rawMap\n");
+        //matrix_show(rawMap_); //TODO: remove line
+        //matrix_show(A_); //TODO: remove line
+
         return true;
-        
+
       } catch (const std::exception &exc){
         // catch anything thrown within try block that derives from std::exception
         std::cerr << exc.what();
@@ -231,23 +236,23 @@ namespace anpi{
       const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
       bool equationEliminated = false;
       bool omitEquation = false;
-      
-      for(size_t i = 0; i < rawMap_.rows(); ++i) {
-        for(size_t j = 0; i < rawMap_.cols(); ++j) {
+
+      for(size_t i = 0; i < rawMap_.rows(); ++i) { // Careful with entering an equation when A_ is full (it shouldn't)
+        for(size_t j = 0; j < rawMap_.cols(); ++j) {
           { //Nodes equations
             size_t idx;
-            
+
             size_t iMinus1 = i-1;
             size_t jMinus1 = j-1;
             size_t iPlus1 = i+1;
             size_t jPlus1 = j+1;
-  
+
             if(nodes.row1 == i && nodes.col1 == j) {
-              b_.push_back(1);
+              b_.push_back(static_cast<float>(1));
             } else if(nodes.row2 == i && nodes.col2 == j) {
-              b_.push_back(-1);
+              b_.push_back(static_cast<float>(-1));
             } else {
-              b_.push_back(0);
+              b_.push_back(static_cast<float>(0));
               if(!(equationEliminated)) {
                 if((i==0 && j==0) ||
                    (i==0 && j==rawMap_.cols()-1) ||
@@ -258,48 +263,60 @@ namespace anpi{
                 }
               }
             }
-  
+
             if(iMinus1 < totalVariables) { // Node has upper resistor
               if(!(omitEquation)) {
                 idx = nodesToIndex(iMinus1,j,i,j);
-                A_(numEquation,idx) = 1;
+                A_(numEquation,idx) = static_cast<float>(1);
               }
             }
             if(jMinus1 < totalVariables) { // Node has left resistor
               if(!(omitEquation)) {
                 idx = nodesToIndex(i,jMinus1,i,j);
-                A_(numEquation,idx) = 1;
+                A_(numEquation,idx) = static_cast<float>(1);
               }
             }
             if(iPlus1 < totalVariables) { // Node has lower resistor
               if(!(omitEquation)) {
                 idx = nodesToIndex(i,j,iPlus1,j);
-                A_(numEquation,idx) = -1;
+                A_(numEquation,idx) = static_cast<float>(-1);
               }
             }
             if(jPlus1 < totalVariables) { // Node has right resistor
               if(!(omitEquation)) {
                 idx = nodesToIndex(i,j,i,jPlus1);
-                A_(numEquation,idx) = -1;
+                A_(numEquation,idx) = static_cast<float>(-1);
               }
             }
-  
+
             if (!(omitEquation)) {
               ++numEquation;
             } else {
               omitEquation = false;
             }
           }
-          
+
           {//Grid
-            size_t idx1;
-            size_t idx2;
-            size_t idx3;
-            size_t idx4;
-            
+            if(i<rawMap_.rows()-1 && j<rawMap_.cols()-1) { // Don't count the last border nodes where there's no grid
+              size_t idx1 = nodesToIndex(i,j,i,j+1); // Positive current
+              size_t idx2 = nodesToIndex(i,j+1,i+1,j+1); // Positive current
+              size_t idx3 = nodesToIndex(i+1,j,i+1,j+1); // Negative current
+              size_t idx4 = nodesToIndex(i,j,i+1,j); // Negative current
+
+              A_(numEquation,idx1) = static_cast<float>(resistorValue(idx1));
+              A_(numEquation,idx2) = static_cast<float>(resistorValue(idx2));
+              A_(numEquation,idx3) = (static_cast<float>(resistorValue(idx3)))*-1;
+              A_(numEquation,idx4) = (static_cast<float>(resistorValue(idx4)))*-1;
+
+              ++numEquation;
+            }
           }
         }
       }
+
+      printf("Finished building A_ and b_\n");
+      //matrix_show(A_); //TODO: remove line
+      return true;
     }
 
 
