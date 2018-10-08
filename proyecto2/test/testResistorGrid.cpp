@@ -79,25 +79,49 @@ BOOST_AUTO_TEST_SUITE_END()
 BOOST_AUTO_TEST_SUITE( NAVIGATE )
 
   BOOST_AUTO_TEST_CASE(buildMatrix) {
-    anpi::ResistorGrid resistorGrid;
-    resistorGrid.build("mapa3x3.png");
-
-    anpi::indexPair CurrentSource;
-    CurrentSource.row1 = 0;
-    CurrentSource.col1 = 0;
-    CurrentSource.row2 = 2;
-    CurrentSource.col2 = 2;
-    resistorGrid.navigate(CurrentSource);
-    BOOST_CHECK_MESSAGE(true,"Successful run 3x3");
-
-    CurrentSource.col2 = 100;
-    try {
-      resistorGrid.navigate(CurrentSource);
-      BOOST_CHECK_MESSAGE(false,"Wrong source node not catched");
-    } catch(anpi::Exception &exc ) {
-      BOOST_CHECK_MESSAGE(true,"Successfully catched exception");
+    {
+      try {
+        anpi::ResistorGrid resistorGrid;
+        resistorGrid.build("mapa3X3.png");
+        BOOST_CHECK_MESSAGE(false,"Wrong name map not catched");
+      } catch(anpi::Exception &exc ) {
+        BOOST_CHECK_MESSAGE(true,"Successfully catched exception (Wrong map)");
+      }
     }
 
+    {
+      anpi::ResistorGrid resistorGrid;
+      resistorGrid.build("mapa3x3.png");
+
+      anpi::indexPair CurrentSource;
+      CurrentSource.row1 = 0;
+      CurrentSource.col1 = 0;
+      CurrentSource.row2 = 2;
+      CurrentSource.col2 = 2;
+      resistorGrid.navigate(CurrentSource);
+      BOOST_CHECK_MESSAGE(true,"Successful run 3x3");
+
+      CurrentSource.col2 = 100;
+      try {
+        resistorGrid.navigate(CurrentSource);
+        BOOST_CHECK_MESSAGE(false,"Wrong source node not catched");
+      } catch(anpi::Exception &exc ) {
+        BOOST_CHECK_MESSAGE(true,"Successfully catched exception (Node doesn't exist)");
+      }
+    }
+
+    {
+      anpi::ResistorGrid resistorGrid;
+      resistorGrid.build("mapa6x7.png");
+
+      anpi::indexPair CurrentSource;
+      CurrentSource.row1 = 0;
+      CurrentSource.col1 = 0;
+      CurrentSource.row2 = 4;
+      CurrentSource.col2 = 5;
+      resistorGrid.navigate(CurrentSource);
+      BOOST_CHECK_MESSAGE(true,"Successful run 6x7");
+    }
   }
 
 BOOST_AUTO_TEST_SUITE_END()

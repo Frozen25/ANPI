@@ -211,43 +211,39 @@ namespace anpi{
      */
     bool build(const std::string &filename) {
 
-      try {
-        // Build the name of the image in the data path
-        std::string mapPath = std::string( ANPI_DATA_PATH ) + "/" + filename;
+      // Build the name of the image in the data path
+      std::string mapPath = std::string( ANPI_DATA_PATH ) + "/" + filename;
 
-        // Read the image using the OpenCV
-        cv::Mat_<float> map;
+      // Read the image using the OpenCV
+      cv::Mat_<float> map;
 
-        cv::imread(mapPath.c_str(),
-                   CV_LOAD_IMAGE_GRAYSCALE).convertTo(map,CV_32FC1);
-        map /= 255.0f; // normalize image range to 0 .. 255
+      cv::imread(mapPath.c_str(),
+                 CV_LOAD_IMAGE_GRAYSCALE).convertTo(map,CV_32FC1);
+      map /= 255.0f; // normalize image range to 0 .. 255
 
-        // Convert the OpenCV matrix into an anpi matrix
-        // We have to use the std::allocator to avoid an exact stride
-        anpi::Matrix<float,std::allocator<float> > amapTmp(static_cast<const size_t>(map.rows),
-                                                           static_cast<const size_t>(map.cols),
-                                                           map.ptr<float>());
-        // And transform it to a SIMD-enabled matrix
-        anpi::Matrix<float> amap(amapTmp);
-
-        rawMap_ = amap;
-
-        // Initialize the other data
-        const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
-        A_.allocate(totalVariables,totalVariables);
-        A_.fill(static_cast<float>(0));
-
-        printf("Finished building rawMap\n");
-        //matrix_show(rawMap_); //TODO: remove line
-        //matrix_show(A_); //TODO: remove line
-
-        return true;
-
-      } catch (const std::exception &exc){
-        // catch anything thrown within try block that derives from std::exception
-        std::cerr << exc.what();
-        return false;
+      if(map.cols == 0 || map.rows == 0 || map.data == NULL) {
+        throw anpi::Exception("Problem creating the map");
       }
+
+      // Convert the OpenCV matrix into an anpi matrix
+      // We have to use the std::allocator to avoid an exact stride
+      anpi::Matrix<float,std::allocator<float> > amapTmp(static_cast<const size_t>(map.rows),
+                                                         static_cast<const size_t>(map.cols),
+                                                         map.ptr<float>());
+      // And transform it to a SIMD-enabled matrix
+      anpi::Matrix<float> amap(amapTmp);
+
+      rawMap_ = amap;
+
+      // Initialize the other data
+      const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
+      A_.allocate(totalVariables,totalVariables);
+      A_.fill(static_cast<float>(0));
+
+      printf("Finished building rawMap\n");
+      matrix_show(rawMap_); //TODO: remove line
+
+      return true;
     }
 
     /**
@@ -262,7 +258,11 @@ namespace anpi{
 
       if((nodes.row1 > rawMap_.rows() || nodes.col1 > rawMap_.cols()) ||
           (nodes.row2 > rawMap_.rows() || nodes.col2 > rawMap_.cols())) {
-        throw anpi::Exception("Invalid nodes to connect the source");
+        throw anpi::Exception("Invalid nodes to connect the source (nodes doesn't exist)");
+      }
+
+      if(rawMap_(nodes.row1,nodes.col1) == 0 || rawMap_(nodes.row2,nodes.col2) == 0) {
+        throw anpi::Exception("Invalid nodes to connect the source (nodes connected to object)");
       }
 
       for(size_t i = 0; i < rawMap_.rows(); ++i) { // Careful with entering an equation when A_ is full (it shouldn't)
@@ -343,7 +343,7 @@ namespace anpi{
       }
 
       printf("Finished building A_ and b_\n");
-      //matrix_show(A_); //TODO: remove line
+      matrix_show(A_); //TODO: remove line
       return true;
     }
     /**
