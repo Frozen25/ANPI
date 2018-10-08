@@ -24,7 +24,7 @@
 
 int main() {
   // Build the name of the image in the data path
-  std::string mapPath = std::string( ANPI_DATA_PATH ) + "/mapa25x29.png";
+  std::string mapPath = std::string( ANPI_DATA_PATH ) + "/mapa3x3.png";
 
   // Read the image using the OpenCV
   cv::Mat_<float> map;
@@ -51,4 +51,4 @@ int main() {
   
   return EXIT_SUCCESS;
 }
-  
+
