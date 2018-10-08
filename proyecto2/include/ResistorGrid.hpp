@@ -690,7 +690,7 @@ namespace anpi{
           }
           else{
 
-            if(SolVector[current_Values[i-1]] < SolVector[current_Values[i]]){
+            if(std::abs(SolVector[current_Values[i-1]]) < std::abs(SolVector[current_Values[i]])){
 
               biggestVal = current_Values[i];
 
