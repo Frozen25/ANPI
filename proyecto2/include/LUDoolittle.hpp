@@ -224,10 +224,10 @@ namespace simd{
       pivot(LU,0,0,0,permut);                       //Pivoting
       for (size_t k = 0; k < n-1; ++k) {            //Elimination Iterator
 
-        regType *block_actual;                      //pointer to first block of this row
+        regType *block_actual = start_LU;                      //pointer to first block of this row
         regType *block_factor = start_LU + k * blocks_in_row;  
         regType *row_back =  block_actual;
-        regType *row_next = block_actual + blocks_in_row;        //pointer to first block of next row
+        //regType *row_next = block_actual + blocks_in_row;        //pointer to first block of next row
         //regType *row_end = row_next + blocks_in_row;        //pointer to end of next block
 
         for (size_t i = k+1; (i < n) ; ++i) {       //Rows Iterator
@@ -268,7 +268,7 @@ namespace simd{
           LU[i][k] = factor;                          //Filling the lower triangular matrix
           row_back  += blocks_in_row;
           block_actual == row_back; 
-          row_next  = row_back + blocks_in_row;
+          //row_next  = row_back + blocks_in_row;
 
         }///for rows iterator
 
