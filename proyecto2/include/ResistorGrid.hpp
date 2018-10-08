@@ -15,8 +15,8 @@
 #include <opencv2/core.hpp>    // For cv::Mat
 #include <opencv2/highgui.hpp> // For cv::imread/imshow
 
-#include <include/Matrix.hpp>
-#include <include/Exception.hpp>
+#include <Matrix.hpp>
+#include <Exception.hpp>
 
 #include "Utilities.hpp"
 
