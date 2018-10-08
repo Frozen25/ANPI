@@ -4,8 +4,9 @@
  *
  * This file is part of the numerical analysis lecture CE3102 at TEC
  *
- * @Author: 
- * @Date  : 03.03.2018
+ * @Author: Crisptofer Fernandez
+ * @Editor: Alexis Gavriel
+ * @Date  : 07.10.2018
  */
 
 #include <cmath>
@@ -91,94 +92,6 @@ namespace simd{
   #if defined __AVX__
 
 
-
-   
-
-    /*
-     --------------------------------------------------------------------------------------------
-     * Multiplication
-     --------------------------------------------------------------------------------------------
-     */
-
-
-/*
-    template<typename T,class regType>
-    regType mm_mul(regType,regType);
-
-
-    template<>
-    inline __m256i __attribute__((__always_inline__))
-    mm_mul<double>(__m256d a,__m256d b) {
-      return _mm256_mullo_epi32(a,b);
-    }
-    template<>
-    inline __m256 __attribute__((__always_inline__))
-    mm_mul<double>(__m256d a,__m256d b) {
-      return _mm256_mullo_epi32(a,b);
-    }
-    template<>
-    inline __m256i __attribute__((__always_inline__))
-    mm_mul<double>(__m256i a,__m256i b) {
-      return _mm256_mullo_epi32(a,b);
-    }
-    template<>
-    inline __m256i __attribute__((__always_inline__))
-    mm_mul<float>(__m256 a,__m256 b) {
-      return _mm256_mullo_epi32(a,b);
-    }
-    template<>
-    inline __m256i __attribute__((__always_inline__))
-    mm_mul<float>(__m256i a,__m256i b) {
-      return _mm256_mullo_epi32(a,b);
-    }
-    template<>
-    inline __m256i __attribute__((__always_inline__))
-    mm_mul<uint64_t>(__m256i a,__m256i b) {
-      return _mm256_mullo_epi32(a,b);
-    }
-    template<>
-    inline __m256i __attribute__((__always_inline__))
-    mm_mul<int64_t>(__m256i a,__m256i b) {
-      return _mm256_mullo_epi32(a,b);
-    }
-    template<>
-    inline __m256i __attribute__((__always_inline__))
-    mm_mul<uint32_t>(__m256i a,__m256i b) {
-      return _mm256_mullo_epi32(a,b);
-    }
-    template<>
-    inline __m256i __attribute__((__always_inline__))
-    mm_mul<int32_t>(__m256i a,__m256i b) {
-      return _mm256_mullo_epi32(a,b);
-    }
-    template<>
-    inline __m256i __attribute__((__always_inline__))
-    mm_mul<uint16_t>(__m256i a,__m256i b) {
-      return _mm256_mullo_epi16(a,b);
-    }
-    template<>
-    inline __m256i __attribute__((__always_inline__))
-    mm_mul<int16_t>(__m256i a,__m256i b) {
-      return _mm256_mullo_epi16(a,b);
-    }
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   template<typename T,typename regType>
   void luDoolittleSIMD(const Matrix<T>& A,
                    Matrix<T>& LU,
@@ -202,24 +115,16 @@ namespace simd{
       const size_t blocks_in_row = blocks / A.rows();           //amount of blocks per row
       const size_t data_in_block = A.dcols() / blocks_in_row;   //amount of values per block
 
-      //vector of size = data_in_block
+      
       std::vector<T> factor_vect (data_in_block, factor);   //fills vector with factor
+     
+      regType* factor_vector = reinterpret_cast<regType*>(&factor_vect);    //casts the pointer of the vector to register
       
-      /*
-      T factor_v [data_in_block];
-      for (size_t i = 0; i<data_in_block; ++i)
-        factor_v[i] = factor;
-      */
-
-      //__m128 vect = _mm_set_ps(factor, factor, factor, factor);
-
-      regType* factor_vector = reinterpret_cast<regType*>(&factor_vect);
-      
-      regType *start_LU = reinterpret_cast<regType*>(LU.data());
+      regType *start_LU = reinterpret_cast<regType*>(LU.data());    //pointer to the begining of the matrix
       //regType *end_LU   = start_LU + blocks;
 
 
-      //regType element = example_data;
+      
 
       pivot(LU,0,0,0,permut);                       //Pivoting
       for (size_t k = 0; k < n-1; ++k) {            //Elimination Iterator
@@ -245,20 +150,12 @@ namespace simd{
               }
             }else{
 
-
-              
+              //calculates the new values per block
               *block_actual++ = mm_sub<T, typename avx_traits<T>::reg_type>(
                   *block_actual, mm_mul<T, typename avx_traits<T>::reg_type>(*factor_vector,*block_factor)); 
 
-
-              /*
-              block_actual = reinterpret_cast<regType *>(*LU[i][j]);
-              row_next  = reinterpret_cast<regType *>(*LU[k][j]);
+              // nonSIMD version:  LU[i][j] = LU[i][j] - factor*LU[k][j];
               
-              *block_a = __mm_sub<T>(*block_a, mm_mul<T, regType>(*factor_vector,*block_b)); 
-
-              */
-              //LU[i][j] = LU[i][j] - factor*LU[k][j];
             }
 
             ++block_actual;

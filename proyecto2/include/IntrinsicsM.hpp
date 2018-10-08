@@ -4,8 +4,8 @@
  *
  * This file is part of the numerical analysis lecture CE3102 at TEC
  *
- * @Author: Pablo Alvarado
- * @Date:   28.12.2017
+ * @Author: Alexis Gavriel
+ * @Date:   07.10.2018
  */
 
 #ifndef ANPI_INTRINSICSM_HPP
@@ -17,9 +17,22 @@
  * Include the proper intrinsics headers for the current architecture
  */
 
+
+    /*
+     --------------------------------------------------------------------------------------------
+     * This file is used to store the SIMD, AVX, multiplication operations
+     --------------------------------------------------------------------------------------------
+     */
+
 namespace anpi{
 
     namespace simd{
+
+     /*
+     --------------------------------------------------------------------------------------------
+     * Multiplication
+     --------------------------------------------------------------------------------------------
+     */
 
 
     template<typename T,class regType>

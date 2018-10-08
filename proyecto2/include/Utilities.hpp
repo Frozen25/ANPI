@@ -40,18 +40,19 @@ namespace anpi {
       
       unsigned long int regSize = sizeof(regType);
 
-      //size_t regSize_ = boost::numeric_cast<size_t>(regSize);
 
       //temporary element        
       regType element;
       regType* r1ptr = reinterpret_cast<regType*>(LU[r1]);
       regType* r2ptr = reinterpret_cast<regType*>(LU[r2]);
-      
+
+
+      ///total size in bytes of a row
       long unsigned int colsXsize = (long unsigned int) (LU.cols()) * (long unsigned int)(sizeof(T));
 
       //size_t limit = LU.cols();
       for(unsigned long int i = 0; i < colsXsize; i+=regSize ){
-        //swaping the current element at column i, between the rows.
+        //swaping the current element block at index i, between the rows.
         element = *r1ptr;
         *r1ptr++ = *r2ptr;
         *r2ptr++ = element;
