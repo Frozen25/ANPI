@@ -70,6 +70,8 @@ namespace anpi{
     const size_t minResistor = 1;
     /// Max value of a resistor
     const size_t maxResistor = 1000000;
+    /// cv::matrix of the image
+    cv::Mat_<float> rawMapCV_;
 
   public:
     /// ... constructors and other methods
@@ -215,21 +217,19 @@ namespace anpi{
       std::string mapPath = std::string( ANPI_DATA_PATH ) + "/" + filename;
 
       // Read the image using the OpenCV
-      cv::Mat_<float> map;
-
       cv::imread(mapPath.c_str(),
-                 CV_LOAD_IMAGE_GRAYSCALE).convertTo(map,CV_32FC1);
-      map /= 255.0f; // normalize image range to 0 .. 255
+                 CV_LOAD_IMAGE_GRAYSCALE).convertTo(rawMapCV_,CV_32FC1);
+      rawMapCV_ /= 255.0f; // normalize image range to 0 .. 255
 
-      if(map.cols == 0 || map.rows == 0 || map.data == NULL) {
+      if(rawMapCV_.cols == 0 || rawMapCV_.rows == 0 || rawMapCV_.data == NULL) {
         throw anpi::Exception("Problem creating the map");
       }
 
       // Convert the OpenCV matrix into an anpi matrix
       // We have to use the std::allocator to avoid an exact stride
-      anpi::Matrix<float,std::allocator<float> > amapTmp(static_cast<const size_t>(map.rows),
-                                                         static_cast<const size_t>(map.cols),
-                                                         map.ptr<float>());
+      anpi::Matrix<float,std::allocator<float> > amapTmp(static_cast<const size_t>(rawMapCV_.rows),
+                                                         static_cast<const size_t>(rawMapCV_.cols),
+                                                         rawMapCV_.ptr<float>());
       // And transform it to a SIMD-enabled matrix
       anpi::Matrix<float> amap(amapTmp);
 
@@ -241,7 +241,7 @@ namespace anpi{
       A_.fill(static_cast<float>(0));
 
       printf("Finished building rawMap\n");
-      matrix_show(rawMap_); //TODO: remove line
+      //matrix_show(rawMap_); //TODO: remove line
 
       return true;
     }
@@ -343,7 +343,7 @@ namespace anpi{
       }
 
       printf("Finished building A_ and b_\n");
-      matrix_show(A_); //TODO: remove line
+      //matrix_show(A_); //TODO: remove line
       return true;
     }
     /**
