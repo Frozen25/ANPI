@@ -60,10 +60,12 @@ namespace anpi{
   class ResistorGrid
   {
   private:
-    /// Matrix of the currect equation system
+    /// Matrix of the current equation system
     Matrix<float> A_;
     /// Vector of the current equation system
     std::vector<float> b_;
+    /// Vector of the current equation system
+    std::vector<float > c_;
     /// Raw map data
     Matrix<float> rawMap_;
     /// Min value of a resistor
@@ -72,6 +74,10 @@ namespace anpi{
     const size_t maxResistor = 1000000;
     /// cv::matrix of the image
     cv::Mat_<float> rawMapCV_;
+    /// Matrix of the X vectors of electric field
+    Matrix<float> X_;
+    /// Matrix of the Y vectors of electric field
+    Matrix<float> Y_;
 
   public:
     /// ... constructors and other methods
@@ -239,6 +245,12 @@ namespace anpi{
       const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
       A_.allocate(totalVariables,totalVariables);
       A_.fill(static_cast<float>(0));
+
+      X_.allocate(rawMap_.rows(),rawMap_.cols());
+      X_.fill(static_cast<float >(0));
+
+      Y_.fill(static_cast<float >(0));
+      Y_.allocate(rawMap_.rows(),rawMap_.cols());
 
       printf("Finished building rawMap\n");
       //matrix_show(rawMap_); //TODO: remove line
@@ -723,7 +735,48 @@ namespace anpi{
 
     }
 
+    bool calculateCurrentComponents(){
 
+      const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
+      auto minMaxElement = std::minmax_element(c_.begin(), c_.end()); // Must consider negative values of current
+      float normalizeFactor = (std::abs(*minMaxElement.first) > std::abs(*minMaxElement.second)) ? // Assign the greatest value
+          std::abs(*minMaxElement.first) : std::abs(*minMaxElement.second);                        // No matter the sign
+
+      for(size_t i = 0; i < rawMap_.rows(); ++i) { // Careful with entering an equation when A_ is full (it shouldn't)
+        for (size_t j = 0; j < rawMap_.cols(); ++j) {
+          size_t idx;
+
+          size_t iMinus1 = i-1;
+          size_t jMinus1 = j-1;
+          size_t iPlus1 = i+1;
+          size_t jPlus1 = j+1;
+
+          if(iMinus1 < totalVariables) { // Node has upper resistor
+            idx = nodesToIndex(iMinus1,j,i,j);
+            Y_(i,j) += c_.at(idx);
+          }
+          if(jMinus1 < totalVariables) { // Node has left resistor
+            idx = nodesToIndex(i,jMinus1,i,j);
+            X_(i,j) += c_.at(idx);
+          }
+          if(iPlus1 < totalVariables) { // Node has lower resistor
+            idx = nodesToIndex(i,j,iPlus1,j);
+            Y_(i,j) += c_.at(idx);
+          }
+          if(jPlus1 < totalVariables) { // Node has right resistor
+            idx = nodesToIndex(i,j,i,jPlus1);
+            X_(i,j) += c_.at(idx);
+          }
+
+          //Normalize the current
+          Y_(i,j) /= normalizeFactor;
+          X_(i,j) /= normalizeFactor;
+
+        }
+      }
+
+      return true;
+    }
 
   };
 }
