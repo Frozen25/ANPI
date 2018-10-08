@@ -35,8 +35,8 @@ namespace anpi {
     template<typename T,typename regType>
     void swapRowsSIMD(Matrix<T>& LU,size_t r1,size_t r2){
 
-      std::cout << "-\n-\n-\n" << "sizeof T: "<< sizeof(T)
-          <<"\nsize of regType: "<< sizeof(regType) <<"-\n-\n-\n"<< std::endl;
+      //std::cout << "-\n-\n-\n" << "sizeof T: "<< sizeof(T)
+      //    <<"\nsize of regType: "<< sizeof(regType) <<"-\n-\n-\n"<< std::endl;
       
       unsigned long int regSize = sizeof(regType);
 
