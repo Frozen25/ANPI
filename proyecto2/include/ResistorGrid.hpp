@@ -369,7 +369,8 @@ namespace anpi{
       Node previousNode(rowInitial, colInitial); //Previous Node
       Node currentNode(rowInitial, colInitial);      //Node where current's path begins and after be the current node.
       Node finalNode(rowFinal, colFinal);            //Node where current's path ends.
-      rawMap_[currentNode.row_][currentNode.col_] = 0;  //Paint in black the current node;
+      cv::Mat_<float> map(rawMapCV_);
+      map.at<uchar>((int)currentNode.row_,(int)currentNode.col_) = 0; //Paint in black the current node;
 
       while(!(compareNodes(currentNode, finalNode))){   //The cycle ends until the nodes are equal.
 
@@ -711,9 +712,15 @@ namespace anpi{
           currentNode.col_ = resistor.col1;
         }
 
-        rawMap_[currentNode.row_][currentNode.col_] = 0;  //Paint in black the new current node;
+        map.at<uchar>((int)currentNode.row_,(int)currentNode.col_) = 0; //Paint in black the current node;
 
       }
+
+      map *= 255; //
+      cv::namedWindow("Path", CV_WINDOW_AUTOSIZE);
+      cv::imshow("Path",map);
+      cv::waitKey();
+
     }
 
 
