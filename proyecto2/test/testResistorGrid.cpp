@@ -72,7 +72,24 @@ BOOST_AUTO_TEST_SUITE( INDEX )
     
   }
 
-
 BOOST_AUTO_TEST_SUITE_END()
 
+
+
+BOOST_AUTO_TEST_SUITE( NAVIGATE )
+
+  BOOST_AUTO_TEST_CASE(buildMatrix) {
+    anpi::ResistorGrid resistorGrid;
+    resistorGrid.build("mapa.png");
+
+    anpi::indexPair CurrentSource;
+    CurrentSource.row1 = 0;
+    CurrentSource.col1 = 0;
+    CurrentSource.row2 = 2;
+    CurrentSource.col2 = 2;
+
+    resistorGrid.navigate(CurrentSource);
+  }
+
+BOOST_AUTO_TEST_SUITE_END()
 
