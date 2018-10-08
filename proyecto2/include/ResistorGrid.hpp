@@ -237,6 +237,11 @@ namespace anpi{
       bool equationEliminated = false;
       bool omitEquation = false;
 
+      if((nodes.row1 > rawMap_.rows() || nodes.col1 > rawMap_.cols()) ||
+          (nodes.row2 > rawMap_.rows() || nodes.col2 > rawMap_.cols())) {
+        throw anpi::Exception("Invalid nodes to connect the source");
+      }
+
       for(size_t i = 0; i < rawMap_.rows(); ++i) { // Careful with entering an equation when A_ is full (it shouldn't)
         for(size_t j = 0; j < rawMap_.cols(); ++j) {
           { //Nodes equations

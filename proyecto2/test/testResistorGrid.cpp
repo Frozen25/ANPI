@@ -80,15 +80,24 @@ BOOST_AUTO_TEST_SUITE( NAVIGATE )
 
   BOOST_AUTO_TEST_CASE(buildMatrix) {
     anpi::ResistorGrid resistorGrid;
-    resistorGrid.build("mapa.png");
+    resistorGrid.build("mapa3x3.png");
 
     anpi::indexPair CurrentSource;
     CurrentSource.row1 = 0;
     CurrentSource.col1 = 0;
     CurrentSource.row2 = 2;
     CurrentSource.col2 = 2;
-
     resistorGrid.navigate(CurrentSource);
+    BOOST_CHECK_MESSAGE(true,"Successful run 3x3");
+
+    CurrentSource.col2 = 100;
+    try {
+      resistorGrid.navigate(CurrentSource);
+      BOOST_CHECK_MESSAGE(false,"Wrong source node not catched");
+    } catch(anpi::Exception &exc ) {
+      BOOST_CHECK_MESSAGE(true,"Successfully catched exception");
+    }
+
   }
 
 BOOST_AUTO_TEST_SUITE_END()
