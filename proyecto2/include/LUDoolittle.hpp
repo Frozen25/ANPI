@@ -85,137 +85,219 @@ namespace anpi {
    * @throws anpi::Exception if matrix cannot be decomposed, or input
    *         matrix is not square.
    */
-  
 
-namespace simd{
-  #ifdef ANPI_ENABLE_SIMD
-  #if defined __AVX__
-
-
-  template<typename T,typename regType>
-  void luDoolittleSIMD(const Matrix<T>& A,
-                   Matrix<T>& LU,
-                   std::vector<size_t>& permut) {
-
-      if (A.rows() != A.cols()) throw anpi::Exception("Matrix is not a square!");
-      permut = std::vector<size_t> (A.rows(),0);    //Initialize the permutation vector
-      for(size_t i = 0; i<permut.size(); ++i){      //Add elements to permutation vector
-          permut[i] = i;
-      }
-
-      LU = A;
-      //std::cout << "using luDoolittleSIMD" << std::endl;
-
-      size_t n = LU.rows();                         //Rows number and Columns number, counter
-      T factor = T(0);                                          //factor = factors for the lower triangular matrix
-
-      const size_t tentries = A.rows() * A.dcols();     //Takes amount of entries in matrix A
-      const size_t blocks =
-              (tentries * sizeof(T) + (sizeof(regType) - 1)) / sizeof(regType); //Calculates amount of blocks
-      const size_t blocks_in_row = blocks / A.rows();           //amount of blocks per row
-      const size_t data_in_block = A.dcols() / blocks_in_row;   //amount of values per block
-
-      
-      std::vector<T> factor_vect (data_in_block, factor);   //fills vector with factor
-     
-      regType* factor_vector = reinterpret_cast<regType*>(&factor_vect);    //casts the pointer of the vector to register
-      
-      regType *start_LU = reinterpret_cast<regType*>(LU.data());    //pointer to the begining of the matrix
-      //regType *end_LU   = start_LU + blocks;
-
-
-      
-
-      pivot(LU,0,0,0,permut);                       //Pivoting
-      for (size_t k = 0; k < n-1; ++k) {            //Elimination Iterator
-
-        regType *block_actual = start_LU;                      //pointer to first block of this row
-        regType *block_factor = start_LU + k * blocks_in_row;  
-        regType *row_back =  block_actual;
-        //regType *row_next = block_actual + blocks_in_row;        //pointer to first block of next row
-        //regType *row_end = row_next + blocks_in_row;        //pointer to end of next block
-
-        for (size_t i = k+1; (i < n) ; ++i) {       //Rows Iterator
-
-          factor = LU[i][k]/LU[k][k];             //calculates new factor
-          factor_vect = std::vector<T> (data_in_block, factor);     //updates vector with new factor
-          regType *block_actual = start_LU + i * blocks_in_row;  
-
-          for (size_t j = k; j < n; j+= data_in_block ) {      //Cols iterator
-
-            //in case we have leftover data that wont fit in a reg
-            if (j + data_in_block >= n){
-              for( ; j < n; ++j){
-                LU[i][j] -= factor*LU[k][j];
-              }
-            }else{
-
-              //calculates the new values per block
-              *block_actual++ = mm_sub<T, typename avx_traits<T>::reg_type>(
-                  *block_actual, mm_mul<T, typename avx_traits<T>::reg_type>(*factor_vector,*block_factor)); 
-
-              // nonSIMD version:  LU[i][j] = LU[i][j] - factor*LU[k][j];
-              
-            }
-
-            ++block_actual;
-              
-          }///for cols iterator
-
-          LU[i][k] = factor;                          //Filling the lower triangular matrix
-          row_back  += blocks_in_row;
-          block_actual == row_back; 
-          //row_next  = row_back + blocks_in_row;
-
-        }///for rows iterator
-
-
-        pivot(LU,k,0,k,permut);                    //Pivoting
-      }///for elimination iterator
-    //throw anpi::Exception("To be implemented yet");
-  }
-
-
-
-  #endif
-  #endif
-
-
-}//namespace simd
 
   template<typename T>
   void luDoolittle(const Matrix<T>& A,
                    Matrix<T>& LU,
                    std::vector<size_t>& permut) {
 
-      if (A.rows() != A.cols()) throw anpi::Exception("Matrix is not a square!");
-      permut = std::vector<size_t> (A.rows(),0);    //Initialize the permutation vector
-      for(size_t i = 0; i<permut.size(); ++i){      //Add elements to permutation vector
-          permut[i] = i;
+    if (A.rows() != A.cols()) throw anpi::Exception("Matrix is not a square!");
+    permut = std::vector<size_t> (A.rows(),0);    //Initialize the permutation vector
+    for(size_t i = 0; i<permut.size(); ++i){      //Add elements to permutation vector
+        permut[i] = i;
+    }
+
+    LU = A;
+    size_t n = LU.rows();                         //Rows number and Columns number, counter
+    T f;                                          //f = factors for the lower triangular matrix
+
+    pivot(LU,0,0,0,permut);                       //Pivoting
+    for (size_t col = 0; col < A.cols(); col++) {
+      //max value of the current column
+      T max = T(0);
+      //index of the max value at current column
+      size_t max_index = col;
+
+
+      //In the following loop the max value and max index of column 'col' are setted
+      for(size_t row = col; row < A.rows();row++){
+        //searching the max absolute value
+        if (std::abs(max) < std::abs(LU[row][col])){
+          //setting the max value and max index
+          max = LU[row][col];
+          max_index = row;
+        }
+      }
+      //We can swap the current row and the row which we have found the max value of the
+      //current col. Remember, the current col is also the current row.
+      
+      pivot(LU,col,0,col,permut);  
+
+      //Setting LU for each row, where row > col.
+      for(size_t row = col+1; row < A.rows();row++){
+        //verifing if the current element is zero.
+        if (std::abs(LU[col][col]) == T(0))
+          throw anpi::Exception("Division by zero detected, LU matrix couldn't be created");
+
+        //Making the factor.
+        T factor = LU[row][col]/LU[col][col];
+
+
+        //U part of LU matrix
+        for (size_t k = col+1; k < A.cols(); k++) {
+          LU[row][k] -= LU[col][k]*factor;
+        }
+        //L part of U matrix
+        LU[row][col] = factor;
+
       }
 
-      LU = A;
-      size_t n = LU.rows();                         //Rows number and Columns number, counter
-      T f;                                          //f = factors for the lower triangular matrix
 
-      pivot(LU,0,0,0,permut);                       //Pivoting
-      for (size_t k = 0; k < n-1; ++k) {            //Column Iterator
-
-          for (size_t i = k+1; i < n ; ++i) {       //Rows Iterator
-              f = LU[i][k]/LU[k][k];
-
-              for (size_t j = k; j < n; ++j) {      //Rows iterator for the elemental operation
-
-                  LU[i][j] = LU[i][j] - f*LU[k][j];
-              }
-              LU[i][k] = f;                          //Filling the lower triangular matrix
-          }
-          pivot(LU,k,0,k,permut);                    //Pivoting
-      }
-    //throw anpi::Exception("To be implemented yet");
+    }
+        
+      
+    
   }
+  
 
-}
+  namespace simd{
+    #ifdef ANPI_ENABLE_SIMD
+    #ifdef __AVX__
+
+
+    template<typename T>
+    void unpackDoolittleSIMD(const Matrix<T>& LU,
+                         Matrix<T>& L,
+                         Matrix<T>& U) {
+
+        if (LU.rows() != LU.cols()) throw anpi::Exception("Matrix is not a square!");
+        
+        size_t n = LU.cols();     //Columns number;
+        L.allocate(n, n);
+        U.allocate(n, n);
+
+        L.fill(T(0));
+        U.fill(T(0));                              
+
+        for (size_t i = 0; i < n; ++i) {             //Rows Iterator;
+
+            for (size_t j = 0; j < n; ++j) {         //Columns Iterator;
+
+                if(j>i) {                            //If current position is above the diagonal;
+                    U[i][j] = LU[i][j];              //Add number from LU to U in the correspond space;                  
+                }
+                else if(j==i) {                      //If current position is in the diagonal;
+                    U[i][j] = LU[i][j];              //Setting U's diagonal with LU's number;
+                    L[i][j] = T(1);                     //Setting in one the L's diagonal;
+                }
+                else {                               //If current position is under the diagonal;                  
+                    L[i][j] = LU[i][j];              //dd number from LU to U in the correspond space;
+                }
+            }
+
+        }
+      
+    }///unpackDoolittleSIMD
+
+
+
+
+
+    template<typename T,typename regType>
+    void luDoolittleSIMD(const Matrix<T>& A,
+                     Matrix<T>& LU,
+                     std::vector<size_t>& permut) {
+
+        if (A.rows() != A.cols()) throw anpi::Exception("Matrix is not a square!");
+        
+        size_t n = A.rows();                         //Rows number and Columns number, counter
+
+        permut = std::vector<size_t> (n,0);    //Initialize the permutation vector
+        for(size_t i = 0; i<permut.size(); ++i){      //Add elements to permutation vector
+            permut[i] = i;
+        }
+
+        LU = A;
+        //std::cout << "using luDoolittleSIMD" << std::endl;
+
+        
+        T factor = T(0);                                          //factor = factors for the lower triangular matrix
+
+        const size_t tentries = A.rows() * A.dcols();     //Takes amount of entries in matrix A
+        const size_t blocks =
+                (tentries * sizeof(T) + (sizeof(regType) - 1)) / sizeof(regType); //Calculates amount of blocks
+        const size_t blocks_in_row = blocks / A.rows();           //amount of blocks per row
+        const size_t data_in_block = A.dcols() / blocks_in_row;   //amount of values per block
+
+        
+        std::vector<T> factor_vect (data_in_block, factor);   //fills vector with factor
+       
+        regType* factor_vector = reinterpret_cast<regType*>(&factor_vect);    //casts the pointer of the vector to register
+        
+        regType *start_LU = reinterpret_cast<regType*>(LU.data());    //pointer to the begining of the matrix
+        //regType *end_LU   = start_LU + blocks;
+
+
+        std::cout<< "starting SIMD LU...\n";
+
+        pivot(LU,0,0,0,permut);                       //Pivoting
+        for (size_t k = 0; k < n-1; ++k) {            //Elimination Iterator
+
+          regType *block_actual = start_LU;                      //pointer to first block of this row
+          regType *block_factor = start_LU + k * blocks_in_row;  
+          regType *row_back =  block_actual;
+          //regType *row_next = block_actual + blocks_in_row;        //pointer to first block of next row
+          //regType *row_end = row_next + blocks_in_row;        //pointer to end of next block
+
+          for (size_t i = k+1; (i < n) ; ++i) {       //Rows Iterator
+
+            factor = LU[i][k]/LU[k][k];             //calculates new factor
+            factor_vect = std::vector<T> (data_in_block, factor);     //updates vector with new factor
+            regType *block_actual = start_LU + i * blocks_in_row;  
+
+            for (size_t j = k; j < n; j+= data_in_block ) {      //Cols iterator
+
+              //in case we have leftover data that wont fit in a reg
+              if (j + data_in_block >= n){
+                for( ; j < n; ++j){
+                  LU[i][j] -= factor*LU[k][j];
+                }
+              }else{
+                int h = (int) (k - kata_in_block * (j - 1));
+                if (h >= 0) {
+                  int missing = data_in_block - h; 
+                  int m = k + 1;
+                  int count = missing + m;
+                  for (; m < count - 1; ++m) {
+                      LU[i][m] -= factor * LU(k, m);
+                    }//for j
+                }else{
+                //calculates the new values per block
+                *block_actual = mm_sub<T, typename avx_traits<T>::reg_type>(
+                    *block_actual, mm_mul<T, typename avx_traits<T>::reg_type>(*factor_vector,*block_factor)); 
+                std::cout << "using simd operations...\n";
+                // nonSIMD version:  LU[i][j] = LU[i][j] - factor*LU[k][j];
+                }
+              }
+
+              ++block_actual;
+                
+            }///for cols iterator
+
+            LU[i][k] = factor;                          //Filling the lower triangular matrix
+            row_back  += blocks_in_row;
+            block_actual == row_back; 
+            //row_next  = row_back + blocks_in_row;
+
+          }///for rows iterator
+
+
+          pivot(LU,k,0,k,permut);                    //Pivoting
+        }///for elimination iterator
+      
+      }///luDoolittleSIMD
+
+
+
+      #endif
+    #endif
+
+
+  }//namespace simd
+
+
+}//namespace anpi
   
 #endif
 

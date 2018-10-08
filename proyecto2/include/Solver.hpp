@@ -55,7 +55,7 @@ namespace anpi {
 	  for(i = 0; i < n; ++i) {
 	        s = T(0);
 	        for(j = 0; j < i; ++j) {	                      
-	            s = s + A[i][j] * x[j];
+	            s += A[i][j] * x[j];
 	        }
 	        x[i] = ( b[i] - s) / A[i][i];
 	   }
@@ -70,14 +70,14 @@ namespace anpi {
 
 			Matrix<T> LU;
 			size_t size = A.rows();
-			LU.allocate(size,size);
+			
 			std::vector<size_t> permut;
 
 			lu(A, LU, permut);
+			//matrix_show(LU);
 
 			Matrix<T> L, U;
-			L.allocate(size, size);
-			U.allocate(size, size);
+			
 			unpack(LU, L, U);
 
 			std::vector<T> Y (size,0);
