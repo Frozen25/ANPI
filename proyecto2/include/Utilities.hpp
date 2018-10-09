@@ -13,7 +13,11 @@
 
 namespace anpi {
 
+
+
+//-----------------------------------------------
 ///Matrices
+//-----------------------------------------------
   template<typename T>
   void swapRows(Matrix<T>& A, size_t row1Index, size_t row2Index, size_t start){
     if(row1Index != row2Index){
@@ -24,6 +28,39 @@ namespace anpi {
       }
     }
   }
+
+
+  #ifdef ANPI_ENABLE_SIMD
+    #ifdef __AVX__
+    template<typename T,typename regType>
+    void swapRowsSIMD(Matrix<T>& LU,size_t r1,size_t r2){
+
+      //std::cout << "-\n-\n-\n" << "sizeof T: "<< sizeof(T)
+      //    <<"\nsize of regType: "<< sizeof(regType) <<"-\n-\n-\n"<< std::endl;
+      
+      unsigned long int regSize = sizeof(regType);
+
+
+      //temporary element        
+      regType element;
+      regType* r1ptr = reinterpret_cast<regType*>(LU[r1]);
+      regType* r2ptr = reinterpret_cast<regType*>(LU[r2]);
+
+
+      ///total size in bytes of a row
+      long unsigned int colsXsize = (long unsigned int) (LU.cols()) * (long unsigned int)(sizeof(T));
+
+      //size_t limit = LU.cols();
+      for(unsigned long int i = 0; i < colsXsize; i+=regSize ){
+        //swaping the current element block at index i, between the rows.
+        element = *r1ptr;
+        *r1ptr++ = *r2ptr;
+        *r2ptr++ = element;
+      }    
+      
+    }
+    #endif
+  #endif
 
 
 
@@ -40,8 +77,19 @@ namespace anpi {
     }
     //Swaps the row in the A matrix and in the vector
     if(maxI != rowStart){
+
+      #ifdef ANPI_ENABLE_SIMD
+        #ifdef __AVX__
+          swapRowsSIMD<T, typename avx_traits<T>::reg_type >(A, rowStart, maxI );
+        #else
+          swapRows(A, rowStart, maxI, columnStart);
+        #endif
+      #else
+          swapRows(A, rowStart, maxI, columnStart);
+      #endif
+      
       std::swap(permut[rowStart], permut[maxI]);
-      swapRows(A, rowStart, maxI, columnStart);
+
     }
   }
 

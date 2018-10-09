@@ -58,7 +58,7 @@ namespace anpi {
         anpi::Matrix<T> A = { {-1,-2,1,2},{ 2, 0,1,2},{-1,-1,0,1},{ 1, 1,1,1} };
         std::vector<size_t> p;
         decomp(A,LU,p);
-
+        matrix_show(LU);
         std::vector<size_t> gp= {1,0,3,2};
         BOOST_CHECK(gp==p);
       }
@@ -87,6 +87,48 @@ namespace anpi {
 
 
       }
+      ////test on 6x6 matrix
+      {
+        
+        
+        //Test with 6x6 matrix
+        anpi::Matrix<T> A = {{5,2,3,6,1,8},{1,2,6,8,3,24},{21,13,41,2,25,31},{42,52,12,52,74,12},{12,41,51,61,73,32},{12,4,5,14,63,12}};
+        //b = {1,2,3,4,5,6};
+        
+        //real solution
+        
+        //x_real = { 4290077/60363565,
+         //         -9031421/60363565,
+          //         -512143/60363565,
+           //        759292/60363565,
+            //       3945299/60363565,
+             //      3973549/60363565 };
+        
+        std::vector<size_t> p;
+        decomp(A,LU,p);
+        matrix_show(LU);
+
+        anpi::Matrix<T> Ar = {
+   { 42.00000000000000 ,  52.0000000000000 ,  12.0000000000000 , 52.0000000000000 , 74.0000000000000  , 12.0000000000000 },  
+   { 0.285714285714286 ,  26.1428571428571 ,  47.5714285714286 , 46.1428571428571 , 51.8571428571429  , 28.5714285714286 },  
+   { 0.500000000000000 , -0.497267759562841 ,  58.6557377049180 ,-1.05464480874317 , 13.7868852459016  , 39.2076502732240 },  
+   { 0.285714285714286 , -0.415300546448087 ,  0.363610955841252 , 18.6894913359419 , 58.3803801006149  , 6.18082727780883 },  
+   { 0.119047619047619 , -0.160291438979964 ,  0.156791503633315 , 0.394402822017184 , -24.6843208898061  , 2.56602180981957 },  
+   { 0.023809523809523 ,  0.0291438979963570 ,  0.0737842370039128 , 0.294012185983295 , 0.747641472761117  , 16.2529934900993 }};
+        //const T eps = std::numeric_limits<T>::epsilon();
+
+        for (size_t i=0;i<Ar.rows();++i) {
+          for (size_t j=0;j<Ar.cols();++j) {
+            BOOST_CHECK(std::abs(Ar(i,j)-LU(i,j)) < 0.001f);
+          }
+        }
+            
+        
+      }
+      
+
+
+
     }//luTest
 
 
@@ -169,8 +211,7 @@ namespace anpi {
       solveLU(A, x , b);
       
       
-      BOOST_CHECK(x==x_real);
-            
+      BOOST_CHECK(x==x_real);       
     }
   } //solveLUTest
 
@@ -212,16 +253,6 @@ namespace anpi {
 
 BOOST_AUTO_TEST_SUITE( LU )
 
-BOOST_AUTO_TEST_CASE(Doolittle) 
-{
-  anpi::test::luTest<float>(anpi::luDoolittle<float>,
-                            anpi::unpackDoolittle<float>);
-  anpi::test::luTest<double>(anpi::luDoolittle<double>,
-                             anpi::unpackDoolittle<double>);
-
-
-
-}
 
 BOOST_AUTO_TEST_CASE(lu) {
   anpi::test::luTest<float>(anpi::lu<float>,
