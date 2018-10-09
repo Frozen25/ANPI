@@ -64,7 +64,7 @@ namespace anpi{
     /// Vector of the current equation system
     std::vector<float> b_;
     /// Vector of the current equation system
-    std::vector<float > c_;
+    std::vector<float> c_;
     /// Raw map data
     Matrix<float> rawMap_;
     /// Min value of a resistor
