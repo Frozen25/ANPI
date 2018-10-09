@@ -41,7 +41,6 @@ namespace anpi{
         /// Column of the node
         std::size_t col_;
 
-
         ///Constructors
 
         Node(){
@@ -262,14 +261,29 @@ namespace anpi{
      * Compute the internal data to navigate between the given nodes
      */
     bool navigate(const indexPair& nodes) {
-      
+      generateA_(nodes);
+      pathFinderMaxCurrent(nodes.row1,nodes.col1,nodes.row2,nodes.col2);
+      pathFinderElectricField(nodes,0.2f);
+      return true;
+    }
+    /**
+     * This method compare two Nodes and returns true if these Nodes are equals, otherwise returns false
+     */
+    bool compareNodes(Node node1,
+                      Node node2){
+
+      return (node1.row_ == node2.row_) && (node1.col_ == node2.col_);
+    }
+
+    bool generateA_(const indexPair& nodes) {
+
       size_t numEquation = 0;
       const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
       bool equationEliminated = false;
       bool omitEquation = false;
 
       if((nodes.row1 > rawMap_.rows() || nodes.col1 > rawMap_.cols()) ||
-          (nodes.row2 > rawMap_.rows() || nodes.col2 > rawMap_.cols())) {
+         (nodes.row2 > rawMap_.rows() || nodes.col2 > rawMap_.cols())) {
         throw anpi::Exception("Invalid nodes to connect the source (nodes doesn't exist)");
       }
 
@@ -358,21 +372,12 @@ namespace anpi{
       //matrix_show(A_); //TODO: remove line
       return true;
     }
-    /**
-     * This method compare two Nodes and returns true if these Nodes are equals, otherwise returns false
-     */
-    bool compareNodes(Node node1,
-                      Node node2){
-
-      return (node1.row_ == node2.row_) && (node1.col_ == node2.col_);
-    }
-
 
     /**
      * This method finds the path from the initial node to final node
      */
     template <typename T>
-    void pathFinder(size_t rowInitial,
+    void pathFinderMaxCurrent(size_t rowInitial,
                     size_t colInitial,
                     size_t rowFinal,
                     size_t colFinal,
@@ -664,6 +669,24 @@ namespace anpi{
       return true;
     }
 
+    template <typename T>
+    bool pathFinderElectricField(const indexPair& nodes, T alpha) {
+
+      calculateCurrentComponents();
+      T precision = std::numeric_limits<T>::epsilon()*100;
+
+      Node pi;
+      pi.col_ = nodes.col1 + alpha*X_(nodes.row1,nodes.col1);
+      pi.row_ = nodes.row1 + alpha*Y_(nodes.row1,nodes.col1);
+
+      while (abs(T(nodes.row2-pi.row_)) > precision && abs(T(nodes.col2-pi.col_)) > precision) {
+        Node velocity = bilinearInterpolation(pi.col_,pi.row_);
+        pi.col_ += alpha*velocity.col_;
+        pi.row_ += alpha*velocity.row_;
+      }
+
+      return true;
+    }
   };
 }
 
