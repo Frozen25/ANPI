@@ -380,8 +380,7 @@ namespace anpi{
     void pathFinderMaxCurrent(size_t rowInitial,
                     size_t colInitial,
                     size_t rowFinal,
-                    size_t colFinal,
-                    const std::vector<T>& SolVector){
+                    size_t colFinal){
 
       Node previousNode(rowInitial, colInitial); //Previous Node
       Node currentNode(rowInitial, colInitial);      //Node where current's path begins and after be the current node.
@@ -560,7 +559,7 @@ namespace anpi{
         previousNode = currentNode;                                    //Assign the previous node like currentNode
         size_t biggestVal = current_Values[0];                                             //The index used for extract the biggest value of current
         for (size_t i = 1; i < current_Values.size(); ++i) {           //Used for find the biggest value of current in current_Values
-          if(std::abs(SolVector[current_Values[i-1]]) < std::abs(SolVector[current_Values[i]])){
+          if(std::abs(c_[current_Values[i-1]]) < std::abs(c_[current_Values[i]])){
             biggestVal = current_Values[i];
           } else {
             continue;
