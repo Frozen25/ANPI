@@ -387,7 +387,7 @@ namespace anpi{
       Node currentNode(rowInitial, colInitial);      //Node where current's path begins and after be the current node.
       Node finalNode(rowFinal, colFinal);            //Node where current's path ends.
       cv::Mat_<float> map(rawMapCV_);
-      map.at<uchar>((int) currentNode.row_, (int) currentNode.col_) = 0; //Paint in black the current node;
+      map.at<float>((int) currentNode.row_, (int) currentNode.col_) = 0.0f; //Paint in black the current node;
 
       while (!(compareNodes(currentNode, finalNode))) {   //The cycle ends until the nodes are equal.
         std::vector<size_t> current_Values;        //This vector saves the index of currents of each resistor in each iteration.
@@ -744,9 +744,8 @@ namespace anpi{
           currentNode.row_ = resistor.row1;
           currentNode.col_ = resistor.col1;
         }
-        map.at<uchar>((int) currentNode.row_, (int) currentNode.col_) = 0; //Paint in black the current node;
+        map.at<float>((int) currentNode.row_, (int) currentNode.col_) = 0.0f; //Paint in black the current node;
       }
-      map *= 255; //
       cv::namedWindow("Path", CV_WINDOW_NORMAL | CV_GUI_EXPANDED);
       cv::imshow("Path", map);
       cv::waitKey();
