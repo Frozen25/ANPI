@@ -722,6 +722,19 @@ namespace anpi{
       cv::waitKey();
 
     }
+    template <typename T>
+    T bilinearInterpolation(T xi, T yi){
+
+      T x1, y1, x2, y2;
+      x2 = ceil(xi);
+      x1 = floor(xi);
+      y2 = ceil(yi);
+      y1 = floor(yi);
+
+      
+
+
+    }
 
 
 
