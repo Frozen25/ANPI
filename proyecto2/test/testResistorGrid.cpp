@@ -124,5 +124,18 @@ BOOST_AUTO_TEST_SUITE( NAVIGATE )
     }
   }
 
+  BOOST_AUTO_TEST_CASE(navigateMap) {
+    anpi::ResistorGrid resistorGrid;
+    resistorGrid.build("mapa.png");
+    
+    anpi::indexPair CurrentSource;
+    CurrentSource.row1 = 0;
+    CurrentSource.col1 = 0;
+    CurrentSource.row2 = 48;
+    CurrentSource.col2 = 48;
+    
+    resistorGrid.navigate(CurrentSource);
+  }
+
 BOOST_AUTO_TEST_SUITE_END()
 

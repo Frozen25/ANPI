@@ -63,7 +63,6 @@ namespace anpi {
           }
 
       }
-    //throw anpi::Exception("To be implemented yet");
   }
   
   /**
@@ -134,12 +133,7 @@ namespace anpi {
         LU[row][col] = factor;
 
       }
-
-
     }
-        
-      
-    
   }
   
 
@@ -181,99 +175,6 @@ namespace anpi {
         }
       
     }///unpackDoolittleSIMD
-
-
-
-      /*
-    template<typename T,typename regType>
-    void luDoolittleSIMD(const Matrix<T>& A,
-                     Matrix<T>& LU,
-                     std::vector<size_t>& permut) {
-
-        if (A.rows() != A.cols()) throw anpi::Exception("Matrix is not a square!");
-        
-        size_t n = A.rows();                         //Rows number and Columns number, counter
-
-        permut = std::vector<size_t> (n,0);    //Initialize the permutation vector
-        for(size_t i = 0; i<permut.size(); ++i){      //Add elements to permutation vector
-            permut[i] = i;
-        }
-
-        LU = A;
-        //std::cout << "using luDoolittleSIMD" << std::endl;
-
-        
-        T factor = T(0);                                          //factor = factors for the lower triangular matrix
-
-        const size_t tentries = A.rows() * A.dcols();     //Takes amount of entries in matrix A
-        const size_t blocks =
-                (tentries * sizeof(T) + (sizeof(regType) - 1)) / sizeof(regType); //Calculates amount of blocks
-        const size_t blocks_in_row = blocks / A.rows();           //amount of blocks per row
-        const size_t cols_in_block = A.dcols() / blocks_in_row;   //amount of values per block
-
-        
-        //std::vector<T,anpi::aligned_allocator<T> > factor_vector (cols_in_block, factor);   //fills vector with factor
-        Matrix<T> factor_vector;//This matrix is used to create pointer to a vector a lot of times
-        factor_vector.allocate(1, cols_in_block);
-        regType *factor_reg = reinterpret_cast<regType*>(factor_vector.data());  //casts the pointer of the vector to register
-        
-        regType *start_LU = reinterpret_cast<regType*>(LU.data());    //pointer to the begining of the matrix
-        //regType *end_LU   = start_LU + blocks;
-
-
-        pivot(LU,0,0,0,permut);                       //Pivoting
-        for (size_t col = 0; col < n-1; ++col) {            //Elimination Iterator
-
-          regType *block_col_actual = reinterpret_cast<regType*>(&LU[col][col]);                     //pointer to first block of this row
-          regType *block_col_backup = block_col_actual;
-          regType *block_row_actual;
-          
-          //regType *row_next = block_col_actual + blocks_in_row;        //pointer to first block of next row
-          //regType *row_end = row_next + blocks_in_row;        //pointer to end of next block
-
-          for (size_t row = col+1; row < n ; ++row) {       //Rows Iterator
-
-            block_row_actual = reinterpret_cast<regType*>(&LU[row][row]);
-            
-            
-            factor = LU[row][col]/LU[col][col];             //calculates new factor
-            //factor_vector = std::vector<T,anpi::aligned_allocator<T> > (cols_in_block, factor);     //updates vector with new factor
-            factor_vector.fill(factor);
-            factor_reg = reinterpret_cast<regType*>(factor_vector.data());
-
-            regType data1;
-            //regType data2;
-            for (size_t j = col; j < LU.cols(); j+= cols_in_block ) {      //Cols iterator
-
-                //calculates the new values per block
-                
-                data1 = mm_mul<T, regType>(*factor_reg,*block_col_actual);
-                *block_row_actual =  mm_sub<T, regType>(*block_row_actual, data1);
-                  *block_row_actual = data1;
-
-                  *block_row_actual = mm_sub<T, regType>(
-                    *block_row_actual, mm_mul<T, regType>(*factor_reg,*block_col_actual)); 
-                
-                // nonSIMD version:  LU[row][j] = LU[row][j] - factor*LU[k][j];
-              ++block_row_actual;  
-              ++block_col_actual;
-                
-            }///for cols iterator
-
-            LU[row][col] = factor;                          //Filling the lower triangular matrix
-            block_col_actual = block_col_backup;
-            
-            //row_next  = row_back + blocks_in_row;
-
-          }///for rows iterator
-
-
-          pivot(LU,col,0,col,permut);                    //Pivoting
-        }///for elimination iterator
-      
-      }///luDoolittleSIMD
-      */
-
 
     // ludolittle for simd
     template<typename T,typename regType>
@@ -349,12 +250,7 @@ namespace anpi {
           }///END row iterarion
         }///END col iteration
       }///END DoolittleSimd
-  
-
-  
-
-
-
+      
       #endif
     #endif
 

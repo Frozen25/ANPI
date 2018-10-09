@@ -17,7 +17,7 @@
 
 #include <Matrix.hpp>
 #include <Exception.hpp>
-
+#include "Solver.hpp"
 #include "Utilities.hpp"
 
 
@@ -37,9 +37,9 @@ namespace anpi{
     struct Node {
 
         /// Row of the node
-        std::size_t row_;
+        float row_;
         /// Column of the node
-        std::size_t col_;
+        float col_;
 
         ///Constructors
 
@@ -48,7 +48,7 @@ namespace anpi{
         this->col_ = 0;
     }
 
-        Node(size_t row, size_t col) {
+        Node(float row, float col) {
           this->row_ = row;
           this->col_ = col;
         }
@@ -248,8 +248,8 @@ namespace anpi{
       X_.allocate(rawMap_.rows(),rawMap_.cols());
       X_.fill(static_cast<float >(0));
 
-      Y_.fill(static_cast<float >(0));
       Y_.allocate(rawMap_.rows(),rawMap_.cols());
+      Y_.fill(static_cast<float >(0));
 
       //rawMap has finished building at this point
 
@@ -261,8 +261,9 @@ namespace anpi{
      */
     bool navigate(const indexPair& nodes) {
       generateA_(nodes);
-      pathFinderMaxCurrent(nodes.row1,nodes.col1,nodes.row2,nodes.col2);
-      pathFinderElectricField(nodes,0.2f);
+      anpi::solveLU(A_,c_,b_);
+      //pathFinderMaxCurrent(nodes.row1,nodes.col1,nodes.row2,nodes.col2);
+      pathFinderElectricField(nodes,0.02f);
       return true;
     }
     /**
@@ -277,7 +278,6 @@ namespace anpi{
     bool generateA_(const indexPair& nodes) {
 
       size_t numEquation = 0;
-      const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
       bool equationEliminated = false;
       bool omitEquation = false;
 
@@ -313,29 +313,30 @@ namespace anpi{
                    (i==rawMap_.rows()-1 && j==rawMap_.cols()-1)) {
                   equationEliminated = true;
                   omitEquation = true;
+                  b_.pop_back();
                 }
               }
             }
 
-            if(iMinus1 < totalVariables) { // Node has upper resistor
+            if(iMinus1 < rawMap_.rows()) { // Node has upper resistor
               if(!(omitEquation)) {
                 idx = nodesToIndex(iMinus1,j,i,j);
                 A_(numEquation,idx) = static_cast<float>(1);
               }
             }
-            if(jMinus1 < totalVariables) { // Node has left resistor
+            if(jMinus1 < rawMap_.cols()) { // Node has left resistor
               if(!(omitEquation)) {
                 idx = nodesToIndex(i,jMinus1,i,j);
                 A_(numEquation,idx) = static_cast<float>(1);
               }
             }
-            if(iPlus1 < totalVariables) { // Node has lower resistor
+            if(iPlus1 < rawMap_.rows()) { // Node has lower resistor
               if(!(omitEquation)) {
                 idx = nodesToIndex(i,j,iPlus1,j);
                 A_(numEquation,idx) = static_cast<float>(-1);
               }
             }
-            if(jPlus1 < totalVariables) { // Node has right resistor
+            if(jPlus1 < rawMap_.cols()) { // Node has right resistor
               if(!(omitEquation)) {
                 idx = nodesToIndex(i,j,i,jPlus1);
                 A_(numEquation,idx) = static_cast<float>(-1);
@@ -360,6 +361,8 @@ namespace anpi{
               A_(numEquation,idx2) = static_cast<float>(resistorValue(idx2));
               A_(numEquation,idx3) = (static_cast<float>(resistorValue(idx3)))*-1;
               A_(numEquation,idx4) = (static_cast<float>(resistorValue(idx4)))*-1;
+
+              b_.push_back(static_cast<float>(0));
 
               ++numEquation;
             }
@@ -600,21 +603,21 @@ namespace anpi{
     Node bilinearInterpolation(T xi, T yi){
 
       T x1, y1, x2, y2;
-      x2 = ceil(xi);
-      x1 = floor(xi);
-      y2 = ceil(yi);
-      y1 = floor(yi);
+      x2 = abs(static_cast<int>(ceil(xi)));
+      x1 = abs(static_cast<int>(floor(xi)));
+      y2 = abs(static_cast<int>(ceil(yi)));
+      y1 = abs(static_cast<int>(floor(yi)));
 
       ///Extract the values from the X components matrix
-      T f11 = X_[x1][y1];
-      T f12 = X_[x1][y2];
-      T f21 = X_[x2][y1];
-      T f22 = X_[x2][y2];
+      T f11 = X_(x1,y1);
+      T f12 = X_(x1,y2);
+      T f21 = X_(x2,y1);
+      T f22 = X_(x2,y2);
       ///Extract the values from the Y components matrix
-      T f11s = Y_[x1][y1];
-      T f12s = Y_[x1][y2];
-      T f21s = Y_[x2][y1];
-      T f22s = Y_[x2][y2];
+      T f11s = Y_(x1,y1);
+      T f12s = Y_(x1,y2);
+      T f21s = Y_(x2,y1);
+      T f22s = Y_(x2,y2);
       
       T row = bilinearInterpolationAux(f11, f12, f21, f22, x1, x2, y1, y2, xi, yi);
       T col = bilinearInterpolationAux(f11s, f12s, f21s, f22s, x1, x2, y1, y2, xi, yi);
@@ -625,7 +628,6 @@ namespace anpi{
 
     bool calculateCurrentComponents(){
 
-      const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
       auto minMaxElement = std::minmax_element(c_.begin(), c_.end()); // Must consider negative values of current
       float normalizeFactor = (std::abs(*minMaxElement.first) > std::abs(*minMaxElement.second)) ? // Assign the greatest value
           std::abs(*minMaxElement.first) : std::abs(*minMaxElement.second);                        // No matter the sign
@@ -639,26 +641,26 @@ namespace anpi{
           size_t iPlus1 = i+1;
           size_t jPlus1 = j+1;
 
-          if(iMinus1 < totalVariables) { // Node has upper resistor
+          if(iMinus1 < rawMap_.rows()) { // Node has upper resistor
             idx = nodesToIndex(iMinus1,j,i,j);
-            Y_(i,j) += c_.at(idx);
+            Y_(i,j) += c_.at(idx)*-1;
           }
-          if(jMinus1 < totalVariables) { // Node has left resistor
+          if(jMinus1 < rawMap_.cols()) { // Node has left resistor
             idx = nodesToIndex(i,jMinus1,i,j);
-            X_(i,j) += c_.at(idx);
+            X_(i,j) += c_.at(idx)*-1;
           }
-          if(iPlus1 < totalVariables) { // Node has lower resistor
+          if(iPlus1 < rawMap_.rows()) { // Node has lower resistor
             idx = nodesToIndex(i,j,iPlus1,j);
-            Y_(i,j) += c_.at(idx);
+            Y_(i,j) += c_.at(idx)*-1;
           }
-          if(jPlus1 < totalVariables) { // Node has right resistor
+          if(jPlus1 < rawMap_.cols()) { // Node has right resistor
             idx = nodesToIndex(i,j,i,jPlus1);
-            X_(i,j) += c_.at(idx);
+            X_(i,j) += c_.at(idx)*-1;
           }
 
           //Normalize the current
-          Y_(i,j) /= normalizeFactor;
-          X_(i,j) /= normalizeFactor;
+          Y_(i,j) /= 2*normalizeFactor;
+          X_(i,j) /= 2*normalizeFactor;
 
         }
       }
@@ -670,18 +672,22 @@ namespace anpi{
     bool pathFinderElectricField(const indexPair& nodes, T alpha) {
 
       calculateCurrentComponents();
-      T precision = std::numeric_limits<T>::epsilon()*100;
+      T precision = alpha/10;
 
       Node pi;
       pi.col_ = nodes.col1 + alpha*X_(nodes.row1,nodes.col1);
       pi.row_ = nodes.row1 + alpha*Y_(nodes.row1,nodes.col1);
+      Node velocity;
+      size_t k = 0;
 
       while (abs(T(nodes.row2-pi.row_)) > precision && abs(T(nodes.col2-pi.col_)) > precision) {
-        Node velocity = bilinearInterpolation(pi.col_,pi.row_);
-        pi.col_ += alpha*velocity.col_;
-        pi.row_ += alpha*velocity.row_;
+        velocity = bilinearInterpolation(pi.col_,pi.row_);
+        pi.col_ = pi.col_ + alpha*velocity.col_;
+        pi.row_ = pi.row_ + alpha*velocity.row_;
+        ++k;
       }
 
+      printf("%lu\n",k);
       return true;
     }
   };

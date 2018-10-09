@@ -6,15 +6,12 @@
 #include "Utilities.hpp"
 #include "Exception.hpp"
 #include "Matrix.hpp"
+#include "LUDoolittle.hpp"
 #include <iostream>
 
 
 #ifndef ANPI_LU_HPP
 #define ANPI_LU_HPP
-
-
-
-
 
 namespace anpi{
 
@@ -25,22 +22,19 @@ namespace anpi{
 
         #ifdef ANPI_ENABLE_SIMD
           #ifdef __AVX__
-            simd::luDoolittleSIMD<T,  typename avx_traits<T>::reg_type>(A, LU, permut);
+            anpi::simd::luDoolittleSIMD<T,  typename avx_traits<T>::reg_type>(A, LU, permut);
           #else
             luDoolittle(A, LU, permut);
           #endif
         #else
             luDoolittle(A, LU, permut);
         #endif
-
-
-        //luDoolittle(A, LU, permut);
     }
     template <typename T>
     inline void unpack(const Matrix<T>& LU,
                        Matrix<T>& L,
                        Matrix<T>& U){
-        unpackDoolittle(LU, L, U);
+        anpi::unpackDoolittle(LU, L, U);
     }
 }
 
