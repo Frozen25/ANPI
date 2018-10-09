@@ -376,7 +376,6 @@ namespace anpi{
     /**
      * This method finds the path from the initial node to final node
      */
-    template <typename T>
     void pathFinderMaxCurrent(size_t rowInitial,
                     size_t colInitial,
                     size_t rowFinal,
