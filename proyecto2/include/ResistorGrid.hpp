@@ -60,10 +60,12 @@ namespace anpi{
   class ResistorGrid
   {
   private:
-    /// Matrix of the currect equation system
+    /// Matrix of the current equation system
     Matrix<float> A_;
     /// Vector of the current equation system
     std::vector<float> b_;
+    /// Vector of the current equation system
+    std::vector<float > c_;
     /// Raw map data
     Matrix<float> rawMap_;
     /// Min value of a resistor
@@ -72,6 +74,10 @@ namespace anpi{
     const size_t maxResistor = 1000000;
     /// cv::matrix of the image
     cv::Mat_<float> rawMapCV_;
+    /// Matrix of the X vectors of electric field
+    Matrix<float> X_;
+    /// Matrix of the Y vectors of electric field
+    Matrix<float> Y_;
 
   public:
     /// ... constructors and other methods
@@ -240,6 +246,12 @@ namespace anpi{
       A_.allocate(totalVariables,totalVariables);
       A_.fill(static_cast<float>(0));
 
+      X_.allocate(rawMap_.rows(),rawMap_.cols());
+      X_.fill(static_cast<float >(0));
+
+      Y_.fill(static_cast<float >(0));
+      Y_.allocate(rawMap_.rows(),rawMap_.cols());
+
       printf("Finished building rawMap\n");
       //matrix_show(rawMap_); //TODO: remove line
 
@@ -373,354 +385,197 @@ namespace anpi{
       map.at<uchar>((int)currentNode.row_,(int)currentNode.col_) = 0; //Paint in black the current node;
 
       while(!(compareNodes(currentNode, finalNode))){   //The cycle ends until the nodes are equal.
-
         std::vector<size_t > current_Values;        //This vector saves the index of currents of each resistor in each iteration.
 
-
         if((currentNode.row_ == 0) && (currentNode.col_ == 0)){                                     //if current Node is (0,0)
-
           if(compareNodes(currentNode, previousNode)){                                              //if current Node is the initial node
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
-          }
-
-          else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == -1) &&
+          } else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == -1) &&
               ((((int)currentNode.col_)-((int)previousNode.col_)) == 0)) {        //if current-previousNode = (-1,0)
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
-
-          }
-          else {                                                                  //if current-previousNode = (0,-1)
+          } else {                                                                  //if current-previousNode = (0,-1)
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
           }
-
-        }
-
-        else if((currentNode.row_ == 0) && (currentNode.col_ == rawMap_.cols()-1)){                 //if current Node is (0,m)
-
+        } else if((currentNode.row_ == 0) && (currentNode.col_ == rawMap_.cols()-1)){                 //if current Node is (0,m)
           if(compareNodes(currentNode, previousNode)) {                                             //if current Node is the initial node
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1,  currentNode.row_, currentNode.col_));
-
-          }
-          else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
+          } else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
               ((((int)currentNode.col_)-((int)previousNode.col_)) == 1)) {        //if current-previousNode = (0,1)
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
-
-          }
-          else{                                                                   //if current-previousNode = (-1,0)
-
+          } else {                                                                   //if current-previousNode = (-1,0)
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1,  currentNode.row_, currentNode.col_));
-
           }
-
-        }
-
-        else if((currentNode.row_ == rawMap_.rows()-1) && (currentNode.col_ == 0)){                 //if current Node is (n,0)
-
-
+        } else if((currentNode.row_ == rawMap_.rows()-1) && (currentNode.col_ == 0)) {                 //if current Node is (n,0)
           if(compareNodes(currentNode, previousNode)) {                                             //if current Node is the initial node
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
-          }
-
-          else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 1) &&
+          } else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 1) &&
               ((((int)currentNode.col_)-((int)previousNode.col_)) == 0)) {        //if current-previousNode = (1,0)
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
-
-          }
-          else{                                                                   //if current-previousNode = (0,-1)
-
+          } else{                                                                   //if current-previousNode = (0,-1)
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
-
           }
-
-        }
-
-        else if((currentNode.row_ == rawMap_.rows()-1) && (currentNode.col_ == rawMap_.cols()-1)){  //if current Node is (n,m)
-
-
+        } else if((currentNode.row_ == rawMap_.rows()-1) && (currentNode.col_ == rawMap_.cols()-1)){  //if current Node is (n,m)
           if(compareNodes(currentNode, previousNode)) {                                             //if current Node is the initial node
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
-          }
-
-          else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
+          } else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
               ((((int)currentNode.col_)-((int)previousNode.col_)) == 1)) {        //if current-previousNode = (0,1)
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
-
-          }
-          else{                                                                   //if current-previousNode = (1,0)
-
+          } else{                                                                   //if current-previousNode = (1,0)
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
-
           }
-
-        }
-
-        else if(currentNode.row_ == 0){                                                             //if current Node is (0,_)
-
+        } else if(currentNode.row_ == 0){                                                             //if current Node is (0,_)
           if(compareNodes(currentNode, previousNode)) {                                             //if current Node is the initial node
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
-
-          }
-
-          else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
+          } else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
               ((((int)currentNode.col_)-((int)previousNode.col_)) == 1)) {        //if current-previousNode = (0,1)
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
-
-          }
-          else if (((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
+          } else if (((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
                    ((((int)currentNode.col_)-((int)previousNode.col_)) == -1)){   //if current-previousNode = (0,-1)
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
-
-          }
-          else{                                                                   //if current-previousNode = (-1,0)
-
+          } else{                                                                   //if current-previousNode = (-1,0)
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
-
           }
-
-        }
-
-        else if(currentNode.col_ == 0){                                                             //if current Node is (_,0)
-
+        } else if(currentNode.col_ == 0){                                                             //if current Node is (_,0)
           if(compareNodes(currentNode, previousNode)) {                                             //if current Node is the initial node
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
-
-
-          }
-
-          else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 1) &&
+          } else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 1) &&
               ((((int)currentNode.col_)-((int)previousNode.col_)) == 0)) {        //if current-previousNode = (1,0)
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
-
-          }
-
-          else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
+          } else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
                    ((((int)currentNode.col_)-((int)previousNode.col_)) == -1)) {  //if current-previousNode = (0,-1)
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
-
-          }
-          else{                                                                   //if current-previousNode = (-1,0)
-
+          } else {                                                                   //if current-previousNode = (-1,0)
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
-
           }
-
-        }
-
-        else if(currentNode.row_ == rawMap_.rows()-1){                                              //if current Node is (n,_)
-
+        } else if(currentNode.row_ == rawMap_.rows()-1){                                              //if current Node is (n,_)
           if(compareNodes(currentNode, previousNode)) {                                             //if current Node is the initial node
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
-
-
-          }
-
-          else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
+          } else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
               ((((int)currentNode.col_)-((int)previousNode.col_)) == 1)) {        //if current-previousNode = (0,1)
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
-
-
-          }
-
-          else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 1) &&
+          } else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 1) &&
                    ((((int)currentNode.col_)-((int)previousNode.col_)) == 0)) {   //if current-previousNode = (1,0)
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
-
-          }
-          else{                                                                   //if current-previousNode = (0,-1)
-
+          } else {                                                                   //if current-previousNode = (0,-1)
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
-
           }
-
-        }
-
-        else if(currentNode.col_ == rawMap_.cols()-1){                                              //if current Node is (_,m)
-
+        } else if(currentNode.col_ == rawMap_.cols()-1){                                              //if current Node is (_,m)
           if(compareNodes(currentNode, previousNode)) {                                             //if current Node is the initial node
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
-
-
-          }
-
-          else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
+          } else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
               ((((int)currentNode.col_)-((int)previousNode.col_)) == 1)) {        //if current-previousNode = (0,1)
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
-
-          }
-
-          else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 1) &&
+          } else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 1) &&
                    ((((int)currentNode.col_)-((int)previousNode.col_)) == 0)) {   //if current-previousNode = (1,0)
-
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
-
-          }
-
-          else {                                                                  //if current-previousNode = (-1,0)
-
+          } else {                                                                  //if current-previousNode = (-1,0)
             //Add the corresponding index of current in the vector.
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
-
           }
-
-        }
-        else{                                                                    //if currentNode is in any other place in the matrix
-
+        } else {                                                                    //if currentNode is in any other place in the matrix
           if(compareNodes(currentNode, previousNode)) {                                             //if current Node is the initial node
-
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
             current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
-
-
-          }
-          else{
-
+          } else {
             if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
                 ((((int)currentNode.col_)-((int)previousNode.col_)) == 1)) {        //if current-previousNode = (0,1)
-
               current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
               current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
               current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
-
-            }
-
-            else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 1) &&
+            } else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 1) &&
                      ((((int)currentNode.col_)-((int)previousNode.col_)) == 0)) {        //if current-previousNode = (1,0)
-
               current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
               current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
               current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
-
-            }
-
-            else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
+            } else if( ((((int)currentNode.row_)-((int)previousNode.row_)) == 0) &&
                      ((((int)currentNode.col_)-((int)previousNode.col_)) == -1)) {       //if current-previousNode = (0,-1)
-
               current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
               current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
               current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_+1, currentNode.col_));
-
-            }
-
-            else{                                                                        //if current-previousNode = (-1,0)
-
+            } else{                                                                        //if current-previousNode = (-1,0)
               current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_-1, currentNode.row_, currentNode.col_));
               current_Values.push_back(nodesToIndex(currentNode.row_-1, currentNode.col_, currentNode.row_, currentNode.col_));
               current_Values.push_back(nodesToIndex(currentNode.row_, currentNode.col_, currentNode.row_, currentNode.col_+1));
-
             }
           }
         }
-
         previousNode = currentNode;                                    //Assign the previous node like currentNode
-        size_t biggestVal;                                             //The index used for extract the biggest value of current
-        for (size_t i = 0; i < current_Values.size(); ++i) {           //Used for find the biggest value of current in current_Values
-
-          if(i == 0){
+        size_t biggestVal = current_Values[0];                                             //The index used for extract the biggest value of current
+        for (size_t i = 1; i < current_Values.size(); ++i) {           //Used for find the biggest value of current in current_Values
+          if(std::abs(SolVector[current_Values[i-1]]) < std::abs(SolVector[current_Values[i]])){
             biggestVal = current_Values[i];
-          }
-          else{
-
-            if(std::abs(SolVector[current_Values[i-1]]) < std::abs(SolVector[current_Values[i]])){
-
-              biggestVal = current_Values[i];
-
-            }
-            else{
-              continue;
-            }
+          } else {
+            continue;
           }
         }
         indexPair resistor = indexToNodes(biggestVal);                 //Extract the points where is the biggest current
-
         //Verifying which of the both points is the after point.
         if((currentNode.row_ == resistor.row1) && (currentNode.col_ == resistor.col1)){
           currentNode.row_ = resistor.row2;
           currentNode.col_ = resistor.col2;
-        } else{
+        } else {
           currentNode.row_ = resistor.row1;
           currentNode.col_ = resistor.col1;
         }
-
         map.at<uchar>((int)currentNode.row_,(int)currentNode.col_) = 0; //Paint in black the current node;
-
       }
-
       map *= 255; //
       cv::namedWindow("Path", CV_WINDOW_AUTOSIZE);
       cv::imshow("Path",map);
       cv::waitKey();
-
     }
     template <typename T>
     T bilinearInterpolation(T xi, T yi){
@@ -736,7 +591,48 @@ namespace anpi{
 
     }
 
+    bool calculateCurrentComponents(){
 
+      const size_t totalVariables = 2*rawMap_.rows()*rawMap_.cols()-(rawMap_.rows()+rawMap_.cols());
+      auto minMaxElement = std::minmax_element(c_.begin(), c_.end()); // Must consider negative values of current
+      float normalizeFactor = (std::abs(*minMaxElement.first) > std::abs(*minMaxElement.second)) ? // Assign the greatest value
+          std::abs(*minMaxElement.first) : std::abs(*minMaxElement.second);                        // No matter the sign
+
+      for(size_t i = 0; i < rawMap_.rows(); ++i) { // Careful with entering an equation when A_ is full (it shouldn't)
+        for (size_t j = 0; j < rawMap_.cols(); ++j) {
+          size_t idx;
+
+          size_t iMinus1 = i-1;
+          size_t jMinus1 = j-1;
+          size_t iPlus1 = i+1;
+          size_t jPlus1 = j+1;
+
+          if(iMinus1 < totalVariables) { // Node has upper resistor
+            idx = nodesToIndex(iMinus1,j,i,j);
+            Y_(i,j) += c_.at(idx);
+          }
+          if(jMinus1 < totalVariables) { // Node has left resistor
+            idx = nodesToIndex(i,jMinus1,i,j);
+            X_(i,j) += c_.at(idx);
+          }
+          if(iPlus1 < totalVariables) { // Node has lower resistor
+            idx = nodesToIndex(i,j,iPlus1,j);
+            Y_(i,j) += c_.at(idx);
+          }
+          if(jPlus1 < totalVariables) { // Node has right resistor
+            idx = nodesToIndex(i,j,i,jPlus1);
+            X_(i,j) += c_.at(idx);
+          }
+
+          //Normalize the current
+          Y_(i,j) /= normalizeFactor;
+          X_(i,j) /= normalizeFactor;
+
+        }
+      }
+
+      return true;
+    }
 
   };
 }
