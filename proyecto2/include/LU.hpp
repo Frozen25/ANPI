@@ -25,7 +25,7 @@ namespace anpi{
 
         #ifdef ANPI_ENABLE_SIMD
           #ifdef __AVX__
-            simd::luDoolittleSIMD<T, typename avx_traits<T>::reg_type>(A, LU, permut);
+            simd::luDoolittleSIMD<T,  typename avx_traits<T>::reg_type>(A, LU, permut);
           #else
             luDoolittle(A, LU, permut);
           #endif

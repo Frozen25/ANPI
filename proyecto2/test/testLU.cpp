@@ -61,7 +61,7 @@ namespace anpi {
         anpi::Matrix<T> A = { {-1,-2,1,2},{ 2, 0,1,2},{-1,-1,0,1},{ 1, 1,1,1} };
         std::vector<size_t> p;
         decomp(A,LU,p);
-
+        matrix_show(LU);
         std::vector<size_t> gp= {1,0,3,2};
         BOOST_CHECK(gp==p);
       }
@@ -90,8 +90,9 @@ namespace anpi {
 
 
       }
-      
+      ////test on 6x6 matrix
       {
+        
         
         //Test with 6x6 matrix
         anpi::Matrix<T> A = {{5,2,3,6,1,8},{1,2,6,8,3,24},{21,13,41,2,25,31},{42,52,12,52,74,12},{12,41,51,61,73,32},{12,4,5,14,63,12}};
@@ -272,16 +273,6 @@ namespace anpi {
 
 BOOST_AUTO_TEST_SUITE( LU )
 
-BOOST_AUTO_TEST_CASE(Doolittle) 
-{
-  anpi::test::luTest<float>(anpi::luDoolittle<float>,
-                            anpi::unpackDoolittle<float>);
-  anpi::test::luTest<double>(anpi::luDoolittle<double>,
-                             anpi::unpackDoolittle<double>);
-
-
-
-}
 
 BOOST_AUTO_TEST_CASE(lu) {
   anpi::test::luTest<float>(anpi::lu<float>,
