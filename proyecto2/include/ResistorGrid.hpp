@@ -577,8 +577,25 @@ namespace anpi{
       cv::imshow("Path",map);
       cv::waitKey();
     }
+
+
     template <typename T>
-    T bilinearInterpolation(T xi, T yi){
+    T bilinearInterpolationAux(T f11, T f12, T f21, T f22, T x1, T x2, T y1, T y2, T xi, T yi){
+
+      T termino0 = (xi - x2)/(x1-x2);
+      T termino1 = (yi-y2)/(y1-y2);
+      T termino2 = (xi-x1)/(x2-x1);
+      T termino3 = (yi-y1)/(y2-y1);
+
+      return (termino0*termino1*f11+
+              termino2*termino1*f21+
+              termino0*termino3*f12+
+              termino2*termino3*f22);
+
+    }
+
+    template <typename T>
+    Node bilinearInterpolation(T xi, T yi){
 
       T x1, y1, x2, y2;
       x2 = ceil(xi);
@@ -586,8 +603,21 @@ namespace anpi{
       y2 = ceil(yi);
       y1 = floor(yi);
 
+      ///Extract the values from the X components matrix
+      T f11 = X_[x1][y1];
+      T f12 = X_[x1][y2];
+      T f21 = X_[x2][y1];
+      T f22 = X_[x2][y2];
+      ///Extract the values from the Y components matrix
+      T f11s = Y_[x1][y1];
+      T f12s = Y_[x1][y2];
+      T f21s = Y_[x2][y1];
+      T f22s = Y_[x2][y2];
       
-
+      T row = bilinearInterpolationAux(f11, f12, f21, f22, x1, x2, y1, y2, xi, yi);
+      T col = bilinearInterpolationAux(f11s, f12s, f21s, f22s, x1, x2, y1, y2, xi, yi);
+      Node nodo(row, col);
+      return nodo;
 
     }
 
