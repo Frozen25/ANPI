@@ -14,10 +14,7 @@
 #include "LUDoolittle.hpp"
 #include "LU.hpp"
 
-
 #include "Solver.hpp"
-
-
 
 #include <iostream>
 #include <exception>
@@ -192,8 +189,7 @@ namespace anpi {
 
 
   } //substitutionTest
-
-
+  
   template<typename T>
   void solveLUTest( const std::function<void(const anpi::Matrix<T>& ,
                                               std::vector <T>& ,
@@ -215,18 +211,9 @@ namespace anpi {
       solveLU(A, x , b);
       
       
-      BOOST_CHECK(x==x_real);
-          
-      
+      BOOST_CHECK(x==x_real);       
     }
-    
   } //solveLUTest
-
-
-
-  
-
-
 
   template<typename T>
   void invertTest( const std::function<void(const anpi::Matrix<T>& ,
@@ -260,14 +247,7 @@ namespace anpi {
 
     }
   }//test invert
-
-
-
-
-
-
-
-
+  
   } // test
 }  // anpi
 

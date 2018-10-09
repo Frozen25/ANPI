@@ -3,11 +3,12 @@ include_directories(${CMAKE_SOURCE_DIR}/include ${Boost_INCLUDE_DIRS})
 
 file(GLOB TEST_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp *.hpp)
 
-add_executable (tester ${TEST_SRCS})
+add_executable (tester ${TEST_SRCS} testResistorGrid.cpp)
 target_link_libraries (tester
                        anpi
                        ${Boost_FILESYSTEM_LIBRARY}
                        ${Boost_SYSTEM_LIBRARY}
-                       ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+                       ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+                       ${OpenCV_LIBS})
 
 add_test(NAME tester COMMAND tester)

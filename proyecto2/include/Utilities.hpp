@@ -95,7 +95,7 @@ namespace anpi {
 
   //this function prints a matrix
   template<typename T>
-  void matrix_show(const Matrix<T>&  m, const std::string& str="") {
+  static void matrix_show(const Matrix<T>&  m, const std::string& str="") {
       std::cout << str << "\n";
       for(size_t i = 0; i < m.rows(); i++) {
           for (size_t j = 0; j < m.cols(); j++) {
@@ -121,7 +121,7 @@ namespace anpi {
 
   //function prints vector
   template<typename T>
-  void vector_show(const std::vector<T> &vect){
+  static void vector_show(const std::vector<T> &vect){
     size_t size = vect.size();
     for(size_t i = 0; i< size ; ++i){
         std::cout << vect[i] << " " ;

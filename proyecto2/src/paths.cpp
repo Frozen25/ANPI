@@ -20,10 +20,11 @@
 
 #include <Matrix.hpp>
 #include <Exception.hpp>
+#include <Utilities.hpp>
 
 int main() {
   // Build the name of the image in the data path
-  std::string mapPath = std::string( ANPI_DATA_PATH ) + "/mapa.png";
+  std::string mapPath = std::string( ANPI_DATA_PATH ) + "/mapa3x3.png";
 
   // Read the image using the OpenCV
   cv::Mat_<float> map;
@@ -43,9 +44,11 @@ int main() {
                                                      map.ptr<float>());
   // And transform it to a SIMD-enabled matrix
   anpi::Matrix<float> amap(amapTmp);
-  
+
+  matrix_show(amap);
+
   cv::waitKey();
   
   return EXIT_SUCCESS;
 }
-  
+
