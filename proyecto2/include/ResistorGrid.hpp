@@ -251,8 +251,7 @@ namespace anpi{
       Y_.fill(static_cast<float >(0));
       Y_.allocate(rawMap_.rows(),rawMap_.cols());
 
-      printf("Finished building rawMap\n");
-      //matrix_show(rawMap_); //TODO: remove line
+      //rawMap has finished building at this point
 
       return true;
     }
@@ -368,8 +367,8 @@ namespace anpi{
         }
       }
 
-      printf("Finished building A_ and b_\n");
-      //matrix_show(A_); //TODO: remove line
+      // A_ and b_ have finished building at this point      
+      
       return true;
     }
 
