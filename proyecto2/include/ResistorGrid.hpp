@@ -202,6 +202,13 @@ namespace anpi{
       }
     }
     
+    /**
+     * Return the value of the resistor depending on rawMap
+     * High value in case there is an obstacle
+     * Low value if the space is blank
+     * @param idx id of the resistor to calculate the value
+     * @return value of the resistor
+     */
     size_t resistorValue(const std::size_t idx) {
       
       const indexPair nodesResistor = indexToNodes(idx);
@@ -263,7 +270,9 @@ namespace anpi{
     }
 
     /**
-     * Compute the internal data to navigate between the given nodes
+     * Compute the internal data to navigate between the given nodes using the max current to reach the end node
+     * @param nodes pair with the beginning node and the end node
+     * @return true if the navigation was a success
      */
     bool navigateCurrent(const indexPair& nodes) {
       generateA_(nodes);
@@ -272,11 +281,18 @@ namespace anpi{
       
       return true;
     }
-    bool navigateField(const indexPair& nodes, float alfa) {
+    
+    /**
+     * Compute the internal data to navigate between the given nodes using the electric field to reach the end
+     * @param nodes pair with the beginning node and the end node
+     * @param alpha the size of the step to take
+     * @return true if the navigation was a success
+     */
+    bool navigateField(const indexPair& nodes, float alpha) {
       generateA_(nodes);
       anpi::solveLU(A_,c_,b_);
       
-      pathFinderElectricField(nodes, alfa);
+      pathFinderElectricField(nodes, alpha);
       return true;
     }
 
@@ -289,6 +305,11 @@ namespace anpi{
       return (node1.row_ == node2.row_) && (node1.col_ == node2.col_);
     }
 
+    /**
+     * Generates the matrix of the equations with the nodes and grid equations
+     * @param nodes the beginning and end nodes
+     * @return bool if success
+     */
     bool generateA_(const indexPair& nodes) {
 
       size_t numEquation = 0;
@@ -765,6 +786,10 @@ namespace anpi{
       cv::waitKey();
     }
 
+    /**
+     * Bilinear interpolation formula
+     * @return the new value
+     */
     template <typename T>
     T bilinearInterpolationAux(T f11, T f12, T f21, T f22, T x1, T x2, T y1, T y2, T xi, T yi){
 
@@ -780,6 +805,10 @@ namespace anpi{
 
     }
 
+    /**
+     * Bilinear interpolation using two point between the nodes, which it rounds
+     * @return the value of the x vector and y vector after bilineal
+     */
     template <typename T>
     Node bilinearInterpolation(T xi, T yi){
 
@@ -807,6 +836,10 @@ namespace anpi{
 
     }
 
+    /**
+     * Calculates the components X and Y of the current
+     * @return true if success
+     */
     bool calculateCurrentComponents(){
 
       auto minMaxElement = std::minmax_element(c_.begin(), c_.end()); // Must consider negative values of current
@@ -852,6 +885,12 @@ namespace anpi{
       return true;
     }
 
+    /**
+     * Finds the path from the beginning node and the end node using the electric field
+     * @param nodes nodes of beginning and end of the current source
+     * @param alpha the step to take between interpolations
+     * @return
+     */
     template <typename T>
     bool pathFinderElectricField(const indexPair& nodes, T alpha) {
 
