@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
+#include "Utilities.hpp"
 
 namespace anpi {
   
@@ -84,6 +85,20 @@ namespace anpi {
               const std::vector<T>& datay,
               const std::string& legend,
               const std::string& color="");
+
+
+    /*
+    * Plots the Vector Field of the Generated Electric Force
+    * produced by the current
+    */
+    void quiver(const anpi::Matrix<T>& datax,
+              const anpi::Matrix<T>& datay,              
+              const std::string& color="");
+
+    void quiver1D(const std::vector<T>& datax,
+                       const std::vector<T>& datay,
+                       const std::string& color) ;
+
 
     /**
      * Plot an area range between the min and max values

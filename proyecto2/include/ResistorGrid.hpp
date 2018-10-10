@@ -73,12 +73,17 @@ namespace anpi{
     const size_t maxResistor = 1000000;
     /// cv::matrix of the image
     cv::Mat_<float> rawMapCV_;
+
+  public:
+    //movement vectors of the particle
+    std::vector<float> posX;
+    std::vector<float> posY;
     /// Matrix of the X vectors of electric field
     Matrix<float> X_;
     /// Matrix of the Y vectors of electric field
     Matrix<float> Y_;
 
-  public:
+
     /// ... constructors and other methods
 
     /// Constructor
@@ -86,6 +91,7 @@ namespace anpi{
     /**
      * Constructor that initialize a matrix 'A' and a vector 'b' with the size necesary once the rawMap_ is loaded
      */
+    
     ResistorGrid() {}
     
     /**
@@ -259,13 +265,21 @@ namespace anpi{
     /**
      * Compute the internal data to navigate between the given nodes
      */
-    bool navigate(const indexPair& nodes) {
+    bool navigateCurrent(const indexPair& nodes) {
       generateA_(nodes);
       anpi::solveLU(A_,c_,b_);
       pathFinderMaxCurrent(nodes.row1,nodes.col1,nodes.row2,nodes.col2);
+      
+      return true;
+    }
+    bool navigateField(const indexPair& nodes) {
+      generateA_(nodes);
+      anpi::solveLU(A_,c_,b_);
+      
       pathFinderElectricField(nodes,0.02f);
       return true;
     }
+
     /**
      * This method compare two Nodes and returns true if these Nodes are equals, otherwise returns false
      */
@@ -826,8 +840,11 @@ namespace anpi{
           }
 
           //Normalize the current
+          //The factor is multiplied by 2 for the worse case
+          //When adding vector, the value can be greater than the max current, that's why it's multiply by 2
           Y_(i,j) /= 2*normalizeFactor;
           X_(i,j) /= 2*normalizeFactor;
+
 
         }
       }
@@ -839,22 +856,27 @@ namespace anpi{
     bool pathFinderElectricField(const indexPair& nodes, T alpha) {
 
       calculateCurrentComponents();
+
       T precision = alpha/10;
 
       Node pi;
       pi.col_ = nodes.col1 + alpha*X_(nodes.row1,nodes.col1);
       pi.row_ = nodes.row1 + alpha*Y_(nodes.row1,nodes.col1);
       Node velocity;
-      size_t k = 0;
+      
+      posX.push_back(pi.col_);
+      posY.push_back(pi.row_);
 
       while (abs(T(nodes.row2-pi.row_)) > precision && abs(T(nodes.col2-pi.col_)) > precision) {
         velocity = bilinearInterpolation(pi.col_,pi.row_);
         pi.col_ = pi.col_ + alpha*velocity.col_;
         pi.row_ = pi.row_ + alpha*velocity.row_;
-        ++k;
+        
+        posX.push_back(pi.col_);
+        posY.push_back(pi.row_);        
       }
 
-      printf("%lu\n",k);
+      
       return true;
     }
   };

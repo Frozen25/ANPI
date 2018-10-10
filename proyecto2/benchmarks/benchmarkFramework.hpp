@@ -80,6 +80,14 @@ namespace anpi {
               const std::string& legend,
               const std::string& color = "r");
 
+    void quiver(const anpi::Matrix<float>& datax,
+              const anpi::Matrix<float>& datay,              
+              const std::string& color);
+
+    void quiver1D(const std::vector<float>& datax,
+                       const std::vector<float>& datay,
+                       const std::string& color) ;
+
     /**
      * Plot measurements (average only)
      *

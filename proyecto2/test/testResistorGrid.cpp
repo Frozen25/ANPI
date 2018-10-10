@@ -133,7 +133,7 @@ BOOST_AUTO_TEST_SUITE( NAVIGATE )
     CurrentSource.col1 = 0;
     CurrentSource.row2 = 48;
     CurrentSource.col2 = 48;
-    BOOST_CHECK(resistorGrid.navigate(CurrentSource) == true);
+    BOOST_CHECK(resistorGrid.navigateCurrent(CurrentSource) == true);
   }
 
 BOOST_AUTO_TEST_SUITE_END()

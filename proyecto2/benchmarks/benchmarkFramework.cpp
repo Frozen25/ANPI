@@ -102,6 +102,25 @@ namespace anpi {
       plotter.plot(x,y,legend,color);
     }
 
+
+
+    void quiver(const anpi::Matrix<float>& datax,
+              const anpi::Matrix<float>& datay,              
+              const std::string& color) {
+    
+      static anpi::Plot2d<float> plotter;
+      plotter.initialize(1);
+      plotter.quiver (datax,datay,"black");
+    }
+
+    void quiver1D(const std::vector<float>& datax,
+                       const std::vector<float>& datay,
+                       const std::string& color) {
+    
+      static anpi::Plot2d<float> plotter;
+      plotter.initialize(1);
+      plotter.quiver1D (datax,datay,"black");
+    }
     /**
      * Plot measurements (average only)
      *

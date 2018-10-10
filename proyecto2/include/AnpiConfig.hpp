@@ -9,4 +9,4 @@
 
 #define ANPI_ENABLE_SIMD
 /* #undef ANPI_ENABLE_OpenMP */
-#define ANPI_DATA_PATH "/home/ubuntu/Documents/ANPI/proyecto2/data"
+#define ANPI_DATA_PATH "/home/alexis/Documents/Analisis Numerico/ANPI/proyecto2/data"

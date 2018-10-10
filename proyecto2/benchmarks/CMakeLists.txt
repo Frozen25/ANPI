@@ -9,6 +9,7 @@ target_link_libraries (benchmark
                        python2.7
                        ${Boost_FILESYSTEM_LIBRARY}
                        ${Boost_SYSTEM_LIBRARY}
-                       ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+                       ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+                       ${OpenCV_LIBS})
 
 add_test(NAME benchmark COMMAND benchmark)

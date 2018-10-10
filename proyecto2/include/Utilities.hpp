@@ -4,6 +4,7 @@
 #include <functional>
 #include <algorithm>
 #include <iostream>
+#include <string>
 
 #include "Exception.hpp"
 #include "Matrix.hpp"
@@ -105,6 +106,21 @@ namespace anpi {
       }
       printf("\n");
   }
+
+  //this function prints a matrix
+  template<typename T>
+  std::string pymat_row(const Matrix<T>&  m, size_t i) {      
+      std::string pyrow = "[";
+      size_t j = 0;          
+      for (; j < m.cols()-1; j++) {
+          pyrow += std::to_string(m(i,j)) + " , ";
+          
+      }
+      pyrow += std::to_string(m(i,j)) + " ]";
+      return pyrow;
+  
+  }
+
 
   template<typename T>
   anpi::Matrix<T> identityMatrix(const size_t rows, const size_t cols) {

@@ -105,6 +105,103 @@ namespace anpi {
     PyRun_SimpleString("plt.legend()");
   }
 
+
+  template <typename T>
+  void Plot2d<T>::quiver(const anpi::Matrix<T>& datax,
+                       const anpi::Matrix<T>& datay,
+                       const std::string& color) {
+    //this variable is used to store each row as a string
+    std::string pyrow = "";
+    std::string command = "";
+
+
+    //this creates the matrix U (vectors X) in python
+    PyRun_SimpleString("plotMatrix_U = []");
+    
+    //iterates over the matrix datax, saves each row in a string
+    //and appends it to the matrix U in python
+    for(size_t i = 0; i < datax.rows(); ++i){
+      pyrow = "";
+      command = "";
+      pyrow = pymat_row(datax, i);
+      command = "plotRow = " + pyrow;
+      PyRun_SimpleString(command.c_str());      
+      PyRun_SimpleString("plotMatrix_U.append( plotRow )");
+
+    }
+
+    //this creates the matrix V (vectors Y) in python
+    PyRun_SimpleString("plotMatrix_V = []");
+    
+    //iterates over the matrix datay, saves each row in a string
+    //and appends it to the matrix V in python
+    for(size_t i = 0; i < datay.rows(); ++i){
+      pyrow = "";
+      command = "";
+      pyrow = pymat_row(datay, i);
+      command = "plotRow = " + pyrow;
+      PyRun_SimpleString(command.c_str());      
+      PyRun_SimpleString("plotMatrix_V.append( plotRow )");
+    }
+
+    PyRun_SimpleString("import matplotlib.pyplot as plt");
+    PyRun_SimpleString("fig,ax = plt.subplots()");
+    PyRun_SimpleString("q = ax.quiver(plotMatrix_U,plotMatrix_V)");
+    PyRun_SimpleString("plt.show()");
+
+
+
+  }
+
+  template <typename T>
+  void Plot2d<T>::quiver1D(const std::vector<T>& datax,
+                       const std::vector<T>& datay,
+                       const std::string& color) {
+    //this variable is used to store each row as a string
+    std::string pyrow = "";
+    std::string command = "";
+
+
+    
+    
+    //iterates over the matrix datax, saves each row in a string
+    //and appends it to the matrix U in python
+    pyrow = "[";
+    size_t j = 0;          
+    for (; j < datax.size()-1; j++) {
+        pyrow += std::to_string(datax[j]) + " , ";
+        
+    }
+    pyrow += std::to_string(datax[j]) + " ]";
+    command = "vectorX = " + pyrow;
+    PyRun_SimpleString(command.c_str());
+
+    pyrow = "";
+    command = "";
+    
+    
+    //iterates over the matrix datay, saves each row in a string
+    //and appends it to the matrix V in python
+    pyrow = "[";
+    j = 0;          
+    for (; j < datay.size()-1; j++) {
+        pyrow += std::to_string(datay[j]) + " , ";
+        
+    }
+    pyrow += std::to_string(datay[j]) + " ]";
+    command = "vectorY = " + pyrow;
+    PyRun_SimpleString(command.c_str());
+
+    PyRun_SimpleString("import matplotlib.pyplot as plt");
+    PyRun_SimpleString("fig,ax = plt.subplots()");
+    PyRun_SimpleString("q = ax.quiver(vectorX,vectorY)");
+    PyRun_SimpleString("plt.show()");
+
+
+
+  }
+
+
   template <typename T>
   void  Plot2d<T>::plot(const std::vector<T>& datax,
                         const std::vector<T>& averagey,
