@@ -272,11 +272,11 @@ namespace anpi{
       
       return true;
     }
-    bool navigateField(const indexPair& nodes) {
+    bool navigateField(const indexPair& nodes, float alfa) {
       generateA_(nodes);
       anpi::solveLU(A_,c_,b_);
       
-      pathFinderElectricField(nodes,0.02f);
+      pathFinderElectricField(nodes, alfa);
       return true;
     }
 
