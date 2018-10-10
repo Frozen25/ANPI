@@ -31,22 +31,33 @@ BOOST_AUTO_TEST_SUITE( ResistorGrid )
 /**
  * Instantiate and test the methods of the Matrix class
  */
-  BOOST_AUTO_TEST_CASE( VectorField ) {
+  BOOST_AUTO_TEST_CASE( ElectricField ) {
   	anpi::ResistorGrid resistorGrid;
-    resistorGrid.build("mapa6x7.png");
+    resistorGrid.build("mapa.png");
 
     anpi::indexPair CurrentSource;
     CurrentSource.row1 = 0;
     CurrentSource.col1 = 0;
-    CurrentSource.row2 = 4;
-    CurrentSource.col2 = 5;
+    CurrentSource.row2 = 48;
+    CurrentSource.col2 = 48;
 
+    /// con un paso de 0.2
+    resistorGrid.navigateField(CurrentSource, 0.2f);
 
-    resistorGrid.navigateField(CurrentSource);
     ::anpi::benchmark::quiver(resistorGrid.X_,resistorGrid.Y_,"black");
 
     ::anpi::benchmark::quiver1D(resistorGrid.posX,resistorGrid.posY,"black");
-    
+      
+    /// con un paso de 0.5
+    resistorGrid.navigateField(CurrentSource, 0.5f);
+
+    ::anpi::benchmark::quiver1D(resistorGrid.posX,resistorGrid.posY,"black");
+      
+    /// con un paso de 0.7
+    resistorGrid.navigateField(CurrentSource, 0.7f);
+
+    ::anpi::benchmark::quiver1D(resistorGrid.posX,resistorGrid.posY,"black");
+      
 
 
 }
