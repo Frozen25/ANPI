@@ -1,6 +1,10 @@
+% Andrés Ramírez
+% 20/10/18
+% solver1 de Tarea05
 function ans = solver1()
   powFactor = (3:10); %Creates an array with the factor of the power 
-                     %ej: 3 = 1/(2^3) = 1/8 or 10 = 1/(2^10) = 1/1024
+                      %ej: 3 = 1/(2^3) = 1/8 or 10 = 1/(2^10) = 1/1024
+                      
   factors = 1./(2.^powFactor); %Creates the array of the factors
   
   %Create the parameter for the values that are going to be used

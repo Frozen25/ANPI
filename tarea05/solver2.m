@@ -1,3 +1,9 @@
+% Andrés Ramírez
+% 20/10/18
+% solver2 de Tarea05
+
+% S: 3 pair of numbers, where the first element of each pair is the amount of 
+% steps and the second element is the time taken by each function
 function [ans45,ans23,ans4] = solver2()
   %Create the parameter for the values that are going to be used
   f = @function2;
