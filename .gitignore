@@ -14,3 +14,9 @@ proyecto2/build/
 *.iml
 
 proyecto2/release/
+
+proyecto3/debug/
+
+proyecto3/release/
+
+proyecto3/\.idea/
