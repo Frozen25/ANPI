@@ -24,15 +24,78 @@
 
 #include <AnpiConfig.hpp>
 #include <Exception.hpp>
+#include <fstream>
 
 namespace po = boost::program_options;
+
+void fileParse(std::string& file, std::vector<int>& top, std::vector<int>& bottom,
+    std::vector<int>& left, std::vector<int>& right) {
+  std::ifstream inFile(file.c_str());
+  
+  if (!inFile) {
+    throw anpi::Exception("Unable to open file");
+  } else {
+    std::cout << "Archivo contiene la siguiente informacion: " << std::endl;
+  }
+  
+  std::vector<int>* vectorToUse;
+  
+  std::string line;
+  getline(inFile, line);
+  
+  do {
+    std::vector<std::string> temperature;
+    boost::split(temperature, line, [](char c){return c == ' ';});
+  
+    switch ((temperature[0].c_str())[0]) {
+      case 't': {
+        vectorToUse = &top;
+        std::cout << "Top: ";
+        break;
+      }
+      case 'b': {
+        vectorToUse = &bottom;
+        std::cout << "Bottom: ";
+        break;
+      }
+      case 'l': {
+        vectorToUse = &left;
+        std::cout << "Left: ";
+        break;
+      }
+      case 'r': {
+        vectorToUse = &right;
+        std::cout << "Right: ";
+        break;
+      }
+      default: {
+        throw anpi::Exception("Archivo vacio o caracter invalido");
+      }
+    }
+  
+    if (vectorToUse->empty()) {
+      for (size_t i = 2; i < temperature.size(); ++i) {
+        vectorToUse->push_back(std::stoi(temperature[i]));
+        std::cout << temperature[i] << " ";
+      }
+    } else {
+      std::cout << "temperatura no será utilizada";
+    }
+    std::cout << std::endl;
+    
+    getline(inFile, line);
+  } while (!line.empty());
+  
+  inFile.close();
+}
 
 int main(int argc, const char *argv[]) {
 
 	try {
 	  // Parametros a recibir de la interfaz con la consola
 		std::vector<int> top, bottom, left, right;  //En caso que no se asignen temperaturas, se utilizará empty() para ver si es aislado
-		std::vector<std::string> isolate, file;
+		std::vector<std::string> isolate;
+		std::string file;
 		int horizontal, vertical, grid;
 		
 		// Flags para el aislamiento
@@ -54,7 +117,7 @@ int main(int argc, const char *argv[]) {
 		    ("left,l", po::value< std::vector<int> >(&left)->multitoken(), "Indica temperatura en borde izquierdo")
 		    ("right,r", po::value< std::vector<int> >(&right)->multitoken(), "Indica temperatura en borde derecho")
 		    ("isolate,i", po::value< std::vector<std::string> >(&isolate)->multitoken(), "Aisla los bordes indicados (t=arriba, b=abajo, l=izquierda, r=derecha)")
-		    ("profile", po::value< std::vector<std::string> >(&file), "Nombre de archivo con perfil termico")
+		    ("profile,p", po::value< std::string >(&file), "Nombre de archivo con perfil termico")
 		    ("horizontal,h", po::value<int>(&horizontal)->default_value(100), "Numero de pixeles horizontales en la solucion")
 		    ("vertical,v", po::value<int>(&vertical)->default_value(100), "Numero de pixeles verticales en la solucion")
 		    ("quit-visuals,q", "Desactiva toda forma de visualizacion en caso de estar presente")
@@ -104,47 +167,49 @@ int main(int argc, const char *argv[]) {
 		}
 		
 		if (vm.count("isolate")) {
-      if (isolate.empty()) {
-        throw anpi::Exception("Aislamiento usado pero no especificado");
-      } else {
-        std::cout << "Lado aislado es: ";
-        for (auto& element : isolate) {
-          std::cout << element << " ";
-          switch (*element.c_str()) {
-            case 't': { // Lado superior (top) aislado
-              explicitTop = true;
-              break;
-            }
-            case 'b': { // Lado inferior (bottom) aislado
-              explicitBottom = true;
-              break;
-            }
-            case 'l': { // Lado izquierdo (left) aislado
-              explicitLeft = true;
-              break;
-            }
-            case 'r': { // Lado derecho (right) aislado
-              explicitRight = true;
-              break;
-            }
-            default: {
-              throw anpi::Exception("Lado incorrecto para aislar");
-            };
+      std::cout << "Lado aislado es: ";
+      for (auto& element : isolate) {
+        std::cout << element << " ";
+        switch (*element.c_str()) {
+          case 't': { // Lado superior (top) aislado
+            explicitTop = true;
+            break;
           }
+          case 'b': { // Lado inferior (bottom) aislado
+            explicitBottom = true;
+            break;
+          }
+          case 'l': { // Lado izquierdo (left) aislado
+            explicitLeft = true;
+            break;
+          }
+          case 'r': { // Lado derecho (right) aislado
+            explicitRight = true;
+            break;
+          }
+          default: {
+            std::cout << std::endl;
+            throw anpi::Exception("Lado incorrecto para aislar");
+          };
         }
-        std::cout << std::endl;
       }
+      std::cout << std::endl;
 		}
     
+    if (vm.count("profile")) {
+      std::cout << "Usando archivo de perfil" << std::endl;
+      fileParse(file,top,bottom,left,right);
+    }
+		
     if (vm.count("quit-visuals")) {
       quitVisuals = true;
+      std::cout << "Opcion sin visuales: " << quitVisuals << std::endl;
     }
     
     if (vm.count("flow")) {
       activateFlow = true;
+      std::cout << "Opcion para ver el flujo de calor: " << activateFlow << std::endl;
     }
-    
-    
     
 	} catch (const anpi::Exception &exc) {
 		std::cerr << exc.what() << '\n';
