@@ -9,10 +9,8 @@
  */
 
 #include <boost/program_options.hpp>
-#include <boost/type_traits/is_complex.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string.hpp>
-#include <boost/algorithm/string_regex.hpp>
 
 #include <string>
 #include <vector>
@@ -26,10 +24,12 @@
 #include <Exception.hpp>
 #include <fstream>
 
+#include <Spline.h>
+
 namespace po = boost::program_options;
 
-void fileParse(std::string& file, std::vector<int>& top, std::vector<int>& bottom,
-    std::vector<int>& left, std::vector<int>& right) {
+void fileParser(std::string &file, std::vector<int> &top, std::vector<int> &bottom,
+                std::vector<int> &left, std::vector<int> &right) {
   std::ifstream inFile(file.c_str());
   
   if (!inFile) {
@@ -202,7 +202,7 @@ int main(int argc, const char *argv[]) {
     
     if (vm.count("profile")) {
       std::cout << "Usando archivo de perfil" << std::endl;
-      fileParse(file,top,bottom,left,right);
+      fileParser(file, top, bottom, left, right);
     }
 		
     if (vm.count("quit-visuals")) {
