@@ -10,6 +10,6 @@ target_link_libraries (benchmark
                        ${Boost_FILESYSTEM_LIBRARY}
                        ${Boost_SYSTEM_LIBRARY}
                        ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
-                       ${OpenCV_LIBS})
+                       )
 
 add_test(NAME benchmark COMMAND benchmark)
