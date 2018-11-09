@@ -145,6 +145,42 @@ namespace anpi {
     std::cout << "\n";
   }
 
+  //this function creates a new matrix Y, which is double the size of the original inside its borders
+  //  and fills it with the old matrix data, for every element in A there are 4 elements in Y
+  template<typename T>
+  void scale_matrix(const Matrix<T>&  A, Matrix<T>&  Y) {
+  size_t rows = A.cols();
+  size_t cols = A.rows();
+
+  // creates a matrix with a size equal to the double of the amount of elements outside of the border
+  Y.allocate(((rows-2)*2+2),((cols-2)*2+2));
+
+  size_t i = 0;
+  size_t j = 0;
+  size_t yi = 0;
+  size_t yj = 0;
+
+  for (i = 1; i < rows-1; ++i){
+    // maps the old index to the corresponding index in the new matrix
+    yi = (i-1)*2+1;
+
+    for( j = 1; j < cols-1; ++j ){
+      
+      // maps the old index to the corresponding index in the new matrix
+      yj = (j-1)*2+1;
+
+      //stores old values in new matrix
+      Y[yi ][yj ] = A[i][j];
+      Y[yi ][yj + 1] = A[i][j];
+      Y[yi + 1 ][yj ] = A[i][j];
+      Y[yi + 1][yj + 1] = A[i][j];
+      }
+    }
+  }
+
+
+
+
 
 
 }
