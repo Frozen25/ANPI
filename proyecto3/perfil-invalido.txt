@@ -1,0 +1,4 @@
+top = 25 30 100
+xright = 100
+cbottom = 10 40 50 100
+vleft = 25 1000 10
