@@ -33,12 +33,12 @@ void fileParse(std::string& file, std::vector<int>& top, std::vector<int>& botto
   std::ifstream inFile(file.c_str());
   
   if (!inFile) {
-    throw anpi::Exception("Unable to open file");
+    throw anpi::Exception("No se pudo abrir el archivo");
   } else {
     std::cout << "Archivo contiene la siguiente informacion: " << std::endl;
   }
   
-  std::vector<int>* vectorToUse;
+  std::vector<int>* vectorToUse; // Puntero a vector en el cual escribir. Depende del lado asignado
   
   std::string line;
   getline(inFile, line);
@@ -74,9 +74,13 @@ void fileParse(std::string& file, std::vector<int>& top, std::vector<int>& botto
     }
   
     if (vectorToUse->empty()) {
-      for (size_t i = 2; i < temperature.size(); ++i) {
-        vectorToUse->push_back(std::stoi(temperature[i]));
-        std::cout << temperature[i] << " ";
+      for (size_t i = 2; i < temperature.size(); ++i) { // Empieza en 2 pues ignora la palabra de lado y el signo =
+        try {
+          vectorToUse->push_back(std::stoi(temperature[i]));
+          std::cout << temperature[i] << " ";
+        } catch (const std::invalid_argument& ia) {
+            std::cerr << "Argumento invalido: " << ia.what() << '\n';
+          }
       }
     } else {
       std::cout << "temperatura no será utilizada";
