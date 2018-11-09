@@ -18,5 +18,5 @@ include(CheckIncludeFiles)
 
 add_library(anpi STATIC ${SRCS} ${HEADERS})
 add_executable(proyecto3 main.cpp)
-target_link_libraries(proyecto3 anpi ${Boost_INCLUDE_DIRS} ${OpenCV_LIBS} python2.7 boost_program_options)
+target_link_libraries(proyecto3 anpi ${Boost_INCLUDE_DIRS} python2.7 boost_program_options)
 
