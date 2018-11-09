@@ -9,6 +9,11 @@
  */
 
 #include <boost/program_options.hpp>
+#include <boost/type_traits/is_complex.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string_regex.hpp>
+
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -25,6 +30,10 @@ namespace po = boost::program_options;
 int main(int argc, const char *argv[]) {
 
 	try {
+    
+    po::options_description desc("Opciones");
+	  
+	  /*
 	  // Parametros a recibir de la interfaz con la consola
 		std::vector<int> top, bottom, left, right;
 		std::vector<std::string> isolate, file;
@@ -40,10 +49,10 @@ int main(int argc, const char *argv[]) {
 		po::options_description desc("Opciones");
 		desc.add_options()
 		    ("help", "produce help message")
-		    ("top,t", po::value< std::vector<int> >(&top)->multitoken()->default_value({}), "Indica temperatura en borde superior")
-		    ("bottom,b", po::value< std::vector<int> >(&bottom)->multitoken()->default_value({}), "Indica temperatura en borde inferior")
-		    ("left,l", po::value< std::vector<int> >(&left)->multitoken()->default_value({}), "Indica temperatura en borde izquierdo")
-		    ("right,r", po::value< std::vector<int> >(&right)->multitoken()->default_value({}), "Indica temperatura en borde derecho")
+		    ("top,t", po::value< std::vector<int> >(&top)->multitoken(), "Indica temperatura en borde superior")
+		    ("bottom,b", po::value< std::vector<int> >(&bottom)->multitoken(), "Indica temperatura en borde inferior")
+		    ("left,l", po::value< std::vector<int> >(&left)->multitoken(), "Indica temperatura en borde izquierdo")
+		    ("right,r", po::value< std::vector<int> >(&right)->multitoken(), "Indica temperatura en borde derecho")
 		    ("isolate,i", po::value< std::vector<std::string> >(&isolate)->multitoken(), "Aisla los bordes indicados (t=arriba, b=abajo, l=izquierda, r=derecha)")
 		    ("profile", po::value< std::vector<std::string> >(&file), "Nombre de archivo con perfil termico")
 		    ("horizontal,h", po::value<int>(&horizontal)->default_value(100), "Numero de pixeles horizontales en la solucion")
@@ -125,7 +134,7 @@ int main(int argc, const char *argv[]) {
         }
         std::cout << std::endl;
       }
-		}
+		}*/
 	} catch (const anpi::Exception &exc) {
 		std::cerr << exc.what() << '\n';
 	}
