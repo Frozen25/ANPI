@@ -4,8 +4,8 @@
  *
  * This file is part of the CE3102 Numerical Analysis lecture at TEC
  *
- * @Author: 
- * @Date  : 24.02.2018
+ * @Author: Andres Ramirez-Quiros
+ * @Date  : 07.11.2018
  */
 
 #include <boost/program_options.hpp>
@@ -30,25 +30,25 @@ namespace po = boost::program_options;
 int main(int argc, const char *argv[]) {
 
 	try {
-    
-    po::options_description desc("Opciones");
-	  
-	  /*
 	  // Parametros a recibir de la interfaz con la consola
-		std::vector<int> top, bottom, left, right;
+		std::vector<int> top, bottom, left, right;  //En caso que no se asignen temperaturas, se utilizará empty() para ver si es aislado
 		std::vector<std::string> isolate, file;
 		int horizontal, vertical, grid;
 		
-		//Flags para el aislamiento
+		// Flags para el aislamiento
+		// Los ExplicitFlags es para cuando se asigna espeficiamente que un lado esta aislado
+		// Esto para que la lectura del archivo no sobreescriba lo del comando
 		bool explicitTop = false,
 		explicitBottom = false,
 		explicitLeft = false,
-		explicitRight = false;
+		explicitRight = false,
+		quitVisuals = false,
+		activateFlow = false;
 
-		// Declare the supported options.
+		// Declara las opciones soportadas
 		po::options_description desc("Opciones");
 		desc.add_options()
-		    ("help", "produce help message")
+		    ("help", "Imprime esta lista de opciones")
 		    ("top,t", po::value< std::vector<int> >(&top)->multitoken(), "Indica temperatura en borde superior")
 		    ("bottom,b", po::value< std::vector<int> >(&bottom)->multitoken(), "Indica temperatura en borde inferior")
 		    ("left,l", po::value< std::vector<int> >(&left)->multitoken(), "Indica temperatura en borde izquierdo")
@@ -111,19 +111,19 @@ int main(int argc, const char *argv[]) {
         for (auto& element : isolate) {
           std::cout << element << " ";
           switch (*element.c_str()) {
-            case 't': {
+            case 't': { // Lado superior (top) aislado
               explicitTop = true;
               break;
             }
-            case 'b': {
+            case 'b': { // Lado inferior (bottom) aislado
               explicitBottom = true;
               break;
             }
-            case 'l': {
+            case 'l': { // Lado izquierdo (left) aislado
               explicitLeft = true;
               break;
             }
-            case 'r': {
+            case 'r': { // Lado derecho (right) aislado
               explicitRight = true;
               break;
             }
@@ -134,7 +134,18 @@ int main(int argc, const char *argv[]) {
         }
         std::cout << std::endl;
       }
-		}*/
+		}
+    
+    if (vm.count("quit-visuals")) {
+      quitVisuals = true;
+    }
+    
+    if (vm.count("flow")) {
+      activateFlow = true;
+    }
+    
+    
+    
 	} catch (const anpi::Exception &exc) {
 		std::cerr << exc.what() << '\n';
 	}
