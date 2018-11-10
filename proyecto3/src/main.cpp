@@ -24,12 +24,12 @@
 #include <Exception.hpp>
 #include <fstream>
 
-#include <Spline.h>
+#include <ThermalPlate.hpp>
 
 namespace po = boost::program_options;
 
-void fileParser(std::string &file, std::vector<int> &top, std::vector<int> &bottom,
-                std::vector<int> &left, std::vector<int> &right) {
+void fileParser(std::string &file, std::vector<double> &top, std::vector<double> &bottom,
+                std::vector<double> &left, std::vector<double> &right) {
   std::ifstream inFile(file.c_str());
   
   if (!inFile) {
@@ -38,7 +38,7 @@ void fileParser(std::string &file, std::vector<int> &top, std::vector<int> &bott
     std::cout << "Archivo contiene la siguiente informacion: " << std::endl;
   }
   
-  std::vector<int>* vectorToUse; // Puntero a vector en el cual escribir. Depende del lado asignado
+  std::vector<double> *vectorToUse; // Puntero a vector en el cual escribir. Depende del lado asignado
   
   std::string line;
   getline(inFile, line);
@@ -97,7 +97,7 @@ int main(int argc, const char *argv[]) {
 
 	try {
 	  // Parametros a recibir de la interfaz con la consola
-		std::vector<int> top, bottom, left, right;  //En caso que no se asignen temperaturas, se utilizará empty() para ver si es aislado
+		std::vector<double> top, bottom, left, right;  //En caso que no se asignen temperaturas, se utilizará empty() para ver si es aislado
 		std::vector<std::string> isolate;
 		std::string file;
 		int horizontal, vertical, grid;
@@ -116,17 +116,17 @@ int main(int argc, const char *argv[]) {
 		po::options_description desc("Opciones");
 		desc.add_options()
 		    ("help", "Imprime esta lista de opciones")
-		    ("top,t", po::value< std::vector<int> >(&top)->multitoken(), "Indica temperatura en borde superior")
-		    ("bottom,b", po::value< std::vector<int> >(&bottom)->multitoken(), "Indica temperatura en borde inferior")
-		    ("left,l", po::value< std::vector<int> >(&left)->multitoken(), "Indica temperatura en borde izquierdo")
-		    ("right,r", po::value< std::vector<int> >(&right)->multitoken(), "Indica temperatura en borde derecho")
+		    ("top,t", po::value< std::vector<double> >(&top)->multitoken(), "Indica temperatura en borde superior")
+		    ("bottom,b", po::value< std::vector<double> >(&bottom)->multitoken(), "Indica temperatura en borde inferior")
+		    ("left,l", po::value< std::vector<double> >(&left)->multitoken(), "Indica temperatura en borde izquierdo")
+		    ("right,r", po::value< std::vector<double> >(&right)->multitoken(), "Indica temperatura en borde derecho")
 		    ("isolate,i", po::value< std::vector<std::string> >(&isolate)->multitoken(), "Aisla los bordes indicados (t=arriba, b=abajo, l=izquierda, r=derecha)")
 		    ("profile,p", po::value< std::string >(&file), "Nombre de archivo con perfil termico")
 		    ("horizontal,h", po::value<int>(&horizontal)->default_value(100), "Numero de pixeles horizontales en la solucion")
 		    ("vertical,v", po::value<int>(&vertical)->default_value(100), "Numero de pixeles verticales en la solucion")
 		    ("quit-visuals,q", "Desactiva toda forma de visualizacion en caso de estar presente")
 		    ("flow,f", "Activa el calculo del flujo de calor")
-		    ("grid,g", po::value<int>(&grid)->default_value(-1), "Tamaño de rejilla de visualizacion para flujo de calor")
+		    ("grid,g", po::value<int>(&grid)->default_value(5), "Tamaño de rejilla de visualizacion para flujo de calor")
 		;
 
 		po::variables_map vm;
@@ -214,6 +214,11 @@ int main(int argc, const char *argv[]) {
       activateFlow = true;
       std::cout << "Opcion para ver el flujo de calor: " << activateFlow << std::endl;
     }
+    
+    anpi::ThermalPlate thermalPlate((explicitTop||top.empty()),(explicitBottom||bottom.empty()),
+                                    (explicitLeft||left.empty()),(explicitRight||right.empty()),
+                                    top, bottom, left, right, activateFlow, quitVisuals,
+                                    grid, horizontal, vertical);
     
 	} catch (const anpi::Exception &exc) {
 		std::cerr << exc.what() << '\n';
