@@ -2,8 +2,8 @@
 // Created by ubuntu on 01/10/18.
 //
 
-#ifndef PROYECTO2_RESISTORGRID_HPP
-#define PROYECTO2_RESISTORGRID_HPP
+#ifndef PROYECTO2_THERMALPLATE_HPP
+#define PROYECTO2_THERMALPLATE_HPP
 
 #include <cstdlib>
 #include <iostream>
@@ -25,7 +25,7 @@ namespace anpi{
   
 
 
-  class ResistorGrid
+  class ThermalPlate
   {
   private:
     /// Matrix of the current equation system
@@ -36,12 +36,15 @@ namespace anpi{
     std::vector<float> c_;
 
 
-    bool isolatedTop, isolatedLeft, isolatedBottom, isolatedRight;
+    bool isolatedTop = false, 
+         isolatedLeft = false, 
+         isolatedBottom = false, 
+         isolatedRight = false;
     
   public:
     
 
-    ResistorGrid() {}
+    ThermalPlate() {}
     
     
 
@@ -59,28 +62,34 @@ namespace anpi{
     
     
     float TopBar(float x){
-      return 0;
+      return 3.0f;
     }
     
     float BottomBar(float x){
-      return 0;
+      return 2.0f;
     }
     
     float LeftBar(float x){
-      return 0;
+      return -1.0f;
     }
     
     float RightBar(float x){
-      return 0;
+      return 4.0f;
     }
 
     size_t old_index(size_t yj){
       return (yj-1)/2 +1;
     }
 
-
+    /**
+     * @brief [brief description]
+     * @details [long description]
+     * 
+     * @param A [description]
+     * @tparam T [description]
+     */
     template<typename T>
-    bool fill_borders(Matrix<T>& A){
+    void fill_borders(Matrix<T>& A  ){
       size_t rows = A.rows();
       size_t cols = A.cols();
 
@@ -89,34 +98,45 @@ namespace anpi{
       size_t Aj = 0;
       size_t Ai = 0;
 
-      for( Aj = 1; Aj<(cols-1); ++Aj){
+      //printf("Filling TOP BAR\n");
+      
+      for( Aj = 1; Aj<(cols); ++Aj){
         A[0][Aj] = TopBar( ((float)(Aj))/((float)(cols-2)) - ((float)(cols-2))/2);
       }
 
-      for( Aj = 1; Aj<(cols-1); ++Aj){
+
+      //printf("Filling BOTTOM BAR\n");
+      for( Aj = 1; Aj<(cols); ++Aj){
         A[rows-1][Aj] = BottomBar( ((float)(Aj))/((float)(cols-2)) - ((float)(cols-2))/2);
       }
 
-      for( Ai = 1; Ai<(rows-1); ++Ai){
+      //printf("Filling LEFT BAR\n");
+      for( Ai = 1; Ai<(rows); ++Ai){
         A[Ai][0] = LeftBar( ((float)(Ai))/((float)(rows-2)) - ((float)(cols-2))/2);
       }
 
-      for( Ai = 1; Ai<(rows-1); ++Aj){
+      //printf("Filling RIGHT BAR\n");
+      for( Ai = 1; Ai<(rows); ++Ai){
         A[Ai][cols-1] = RightBar( ((float)(Aj))/((float)(cols-2)) - ((float)(cols-2))/2);
       }
+
+      //printf("Filled all bars\n");
+
     
     }
 
     //this function creates a new matrix Y, which is double the size of the original inside its borders
     //  and fills it with the old matrix data, for every element in A there are 4 elements in Y
     template<typename T>
-    void scale_matrix(const Matrix<T>&  A, Matrix<T>&  Y) {
+    void scale_matrix( Matrix<T>&  A, Matrix<T>&  Y) {
       size_t rows = A.cols();
       size_t cols = A.rows();
 
       // creates a matrix with a size equal to the double of the amount of elements outside of the border
       Y.allocate(((rows-2)*2+2),((cols-2)*2+2));
 
+      size_t yrows = (rows-2)*2+2;
+      size_t ycols = (cols-2)*2+2;
 
       fill_borders(Y);
 
@@ -127,25 +147,29 @@ namespace anpi{
       double Aij_L = 0.0;
       double Aij_T = 0.0;
       double Aij_R = 0.0;
-      double Aij_D = 0.0  ;
+      double Aij_D = 0.0;
+      
+      
 
-      for (yi = 1; yi < rows-1; ++yi){
+      for (yi = 1; yi < yrows-1; ++yi){
         
 
-        for( yj = 1; yj < cols-1; ++yj ){
+        for( yj = 1; yj < ycols-1; ++yj ){
 
 
         ////////////////////////////////////////////////////////////
         ///        I N T E R N A L   B L O C K 
         ////////////////////////////////////////////////////////////
 
-          if( yi>1 && yi<(rows-1)  && yj>1 && yj<(cols-1) ){
+          if( yi>1 && yi<(yrows-1)  && yj>1 && yj<(ycols-1) ){
           
             // maps the old index to the corresponding index in the new matrix
             Aij_L = A[(yi-1)/2 +1][(yj-2)/2 +1];
             Aij_T = A[(yi-2)/2 +1][(yj-1)/2 +1];
             Aij_R = A[(yi-1)/2 +1][(yj  )/2 +1];
             Aij_D = A[(yi  )/2 +1][(yj-1)/2 +1];
+
+
           
             //stores old values in new matrix
             Y[yi][yj] = (Aij_L + Aij_T + Aij_R + Aij_D)/4;
@@ -186,12 +210,13 @@ namespace anpi{
 
             Y[yi][yj] = (Aij_L + Aij_T + Aij_R + Aij_D)/4;
           }
+          printf("%f , %f, %f, %f\n",Aij_L, Aij_T, Aij_R, Aij_D );
         }
 
         ///////////////////
         //  TOP RIGHT
         ///////////////////
-        else if ( (yi==1)&&(yj==(cols-2)) ){
+        else if ( (yi==1)&&(yj==(ycols-2)) ){
           if (isolatedTop && isolatedRight ){
             Aij_L = A[(yi-1)/2 +1][(yj-2)/2 +1];
             Aij_D = A[(yi  )/2 +1][(yj-1)/2 +1];
@@ -199,12 +224,12 @@ namespace anpi{
           }
           else if (isolatedTop){
             Aij_L = A[(yi-1)/2 +1][(yj-2)/2 +1];
-            Aij_R = Y[1][cols-1];
+            Aij_R = Y[1][yj+1];
             Aij_D = A[(yi  )/2 +1][(yj-1)/2 +1];
             Y[yi][yj] = (Aij_L + Aij_R + Aij_D)/3;
           }
           else if (isolatedRight){
-            Aij_T = T[0][yj];
+            Aij_T = Y[0][yj];
             Aij_L = A[(yi-1)/2 +1][(yj-2)/2 +1];
             Aij_D = A[(yi  )/2 +1][(yj-1)/2 +1];
             Y[yi][yj] = (Aij_T + Aij_L + Aij_D)/3;
@@ -212,8 +237,8 @@ namespace anpi{
           else{
 
             Aij_L = A[(yi-1)/2 +1][(yj-2)/2 +1];
-            Aij_T = T[0][yj];
-            Aij_R = Y[1][cols-1];
+            Aij_T = Y[0][yj];
+            Aij_R = Y[1][yj+1];
             Aij_D = A[(yi  )/2 +1][(yj-1)/2 +1];
 
             Y[yi][yj] = (Aij_L + Aij_T + Aij_R + Aij_D)/4;
@@ -223,7 +248,7 @@ namespace anpi{
         ///////////////////
         //  BOTTOM LEFT
         ///////////////////
-        else if ( (yi==(rows-2))&&(yj==1) ){
+        else if ( (yi==(yrows-1))&&(yj==1) ){
           if (isolatedBottom && isolatedLeft ){
             Aij_T = A[(yi-2)/2 +1][(yj-1)/2 +1];
             Aij_R = A[(yi-1)/2 +1][(yj  )/2 +1];
@@ -238,7 +263,7 @@ namespace anpi{
           else if (isolatedLeft){
             Aij_T = A[(yi-2)/2 +1][(yj-1)/2 +1];
             Aij_R = A[(yi-1)/2 +1][(yj  )/2 +1];
-            Aij_D = Y[1][rows-1];
+            Aij_D = Y[yi+1][1];
             Y[yi][yj] = (Aij_T + Aij_R + Aij_D)/3;
           }
           else{
@@ -246,7 +271,7 @@ namespace anpi{
             Aij_L = Y[yi][0];
             Aij_T = A[(yi-2)/2 +1][(yj-1)/2 +1];
             Aij_R = A[(yi-1)/2 +1][(yj  )/2 +1];
-            Aij_D = Y[1][rows-1];
+            Aij_D = Y[yi+1][1];
 
             Y[yi][yj] = (Aij_L + Aij_T + Aij_R + Aij_D)/4;
           }
@@ -264,7 +289,7 @@ namespace anpi{
           else if (isolatedBottom){
             Aij_L = A[(yi-1)/2 +1][(yj-2)/2 +1];
             Aij_T = A[(yi-2)/2 +1][(yj-1)/2 +1];
-            Aij_R = Y[yi][cols-1];
+            Aij_R = Y[yi][yj+1];
             Y[yi][yj] = (Aij_L + Aij_T + Aij_R)/3;
           }
           else if (isolatedRight){
@@ -277,7 +302,7 @@ namespace anpi{
 
             Aij_L = A[(yi-1)/2 +1][(yj-2)/2 +1];
             Aij_T = A[(yi-2)/2 +1][(yj-1)/2 +1];
-            Aij_R = Y[yi][cols-1];
+            Aij_R = Y[yi][yj+1];
             Aij_D = Y[yi+1][yj];
 
             Y[yi][yj] = (Aij_L + Aij_T + Aij_R + Aij_D)/4;
@@ -313,7 +338,7 @@ namespace anpi{
         ///////////////////
         //  BOTTOM BORDER
         ///////////////////
-        else if ( yi==(rows-2) ){
+        else if ( yi==(yrows-2) ){
           if (isolatedBottom){
             Aij_L = A[(yi-1)/2 +1][(yj-2)/2 +1];
             Aij_R = A[(yi-1)/2 +1][(yj  )/2 +1];
@@ -385,4 +410,4 @@ namespace anpi{
 }
 
 
-#endif //PROYECTO2_RESISTORGRID_HPP
+#endif //PROYECTO2_THERMALPLATE_HPP
