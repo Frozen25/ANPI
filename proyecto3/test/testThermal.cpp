@@ -23,47 +23,13 @@
 
 #include <cmath>
 
-namespace anpi {
-  namespace test {
-  
-
-  template<typename T>
-  void scalingTest( const std::function<void( anpi::Matrix<T>& ,
-                                              anpi::Matrix<T>& )>& scale_matrix  ){
-
-    //initial matrix 
-    anpi::Matrix<T> A;
-    anpi::Matrix<T> B;
-    {
-      //Test with 3x3 matrix
-      A = { { 2, 3 ,0 },{-1, 2, 4 },{ 0, 2, -3 } };
-
-      anpi::ThermalPlate thermalPlate;
-      thermalPlate.scale_matrix(A, B);
-      
-      
-      BOOST_CHECK(1==1);    
-      BOOST_CHECK_MESSAGE(true,"Successful run 6x7");   
-    }
-
-
-    
-
-
-  } //scalingTest
-
-  
-  
-  } // test
-}  // anpi
 
 
 
 
+BOOST_AUTO_TEST_SUITE( ThermalScaling )
 
-BOOST_AUTO_TEST_SUITE( SOLVEThermal )
-
-    BOOST_AUTO_TEST_CASE(solverthermal)
+    BOOST_AUTO_TEST_CASE( scalingTest )
     {
       
         //initial matrix 
@@ -123,3 +89,32 @@ BOOST_AUTO_TEST_SUITE( SOLVEThermal )
 
 BOOST_AUTO_TEST_SUITE_END()
 
+BOOST_AUTO_TEST_SUITE( SOLVEThermal )
+
+    BOOST_AUTO_TEST_CASE(solverthermal)
+    {
+      
+        //initial matrix 
+      anpi::Matrix<double> A;
+      anpi::Matrix<double> B;
+      
+      //const double eps = std::numeric_limits<double>::epsilon();
+      anpi::ThermalPlate thermalPlate;
+
+
+      //Test with 3x3 matrix
+      A = { { 2.0f, 3.0f ,0.0f },{-1.0f, 2.0f, 4.0f },{ 0.0f, 2.0f, -3.0f } };
+      
+      thermalPlate.calculatePlate(A, B);
+      
+
+
+
+      //BOOST_CHECK_MESSAGE(true,"Successful run 6x7");   
+    
+      //anpi::test::scalingTest<double>(anpi::ThermalPlate.scale_matrix<double>);
+
+    }
+
+
+BOOST_AUTO_TEST_SUITE_END()

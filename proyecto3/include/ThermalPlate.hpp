@@ -16,7 +16,7 @@
 #include <Exception.hpp>
 #include "Solver.hpp"
 #include "Utilities.hpp"
-
+#include "omp.h"
 
 namespace anpi{
   
@@ -29,6 +29,12 @@ namespace anpi{
     std::vector<float> b_;
     /// Vector of the current equation system
     std::vector<float> c_;
+
+    /// Epsilon used to calculate convergence
+    const double epsilon = 0.1f;
+
+    // Convergence flag
+    bool convergenceFlag = false;
 
     /// Flags that indicates if a side of the plate is isolated
     bool isolatedTop = false, 
@@ -107,49 +113,67 @@ namespace anpi{
       return 4.0f;
     }
 
-    size_t old_index(size_t yj){ //TODO: check method
-      return (yj-1)/2 +1;
+
+    /**
+     * @brief [calculates the corresponding matching index on the new matrix (Y)]
+     * @details [this is the mapping of the index from the small matrix to the bigger matrix]
+     * 
+     * @param yj [index in the matrix A]
+     * @return [index in the matrix Y]
+     */
+    size_t new_index(size_t Ax){ //TODO: check method
+      return (Ax-1)*2 +1;
     }
 
     /**
-     * @brief [brief description]
+     * @brief [calculates the corresponding matching index on the old matrix (A)]
+     * @details [this is the inverse of mapping the index from the big matrix to the smaller matrix]
+     * 
+     * @param yj [index in the matrix Y]
+     * @return [index in the matrix A]
+     */
+    size_t old_index(size_t Yx){ //TODO: check method
+      return (Yx-1)/2 +1;
+    }
+
+    /**
+     * @brief fills the borders of the matrix with the corresponding values
      * @details [long description]
      * 
      * @param A [description]
      * @tparam T [description]
      */
     template<typename T>
-    void fill_borders(Matrix<T>& A  ){
-      size_t rows = A.rows();
-      size_t cols = A.cols();
+    void fill_borders(Matrix<T>& Mat  ){
+      size_t rows = Mat.rows();
+      size_t cols = Mat.cols();
       
-      size_t Aj = 0;
-      size_t Ai = 0;
+      size_t Matj = 0;
+      size_t Mati = 0;
 
       //printf("Filling TOP BAR\n"); //TODO: remove line
       
-      for( Aj = 1; Aj<(cols); ++Aj){
-        A[0][Aj] = TopBar( ((float)(Aj))/((float)(cols-2)) - ((float)(cols-2))/2);
+      for( Matj = 1; Matj<(cols); ++Matj){
+        Mat[0][Matj] = TopBar( ((float)(Matj))/((float)(cols-2)) - ((float)(cols-2))/2);
       }
 
 
       //printf("Filling BOTTOM BAR\n"); //TODO: remove line
-      for( Aj = 1; Aj<(cols); ++Aj){
-        A[rows-1][Aj] = BottomBar( ((float)(Aj))/((float)(cols-2)) - ((float)(cols-2))/2);
+      for( Matj = 1; Matj<(cols); ++Matj){
+        Mat[rows-1][Matj] = BottomBar( ((float)(Matj))/((float)(cols-2)) - ((float)(cols-2))/2);
       }
 
       //printf("Filling LEFT BAR\n"); //TODO: remove line
-      for( Ai = 1; Ai<(rows); ++Ai){
-        A[Ai][0] = LeftBar( ((float)(Ai))/((float)(rows-2)) - ((float)(cols-2))/2);
+      for( Mati = 1; Mati<(rows); ++Mati){
+        Mat[Mati][0] = LeftBar( ((float)(Mati))/((float)(rows-2)) - ((float)(cols-2))/2);
       }
 
       //printf("Filling RIGHT BAR\n"); //TODO: remove line
-      for( Ai = 1; Ai<(rows); ++Ai){
-        A[Ai][cols-1] = RightBar( ((float)(Aj))/((float)(cols-2)) - ((float)(cols-2))/2);
+      for( Mati = 1; Mati<(rows); ++Mati){
+        Mat[Mati][cols-1] = RightBar( ((float)(Matj))/((float)(cols-2)) - ((float)(cols-2))/2);
       }
 
       //printf("Filled all bars\n"); //TODO: remove line
-
     
     }
 
@@ -173,17 +197,20 @@ namespace anpi{
 
       fill_borders(Y);
 
-      size_t Ai = 0;
-      size_t Aj = 0;
-      size_t yi = 0;
-      size_t yj = 0;
+      
+      //size_t yi = 0;
+      //size_t yj = 0;
       double Aij_L = 0.0;
       double Aij_T = 0.0;
       double Aij_R = 0.0; //TODO: check value
       double Aij_D = 0.0; //TODO: check value
 
-      for (yi = 1; yi < yrows-1; ++yi){
-        for( yj = 1; yj < ycols-1; ++yj ){
+      bool convergenceFlagParallel = true;
+      
+      #pragma omp parallel for default(none) private(Aij_L, Aij_T, Aij_R, Aij_D) shared(A , Y, yrows, ycols, convergenceFlagParallel)
+      for (size_t yi = 1; yi < yrows-1; ++yi){
+        for(size_t yj = 1; yj < ycols-1; ++yj ){
+          //printf("Thread number %d\n",omp_get_thread_num() );
           
           ////////////////////////////////////////////////////////////
           ///        I N T E R N A L   B L O C K
@@ -237,7 +264,7 @@ namespace anpi{
   
               Y[yi][yj] = (Aij_L + Aij_T + Aij_R + Aij_D)/4;
             }
-            printf("%f , %f, %f, %f\n",Aij_L, Aij_T, Aij_R, Aij_D );
+            
           }
   
           ///////////////////
@@ -311,7 +338,7 @@ namespace anpi{
           ///////////////////
           ///  BOTTOM RIGHT
           ///////////////////
-          else if ( (yi==(rows-2))&&(yj==(cols-2)) ){
+          else if ( (yi==(yrows-2))&&(yj==(ycols-2)) ){
             if (isolatedBottom && isolatedRight ){
               Aij_T = A[(yi-2)/2 +1][(yj-1)/2 +1];
               Aij_L = A[(yi-1)/2 +1][(yj-2)/2 +1];
@@ -409,7 +436,7 @@ namespace anpi{
           ///////////////////
           ///  RIGHT BORDER
           ///////////////////
-          else if ( yj==(cols-2) ){
+          else if ( yj==(ycols-2) ){
             if (isolatedLeft){
               Aij_T = A[(yi-2)/2 +1][(yj-1)/2 +1];
               Aij_L = A[(yi-1)/2 +1][(yj-2)/2 +1];
@@ -426,9 +453,43 @@ namespace anpi{
               Y[yi][yj] = (Aij_L + Aij_T + Aij_R + Aij_D)/4;
             }
           }
+
+          /// checks convergence, if it converges, the final result is true
+          if(std::abs ( Y[yi][yj] - A[(yi-1)/2+1][(yj-1)/2+1] ) > epsilon  ){
+            convergenceFlagParallel = false;
+          }
+
         }// for yj
       }// for yi
+      convergenceFlag = convergenceFlagParallel;
     }// scale matrix
+
+
+    template<typename T>
+    void calculatePlate(Matrix<T>&  A, Matrix<T>&  Y){
+      
+      //anpi::Matrix<double> A;
+      //anpi::Matrix<double> Y;
+      A.allocate(3,3);
+      fill_borders(A);
+      A[1][1] = ( A[0][1] + A[1][0] + A[1][2] + A[2][1] )/4;
+
+      for (size_t k = 0; (k < 5); ++k){
+        scale_matrix(A,Y);
+        A = Y;
+        //std::cout << "Convergence: " << convergenceFlag << " - k= " << k << std::endl;
+      }
+      matrix_show_int(A);
+
+
+
+
+    }
+
+
+
+
+
   };
 }
 

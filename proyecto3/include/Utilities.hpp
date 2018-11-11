@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <iomanip>
 
 #include "Exception.hpp"
 #include "Matrix.hpp"
@@ -101,6 +103,23 @@ namespace anpi {
       for(size_t i = 0; i < m.rows(); i++) {
           for (size_t j = 0; j < m.cols(); j++) {
               printf(" %8.15f", m(i,j));
+          }
+          printf("\n");
+      }
+      printf("\n");
+  }
+
+  //this function prints a matrix casting the values to integer
+  template<typename T>
+  static void matrix_show_int(const Matrix<T>&  m, const std::string& str="", int maxsize = 3) {
+      std::cout << str << "\n";
+      std::stringstream ss;
+      for(size_t i = 0; i < m.rows(); i++) {
+          for (size_t j = 0; j < m.cols(); j++) {              
+              ss.str("");
+              ss << std::setw(maxsize) << std::setfill (' ') << (int)(m(i,j));
+              std::cout << ss.str() << ' ';
+              //printf(" %d",(int) m(i,j));
           }
           printf("\n");
       }

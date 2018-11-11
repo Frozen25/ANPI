@@ -8,7 +8,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 ## Options
 option(ANPI_ENABLE_SIMD "Force the use of optimized code instead of generic" on)
-option(ANPI_ENABLE_OpenMP "Force the use of OpenMP" off)
+option(ANPI_ENABLE_OpenMP "Force the use of OpenMP" on)
 set(ANPI_DATA_PATH "${CMAKE_SOURCE_DIR}/data" CACHE PATH "Location of maps")
 
 ## All compiler options
