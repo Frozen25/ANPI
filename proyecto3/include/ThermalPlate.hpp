@@ -19,7 +19,13 @@
 
 
 namespace anpi{
-  
+
+/** class ThermalPlate
+ *  @brief thermal plate class
+ *  @details This class is an abstraction of a thermal plate,
+ *  is used to make the temperature gradient using the liebman
+ *  method.
+ */
   class ThermalPlate
   {
   private:
@@ -54,8 +60,24 @@ namespace anpi{
     
     /// Default constructor
     ThermalPlate() = default;
-  
-    /// Constructor with all the parameters of the class
+
+  /**
+   * Constructor of the class.
+   * @tparam T type of the matrix
+   * @param isolatedTop used to determine if the top of the matrix is isolated.
+   * @param isolatedBottom used to determine if the bottom of the matrix is isolated.
+   * @param isolatedLeft used to determine if the left of the matrix is isolated.
+   * @param isolatedRight used to determine if the right of the matrix is isolated.
+   * @param top This vector describe the thermal profile in the top of the thermal plate.
+   * @param bottom This vector describe the thermal profile in the bottom of the thermal plate.
+   * @param left This vector describe the thermal profile in the left of the thermal plate.
+   * @param right This vector describe the thermal profile in the right of the thermal plate.
+   * @param horizontal horizontal value.
+   * @param vertical vertical value.
+   * @param grid grid used to show the thermal flow.
+   * @param noVisuals Flag to show no visuals.
+   * @param showThermalFlow flag used to visualize the thermal flow.
+   */
     ThermalPlate(bool isolatedTop, bool isolatedBottom, bool isolatedLeft, bool isolatedRight,
         std::vector<double> &top, std::vector<double> &bottom, std::vector<double> &left, std::vector<double> &right,
         bool showThermalFlow, bool noVisuals, int grid, int horizontal, int vertical) {
@@ -112,45 +134,37 @@ namespace anpi{
     }
 
     /**
-     * @brief [brief description]
-     * @details [long description]
+     * @brief Used to fill the borders with the thermal profile that user gives.
+     * @details The method uses a matrix to fill its edges with a thermal profile,
+     * then it is used to expand this temperature to the rest of the matrix.
      * 
-     * @param A [description]
-     * @tparam T [description]
+     * @param A A matrix that contains the thermal information.
+     * @tparam T template value.
      */
     template<typename T>
-    void fill_borders(Matrix<T>& A  ){
+    void fill_borders(Matrix<T>& A){
       size_t rows = A.rows();
       size_t cols = A.cols();
       
       size_t Aj = 0;
       size_t Ai = 0;
 
-      //printf("Filling TOP BAR\n"); //TODO: remove line
-      
       for( Aj = 1; Aj<(cols); ++Aj){
         A[0][Aj] = TopBar( ((float)(Aj))/((float)(cols-2)) - ((float)(cols-2))/2);
       }
 
-
-      //printf("Filling BOTTOM BAR\n"); //TODO: remove line
       for( Aj = 1; Aj<(cols); ++Aj){
         A[rows-1][Aj] = BottomBar( ((float)(Aj))/((float)(cols-2)) - ((float)(cols-2))/2);
       }
 
-      //printf("Filling LEFT BAR\n"); //TODO: remove line
       for( Ai = 1; Ai<(rows); ++Ai){
         A[Ai][0] = LeftBar( ((float)(Ai))/((float)(rows-2)) - ((float)(cols-2))/2);
       }
 
-      //printf("Filling RIGHT BAR\n"); //TODO: remove line
       for( Ai = 1; Ai<(rows); ++Ai){
         A[Ai][cols-1] = RightBar( ((float)(Aj))/((float)(cols-2)) - ((float)(cols-2))/2);
       }
 
-      //printf("Filled all bars\n"); //TODO: remove line
-
-    
     }
 
     /**

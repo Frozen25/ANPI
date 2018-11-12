@@ -42,17 +42,22 @@ namespace tk
 {
 
 // band matrix solver
-class band_matrix
+/**
+ * class band_matrix
+ * @brief band matrix resolver.
+ */
+class Band_matrix
 {
 private:
-    std::vector< std::vector<double> > m_upper;  // upper band
-    std::vector< std::vector<double> > m_lower;  // lower band
+
+    std::vector< std::vector<double> > m_upper;  /// upper band
+    std::vector< std::vector<double> > m_lower;  /// lower band
 public:
-    band_matrix() {};                             // constructor
-    band_matrix(int dim, int n_u, int n_l);       // constructor
-    ~band_matrix() {};                            // destructor
-    void resize(int dim, int n_u, int n_l);      // init with dim,n_u,n_l
-    int dim() const;                             // matrix dimension
+    Band_matrix() {};                             /// constructor
+    Band_matrix(int dim, int n_u, int n_l);       /// constructor
+    ~Band_matrix() {};                            /// destructor
+    void resize(int dim, int n_u, int n_l);      /// init with dim,n_u,n_l
+    int dim() const;                             /// matrix dimension
     int num_upper() const
     {
         return m_upper.size()-1;
@@ -62,9 +67,9 @@ public:
         return m_lower.size()-1;
     }
     // access operator
-    double & operator () (int i, int j);            // write
-    double   operator () (int i, int j) const;      // read
-    // we can store an additional diogonal (in m_lower)
+    double & operator () (int i, int j);            /// write
+    double   operator () (int i, int j) const;      /// read
+    /// we can store an additional diogonal (in m_lower)
     double& saved_diag(int i);
     double  saved_diag(int i) const;
     void lu_decompose();
@@ -77,26 +82,31 @@ public:
 
 
 // spline interpolation
+/**
+ * class spline
+ * @brief his function is apply the cubic interpolation method.
+ */
+
 class spline
 {
 public:
     enum bd_type {
-        first_deriv = 1,
-        second_deriv = 2
+        first_deriv = 1, /// first derivate.
+        second_deriv = 2 /// second derivate.
     };
 
 private:
-    std::vector<double> m_x,m_y;            // x,y coordinates of points
-    // interpolation parameters
-    // f(x) = a*(x-x_i)^3 + b*(x-x_i)^2 + c*(x-x_i) + y_i
-    std::vector<double> m_a,m_b,m_c;        // spline coefficients
-    double  m_b0, m_c0;                     // for left extrapol
+    std::vector<double> m_x,m_y;            /// x,y coordinates of points
+    /// interpolation parameters
+    /// f(x) = a*(x-x_i)^3 + b*(x-x_i)^2 + c*(x-x_i) + y_i
+    std::vector<double> m_a,m_b,m_c;        /// spline coefficients
+    double  m_b0, m_c0;                     /// for left extrapol
     bd_type m_left, m_right;
     double  m_left_value, m_right_value;
     bool    m_force_linear_extrapolation;
 
 public:
-    // set default boundary condition to be zero curvature at both ends
+    /// set default boundary condition to be zero curvature at both ends
     spline(): m_left(second_deriv), m_right(second_deriv),
         m_left_value(0.0), m_right_value(0.0),
         m_force_linear_extrapolation(false)
@@ -104,30 +114,62 @@ public:
         ;
     }
 
-    // optional, but if called it has to come be before set_points()
+    /**
+     * @brief optional, but if called it has to come be before set_points()
+     * @param left
+     * @param left_value
+     * @param right
+     * @param right_value
+     * @param force_linear_extrapolation
+     */
     void set_boundary(bd_type left, double left_value,
                       bd_type right, double right_value,
                       bool force_linear_extrapolation=false);
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @param cubic_spline
+     */
     void set_points(const std::vector<double>& x,
                     const std::vector<double>& y, bool cubic_spline=true);
+    /**
+     * @brief override on the "()" operator
+     * @param x
+     * @return const value
+     */
     double operator() (double x) const;
 };
 
 
 
-// ---------------------------------------------------------------------
-// implementation part, which could be separated into a cpp file
-// ---------------------------------------------------------------------
+/// ---------------------------------------------------------------------
+/// implementation part, which could be separated into a cpp file
+/// ---------------------------------------------------------------------
 
 
-// band_matrix implementation
-// -------------------------
+/// Band_matrix implementation
+/// -------------------------
 
-band_matrix::band_matrix(int dim, int n_u, int n_l)
+/**
+ * @brief class's constructor
+ * @param dim dimension of the matrix.
+ * @param n_u numbers to fill L section of the matrix.
+ * @param n_l numbers to fill U section of the matrix.
+ */
+Band_matrix::Band_matrix(int dim, int n_u, int n_l)
 {
     resize(dim, n_u, n_l);
 }
-void band_matrix::resize(int dim, int n_u, int n_l)
+
+/**
+ * @brief used to resize a matrix.
+ * @param dim dimension of the matrix.
+ * @param n_u numbers to fill L section of the matrix.
+ * @param n_l numbers to fill U section of the matrix.
+ */
+void Band_matrix::resize(int dim, int n_u, int n_l)
 {
     assert(dim>0);
     assert(n_u>=0);
@@ -141,7 +183,12 @@ void band_matrix::resize(int dim, int n_u, int n_l)
         m_lower[i].resize(dim);
     }
 }
-int band_matrix::dim() const
+
+/**
+ * @brief used to know the upper matrix size.
+ * @return size of the upper matrix.
+ */
+int Band_matrix::dim() const
 {
     if(m_upper.size()>0) {
         return m_upper[0].size();
@@ -153,38 +200,73 @@ int band_matrix::dim() const
 
 // defines the new operator (), so that we can access the elements
 // by A(i,j), index going from i=0,...,dim()-1
-double & band_matrix::operator () (int i, int j)
+
+/**
+ * @brief operator () overload.
+ * @details defines the new operator (), so that we can access the elements
+ * by A(i,j), index going from i=0,...,dim()-1.
+ * @param i rows index.
+ * @param j columns index
+ * @return matrix's element.
+ */
+double & Band_matrix::operator () (int i, int j)
 {
-    int k=j-i;       // what band is the entry
+    int k=j-i;       /// what band is the entry
     assert( (i>=0) && (i<dim()) && (j>=0) && (j<dim()) );
     assert( (-num_lower()<=k) && (k<=num_upper()) );
-    // k=0 -> diogonal, k<0 lower left part, k>0 upper right part
+    /// k=0 -> diogonal, k<0 lower left part, k>0 upper right part
     if(k>=0)   return m_upper[k][i];
     else	    return m_lower[-k][i];
 }
-double band_matrix::operator () (int i, int j) const
+
+/**
+ * @brief operator () overload.
+ * @details defines the new operator (), so that we can access the elements
+ * by A(i,j), index going from i=0,...,dim()-1.
+ * @param i rows index.
+ * @param j columns index
+ * @return matrix's element.
+ */
+double Band_matrix::operator () (int i, int j) const
 {
-    int k=j-i;       // what band is the entry
+    int k=j-i;       /// what band is the entry
     assert( (i>=0) && (i<dim()) && (j>=0) && (j<dim()) );
     assert( (-num_lower()<=k) && (k<=num_upper()) );
-    // k=0 -> diogonal, k<0 lower left part, k>0 upper right part
+    /// k=0 -> diogonal, k<0 lower left part, k>0 upper right part
     if(k>=0)   return m_upper[k][i];
     else	    return m_lower[-k][i];
 }
+
 // second diag (used in LU decomposition), saved in m_lower
-double band_matrix::saved_diag(int i) const
+/**
+ * @brief second diag (used in LU decomposition), saved in m_lower
+ * @param i column index
+ * @return matrix's element
+ */
+double Band_matrix::saved_diag(int i) const
 {
     assert( (i>=0) && (i<dim()) );
     return m_lower[0][i];
 }
-double & band_matrix::saved_diag(int i)
+
+/**
+ * @brief second diag (used in LU decomposition), saved in m_lower
+ * @param i column index
+ * @return matrix's element
+ */
+double & Band_matrix::saved_diag(int i)
 {
     assert( (i>=0) && (i<dim()) );
     return m_lower[0][i];
 }
 
 // LR-Decomposition of a band matrix
-void band_matrix::lu_decompose()
+
+
+/**
+ * @brief LR-Decomposition of a band matrix.
+ */
+void Band_matrix::lu_decompose()
 {
     int  i_max,j_max;
     int  j_min;
@@ -219,7 +301,13 @@ void band_matrix::lu_decompose()
     }
 }
 // solves Ly=b
-std::vector<double> band_matrix::l_solve(const std::vector<double>& b) const
+
+/**
+ * @brief solves Ly=b.
+ * @param b vector b of solutions.
+ * @return return x vector of unknowns.
+ */
+std::vector<double> Band_matrix::l_solve(const std::vector<double>& b) const
 {
     assert( this->dim()==(int)b.size() );
     std::vector<double> x(this->dim());
@@ -234,7 +322,13 @@ std::vector<double> band_matrix::l_solve(const std::vector<double>& b) const
     return x;
 }
 // solves Rx=y
-std::vector<double> band_matrix::r_solve(const std::vector<double>& b) const
+
+/**
+ * @brief solves Rx=y.
+ * @param b vector b of solutions.
+ * @return return x vector of unknowns.
+ */
+std::vector<double> Band_matrix::r_solve(const std::vector<double>& b) const
 {
     assert( this->dim()==(int)b.size() );
     std::vector<double> x(this->dim());
@@ -249,7 +343,14 @@ std::vector<double> band_matrix::r_solve(const std::vector<double>& b) const
     return x;
 }
 
-std::vector<double> band_matrix::lu_solve(const std::vector<double>& b,
+/**
+ * @brief lu solver.
+ * @param b vector b of solutions.
+ * @param is_lu_decomposed indicates that the matrix was already decomposed by LU.
+ * @return return x vector of unknowns.
+ */
+
+std::vector<double> Band_matrix::lu_solve(const std::vector<double>& b,
         bool is_lu_decomposed)
 {
     assert( this->dim()==(int)b.size() );
@@ -268,11 +369,19 @@ std::vector<double> band_matrix::lu_solve(const std::vector<double>& b,
 // spline implementation
 // -----------------------
 
+/**
+ * @brief set limits of the cubic interpolation.
+ * @param left left limit.
+ * @param left_value left value of the limit.
+ * @param right rigth limit.
+ * @param right_value right value of the limit.
+ * @param force_linear_extrapolation is used to force linear extrapolation.
+ */
 void spline::set_boundary(spline::bd_type left, double left_value,
                           spline::bd_type right, double right_value,
                           bool force_linear_extrapolation)
 {
-    assert(m_x.size()==0);          // set_points() must not have happened yet
+    assert(m_x.size()==0);          /// set_points() must not have happened yet
     m_left=left;
     m_right=right;
     m_left_value=left_value;
@@ -280,7 +389,12 @@ void spline::set_boundary(spline::bd_type left, double left_value,
     m_force_linear_extrapolation=force_linear_extrapolation;
 }
 
-
+/**
+ * @brief used to set points.
+ * @param x x point.
+ * @param y y point.
+ * @param cubic_spline
+ */
 void spline::set_points(const std::vector<double>& x,
                         const std::vector<double>& y, bool cubic_spline)
 {
@@ -297,7 +411,7 @@ void spline::set_points(const std::vector<double>& x,
     if(cubic_spline==true) { // cubic spline interpolation
         // setting up the matrix and right hand side of the equation system
         // for the parameters b[]
-        band_matrix A(n,1,1);
+        Band_matrix A(n,1,1);
         std::vector<double>  rhs(n);
         for(int i=1; i<n-1; i++) {
             A(i,i-1)=1.0/3.0*(x[i]-x[i-1]);
@@ -372,6 +486,11 @@ void spline::set_points(const std::vector<double>& x,
         m_b[n-1]=0.0;
 }
 
+/**
+ *
+ * @param x x point.
+ * @return value found by interpolation.
+ */
 double spline::operator() (double x) const
 {
     size_t n=m_x.size();
@@ -383,13 +502,13 @@ double spline::operator() (double x) const
     double h=x-m_x[idx];
     double interpol;
     if(x<m_x[0]) {
-        // extrapolation to the left
+        /// extrapolation to the left
         interpol=(m_b0*h + m_c0)*h + m_y[0];
     } else if(x>m_x[n-1]) {
-        // extrapolation to the right
+        /// extrapolation to the right
         interpol=(m_b[n-1]*h + m_c[n-1])*h + m_y[n-1];
     } else {
-        // interpolation
+        /// interpolation
         interpol=((m_a[idx]*h + m_b[idx])*h + m_c[idx])*h + m_y[idx];
     }
     return interpol;

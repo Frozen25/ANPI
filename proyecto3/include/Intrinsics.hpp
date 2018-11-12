@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (C) 2017 
  * Área Académica de Ingeniería en Computadoras, ITCR, Costa Rica
  *
@@ -13,7 +13,7 @@
 
 #include <cstdint>
 
-/*
+/**
  * Include the proper intrinsics headers for the current architecture
  */
 

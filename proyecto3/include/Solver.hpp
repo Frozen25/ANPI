@@ -14,6 +14,13 @@
 namespace anpi {
 
 	template<typename T>
+	/**
+	 * @brief used to solve a superior triangular matrix by backward substitution.
+	 * @tparam T template value.
+	 * @param A matrix that contains the superior triangular matrix.
+	 * @param x unknowns vector.
+	 * @param b result vector.
+	 */
 	void backwardSubs (anpi::Matrix<T>& A,
 	                    std::vector <T>& x,
 						std::vector <T>& b){
@@ -42,6 +49,13 @@ namespace anpi {
 
 
 
+	/**
+	 * @brief used to solve a lower triangular matrix by forward substitution.
+	 * @tparam T template value.
+	 * @param A matrix that contains the superior triangular matrix.
+	 * @param x unknowns vector.
+	 * @param b result vector.
+	 */
 	template<typename T>
 	void forwardSubs( anpi::Matrix<T>& A,
 										std::vector <T>& x,
@@ -62,7 +76,13 @@ namespace anpi {
 
 	}//forwardSubs
 
-
+	/**
+	 * @brief LU solver.
+	 * @tparam T template value.
+	 * @param A matrix that contains the superior triangular matrix.
+	 * @param x unknowns vector.
+	 * @param b result vector.
+	 */
 	template<typename T>
 	void solveLU(const anpi::Matrix<T>& A,
 				std::vector <T>& x,
@@ -94,6 +114,12 @@ namespace anpi {
 	}//solveLU
 
 
+	/**
+	 * @brief invert matrix
+	 * @tparam T template value.
+	 * @param A matrix to invert.
+	 * @param Ai inverted matrix.
+	 */
 	template<typename T>
 	void invert(const anpi::Matrix<T>& A,
               anpi::Matrix<T>& Ai) {

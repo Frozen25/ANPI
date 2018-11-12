@@ -12,6 +12,7 @@
 #ifndef ANPI_UTILITIES_HPP
 #define ANPI_UTILITIES_HPP
 
+
 namespace anpi {
 
 
@@ -19,6 +20,16 @@ namespace anpi {
 //-----------------------------------------------
 ///Matrices
 //-----------------------------------------------
+
+/**
+  * @brief Used to swap the rows of any matrix
+  *
+  * @tparam T template value
+  * @param A The matrix that we want to swap yours rows
+  * @param row1Index Index of the row 1
+  * @param row2Index Index of the row 2
+  * @param start value where we want to start.
+  */
   template<typename T>
   void swapRows(Matrix<T>& A, size_t row1Index, size_t row2Index, size_t start){
     if(row1Index != row2Index){
@@ -33,6 +44,16 @@ namespace anpi {
 
   #ifdef ANPI_ENABLE_SIMD
     #ifdef __AVX__
+
+    /**
+      * @brief Used to swap the rows of any matrix using simd instructions.
+      *
+      * @tparam T template value
+      * @tparam regType template value of the register.
+      * @param LU Matrix to we want to swap his rows.
+      * @param r1 size of row 1.
+      * @param r2 size of row 2.
+      */
     template<typename T,typename regType>
     void swapRowsSIMD(Matrix<T>& LU,size_t r1,size_t r2){
 
@@ -64,7 +85,15 @@ namespace anpi {
   #endif
 
 
-
+ /**
+  * @brief used to swap some rows to reduce numerical errors.
+  * @tparam T template value
+  * @param A matrix to we want apply pivoting process.
+  * @param columnIndex index of the column to apply the pivot.
+  * @param columnStart column where to start the pivoting process.
+  * @param rowStart row where to start the pivoting process.
+  * @param permut permutation vector.
+  */
   template<typename T>
   void pivot(Matrix<T>& A, size_t columnIndex, size_t columnStart, size_t rowStart, std::vector<size_t>& permut){
     //Finds the maximun element in the first column to do the pivot
@@ -94,7 +123,12 @@ namespace anpi {
     }
   }
 
-  //this function prints a matrix
+  /**
+   * @brief used to print the matrix
+   * @tparam T template value
+   * @param m matrix to print
+   * @param str string to print with matrix
+   */
   template<typename T>
   static void matrix_show(const Matrix<T>&  m, const std::string& str="") {
       std::cout << str << "\n";
@@ -122,6 +156,13 @@ namespace anpi {
   }
 
 
+  /**
+   * @brief generate a identity matrix.
+   * @tparam T template value.
+   * @param rows number of rows.
+   * @param cols number of columns
+   * @return A identity matrix.
+   */
   template<typename T>
   anpi::Matrix<T> identityMatrix(const size_t rows, const size_t cols) {
 
@@ -136,6 +177,11 @@ namespace anpi {
   }
 
   //function prints vector
+  /**
+   * @brief function to print a vector.
+   * @tparam T template value.
+   * @param vect vector to print.
+   */
   template<typename T>
   static void vector_show(const std::vector<T> &vect){
     size_t size = vect.size();
@@ -144,14 +190,6 @@ namespace anpi {
       }
     std::cout << "\n";
   }
-
-  
-
-
-
-
-
-
 }
 
 #endif

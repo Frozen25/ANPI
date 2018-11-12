@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (C) 2017 
  * Área Académica de Ingeniería en Computadoras, ITCR, Costa Rica
  *

@@ -1,3 +1,13 @@
+/**
+ * Copyright (C) 2018
+ * Área Académica de Ingeniería en Computadoras, TEC, Costa Rica
+ *
+ * This file is part of the CE3102 Numerical Analysis lecture at TEC
+ *
+ * @Author: Andres Ramirez
+ * @Date  : 08.11.2018
+ */
+
 namespace po = boost::program_options;
 
 int top, bottom, left, right;

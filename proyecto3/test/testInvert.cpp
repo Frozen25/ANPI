@@ -1,3 +1,13 @@
+/**
+ * Copyright (C) 2018
+ * Área Académica de Ingeniería en Computadoras, TEC, Costa Rica
+ *
+ * This file is part of the CE3102 Numerical Analysis lecture at TEC
+ *
+ * @author: Crisptofer Fernandez
+ * @date:   07.10.2018
+ */
+
 
 #include <boost/test/unit_test.hpp>
 
@@ -18,11 +28,16 @@ namespace anpi {
     namespace test {
 
 
+        /**
+         * @brief Method that check the correct function of UnpackDoolittle method.
+         * @tparam T template value.
+         * @param invert UnpackDoolittle method.
+         */
         template<typename T>
         void invertTest(const std::function<void(const Matrix<T>& A,
                                                  Matrix<T>& Ai)>& invert) {    //Test the unpack doolittle method
 
-            //factorized matrix in LU form with Doolittle
+            ///factorized matrix in LU form with Doolittle
             Matrix<T> AA;
 
             Matrix<T> AAi;
@@ -30,13 +45,13 @@ namespace anpi {
 
 
             {
-                //Test with 3x3 matrix
+                ///Test with 3x3 matrix
                 AA = { {1, 2, 3},{0,1,4},{5,6,0} };
                 invert(AA, AAi);
-                //Real Ai matrix
+                ///Real Ai matrix
                 Matrix<T> Ai_real = {{-24, 18, 5},{20, -15, -4},{-5, 4, 1}};
                 
-                //Test each element one by one
+                ///Test each element one by one
                 for (size_t i=0;i<AA.rows();++i) {
                     for (size_t j=0;j<AA.cols();++j) {
                         BOOST_CHECK(AAi(i,j)==Ai_real(i,j));

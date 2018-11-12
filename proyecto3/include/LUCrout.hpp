@@ -23,12 +23,22 @@
 namespace anpi {
 
   /**
+   *
+   */
+
+  /**
    * Auxiliary method used to debug LU decomposition.
    *
    * It separates a packed LU matrix into the lower triangular matrix
    * L and the upper triangular matrix U, such that the diagonal of U
    * is composed by 1's.
+   *
+   * @tparam T template value.
+   * @param LU LU matrix.
+   * @param L L matrix.
+   * @param U U matrix.
    */
+
   template<typename T>
   void unpackCrout(const Matrix<T>& LU,
                    Matrix<T>& L,
@@ -40,20 +50,20 @@ namespace anpi {
 
     if (LU.rows() != LU.cols()) throw anpi::Exception("Matrix is not a square!");
 
-    for (size_t i = 0; i<n ; ++i){    //iteraring rows
-      for (size_t j = 0; j<n; ++j){   //iterating cols
+    for (size_t i = 0; i<n ; ++i){    ///iteraring rows
+      for (size_t j = 0; j<n; ++j){   ///iterating cols
 
-        if (j>i){  //if element on the upper side
+        if (j>i){  ///if element on the upper side
           U[i][j] = LU[i][j];
           L[i][j] = T(0);          
         }
 
-        else if (i>j){  //if element on the lower side
+        else if (i>j){  ///if element on the lower side
           U[i][j] = T(0);
           L[i][j] = LU[i][j];            
         }
 
-        else{   //if element on the diagonal
+        else{   ///if element on the diagonal
           L[i][j] = LU[i][j];
           U[i][j] = T(1);
         }
@@ -88,23 +98,23 @@ namespace anpi {
                  std::vector<size_t>& permut) {
 
 
-        //Verifying if the matrix is a 0x0 matrix
+        ///Verifying if the matrix is a 0x0 matrix
         if (A.cols() <= size_t(0) || A.rows() <= size_t(0))
             throw anpi::Exception("0x0 matrix found");
 
-        //verifying if the matrix A is a squared matrix
+        ///verifying if the matrix A is a squared matrix
         if (A.cols() != A.rows())
             throw anpi::Exception("The input matrix isn't a square matrix.");
 
 
-        //setting the permut vector as 1,2,3,4.... n-1, with n the size of matrix nxn
+        ///setting the permut vector as 1,2,3,4.... n-1, with n the size of matrix nxn
         for (size_t x = 0; x < A.rows(); ++x)
             permut.push_back(x);
 
 
-        //Allocating the matrix LU
-        //LU.allocate(A.rows(), A.rows());
-        //Setting the initial values of LU, First row and first col
+        ///Allocating the matrix LU
+        ///LU.allocate(A.rows(), A.rows());
+        ///Setting the initial values of LU, First row and first col
         LU = A;
 
         pivot(LU,0,0,0,permut);
@@ -122,7 +132,7 @@ namespace anpi {
 
 
         for (size_t col = 1; col < A.cols(); ++col) {
-            //setting the values for L
+            ///setting the values for L
 
             for(size_t row = col; row < A.rows();++row){
                 T L = A[row][col];
@@ -133,7 +143,7 @@ namespace anpi {
             }
 
 
-            //setting the values for U
+            ///setting the values for U
             for(size_t row = col+1; row < A.rows(); ++row){
                 T U = A[col][row];
                 T Lfactor = LU[col][col];
@@ -141,7 +151,7 @@ namespace anpi {
 
 
 
-                if (Lfactor ==T(0)) // use epsilon
+                if (Lfactor ==T(0)) /// use epsilon
                     throw anpi::Exception("Cannont calculate U value");
                 for (size_t k = 0; k < col; ++k) {
 
