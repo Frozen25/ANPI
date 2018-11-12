@@ -27,9 +27,9 @@
 
 
 
-BOOST_AUTO_TEST_SUITE( ThermalScaling )
+BOOST_AUTO_TEST_SUITE( ScaleThermal )
 
-    BOOST_AUTO_TEST_CASE( scalingTest )
+    BOOST_AUTO_TEST_CASE( thermalscaling )
     {
       
         //initial matrix 
@@ -41,15 +41,17 @@ BOOST_AUTO_TEST_SUITE( ThermalScaling )
 
 
       //Test with 3x3 matrix
-      A = { { 2.0f, 3.0f ,0.0f },{-1.0f, 2.0f, 4.0f },{ 0.0f, 2.0f, -3.0f } };
+      A = { { 2.0f, 3.0f ,0.0f },{-1.0f, 2.0f, 8.0f },{ 0.0f, 2.0f, -3.0f } };
       
       thermalPlate.scale_matrix(A, B);
+
       
-      anpi::Matrix<double> B_real = {
-          { 0.00f, 3.00f, 3.00f, 3.00f},
-          {-1.00f, 1.50f, 2.75f, 4.00f},
-          {-1.00f, 1.25f, 2.50f, 4.00f},
-          {-1.00f, 2.00f, 2.00f, 4.00f}};
+      
+      anpi::Matrix<double> B_real =  {
+           { 0.00, 3.00, 3.00, 0.00},
+           {-1.00, 1.50, 3.75, 8.00},
+           {-1.00, 1.25, 3.50, 8.00},
+           { 0.00, 2.00, 2.00, 0.00}};
 
       for(size_t i = 1; i< B.rows()-1 ;++i){
         for(size_t j = 1; j< B.cols()-1; ++j){
@@ -63,12 +65,13 @@ BOOST_AUTO_TEST_SUITE( ThermalScaling )
       thermalPlate.scale_matrix(B, C);
       
       anpi::Matrix<double> C_real = {
-           { 0.0000f, 3.0000f, 3.0000f, 3.0000f, 3.0000f, 3.0000f},
-           {-1.0000f, 1.2500f, 2.1875f, 2.5000f, 3.1250f, 4.0000f},
-           {-1.0000f, 0.8125f, 1.7500f, 2.3750f, 3.0000f, 4.0000f},
-           {-1.0000f, 0.7500f, 1.6250f, 2.2500f, 2.9375f, 4.0000f},
-           {-1.0000f, 0.8750f, 1.7500f, 2.0625f, 2.7500f, 4.0000f},
-           {-1.0000f, 2.0000f, 2.0000f, 2.0000f, 2.0000f, 4.0000f}};
+           { 0.0000, 3.0000, 3.0000, 3.0000, 3.0000, 0.0000},
+           {-1.0000, 1.2500, 2.4375, 3.0000, 4.6250, 8.0000},
+           {-1.0000, 0.8125, 2.0000, 3.1250, 4.7500, 8.0000},
+           {-1.0000, 0.7500, 1.8750, 3.0000, 4.6875, 8.0000},
+           {-1.0000, 0.8750, 2.0000, 2.5625, 4.2500, 8.0000},
+           { 0.0000, 2.0000, 2.0000, 2.0000, 2.0000, 0.0000}};
+
 
       for(size_t i = 1; i< C.rows()-1 ;++i){
         for(size_t j = 1; j< C.cols()-1; ++j){
@@ -89,9 +92,9 @@ BOOST_AUTO_TEST_SUITE( ThermalScaling )
 
 BOOST_AUTO_TEST_SUITE_END()
 
-BOOST_AUTO_TEST_SUITE( SOLVEThermal )
+BOOST_AUTO_TEST_SUITE( IterateThermal )
 
-    BOOST_AUTO_TEST_CASE(solverthermal)
+    BOOST_AUTO_TEST_CASE(thermaliteration)
     {
       
         //initial matrix 
@@ -103,14 +106,14 @@ BOOST_AUTO_TEST_SUITE( SOLVEThermal )
 
 
       //Test with 3x3 matrix
-      A = { { 2.0f, 3.0f ,0.0f },{-1.0f, 2.0f, 4.0f },{ 0.0f, 2.0f, -3.0f } };
+      A = { { 2.0f, 3.0f ,0.0f },{-1.0f, 2.0f, 8.0f },{ 0.0f, 2.0f, -3.0f } };
       
-      thermalPlate.calculatePlate(A, B);
+      thermalPlate.calculatePlate(A, B, 1.001f);
       
 
 
 
-      //BOOST_CHECK_MESSAGE(true,"Successful run 6x7");   
+         
     
       //anpi::test::scalingTest<double>(anpi::ThermalPlate.scale_matrix<double>);
 

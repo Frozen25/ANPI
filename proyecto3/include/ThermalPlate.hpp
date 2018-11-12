@@ -7,6 +7,7 @@
 
 #include <cstdlib>
 #include <iostream>
+
 #include <string>
 
 #include <AnpiConfig.hpp>
@@ -31,7 +32,7 @@ namespace anpi{
     std::vector<float> c_;
 
     /// Epsilon used to calculate convergence
-    const double epsilon = 0.1f;
+    double epsilon = 1.0001f;
 
     // Convergence flag
     bool convergenceFlag = false;
@@ -110,7 +111,7 @@ namespace anpi{
     }
     
     float RightBar(float x){
-      return 4.0f;
+      return 8.0f;
     }
 
 
@@ -146,34 +147,31 @@ namespace anpi{
     template<typename T>
     void fill_borders(Matrix<T>& Mat  ){
       size_t rows = Mat.rows();
-      size_t cols = Mat.cols();
-      
+      size_t cols = Mat.cols();      
       size_t Matj = 0;
       size_t Mati = 0;
-
-      //printf("Filling TOP BAR\n"); //TODO: remove line
-      
-      for( Matj = 1; Matj<(cols); ++Matj){
+          
+      /// This fills the Top Bar
+      for( Matj = 1; Matj<(cols-1); ++Matj){
         Mat[0][Matj] = TopBar( ((float)(Matj))/((float)(cols-2)) - ((float)(cols-2))/2);
       }
 
-
-      //printf("Filling BOTTOM BAR\n"); //TODO: remove line
-      for( Matj = 1; Matj<(cols); ++Matj){
+      /// This fills the Bottom Bar
+      for( Matj = 1; Matj<(cols-1); ++Matj){
         Mat[rows-1][Matj] = BottomBar( ((float)(Matj))/((float)(cols-2)) - ((float)(cols-2))/2);
       }
 
-      //printf("Filling LEFT BAR\n"); //TODO: remove line
-      for( Mati = 1; Mati<(rows); ++Mati){
+      /// This fills the Left Bar
+      for( Mati = 1; Mati<(rows-1); ++Mati){
         Mat[Mati][0] = LeftBar( ((float)(Mati))/((float)(rows-2)) - ((float)(cols-2))/2);
       }
 
-      //printf("Filling RIGHT BAR\n"); //TODO: remove line
-      for( Mati = 1; Mati<(rows); ++Mati){
+      /// This fills the Right Bar
+      for( Mati = 1; Mati<(rows-1); ++Mati){
         Mat[Mati][cols-1] = RightBar( ((float)(Matj))/((float)(cols-2)) - ((float)(cols-2))/2);
       }
 
-      //printf("Filled all bars\n"); //TODO: remove line
+      
     
     }
 
@@ -198,19 +196,18 @@ namespace anpi{
       fill_borders(Y);
 
       
-      //size_t yi = 0;
-      //size_t yj = 0;
-      double Aij_L = 0.0;
-      double Aij_T = 0.0;
-      double Aij_R = 0.0; //TODO: check value
-      double Aij_D = 0.0; //TODO: check value
+      /// Default Initialized values
+      double Aij_L = 0.0f;
+      double Aij_T = 0.0f;
+      double Aij_R = 0.0f; 
+      double Aij_D = 0.0f; 
 
       bool convergenceFlagParallel = true;
       
       #pragma omp parallel for default(none) private(Aij_L, Aij_T, Aij_R, Aij_D) shared(A , Y, yrows, ycols, convergenceFlagParallel)
       for (size_t yi = 1; yi < yrows-1; ++yi){
         for(size_t yj = 1; yj < ycols-1; ++yj ){
-          //printf("Thread number %d\n",omp_get_thread_num() );
+          
           
           ////////////////////////////////////////////////////////////
           ///        I N T E R N A L   B L O C K
@@ -465,26 +462,35 @@ namespace anpi{
     }// scale matrix
 
 
+
+    /// Default value of max iterations is set to 15.
     template<typename T>
-    void calculatePlate(Matrix<T>&  A, Matrix<T>&  Y){
+    void calculatePlate(Matrix<T>&  A, Matrix<T>&  Y , double eps, size_t maxIterations = 10){
       
+      if (eps)
+        epsilon = eps;
+
       //anpi::Matrix<double> A;
       //anpi::Matrix<double> Y;
       A.allocate(3,3);
       fill_borders(A);
       A[1][1] = ( A[0][1] + A[1][0] + A[1][2] + A[2][1] )/4;
-
-      for (size_t k = 0; (k < 5); ++k){
-        scale_matrix(A,Y);
+      Y = A;
+      for (size_t k = 0; (k < maxIterations && (!convergenceFlag)); ++k){
         A = Y;
-        //std::cout << "Convergence: " << convergenceFlag << " - k= " << k << std::endl;
+        scale_matrix(A,Y);        
+        std::cout << "iteration: "<< k << "\tnumber of rows = "<< A.rows() << std::endl;          
       }
-      matrix_show_int(A);
 
 
+      /// changes the output of printing a boolean "1" to "true", and a "0" to "false"
+      std::cout << std::boolalpha;
+      std::cout << "convergence: " <<convergenceFlag << std::endl;
 
+      matrix_show_file(Y);
 
     }
+
 
 
 
