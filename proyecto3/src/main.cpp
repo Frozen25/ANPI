@@ -28,8 +28,8 @@
 
 namespace po = boost::program_options;
 
-void fileParser(std::string &file, std::vector<double> &top, std::vector<double> &bottom,
-                std::vector<double> &left, std::vector<double> &right) {
+void fileParser(std::string &file, std::vector<float> &top, std::vector<float> &bottom,
+                std::vector<float> &left, std::vector<float> &right) {
   std::ifstream inFile(file.c_str());
   
   if (!inFile) {
@@ -38,7 +38,7 @@ void fileParser(std::string &file, std::vector<double> &top, std::vector<double>
     std::cout << "Archivo contiene la siguiente informacion: " << std::endl;
   }
   
-  std::vector<double> *vectorToUse; // Puntero a vector en el cual escribir. Depende del lado asignado
+  std::vector<float> *vectorToUse; // Puntero a vector en el cual escribir. Depende del lado asignado
   
   std::string line;
   getline(inFile, line);
@@ -97,7 +97,7 @@ int main(int argc, const char *argv[]) {
 
 	try {
 	  // Parametros a recibir de la interfaz con la consola
-		std::vector<double> top, bottom, left, right;  //En caso que no se asignen temperaturas, se utilizará empty() para ver si es aislado
+		std::vector<float> top, bottom, left, right;  //En caso que no se asignen temperaturas, se utilizará empty() para ver si es aislado
 		std::vector<std::string> isolate;
 		std::string file;
 		int horizontal, vertical, grid;
@@ -116,10 +116,10 @@ int main(int argc, const char *argv[]) {
 		po::options_description desc("Opciones");
 		desc.add_options()
 		    ("help", "Imprime esta lista de opciones")
-		    ("top,t", po::value< std::vector<double> >(&top)->multitoken(), "Indica temperatura en borde superior")
-		    ("bottom,b", po::value< std::vector<double> >(&bottom)->multitoken(), "Indica temperatura en borde inferior")
-		    ("left,l", po::value< std::vector<double> >(&left)->multitoken(), "Indica temperatura en borde izquierdo")
-		    ("right,r", po::value< std::vector<double> >(&right)->multitoken(), "Indica temperatura en borde derecho")
+		    ("top,t", po::value< std::vector<float> >(&top)->multitoken(), "Indica temperatura en borde superior")
+		    ("bottom,b", po::value< std::vector<float> >(&bottom)->multitoken(), "Indica temperatura en borde inferior")
+		    ("left,l", po::value< std::vector<float> >(&left)->multitoken(), "Indica temperatura en borde izquierdo")
+		    ("right,r", po::value< std::vector<float> >(&right)->multitoken(), "Indica temperatura en borde derecho")
 		    ("isolate,i", po::value< std::vector<std::string> >(&isolate)->multitoken(), "Aisla los bordes indicados (t=arriba, b=abajo, l=izquierda, r=derecha)")
 		    ("profile,p", po::value< std::string >(&file), "Nombre de archivo con perfil termico")
 		    ("horizontal,h", po::value<int>(&horizontal)->default_value(100), "Numero de pixeles horizontales en la solucion")
@@ -219,6 +219,7 @@ int main(int argc, const char *argv[]) {
                                     (explicitLeft||left.empty()),(explicitRight||right.empty()),
                                     top, bottom, left, right, activateFlow, quitVisuals,
                                     grid, horizontal, vertical);
+    thermalPlate.solvePlate( 20.0f , 6, 1);
     
 	} catch (const anpi::Exception &exc) {
 		std::cerr << exc.what() << '\n';

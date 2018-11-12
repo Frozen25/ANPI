@@ -18,6 +18,7 @@
 #include "Solver.hpp"
 #include "Utilities.hpp"
 #include "omp.h"
+#include "PlotPy.hpp"
 
 namespace anpi{
 
@@ -33,7 +34,7 @@ namespace anpi{
     
 
     /// Epsilon used to calculate convergence
-    double epsilon = 1.0001f;
+    float epsilon = 1.0001f;
 
     // Convergence flag
     bool convergenceFlag = false;
@@ -45,7 +46,7 @@ namespace anpi{
          isolatedRight = false;
     
     /// Vectors with the temperatures of the sides
-    std::vector<double> top, bottom, left, right;
+    std::vector<float> top, bottom, left, right;
     
     /// Flag to show the thermal flow of the plate
     bool showThermalFlow{};
@@ -81,7 +82,7 @@ namespace anpi{
    * @param showThermalFlow flag used to visualize the thermal flow.
    */
     ThermalPlate(bool isolatedTop, bool isolatedBottom, bool isolatedLeft, bool isolatedRight,
-        std::vector<double> &top, std::vector<double> &bottom, std::vector<double> &left, std::vector<double> &right,
+        std::vector<float> &top, std::vector<float> &bottom, std::vector<float> &left, std::vector<float> &right,
         bool showThermalFlow, bool noVisuals, int grid, int horizontal, int vertical) {
       
       this->isolatedTop = isolatedTop;
@@ -101,12 +102,12 @@ namespace anpi{
       this->vertical = vertical;
     }
     
-    double cubicSpline(std::vector<double> *border, double &position){
-      std::vector<double> x; // The normalized x position of each temperature in the vector border
+    float cubicSpline(std::vector<float> *border, float &position){
+      std::vector<float> x; // The normalized x position of each temperature in the vector border
       size_t numTemperature = border->size(); // Size of the vector border
       
       for(size_t i = 0; i < numTemperature; ++i){
-        x.push_back(static_cast<double>(i)/(numTemperature-1));
+        x.push_back(static_cast<float>(i)/(numTemperature-1));
       }
   
       tk::spline s;
@@ -115,50 +116,58 @@ namespace anpi{
       return s(position);
     }
     
-    double TopBar(double x){      
+    float TopBar(float x){      
       if (top.size() > 2){
         return cubicSpline( &top, x );
       }
-      else if (top.size()>0){
+      else if (top.size()==2){
         return (top[1]-top[0])*x + top[0];
       }
-      else{
+      else if (top.size()==1){
+        return top[0];
+      }else{
         return 0.0f;
       }
     }
     
-    double BottomBar(double x){      
+    float BottomBar(float x){      
       if (bottom.size() > 2){
         return cubicSpline( &bottom, x );
       }
-      else if (bottom.size()>0){
+      else if (bottom.size()==2){
         return (bottom[1]-bottom[0])*x + bottom[0];
       }
-      else{
+      else if (bottom.size()==1){
+        return bottom[0];
+      }else{
         return 0.0f;
       }
     }
     
-    double LeftBar(double x){
+    float LeftBar(float x){
       if (left.size() > 2){
         return cubicSpline( &left, x );
       }
-      else if (left.size()>0){
+      else if (left.size()==2){
         return (left[1]-left[0])*x + left[0];
       }
-      else{
+      else if (left.size()==1){
+        return left[0];
+      }else{
         return 0.0f;
       }
     }
     
-    double RightBar(double x){
+    float RightBar(float x){
       if (right.size() > 2){
         return cubicSpline( &right, x );
       }
-      else if (right.size()>0){
+      else if (right.size()==2){
         return (right[1]-right[0])*x + right[0];
       }
-      else{
+      else if (right.size()==1){
+        return right[0];
+      }else{
         return 0.0f;
       }
     }
@@ -200,26 +209,26 @@ namespace anpi{
       size_t Matj = 0;
       size_t Mati = 0;
 
-      /// The middle point of the block being filled is normalized with: (double)(2*VALUE-1)/(2*(cols-2))
+      /// The middle point of the block being filled is normalized with: (float)(2*VALUE-1)/(2*(cols-2))
           
       /// This fills the Top Bar
       for( Matj = 1; Matj<(cols-1); ++Matj){
-        Mat[0][Matj] = TopBar( (double)(2*Matj-1)/(2*(cols-2)));
+        Mat[0][Matj] = TopBar( (float)(2*Matj-1)/(2*(cols-2)));
       }
 
       /// This fills the Bottom Bar
       for( Matj = 1; Matj<(cols-1); ++Matj){
-        Mat[rows-1][Matj] = BottomBar( (double)(2*Matj-1)/(2*(cols-2)) );
+        Mat[rows-1][Matj] = BottomBar( (float)(2*Matj-1)/(2*(cols-2)) );
       }
 
       /// This fills the Left Bar
       for( Mati = 1; Mati<(rows-1); ++Mati){
-        Mat[Mati][0] = LeftBar( (double)(2*Mati-1)/(2*(cols-2)) );
+        Mat[Mati][0] = LeftBar( (float)(2*Mati-1)/(2*(cols-2)) );
       }
 
       /// This fills the Right Bar
       for( Mati = 1; Mati<(rows-1); ++Mati){
-        Mat[Mati][cols-1] = RightBar( (double)(2*Mati-1)/(2*(cols-2)) );
+        Mat[Mati][cols-1] = RightBar( (float)(2*Mati-1)/(2*(cols-2)) );
       }
 
       
@@ -227,7 +236,7 @@ namespace anpi{
     }
 
     /**
-     * Creates a new matrix Y, which is double the size of the original inside its borders
+     * Creates a new matrix Y, which is float the size of the original inside its borders
      * and fills it with the old matrix data, for every element in A there are 4 elements in Y
      * @tparam T type of the matrix
      * @param A old matrix (small one)
@@ -238,7 +247,7 @@ namespace anpi{
       size_t rows = A.cols();
       size_t cols = A.rows();
 
-      // creates a matrix with a size equal to the double of the amount of elements outside of the border
+      // creates a matrix with a size equal to the float of the amount of elements outside of the border
       Y.allocate(((rows-2)*2+2),((cols-2)*2+2));
 
       size_t yrows = (rows-2)*2+2;
@@ -248,10 +257,10 @@ namespace anpi{
 
       
       /// Default Initialized values
-      double Aij_L = 0.0f;
-      double Aij_T = 0.0f;
-      double Aij_R = 0.0f; 
-      double Aij_D = 0.0f; 
+      float Aij_L = 0.0f;
+      float Aij_T = 0.0f;
+      float Aij_R = 0.0f; 
+      float Aij_D = 0.0f; 
 
       bool convergenceFlagParallel = true;
       
@@ -516,19 +525,21 @@ namespace anpi{
 
     /// Default value of max iterations is set to 15.
     template<typename T>
-    void calculatePlate(Matrix<T>&  A, Matrix<T>&  Y , double eps, size_t maxIterations = 14){
+    void calculatePlate(Matrix<T>&  A, Matrix<T>&  Y , float eps, size_t maxIterations = 14){
       
       if (eps)
         epsilon = eps;
 
-      //anpi::Matrix<double> A;
-      //anpi::Matrix<double> Y;
+      //anpi::Matrix<float> A;
+      //anpi::Matrix<float> Y;
       A.allocate(3,3);
       fill_borders(A);
       A[1][1] = ( A[0][1] + A[1][0] + A[1][2] + A[2][1] )/4;
       Y = A;
       for (size_t k = 0; (k < maxIterations && (!convergenceFlag)); ++k){
+        A.clear();
         A = Y;
+        Y.clear();
         scale_matrix(A,Y);        
         std::cout << "iteration: "<< k << "\tnumber of rows = "<< A.rows() << std::endl;          
       }
@@ -544,11 +555,11 @@ namespace anpi{
     }
 
     
-    void solvePlate(double eps = 2.0f , int maxIterations = 14, int save = 0){
+    void solvePlate(float eps = 20.0f , int maxIterations = 15, int save = 0){
       
 
-      anpi::Matrix<double> A;
-      anpi::Matrix<double> Y;
+      anpi::Matrix<float> A;
+      anpi::Matrix<float> Y;
       calculatePlate(A,Y,eps, maxIterations);
 
       if (save){

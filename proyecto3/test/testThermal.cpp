@@ -33,17 +33,17 @@ BOOST_AUTO_TEST_SUITE( ScaleThermal )
     {
       
         //initial matrix 
-      anpi::Matrix<double> A;
-      anpi::Matrix<double> B;
-      anpi::Matrix<double> C;
-      const double eps = std::numeric_limits<double>::epsilon();
+      anpi::Matrix<float> A;
+      anpi::Matrix<float> B;
+      anpi::Matrix<float> C;
+      const float eps = std::numeric_limits<float>::epsilon();
 
 
-      std::vector<double> top = { 3.0f};
-      std::vector<double> bottom = { 2.0f};
-      std::vector<double> left = { -1.0f};
-      std::vector<double> right = { 8.0f};
-      //const double eps = std::numeric_limits<double>::epsilon();
+      std::vector<float> top = { 3.0f};
+      std::vector<float> bottom = { 2.0f};
+      std::vector<float> left = { -1.0f};
+      std::vector<float> right = { 8.0f};
+      //const float eps = std::numeric_limits<float>::epsilon();
       anpi::ThermalPlate thermalPlate(0,0,0,0,
                                     top, bottom, left, right, 0, 0,
                                     0, 0, 0);
@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_SUITE( ScaleThermal )
 
       
       
-      anpi::Matrix<double> B_real =  {
+      anpi::Matrix<float> B_real =  {
            { 0.00, 3.00, 3.00, 0.00},
            {-1.00, 1.50, 3.75, 8.00},
            {-1.00, 1.25, 3.50, 8.00},
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_SUITE( ScaleThermal )
       //Test with 5x5 matrix
       thermalPlate.scale_matrix(B, C);
       
-      anpi::Matrix<double> C_real = {
+      anpi::Matrix<float> C_real = {
            { 0.0000, 3.0000, 3.0000, 3.0000, 3.0000, 0.0000},
            {-1.0000, 1.2500, 2.4375, 3.0000, 4.6250, 8.0000},
            {-1.0000, 0.8125, 2.0000, 3.1250, 4.7500, 8.0000},
@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_SUITE( ScaleThermal )
 
       //BOOST_CHECK_MESSAGE(true,"Successful run 6x7");   
     
-      //anpi::test::scalingTest<double>(anpi::ThermalPlate.scale_matrix<double>);
+      //anpi::test::scalingTest<float>(anpi::ThermalPlate.scale_matrix<float>);
 
     }
 
@@ -107,15 +107,15 @@ BOOST_AUTO_TEST_SUITE( IterateThermal )
     {
       
         //initial matrix 
-      anpi::Matrix<double> A;
-      anpi::Matrix<double> B;
+      anpi::Matrix<float> A;
+      anpi::Matrix<float> B;
       
-      //const double eps = std::numeric_limits<double>::epsilon();
-      std::vector<double> top = { 3.0f};
-      std::vector<double> bottom = { 2.0f};
-      std::vector<double> left = { -1.0f};
-      std::vector<double> right = { 8.0f};
-      //const double eps = std::numeric_limits<double>::epsilon();
+      //const float eps = std::numeric_limits<float>::epsilon();
+      std::vector<float> top = { 3.0f};
+      std::vector<float> bottom = { 2.0f};
+      std::vector<float> left = { -1.0f};
+      std::vector<float> right = { 8.0f};
+      //const float eps = std::numeric_limits<float>::epsilon();
       anpi::ThermalPlate thermalPlate(0,0,0,0,
                                     top, bottom, left, right, 0, 0,
                                     0, 0, 0);
@@ -133,7 +133,7 @@ BOOST_AUTO_TEST_SUITE( IterateThermal )
 
          
     
-      //anpi::test::scalingTest<double>(anpi::ThermalPlate.scale_matrix<double>);
+      //anpi::test::scalingTest<float>(anpi::ThermalPlate.scale_matrix<float>);
 
     }
 
@@ -150,23 +150,34 @@ BOOST_AUTO_TEST_SUITE( SolveThermal )
     {
       
         //initial matrix 
-      anpi::Matrix<double> A;
-      anpi::Matrix<double> B;
+      anpi::Matrix<float> A;
+      anpi::Matrix<float> B;
+
+      /*
       
-      std::vector<double> top = { 3.0f, 999.0f};
-      std::vector<double> bottom = { 2.0f, 30.0f,10.0f};
-      std::vector<double> left = { 10.0f, 30.0f, -10.0f, -100.0f , 220.0f};
-      std::vector<double> right = { 80.0f, 50.0f, 80.0f};
-      //const double eps = std::numeric_limits<double>::epsilon();
+      std::vector<float> top = { 3.0f, 999.0f};
+      std::vector<float> bottom = { 2.0f, 30.0f,10.0f};
+      std::vector<float> left = { 10.0f, 30.0f, -10.0f, -100.0f , 220.0f};
+      std::vector<float> right = { 80.0f, 50.0f, 80.0f};
+      //const float eps = std::numeric_limits<float>::epsilon();
+      
+      */
+      std::vector<float> top = { 3.0f, 220.0f};
+      std::vector<float> bottom = { 0.0f , 100.0f };
+      std::vector<float> left = { 10.0f, 30.0f, -10.0f, -100.0f , 220.0f};
+      std::vector<float> right = { 80.0f, 50.0f, 80.0f};
+      //const float eps = std::numeric_limits<float>::epsilon();
+      
+      
       anpi::ThermalPlate thermalPlate(0,0,0,0,
                                     top, bottom, left, right, 0, 0,
                                     0, 0, 0);
-
+    
 
       //Test with 3x3 matrix
       
-      
-      thermalPlate.solvePlate(2.1f, 6, 1);
+      //// parameters are: epsilon  iterations   saveFlag
+      thermalPlate.solvePlate(2.1f, 15, 1);
       
       
 
@@ -174,7 +185,7 @@ BOOST_AUTO_TEST_SUITE( SolveThermal )
 
          
     
-      //anpi::test::scalingTest<double>(anpi::ThermalPlate.scale_matrix<double>);
+      //anpi::test::scalingTest<float>(anpi::ThermalPlate.scale_matrix<float>);
 
     }
 
