@@ -214,12 +214,12 @@ namespace anpi{
 
       /// This fills the Left Bar
       for( Mati = 1; Mati<(rows-1); ++Mati){
-        Mat[Mati][0] = LeftBar( (double)(2*Matj-1)/(2*(cols-2)) );
+        Mat[Mati][0] = LeftBar( (double)(2*Mati-1)/(2*(cols-2)) );
       }
 
       /// This fills the Right Bar
       for( Mati = 1; Mati<(rows-1); ++Mati){
-        Mat[Mati][cols-1] = RightBar( (double)(2*Matj-1)/(2*(cols-2)) );
+        Mat[Mati][cols-1] = RightBar( (double)(2*Mati-1)/(2*(cols-2)) );
       }
 
       

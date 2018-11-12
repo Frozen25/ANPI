@@ -153,9 +153,9 @@ BOOST_AUTO_TEST_SUITE( SolveThermal )
       anpi::Matrix<double> A;
       anpi::Matrix<double> B;
       
-      std::vector<double> top = { 3.0f, 6.0f};
+      std::vector<double> top = { 3.0f, 999.0f};
       std::vector<double> bottom = { 2.0f, 30.0f,10.0f};
-      std::vector<double> left = { 15.0f, 20.0f, 35.0f, 50.0f, 25.0f};
+      std::vector<double> left = { 10.0f, 30.0f, -10.0f, -100.0f , 220.0f};
       std::vector<double> right = { 80.0f, 50.0f, 80.0f};
       //const double eps = std::numeric_limits<double>::epsilon();
       anpi::ThermalPlate thermalPlate(0,0,0,0,
@@ -166,7 +166,7 @@ BOOST_AUTO_TEST_SUITE( SolveThermal )
       //Test with 3x3 matrix
       
       
-      thermalPlate.solvePlate(2.1f, 1, 1);
+      thermalPlate.solvePlate(2.1f, 6, 1);
       
       
 
