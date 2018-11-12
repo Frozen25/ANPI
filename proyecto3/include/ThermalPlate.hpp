@@ -30,12 +30,7 @@ namespace anpi{
   class ThermalPlate
   {
   private:
-    /// Matrix of the current equation system
-    Matrix<float> A_;
-    /// Vector of the current equation system
-    std::vector<float> b_;
-    /// Vector of the current equation system
-    std::vector<float> c_;
+    
 
     /// Epsilon used to calculate convergence
     double epsilon = 1.0001f;
@@ -120,20 +115,52 @@ namespace anpi{
       return s(position);
     }
     
-    float TopBar(float x){      
-      return 3.0f;
+    double TopBar(double x){      
+      if (top.size() > 2){
+        return cubicSpline( &top, x );
+      }
+      else if (top.size()>0){
+        return (top[1]-top[0])*x + top[0];
+      }
+      else{
+        return 0.0f;
+      }
     }
     
-    float BottomBar(float x){      
-      return 2.0f;
+    double BottomBar(double x){      
+      if (bottom.size() > 2){
+        return cubicSpline( &bottom, x );
+      }
+      else if (bottom.size()>0){
+        return (bottom[1]-bottom[0])*x + bottom[0];
+      }
+      else{
+        return 0.0f;
+      }
     }
     
-    float LeftBar(float x){
-      return -1.0f;
+    double LeftBar(double x){
+      if (left.size() > 2){
+        return cubicSpline( &left, x );
+      }
+      else if (left.size()>0){
+        return (left[1]-left[0])*x + left[0];
+      }
+      else{
+        return 0.0f;
+      }
     }
     
-    float RightBar(float x){
-      return 8.0f;
+    double RightBar(double x){
+      if (right.size() > 2){
+        return cubicSpline( &right, x );
+      }
+      else if (right.size()>0){
+        return (right[1]-right[0])*x + right[0];
+      }
+      else{
+        return 0.0f;
+      }
     }
 
 
@@ -173,26 +200,26 @@ namespace anpi{
       size_t Matj = 0;
       size_t Mati = 0;
 
-      /// The middle point of the block being filled is normalized with: (float)(2*VALUE-1)/(2*(cols-2))
+      /// The middle point of the block being filled is normalized with: (double)(2*VALUE-1)/(2*(cols-2))
           
       /// This fills the Top Bar
       for( Matj = 1; Matj<(cols-1); ++Matj){
-        Mat[0][Matj] = TopBar( (float)(2*Matj-1)/(2*(cols-2)));
+        Mat[0][Matj] = TopBar( (double)(2*Matj-1)/(2*(cols-2)));
       }
 
       /// This fills the Bottom Bar
       for( Matj = 1; Matj<(cols-1); ++Matj){
-        Mat[rows-1][Matj] = BottomBar( (float)(2*Matj-1)/(2*(cols-2)) );
+        Mat[rows-1][Matj] = BottomBar( (double)(2*Matj-1)/(2*(cols-2)) );
       }
 
       /// This fills the Left Bar
       for( Mati = 1; Mati<(rows-1); ++Mati){
-        Mat[Mati][0] = LeftBar( (float)(2*Matj-1)/(2*(cols-2)) );
+        Mat[Mati][0] = LeftBar( (double)(2*Matj-1)/(2*(cols-2)) );
       }
 
       /// This fills the Right Bar
       for( Mati = 1; Mati<(rows-1); ++Mati){
-        Mat[Mati][cols-1] = RightBar( (float)(2*Matj-1)/(2*(cols-2)) );
+        Mat[Mati][cols-1] = RightBar( (double)(2*Matj-1)/(2*(cols-2)) );
       }
 
       
@@ -489,7 +516,7 @@ namespace anpi{
 
     /// Default value of max iterations is set to 15.
     template<typename T>
-    void calculatePlate(Matrix<T>&  A, Matrix<T>&  Y , double eps, size_t maxIterations = 10){
+    void calculatePlate(Matrix<T>&  A, Matrix<T>&  Y , double eps, size_t maxIterations = 14){
       
       if (eps)
         epsilon = eps;
@@ -515,6 +542,26 @@ namespace anpi{
       //matrix_show_file(Y);
 
     }
+
+    
+    void solvePlate(double eps = 2.0f , int maxIterations = 14, int save = 0){
+      
+
+      anpi::Matrix<double> A;
+      anpi::Matrix<double> Y;
+      calculatePlate(A,Y,eps, maxIterations);
+
+      if (save){
+        matrix_show_file(Y);
+        std::cout << "Saved matix to file: matrix.txt\n";
+      }
+      
+      
+
+
+
+
+    }    
 
 
 

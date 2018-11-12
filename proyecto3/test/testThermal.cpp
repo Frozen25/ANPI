@@ -22,7 +22,7 @@
 #include <functional>
 
 #include <cmath>
-
+#include <vector>
 
 
 
@@ -37,7 +37,16 @@ BOOST_AUTO_TEST_SUITE( ScaleThermal )
       anpi::Matrix<double> B;
       anpi::Matrix<double> C;
       const double eps = std::numeric_limits<double>::epsilon();
-      anpi::ThermalPlate thermalPlate;
+
+
+      std::vector<double> top = { 3.0f};
+      std::vector<double> bottom = { 2.0f};
+      std::vector<double> left = { -1.0f};
+      std::vector<double> right = { 8.0f};
+      //const double eps = std::numeric_limits<double>::epsilon();
+      anpi::ThermalPlate thermalPlate(0,0,0,0,
+                                    top, bottom, left, right, 0, 0,
+                                    0, 0, 0);
 
 
       //Test with 3x3 matrix
@@ -102,13 +111,63 @@ BOOST_AUTO_TEST_SUITE( IterateThermal )
       anpi::Matrix<double> B;
       
       //const double eps = std::numeric_limits<double>::epsilon();
-      anpi::ThermalPlate thermalPlate;
+      std::vector<double> top = { 3.0f};
+      std::vector<double> bottom = { 2.0f};
+      std::vector<double> left = { -1.0f};
+      std::vector<double> right = { 8.0f};
+      //const double eps = std::numeric_limits<double>::epsilon();
+      anpi::ThermalPlate thermalPlate(0,0,0,0,
+                                    top, bottom, left, right, 0, 0,
+                                    0, 0, 0);
+
 
 
       //Test with 3x3 matrix
       A = { { 2.0f, 3.0f ,0.0f },{-1.0f, 2.0f, 8.0f },{ 0.0f, 2.0f, -3.0f } };
       
+
       thermalPlate.calculatePlate(A, B, 1.001f);
+      
+
+
+
+         
+    
+      //anpi::test::scalingTest<double>(anpi::ThermalPlate.scale_matrix<double>);
+
+    }
+
+
+BOOST_AUTO_TEST_SUITE_END()
+
+
+
+
+
+BOOST_AUTO_TEST_SUITE( SolveThermal )
+
+    BOOST_AUTO_TEST_CASE(thermalsolution)
+    {
+      
+        //initial matrix 
+      anpi::Matrix<double> A;
+      anpi::Matrix<double> B;
+      
+      std::vector<double> top = { 3.0f, 6.0f};
+      std::vector<double> bottom = { 2.0f, 30.0f,10.0f};
+      std::vector<double> left = { 15.0f, 20.0f, 35.0f, 50.0f, 25.0f};
+      std::vector<double> right = { 80.0f, 50.0f, 80.0f};
+      //const double eps = std::numeric_limits<double>::epsilon();
+      anpi::ThermalPlate thermalPlate(0,0,0,0,
+                                    top, bottom, left, right, 0, 0,
+                                    0, 0, 0);
+
+
+      //Test with 3x3 matrix
+      
+      
+      thermalPlate.solvePlate(2.1f, 1, 1);
+      
       
 
 
