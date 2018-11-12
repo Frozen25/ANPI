@@ -177,7 +177,7 @@ namespace anpi{
           
       /// This fills the Top Bar
       for( Matj = 1; Matj<(cols-1); ++Matj){
-        Mat[0][Matj] = TopBar( (float)(2*Matj-1)/(2*(cols-2)), rows );
+        Mat[0][Matj] = TopBar( (float)(2*Matj-1)/(2*(cols-2)));
       }
 
       /// This fills the Bottom Bar
