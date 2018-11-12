@@ -487,7 +487,8 @@ namespace anpi{
       std::cout << std::boolalpha;
       std::cout << "convergence: " <<convergenceFlag << std::endl;
 
-      matrix_show_file(Y);
+      /// Function used to save the matrix in a file called  matrix.txt
+      //matrix_show_file(Y);
 
     }
 
