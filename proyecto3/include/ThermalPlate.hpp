@@ -7,6 +7,7 @@
 
 #include <cstdlib>
 #include <iostream>
+
 #include <string>
 
 #include <AnpiConfig.hpp>
@@ -16,7 +17,7 @@
 #include <Exception.hpp>
 #include "Solver.hpp"
 #include "Utilities.hpp"
-
+#include "omp.h"
 
 namespace anpi{
 
@@ -35,6 +36,12 @@ namespace anpi{
     std::vector<float> b_;
     /// Vector of the current equation system
     std::vector<float> c_;
+
+    /// Epsilon used to calculate convergence
+    double epsilon = 1.0001f;
+
+    // Convergence flag
+    bool convergenceFlag = false;
 
     /// Flags that indicates if a side of the plate is isolated
     bool isolatedTop = false, 
@@ -113,11 +120,11 @@ namespace anpi{
       return s(position);
     }
     
-    float TopBar(float x){
+    float TopBar(float x){      
       return 3.0f;
     }
     
-    float BottomBar(float x){
+    float BottomBar(float x){      
       return 2.0f;
     }
     
@@ -126,45 +133,70 @@ namespace anpi{
     }
     
     float RightBar(float x){
-      return 4.0f;
+      return 8.0f;
     }
 
-    size_t old_index(size_t yj){ //TODO: check method
-      return (yj-1)/2 +1;
+
+    /**
+     * @brief [calculates the corresponding matching index on the new matrix (Y)]
+     * @details [this is the mapping of the index from the small matrix to the bigger matrix]
+     * 
+     * @param yj [index in the matrix A]
+     * @return [index in the matrix Y]
+     */
+    size_t new_index(size_t Ax){ //TODO: check method
+      return (Ax-1)*2 +1;
     }
 
     /**
-     * @brief Used to fill the borders with the thermal profile that user gives.
-     * @details The method uses a matrix to fill its edges with a thermal profile,
-     * then it is used to expand this temperature to the rest of the matrix.
+     * @brief [calculates the corresponding matching index on the old matrix (A)]
+     * @details [this is the inverse of mapping the index from the big matrix to the smaller matrix]
+     * 
+     * @param yj [index in the matrix Y]
+     * @return [index in the matrix A]
+     */
+    size_t old_index(size_t Yx){ //TODO: check method
+      return (Yx-1)/2 +1;
+    }
+
+    /**
+     * @brief fills the borders of the matrix with the corresponding values
+     * @details [long description]
      * 
      * @param A A matrix that contains the thermal information.
      * @tparam T template value.
      */
     template<typename T>
-    void fill_borders(Matrix<T>& A){
-      size_t rows = A.rows();
-      size_t cols = A.cols();
+    void fill_borders(Matrix<T>& Mat  ){
+      size_t rows = Mat.rows();
+      size_t cols = Mat.cols();      
+      size_t Matj = 0;
+      size_t Mati = 0;
+
+      /// The middle point of the block being filled is normalized with: (float)(2*VALUE-1)/(2*(cols-2))
+          
+      /// This fills the Top Bar
+      for( Matj = 1; Matj<(cols-1); ++Matj){
+        Mat[0][Matj] = TopBar( (float)(2*Matj-1)/(2*(cols-2)), rows );
+      }
+
+      /// This fills the Bottom Bar
+      for( Matj = 1; Matj<(cols-1); ++Matj){
+        Mat[rows-1][Matj] = BottomBar( (float)(2*Matj-1)/(2*(cols-2)) );
+      }
+
+      /// This fills the Left Bar
+      for( Mati = 1; Mati<(rows-1); ++Mati){
+        Mat[Mati][0] = LeftBar( (float)(2*Matj-1)/(2*(cols-2)) );
+      }
+
+      /// This fills the Right Bar
+      for( Mati = 1; Mati<(rows-1); ++Mati){
+        Mat[Mati][cols-1] = RightBar( (float)(2*Matj-1)/(2*(cols-2)) );
+      }
+
       
-      size_t Aj = 0;
-      size_t Ai = 0;
-
-      for( Aj = 1; Aj<(cols); ++Aj){
-        A[0][Aj] = TopBar( ((float)(Aj))/((float)(cols-2)) - ((float)(cols-2))/2);
-      }
-
-      for( Aj = 1; Aj<(cols); ++Aj){
-        A[rows-1][Aj] = BottomBar( ((float)(Aj))/((float)(cols-2)) - ((float)(cols-2))/2);
-      }
-
-      for( Ai = 1; Ai<(rows); ++Ai){
-        A[Ai][0] = LeftBar( ((float)(Ai))/((float)(rows-2)) - ((float)(cols-2))/2);
-      }
-
-      for( Ai = 1; Ai<(rows); ++Ai){
-        A[Ai][cols-1] = RightBar( ((float)(Aj))/((float)(cols-2)) - ((float)(cols-2))/2);
-      }
-
+    
     }
 
     /**
@@ -187,17 +219,19 @@ namespace anpi{
 
       fill_borders(Y);
 
-      size_t Ai = 0;
-      size_t Aj = 0;
-      size_t yi = 0;
-      size_t yj = 0;
-      double Aij_L = 0.0;
-      double Aij_T = 0.0;
-      double Aij_R = 0.0; //TODO: check value
-      double Aij_D = 0.0; //TODO: check value
+      
+      /// Default Initialized values
+      double Aij_L = 0.0f;
+      double Aij_T = 0.0f;
+      double Aij_R = 0.0f; 
+      double Aij_D = 0.0f; 
 
-      for (yi = 1; yi < yrows-1; ++yi){
-        for( yj = 1; yj < ycols-1; ++yj ){
+      bool convergenceFlagParallel = true;
+      
+      #pragma omp parallel for default(none) private(Aij_L, Aij_T, Aij_R, Aij_D) shared(A , Y, yrows, ycols, convergenceFlagParallel)
+      for (size_t yi = 1; yi < yrows-1; ++yi){
+        for(size_t yj = 1; yj < ycols-1; ++yj ){
+          
           
           ////////////////////////////////////////////////////////////
           ///        I N T E R N A L   B L O C K
@@ -251,7 +285,7 @@ namespace anpi{
   
               Y[yi][yj] = (Aij_L + Aij_T + Aij_R + Aij_D)/4;
             }
-            printf("%f , %f, %f, %f\n",Aij_L, Aij_T, Aij_R, Aij_D );
+            
           }
   
           ///////////////////
@@ -325,7 +359,7 @@ namespace anpi{
           ///////////////////
           ///  BOTTOM RIGHT
           ///////////////////
-          else if ( (yi==(rows-2))&&(yj==(cols-2)) ){
+          else if ( (yi==(yrows-2))&&(yj==(ycols-2)) ){
             if (isolatedBottom && isolatedRight ){
               Aij_T = A[(yi-2)/2 +1][(yj-1)/2 +1];
               Aij_L = A[(yi-1)/2 +1][(yj-2)/2 +1];
@@ -423,7 +457,7 @@ namespace anpi{
           ///////////////////
           ///  RIGHT BORDER
           ///////////////////
-          else if ( yj==(cols-2) ){
+          else if ( yj==(ycols-2) ){
             if (isolatedLeft){
               Aij_T = A[(yi-2)/2 +1][(yj-1)/2 +1];
               Aij_L = A[(yi-1)/2 +1][(yj-2)/2 +1];
@@ -440,9 +474,53 @@ namespace anpi{
               Y[yi][yj] = (Aij_L + Aij_T + Aij_R + Aij_D)/4;
             }
           }
+
+          /// checks convergence, if it converges, the final result is true
+          if(std::abs ( Y[yi][yj] - A[(yi-1)/2+1][(yj-1)/2+1] ) > epsilon  ){
+            convergenceFlagParallel = false;
+          }
+
         }// for yj
       }// for yi
+      convergenceFlag = convergenceFlagParallel;
     }// scale matrix
+
+
+
+    /// Default value of max iterations is set to 15.
+    template<typename T>
+    void calculatePlate(Matrix<T>&  A, Matrix<T>&  Y , double eps, size_t maxIterations = 10){
+      
+      if (eps)
+        epsilon = eps;
+
+      //anpi::Matrix<double> A;
+      //anpi::Matrix<double> Y;
+      A.allocate(3,3);
+      fill_borders(A);
+      A[1][1] = ( A[0][1] + A[1][0] + A[1][2] + A[2][1] )/4;
+      Y = A;
+      for (size_t k = 0; (k < maxIterations && (!convergenceFlag)); ++k){
+        A = Y;
+        scale_matrix(A,Y);        
+        std::cout << "iteration: "<< k << "\tnumber of rows = "<< A.rows() << std::endl;          
+      }
+
+
+      /// changes the output of printing a boolean "1" to "true", and a "0" to "false"
+      std::cout << std::boolalpha;
+      std::cout << "convergence: " <<convergenceFlag << std::endl;
+
+      /// Function used to save the matrix in a file called  matrix.txt
+      //matrix_show_file(Y);
+
+    }
+
+
+
+
+
+
   };
 }
 
