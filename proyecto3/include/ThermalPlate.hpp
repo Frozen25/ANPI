@@ -98,11 +98,11 @@ namespace anpi{
       return s(position);
     }
     
-    float TopBar(float x){
+    float TopBar(float x){      
       return 3.0f;
     }
     
-    float BottomBar(float x){
+    float BottomBar(float x){      
       return 2.0f;
     }
     
@@ -150,25 +150,27 @@ namespace anpi{
       size_t cols = Mat.cols();      
       size_t Matj = 0;
       size_t Mati = 0;
+
+      /// The middle point of the block being filled is normalized with: (float)(2*VALUE-1)/(2*(cols-2))
           
       /// This fills the Top Bar
       for( Matj = 1; Matj<(cols-1); ++Matj){
-        Mat[0][Matj] = TopBar( ((float)(Matj))/((float)(cols-2)) - ((float)(cols-2))/2);
+        Mat[0][Matj] = TopBar( (float)(2*Matj-1)/(2*(cols-2)), rows );
       }
 
       /// This fills the Bottom Bar
       for( Matj = 1; Matj<(cols-1); ++Matj){
-        Mat[rows-1][Matj] = BottomBar( ((float)(Matj))/((float)(cols-2)) - ((float)(cols-2))/2);
+        Mat[rows-1][Matj] = BottomBar( (float)(2*Matj-1)/(2*(cols-2)) );
       }
 
       /// This fills the Left Bar
       for( Mati = 1; Mati<(rows-1); ++Mati){
-        Mat[Mati][0] = LeftBar( ((float)(Mati))/((float)(rows-2)) - ((float)(cols-2))/2);
+        Mat[Mati][0] = LeftBar( (float)(2*Matj-1)/(2*(cols-2)) );
       }
 
       /// This fills the Right Bar
       for( Mati = 1; Mati<(rows-1); ++Mati){
-        Mat[Mati][cols-1] = RightBar( ((float)(Matj))/((float)(cols-2)) - ((float)(cols-2))/2);
+        Mat[Mati][cols-1] = RightBar( (float)(2*Matj-1)/(2*(cols-2)) );
       }
 
       
