@@ -164,21 +164,26 @@ namespace anpi {
   //this function saves a matrix casting the values to integer of default size 3 (max number 999)
   // saves the matrix in a file called matrix.txt
   template<typename T>
-  static void matrix_show_file(const Matrix<T>&  m, const std::string& str="", int maxsize = 3) {
-      std::cout << str << "\n";
+  static void matrix_show_file(const Matrix<T>&  m,  bool novisuals) {
+      
       //std::stringstream ss;
 
       std::ofstream myfile;
       myfile.open ("matrix.txt");
-      for(size_t i = 0; i < m.rows(); i++) {
-          for (size_t j = 0; j < m.cols(); j++) {              
-              //ss.str("");
-              //ss << std::setw(maxsize) << std::setfill (' ') << (int)(m(i,j));
-              //myfile << ss.str() << ' ';              
-              myfile << m(i,j) << ' ';
-          }
-          myfile << "\n";
+
+      if (!novisuals){
+        for(size_t i = 0; i < m.rows(); i++) {
+            for (size_t j = 0; j < m.cols(); j++) {              
+                //ss.str("");
+                //ss << std::setw(maxsize) << std::setfill (' ') << (int)(m(i,j));
+                //myfile << ss.str() << ' ';              
+                myfile << m(i,j) << ' ';
+            }
+            myfile << "\n";
+        }
+        std::cout << "Saved matix to file: matrix.txt\n";
       }
+
       myfile << "\n";
 
       myfile.close();

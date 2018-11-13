@@ -602,17 +602,22 @@ namespace anpi{
       Umatrix.open ("Umatrix.txt");
       Vmatrix.open ("Vmatrix.txt");
 
-      float valueX  = 0.0f, valueY = 0.0f;
-      //generating U matrix (X changes)
-      for(size_t i = 1; i< rows-1 ; ++i){
-        for(size_t j = 1; j<cols-1; ++j){
-          valueX = ( Y[i][j-1] - Y[i][j+1] )/(4*max);
-          Umatrix << valueX << ' ';
-          valueY = ( Y[i+1][j] - Y[i-1][j] )/(4*max);
-          Vmatrix << valueY << ' ';
+      if (showThermalFlow){
+
+        float valueX  = 0.0f, valueY = 0.0f;
+        //generating U matrix (X changes)
+        for(size_t i = 1; i< rows-1 ; ++i){
+          for(size_t j = 1; j<cols-1; ++j){
+            valueX = ( Y[i][j-1] - Y[i][j+1] )/(4*max);
+            Umatrix << valueX << ' ';
+            valueY = ( Y[i+1][j] - Y[i-1][j] )/(4*max);
+            Vmatrix << valueY << ' ';
+          }
+          Umatrix << '\n';
+          Vmatrix << '\n';
         }
-        Umatrix << '\n';
-        Vmatrix << '\n';
+
+        std::cout << "Saved matix U and V !\n";
       }
       Umatrix << '\n';
       Vmatrix << '\n';
@@ -629,16 +634,12 @@ namespace anpi{
       anpi::Matrix<float> Y;
       calculatePlate(A,Y,eps, maxIterations);
 
-      if (!noVisuals){
-        matrix_show_file(Y);
-        std::cout << "Saved matix to file: matrix.txt\n";
-        A.clear();
-        if (showThermalFlow){
-          getUV(Y);
-          std::cout << "Saved matix U and V !\n";
-        }        
-        Y.clear();
-      }
+      
+      matrix_show_file(Y, noVisuals);      
+      A.clear();      
+      getUV(Y);        
+      Y.clear();
+    
       //plot
     }
   };
