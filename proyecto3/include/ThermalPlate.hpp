@@ -629,12 +629,14 @@ namespace anpi{
       anpi::Matrix<float> Y;
       calculatePlate(A,Y,eps, maxIterations);
 
-      if (save){
+      if (!noVisuals){
         matrix_show_file(Y);
         std::cout << "Saved matix to file: matrix.txt\n";
         A.clear();
-        getUV(Y);
-        std::cout << "Saved matix U and V !\n";
+        if (showThermalFlow){
+          getUV(Y);
+          std::cout << "Saved matix U and V !\n";
+        }        
         Y.clear();
       }
       //plot
