@@ -29,6 +29,7 @@ Para utilizar la interfaz mediante consola, se utilizan los flags asignados en l
 También, se cuentan con archivos con perfiles de temperatura predefinidos que puede ser llamados de la forma
 
 > ./proyecto3 -p ../../data/perfil.txt
+* En caso que el archivo de perfil no cargue, revise el path de este o lo puede probar manualmente
 
 Esto sirve para obtener los valores de temperatura en la placa. Para observar las gráficas de ellas, se corre únicamente el siguiente comandos puesto que las demás banderas definidas
 con anterioridad han sido guardadas para este proceso.
