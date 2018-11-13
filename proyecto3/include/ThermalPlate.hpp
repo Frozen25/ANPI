@@ -547,8 +547,8 @@ namespace anpi{
 
 
       /// changes the output of printing a boolean "1" to "true", and a "0" to "false"
-      std::cout << std::boolalpha;
-      std::cout << "convergence: " <<convergenceFlag << std::endl;
+      //std::cout << std::boolalpha;
+      //std::cout << "convergence: " <<convergenceFlag << std::endl;
 
       /// Function used to save the matrix in a file called  matrix.txt
       //matrix_show_file(Y);
