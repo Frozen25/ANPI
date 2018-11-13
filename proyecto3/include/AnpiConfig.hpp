@@ -8,5 +8,5 @@
  */
 
 #define ANPI_ENABLE_SIMD
-#define ANPI_ENABLE_OpenMP
-#define ANPI_DATA_PATH "/home/alexis/Documents/Analisis Numerico/ANPI/proyecto3/data"
+/* #undef ANPI_ENABLE_OpenMP */
+#define ANPI_DATA_PATH "/home/andres27/Documents/ANPI/proyecto3/data"
