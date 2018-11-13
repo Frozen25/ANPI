@@ -131,7 +131,11 @@ int main(int argc, const char *argv[]) {
 
 		po::variables_map vm;
 		po::store(po::parse_command_line(argc, argv, desc), vm);
-		po::notify(vm);    
+		po::notify(vm);
+    
+    
+    std::ofstream flags;
+    flags.open ("flags.txt");
 
 		if (vm.count("help")) {
 		  std::cout << desc << "\n";
@@ -214,6 +218,15 @@ int main(int argc, const char *argv[]) {
       activateFlow = true;
       std::cout << "Opcion para ver el flujo de calor: " << activateFlow << std::endl;
     }
+    
+    //Flags necesarias para la realizacion del gráfico que se guardan en un archivo aparte
+    flags << horizontal << '\n';
+    flags << vertical << '\n';
+    flags << quitVisuals << '\n';
+    flags << activateFlow << '\n';
+    flags << grid << '\n';
+    
+    flags.close();
     
     anpi::ThermalPlate thermalPlate((explicitTop||top.empty()),(explicitBottom||bottom.empty()),
                                     (explicitLeft||left.empty()),(explicitRight||right.empty()),
