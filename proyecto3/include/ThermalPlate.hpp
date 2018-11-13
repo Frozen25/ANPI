@@ -542,7 +542,7 @@ namespace anpi{
         A = Y;
         Y.clear();
         scale_matrix(A,Y);        
-        std::cout << "iteration: "<< k << "\tnumber of rows = "<< A.rows() << std::endl;          
+        std::cout << "iteration: "<< k+1 << "\tnumber of rows = "<< A.rows() << std::endl;          
       }
 
 
