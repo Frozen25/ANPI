@@ -3,7 +3,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include ${Boost_INCLUDE_DIRS})
 
 file(GLOB BM_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp *.hpp)
 
-add_executable (benchmark ${BM_SRCS})
+add_executable (benchmark ${BM_SRCS} thermalGraph.cpp)
 target_link_libraries (benchmark
                        anpi
                        python2.7

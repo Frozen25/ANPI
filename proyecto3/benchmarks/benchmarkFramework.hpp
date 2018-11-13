@@ -80,6 +80,8 @@ namespace anpi {
               const std::string& legend,
               const std::string& color = "r");
 
+    void thermal();
+
     void quiver(const anpi::Matrix<float>& datax,
               const anpi::Matrix<float>& datay,              
               const std::string& color);

@@ -103,6 +103,13 @@ namespace anpi {
     }
 
 
+    void thermal() {
+    
+      static anpi::Plot2d<float> plotter;
+      plotter.initialize(1);
+      plotter.plotThermal();
+    }
+
 
     void quiver(const anpi::Matrix<float>& datax,
               const anpi::Matrix<float>& datay,              
