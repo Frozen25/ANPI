@@ -166,16 +166,16 @@ namespace anpi {
   template<typename T>
   static void matrix_show_file(const Matrix<T>&  m, const std::string& str="", int maxsize = 3) {
       std::cout << str << "\n";
-      std::stringstream ss;
+      //std::stringstream ss;
 
       std::ofstream myfile;
       myfile.open ("matrix.txt");
       for(size_t i = 0; i < m.rows(); i++) {
           for (size_t j = 0; j < m.cols(); j++) {              
-              ss.str("");
-              ss << std::setw(maxsize) << std::setfill (' ') << (int)(m(i,j));
-              myfile << ss.str() << ' ';              
-
+              //ss.str("");
+              //ss << std::setw(maxsize) << std::setfill (' ') << (int)(m(i,j));
+              //myfile << ss.str() << ' ';              
+              myfile << m(i,j) << ' ';
           }
           myfile << "\n";
       }
