@@ -591,14 +591,10 @@ namespace anpi{
     template<typename T>
     void getUV(Matrix<T>&  Y){
       float max = getmax();
-
       
-
       size_t rows = Y.rows();
       size_t cols = Y.cols();
-
-
-
+      
       /// creates the U and V matrix
       std::ofstream Umatrix;
       std::ofstream Vmatrix;
@@ -629,7 +625,6 @@ namespace anpi{
 
     void solvePlate(float eps = 20.0f , int maxIterations = 13, int save = 1){
       
-
       anpi::Matrix<float> A;
       anpi::Matrix<float> Y;
       calculatePlate(A,Y,eps, maxIterations);
@@ -642,18 +637,8 @@ namespace anpi{
         std::cout << "Saved matix U and V !\n";
         Y.clear();
       }
-            
-      
       //plot
-
-
-    }    
-
-
-
-
-
-
+    }
   };
 }
 
