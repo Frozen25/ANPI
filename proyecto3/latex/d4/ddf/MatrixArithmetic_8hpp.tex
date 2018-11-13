@@ -1,0 +1,44 @@
+\hypertarget{MatrixArithmetic_8hpp}{}\section{Referencia del Archivo include/bits/\+Matrix\+Arithmetic.hpp}
+\label{MatrixArithmetic_8hpp}\index{include/bits/\+Matrix\+Arithmetic.\+hpp@{include/bits/\+Matrix\+Arithmetic.\+hpp}}
+{\ttfamily \#include \char`\"{}Intrinsics.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+Dependencia gráfica adjunta para Matrix\+Arithmetic.\+hpp\+:
+% FIG 0
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+% FIG 1
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceanpi}{anpi}
+\item 
+ \hyperlink{namespaceanpi_1_1fallback}{anpi\+::fallback}
+\item 
+ \hyperlink{namespaceanpi_1_1simd}{anpi\+::simd}
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\void \hyperlink{namespaceanpi_1_1fallback_a24c6fc021f114dc70158be580ee78fda}{anpi\+::fallback\+::add} (const Matrix$<$ T, Alloc $>$ \&a, const Matrix$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b}, Matrix$<$ T, Alloc $>$ \&c)
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\void \hyperlink{namespaceanpi_1_1fallback_a7618281e2e5eff8773323b9815f974ab}{anpi\+::fallback\+::add} (Matrix$<$ T, Alloc $>$ \&a, const Matrix$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\void \hyperlink{namespaceanpi_1_1fallback_a5edefd65be498d783018b1a7a8bf48b0}{anpi\+::fallback\+::subtract} (const Matrix$<$ T, Alloc $>$ \&a, const Matrix$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b}, Matrix$<$ T, Alloc $>$ \&c)
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\void \hyperlink{namespaceanpi_1_1fallback_a33e33fc558cc7712504723cd2d9ac5b9}{anpi\+::fallback\+::subtract} (Matrix$<$ T, Alloc $>$ \&a, const Matrix$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\item 
+{\footnotesize template$<$typename T , class reg\+Type $>$ }\\reg\+Type \hyperlink{namespaceanpi_1_1simd_a806b5ccd28c228e97b86cc94662c73b1}{anpi\+::simd\+::mm\+\_\+add} (reg\+Type, reg\+Type)
+\begin{DoxyCompactList}\small\item\em We wrap the intrinsics methods to be polymorphic versions. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , class Alloc , typename reg\+Type $>$ }\\void \hyperlink{namespaceanpi_1_1simd_a68e80d90707dc4526ef25ded81768ad0}{anpi\+::simd\+::add\+S\+I\+MD} (const Matrix$<$ T, Alloc $>$ \&a, const Matrix$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b}, Matrix$<$ T, Alloc $>$ \&c)
+\item 
+{\footnotesize template$<$typename T , class Alloc , typename std\+::enable\+\_\+if$<$ is\+\_\+simd\+\_\+type$<$ T $>$\+::value, int $>$\+::type  = 0$>$ }\\void \hyperlink{namespaceanpi_1_1simd_ae4ef1d42aea6476578a669fb8c7109a1}{anpi\+::simd\+::add} (const Matrix$<$ T, Alloc $>$ \&a, const Matrix$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b}, Matrix$<$ T, Alloc $>$ \&c)
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\void \hyperlink{namespaceanpi_1_1simd_a254bbb0c28defbf2348e5197607d61bc}{anpi\+::simd\+::add} (Matrix$<$ T, Alloc $>$ \&a, const Matrix$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\item 
+{\footnotesize template$<$typename T , class reg\+Type $>$ }\\reg\+Type \hyperlink{namespaceanpi_1_1simd_a666e87726d6f06b283cf78e9635e0158}{anpi\+::simd\+::mm\+\_\+sub} (reg\+Type, reg\+Type)
+\item 
+{\footnotesize template$<$typename T , class Alloc , typename reg\+Type $>$ }\\void \hyperlink{namespaceanpi_1_1simd_a6637f725450fe3bbc39506a28152264f}{anpi\+::simd\+::sub\+S\+I\+MD} (const Matrix$<$ T, Alloc $>$ \&a, const Matrix$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b}, Matrix$<$ T, Alloc $>$ \&c)
+\item 
+{\footnotesize template$<$typename T , class Alloc , typename std\+::enable\+\_\+if$<$ is\+\_\+simd\+\_\+type$<$ T $>$\+::value, int $>$\+::type  = 0$>$ }\\void \hyperlink{namespaceanpi_1_1simd_a78848ed9be16434f4e6ee7ca6f56f14d}{anpi\+::simd\+::subtract} (const Matrix$<$ T, Alloc $>$ \&a, const Matrix$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b}, Matrix$<$ T, Alloc $>$ \&c)
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\void \hyperlink{namespaceanpi_1_1simd_a623f6cf02845caed74338093e0162ef9}{anpi\+::simd\+::subtract} (Matrix$<$ T, Alloc $>$ \&a, const Matrix$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\end{DoxyCompactItemize}

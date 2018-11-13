@@ -1,0 +1,599 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Proyecto3: Referencia del Archivo test/testMatrix.cpp</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Proyecto3
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">AplicacióndelmétodoLiebmannparalasolucióndelaecuacióndiferencialparcialelíptica,enunaestructura“piramidal”.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Buscar');
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_13e138d54eb8818da29c3992edef070a.html">test</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">defines</a> &#124;
+<a href="#typedef-members">typedefs</a> &#124;
+<a href="#func-members">Funciones</a>  </div>
+  <div class="headertitle">
+<div class="title">Referencia del Archivo testMatrix.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;boost/test/unit_test.hpp&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;exception&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;complex&gt;</code><br />
+<code>#include &quot;<a class="el" href="../../d9/d1c/Matrix_8hpp_source.html">Matrix.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d8/d2d/Allocator_8hpp_source.html">Allocator.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d4/ddf/MatrixArithmetic_8hpp_source.html">bits/MatrixArithmetic.hpp</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Dependencia gráfica adjunta para testMatrix.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d3/dca/testMatrix_8cpp__incl.png" border="0" usemap="#test_2testMatrix_8cpp" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a7bbb0c13cb9ed336990eff5c7817f4c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a7bbb0c13cb9ed336990eff5c7817f4c9">dispatchTest</a>(func)</td></tr>
+<tr class="separator:a7bbb0c13cb9ed336990eff5c7817f4c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+typedefs</h2></td></tr>
+<tr class="memitem:aa7b4cfa83fe868296abd1ba4d67d9563"><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa7b4cfa83fe868296abd1ba4d67d9563">dcomplex</a></td></tr>
+<tr class="separator:aa7b4cfa83fe868296abd1ba4d67d9563"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0210a8f1576ed219abb7ce3ee9f7dbe"><td class="memItemLeft" align="right" valign="top">typedef std::allocator&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa0210a8f1576ed219abb7ce3ee9f7dbe">alloc</a></td></tr>
+<tr class="separator:aa0210a8f1576ed219abb7ce3ee9f7dbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee253d69508f432c433649e3f9f55d76"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa7b4cfa83fe868296abd1ba4d67d9563">dcomplex</a>, <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa0210a8f1576ed219abb7ce3ee9f7dbe">alloc</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aee253d69508f432c433649e3f9f55d76">cmatrix</a></td></tr>
+<tr class="separator:aee253d69508f432c433649e3f9f55d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ceeaf72bfc7a6234b3e6eb6a60d3ef3"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt; double,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa0210a8f1576ed219abb7ce3ee9f7dbe">alloc</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a1ceeaf72bfc7a6234b3e6eb6a60d3ef3">dmatrix</a></td></tr>
+<tr class="separator:a1ceeaf72bfc7a6234b3e6eb6a60d3ef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d54924d5f62099bf9eaf1a591e903ef"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt; float,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa0210a8f1576ed219abb7ce3ee9f7dbe">alloc</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a0d54924d5f62099bf9eaf1a591e903ef">fmatrix</a></td></tr>
+<tr class="separator:a0d54924d5f62099bf9eaf1a591e903ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3507523431407a8481f3ee8bf53c8e0d"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt; int,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa0210a8f1576ed219abb7ce3ee9f7dbe">alloc</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a3507523431407a8481f3ee8bf53c8e0d">imatrix</a></td></tr>
+<tr class="separator:a3507523431407a8481f3ee8bf53c8e0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a3d39824be1c62255aae96796b60648"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../d4/d2f/classanpi_1_1aligned__allocator.html">anpi::aligned_allocator</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a0a3d39824be1c62255aae96796b60648">aalloc</a></td></tr>
+<tr class="separator:a0a3d39824be1c62255aae96796b60648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f59b4db752e9524f8b4f24de977c719"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa7b4cfa83fe868296abd1ba4d67d9563">dcomplex</a>, <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a0a3d39824be1c62255aae96796b60648">aalloc</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a9f59b4db752e9524f8b4f24de977c719">acmatrix</a></td></tr>
+<tr class="separator:a9f59b4db752e9524f8b4f24de977c719"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab20e1e6c157f1067677fea56c0c7d42d"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt; double,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a0a3d39824be1c62255aae96796b60648">aalloc</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#ab20e1e6c157f1067677fea56c0c7d42d">admatrix</a></td></tr>
+<tr class="separator:ab20e1e6c157f1067677fea56c0c7d42d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27e8c67c44f6eadadc9b02d43a1875b3"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt; float,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a0a3d39824be1c62255aae96796b60648">aalloc</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a27e8c67c44f6eadadc9b02d43a1875b3">afmatrix</a></td></tr>
+<tr class="separator:a27e8c67c44f6eadadc9b02d43a1875b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeb7e5577bad2ebd6911e36c183df1d0"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt; int,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a0a3d39824be1c62255aae96796b60648">aalloc</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aeeb7e5577bad2ebd6911e36c183df1d0">aimatrix</a></td></tr>
+<tr class="separator:aeeb7e5577bad2ebd6911e36c183df1d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2917e002ee374b4d472fdbed8cbcee07"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../d4/df0/classanpi_1_1aligned__row__allocator.html">anpi::aligned_row_allocator</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a2917e002ee374b4d472fdbed8cbcee07">aralloc</a></td></tr>
+<tr class="separator:a2917e002ee374b4d472fdbed8cbcee07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa308f9881f00e6236a2d00ca11d95e87"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa7b4cfa83fe868296abd1ba4d67d9563">dcomplex</a>, <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a2917e002ee374b4d472fdbed8cbcee07">aralloc</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa308f9881f00e6236a2d00ca11d95e87">arcmatrix</a></td></tr>
+<tr class="separator:aa308f9881f00e6236a2d00ca11d95e87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78c79cdc6573ae868ccb530692b7a74d"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt; double,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a2917e002ee374b4d472fdbed8cbcee07">aralloc</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a78c79cdc6573ae868ccb530692b7a74d">ardmatrix</a></td></tr>
+<tr class="separator:a78c79cdc6573ae868ccb530692b7a74d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab69f85b8790d5aeae0c705e8d220d274"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt; float,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a2917e002ee374b4d472fdbed8cbcee07">aralloc</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#ab69f85b8790d5aeae0c705e8d220d274">arfmatrix</a></td></tr>
+<tr class="separator:ab69f85b8790d5aeae0c705e8d220d274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a665622fb2df2ce065d71200d8403cea9"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt; int,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a2917e002ee374b4d472fdbed8cbcee07">aralloc</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a665622fb2df2ce065d71200d8403cea9">arimatrix</a></td></tr>
+<tr class="separator:a665622fb2df2ce065d71200d8403cea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:abdd34c9253834ddbd54b4b5b0a070a40"><td class="memTemplParams" colspan="2">template&lt;class M &gt; </td></tr>
+<tr class="memitem:abdd34c9253834ddbd54b4b5b0a070a40"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#abdd34c9253834ddbd54b4b5b0a070a40">testConstructors</a> ()</td></tr>
+<tr class="separator:abdd34c9253834ddbd54b4b5b0a070a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a280f9277c100a10ca3f1c7a3dc1d98"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a9a280f9277c100a10ca3f1c7a3dc1d98">BOOST_AUTO_TEST_CASE</a> (Constructors)</td></tr>
+<tr class="separator:a9a280f9277c100a10ca3f1c7a3dc1d98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6908e553a5673d1e31fff72b8fdff7db"><td class="memTemplParams" colspan="2">template&lt;class M &gt; </td></tr>
+<tr class="memitem:a6908e553a5673d1e31fff72b8fdff7db"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a6908e553a5673d1e31fff72b8fdff7db">testComparison</a> ()</td></tr>
+<tr class="separator:a6908e553a5673d1e31fff72b8fdff7db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa7e1267b2095b0e559faa8b31e9e585"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aaa7e1267b2095b0e559faa8b31e9e585">BOOST_AUTO_TEST_CASE</a> (Comparison)</td></tr>
+<tr class="separator:aaa7e1267b2095b0e559faa8b31e9e585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6511448e831e8802408d21a5ccd67b82"><td class="memTemplParams" colspan="2">template&lt;class M &gt; </td></tr>
+<tr class="memitem:a6511448e831e8802408d21a5ccd67b82"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a6511448e831e8802408d21a5ccd67b82">testAssignment</a> ()</td></tr>
+<tr class="separator:a6511448e831e8802408d21a5ccd67b82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0912261ecffa87353de0856a5a7a17f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a0912261ecffa87353de0856a5a7a17f0">BOOST_AUTO_TEST_CASE</a> (Assignment)</td></tr>
+<tr class="separator:a0912261ecffa87353de0856a5a7a17f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac136fd2699d3eaae7e83bc614ab1a029"><td class="memTemplParams" colspan="2">template&lt;class M &gt; </td></tr>
+<tr class="memitem:ac136fd2699d3eaae7e83bc614ab1a029"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#ac136fd2699d3eaae7e83bc614ab1a029">testArithmetic</a> ()</td></tr>
+<tr class="separator:ac136fd2699d3eaae7e83bc614ab1a029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d6716c25b8e545b092955c141125448"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a4d6716c25b8e545b092955c141125448">BOOST_AUTO_TEST_CASE</a> (Arithmetic)</td></tr>
+<tr class="separator:a4d6716c25b8e545b092955c141125448"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac598b3b6de606c671db3acb3f86460be"><td class="memTemplParams" colspan="2">template&lt;class M &gt; </td></tr>
+<tr class="memitem:ac598b3b6de606c671db3acb3f86460be"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#ac598b3b6de606c671db3acb3f86460be">testSimd</a> ()</td></tr>
+<tr class="separator:ac598b3b6de606c671db3acb3f86460be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ddc70c1402536067b421b82923b2798"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a7ddc70c1402536067b421b82923b2798">BOOST_AUTO_TEST_CASE</a> (Simd)</td></tr>
+<tr class="separator:a7ddc70c1402536067b421b82923b2798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentación de los 'defines'</h2>
+<a id="a7bbb0c13cb9ed336990eff5c7817f4c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bbb0c13cb9ed336990eff5c7817f4c9">&#9670;&nbsp;</a></span>dispatchTest</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define dispatchTest</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">func</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">func&lt;cmatrix&gt;();          \</div><div class="line">  func&lt;dmatrix&gt;();          \</div><div class="line">  func&lt;fmatrix&gt;();          \</div><div class="line">  func&lt;imatrix&gt;();          \</div><div class="line">                            \</div><div class="line">  func&lt;acmatrix&gt;();         \</div><div class="line">  func&lt;admatrix&gt;();         \</div><div class="line">  func&lt;afmatrix&gt;();         \</div><div class="line">  func&lt;aimatrix&gt;();         \</div><div class="line">                            \</div><div class="line">  func&lt;arcmatrix&gt;();        \</div><div class="line">  func&lt;ardmatrix&gt;();        \</div><div class="line">  func&lt;arfmatrix&gt;();        \</div><div class="line">  func&lt;arimatrix&gt;();</div></div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de los 'typedefs'</h2>
+<a id="a0a3d39824be1c62255aae96796b60648"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a3d39824be1c62255aae96796b60648">&#9670;&nbsp;</a></span>aalloc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../d4/d2f/classanpi_1_1aligned__allocator.html">anpi::aligned_allocator</a>&lt;float&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a0a3d39824be1c62255aae96796b60648">aalloc</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f59b4db752e9524f8b4f24de977c719"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f59b4db752e9524f8b4f24de977c719">&#9670;&nbsp;</a></span>acmatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt;<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa7b4cfa83fe868296abd1ba4d67d9563">dcomplex</a>,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a0a3d39824be1c62255aae96796b60648">aalloc</a>&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a9f59b4db752e9524f8b4f24de977c719">acmatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab20e1e6c157f1067677fea56c0c7d42d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab20e1e6c157f1067677fea56c0c7d42d">&#9670;&nbsp;</a></span>admatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt;double ,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a0a3d39824be1c62255aae96796b60648">aalloc</a>&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#ab20e1e6c157f1067677fea56c0c7d42d">admatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a27e8c67c44f6eadadc9b02d43a1875b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27e8c67c44f6eadadc9b02d43a1875b3">&#9670;&nbsp;</a></span>afmatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt;float ,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a0a3d39824be1c62255aae96796b60648">aalloc</a>&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a27e8c67c44f6eadadc9b02d43a1875b3">afmatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeeb7e5577bad2ebd6911e36c183df1d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeb7e5577bad2ebd6911e36c183df1d0">&#9670;&nbsp;</a></span>aimatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt;int ,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a0a3d39824be1c62255aae96796b60648">aalloc</a>&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aeeb7e5577bad2ebd6911e36c183df1d0">aimatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa0210a8f1576ed219abb7ce3ee9f7dbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0210a8f1576ed219abb7ce3ee9f7dbe">&#9670;&nbsp;</a></span>alloc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::allocator&lt;float&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa0210a8f1576ed219abb7ce3ee9f7dbe">alloc</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2917e002ee374b4d472fdbed8cbcee07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2917e002ee374b4d472fdbed8cbcee07">&#9670;&nbsp;</a></span>aralloc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../d4/df0/classanpi_1_1aligned__row__allocator.html">anpi::aligned_row_allocator</a>&lt;float&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a2917e002ee374b4d472fdbed8cbcee07">aralloc</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa308f9881f00e6236a2d00ca11d95e87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa308f9881f00e6236a2d00ca11d95e87">&#9670;&nbsp;</a></span>arcmatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt;<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa7b4cfa83fe868296abd1ba4d67d9563">dcomplex</a>,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a2917e002ee374b4d472fdbed8cbcee07">aralloc</a>&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa308f9881f00e6236a2d00ca11d95e87">arcmatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78c79cdc6573ae868ccb530692b7a74d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78c79cdc6573ae868ccb530692b7a74d">&#9670;&nbsp;</a></span>ardmatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt;double ,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a2917e002ee374b4d472fdbed8cbcee07">aralloc</a>&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a78c79cdc6573ae868ccb530692b7a74d">ardmatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab69f85b8790d5aeae0c705e8d220d274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab69f85b8790d5aeae0c705e8d220d274">&#9670;&nbsp;</a></span>arfmatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt;float ,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a2917e002ee374b4d472fdbed8cbcee07">aralloc</a>&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#ab69f85b8790d5aeae0c705e8d220d274">arfmatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a665622fb2df2ce065d71200d8403cea9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a665622fb2df2ce065d71200d8403cea9">&#9670;&nbsp;</a></span>arimatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt;int ,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a2917e002ee374b4d472fdbed8cbcee07">aralloc</a>&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a665622fb2df2ce065d71200d8403cea9">arimatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aee253d69508f432c433649e3f9f55d76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee253d69508f432c433649e3f9f55d76">&#9670;&nbsp;</a></span>cmatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt;<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa7b4cfa83fe868296abd1ba4d67d9563">dcomplex</a>,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa0210a8f1576ed219abb7ce3ee9f7dbe">alloc</a>&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aee253d69508f432c433649e3f9f55d76">cmatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa7b4cfa83fe868296abd1ba4d67d9563"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7b4cfa83fe868296abd1ba4d67d9563">&#9670;&nbsp;</a></span>dcomplex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::complex&lt;double&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa7b4cfa83fe868296abd1ba4d67d9563">dcomplex</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Copyright (C) 2017 Área Académica de Ingeniería en Computadoras, TEC, Costa Rica</p>
+<p>This file is part of the CE3102 Numerical Analysis lecture at TEC Unit tests for the matrix class </p>
+
+</div>
+</div>
+<a id="a1ceeaf72bfc7a6234b3e6eb6a60d3ef3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ceeaf72bfc7a6234b3e6eb6a60d3ef3">&#9670;&nbsp;</a></span>dmatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt;double ,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa0210a8f1576ed219abb7ce3ee9f7dbe">alloc</a>&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a1ceeaf72bfc7a6234b3e6eb6a60d3ef3">dmatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0d54924d5f62099bf9eaf1a591e903ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d54924d5f62099bf9eaf1a591e903ef">&#9670;&nbsp;</a></span>fmatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt;float ,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa0210a8f1576ed219abb7ce3ee9f7dbe">alloc</a>&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a0d54924d5f62099bf9eaf1a591e903ef">fmatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3507523431407a8481f3ee8bf53c8e0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3507523431407a8481f3ee8bf53c8e0d">&#9670;&nbsp;</a></span>imatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix</a>&lt;int ,<a class="el" href="../../dc/dbd/testMatrix_8cpp.html#aa0210a8f1576ed219abb7ce3ee9f7dbe">alloc</a>&gt; <a class="el" href="../../dc/dbd/testMatrix_8cpp.html#a3507523431407a8481f3ee8bf53c8e0d">imatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de las funciones</h2>
+<a id="a9a280f9277c100a10ca3f1c7a3dc1d98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a280f9277c100a10ca3f1c7a3dc1d98">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">Constructors&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Instantiate and test the methods of the Matrix class </p>
+
+</div>
+</div>
+<a id="aaa7e1267b2095b0e559faa8b31e9e585"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa7e1267b2095b0e559faa8b31e9e585">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">Comparison&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0912261ecffa87353de0856a5a7a17f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0912261ecffa87353de0856a5a7a17f0">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">Assignment&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4d6716c25b8e545b092955c141125448"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d6716c25b8e545b092955c141125448">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">Arithmetic&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ddc70c1402536067b421b82923b2798"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ddc70c1402536067b421b82923b2798">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">Simd&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac136fd2699d3eaae7e83bc614ab1a029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac136fd2699d3eaae7e83bc614ab1a029">&#9670;&nbsp;</a></span>testArithmetic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class M &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void testArithmetic </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6511448e831e8802408d21a5ccd67b82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6511448e831e8802408d21a5ccd67b82">&#9670;&nbsp;</a></span>testAssignment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class M &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void testAssignment </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6908e553a5673d1e31fff72b8fdff7db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6908e553a5673d1e31fff72b8fdff7db">&#9670;&nbsp;</a></span>testComparison()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class M &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void testComparison </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abdd34c9253834ddbd54b4b5b0a070a40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdd34c9253834ddbd54b4b5b0a070a40">&#9670;&nbsp;</a></span>testConstructors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class M &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void testConstructors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac598b3b6de606c671db3acb3f86460be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac598b3b6de606c671db3acb3f86460be">&#9670;&nbsp;</a></span>testSimd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class M &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void testSimd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

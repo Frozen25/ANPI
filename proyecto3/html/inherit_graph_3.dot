@@ -1,0 +1,7 @@
+digraph "Representación gráfica de la clase"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="anpi::benchmark::measurement",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/d9d/structanpi_1_1benchmark_1_1measurement.html"];
+}

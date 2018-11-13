@@ -1,0 +1,683 @@
+\hypertarget{namespaceanpi}{}\section{Referencia del Namespace anpi}
+\label{namespaceanpi}\index{anpi@{anpi}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceanpi_1_1benchmark}{benchmark}
+\item 
+ \hyperlink{namespaceanpi_1_1fallback}{fallback}
+\item 
+ \hyperlink{namespaceanpi_1_1simd}{simd}
+\item 
+ \hyperlink{namespaceanpi_1_1test}{test}
+\end{DoxyCompactItemize}
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classanpi_1_1aligned__allocator}{aligned\+\_\+allocator}
+\item 
+class \hyperlink{classanpi_1_1aligned__row__allocator}{aligned\+\_\+row\+\_\+allocator}
+\item 
+class \hyperlink{classanpi_1_1Exception}{Exception}
+\item 
+struct \hyperlink{structanpi_1_1extract__alignment}{extract\+\_\+alignment}
+\item 
+struct \hyperlink{structanpi_1_1extract__alignment_3_01Alloc_3_01T_00_01Align_01_4_01_4}{extract\+\_\+alignment$<$ Alloc$<$ T, Align $>$ $>$}
+\item 
+struct \hyperlink{structanpi_1_1is__aligned__alloc}{is\+\_\+aligned\+\_\+alloc}
+\item 
+struct \hyperlink{structanpi_1_1is__aligned__alloc_3_01anpi_1_1aligned__allocator_3_01T_00_01A_01_4_01_4}{is\+\_\+aligned\+\_\+alloc$<$ anpi\+::aligned\+\_\+allocator$<$ T, A $>$ $>$}
+\item 
+struct \hyperlink{structanpi_1_1is__aligned__alloc_3_01anpi_1_1aligned__row__allocator_3_01T_00_01A_01_4_01_4}{is\+\_\+aligned\+\_\+alloc$<$ anpi\+::aligned\+\_\+row\+\_\+allocator$<$ T, A $>$ $>$}
+\item 
+class \hyperlink{classanpi_1_1Matrix}{Matrix}
+\item 
+class \hyperlink{classanpi_1_1Plot2d}{Plot2d}
+\item 
+class \hyperlink{classanpi_1_1ThermalPlate}{Thermal\+Plate}
+\begin{DoxyCompactList}\small\item\em thermal plate class \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumeraciones}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceanpi_a57664960c64a6275e3bf1c70d6fab177}{Initialization\+Type} \{ \hyperlink{namespaceanpi_a57664960c64a6275e3bf1c70d6fab177ae52a283781be1305088afb0aeb8c8d9a}{Do\+Not\+Initialize}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceanpi_aa4460e71e1b9b94142b19fb1515b5fe6}{G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+PE} (row\+\_\+aligned)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a5a07147896ea864598b821b8a57401d4}{lu} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&A, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&LU, std\+::vector$<$ size\+\_\+t $>$ \&permut)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a02b3ba58e1fd11d7b703dceae3032eb0}{unpack} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&LU, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&L, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&U)
+\begin{DoxyCompactList}\small\item\em used to decompose LU matrix in L matrix and U matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a86ce2c50ec12569f9ba21aba793d2eb7}{unpack\+Crout} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&LU, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&L, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&U)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_ac00c57424db725979943eb8807e53a6e}{lu\+Crout} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&A, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&LU, std\+::vector$<$ size\+\_\+t $>$ \&permut)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a64a55390c2c65ca78b464bc429823512}{unpack\+Doolittle} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&LU, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&L, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&U)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_abaf1f0f8854af4b136dbfade58f959e6}{lu\+Doolittle} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&A, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&LU, std\+::vector$<$ size\+\_\+t $>$ \&permut)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a51f75d22ef46354c73e5620dd720f249}{backward\+Subs} (\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&A, std\+::vector$<$ T $>$ \&x, std\+::vector$<$ T $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\begin{DoxyCompactList}\small\item\em used to solve a superior triangular matrix by backward substitution. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a3113babdff0dbc4eef36bd0b713a7f25}{forward\+Subs} (\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&A, std\+::vector$<$ T $>$ \&x, std\+::vector$<$ T $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\begin{DoxyCompactList}\small\item\em used to solve a lower triangular matrix by forward substitution. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a6764a07c6b16cedf0489a10e2650cc51}{solve\+LU} (const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&A, std\+::vector$<$ T $>$ \&x, const std\+::vector$<$ T $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\begin{DoxyCompactList}\small\item\em LU solver. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a7b13e1af574b2eb816cb8f65cc2e6c56}{invert} (const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&A, \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&Ai)
+\begin{DoxyCompactList}\small\item\em invert matrix \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a7b518e385d9e5b7eb141d31fce717247}{swap\+Rows} (\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&A, size\+\_\+t row1\+Index, size\+\_\+t row2\+Index, size\+\_\+t start)
+\begin{DoxyCompactList}\small\item\em Matrices. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a28b5b58719a454e2a5e8343a9c035d06}{pivot} (\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&A, size\+\_\+t column\+Index, size\+\_\+t column\+Start, size\+\_\+t row\+Start, std\+::vector$<$ size\+\_\+t $>$ \&permut)
+\begin{DoxyCompactList}\small\item\em used to swap some rows to reduce numerical errors. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\static void \hyperlink{namespaceanpi_afa95d4a99d0176f086ca7babb01c4e55}{matrix\+\_\+show} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&m, const std\+::string \&str=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em used to print the matrix \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\static void \hyperlink{namespaceanpi_a0864d768e170ecba07b469f4795ecf59}{matrix\+\_\+show\+\_\+int} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&m, const std\+::string \&str=\char`\"{}\char`\"{}, int maxsize=3)
+\item 
+{\footnotesize template$<$typename T $>$ }\\static void \hyperlink{namespaceanpi_a18764748dc82a28d7d9d890332fb703a}{matrix\+\_\+show\+\_\+file} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&m, bool novisuals)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \hyperlink{namespaceanpi_a924781fa0b7a5031d898921010dbd01c}{pymat\+\_\+row} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&m, size\+\_\+t i)
+\item 
+{\footnotesize template$<$typename T $>$ }\\\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \hyperlink{namespaceanpi_abbb8fed95bcd00af841bd25da38893b0}{identity\+Matrix} (const size\+\_\+t rows, const size\+\_\+t cols)
+\begin{DoxyCompactList}\small\item\em generate a identity matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\static void \hyperlink{namespaceanpi_ad64921bbe93aae4680e7283db73b136d}{vector\+\_\+show} (const std\+::vector$<$ T $>$ \&vect)
+\begin{DoxyCompactList}\small\item\em function to print a vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ External arithmetic operators for matrices}\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \hyperlink{namespaceanpi_a423316157aca85d7aefff3fcee900a5e}{operator+} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&a, const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \hyperlink{namespaceanpi_a96bd9f3072f6ea35a1d8b5a3f2ff09ae}{operator-\/} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&a, const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \hyperlink{namespaceanpi_a2b732f1fc647ede34024f3441c37ae45}{operator$\ast$} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&a, const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\std\+::vector$<$ T $>$ \hyperlink{namespaceanpi_a1f9baeaf135f590f648d63c1a019670c}{operator$\ast$} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&a, const std\+::vector$<$ T $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Descripción detallada}
+Copyright (C) 2017 Área Académica de Ingeniería en Computadoras, T\+EC, Costa Rica
+
+This file is part of the C\+E3102 Numerical Analysis lecture at T\+EC
+
+\begin{DoxyAuthor}{Autor}
+Pablo Alvarado 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+29.\+12.\+2017
+\end{DoxyDate}
+Copyright (C) 2017 Área Académica de Ingeniería en Computadoras, I\+T\+CR, Costa Rica
+
+This file is part of the numerical analysis lecture C\+E3102 at T\+EC
+
+\begin{DoxyAuthor}{Autor}
+Pablo Alvarado 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+15.\+12.\+2017
+\end{DoxyDate}
+Copyright (C) 2018 Área Académica de Ingeniería en Computadoras, I\+T\+CR, Costa Rica
+
+This file is part of the numerical analysis lecture C\+E3102 at T\+EC
+
+\+: Pablo Alvarado  \+: 10.\+02.\+2018
+
+Copyright (C) 2017 Área Académica de Ingeniería en Computadoras, I\+T\+CR, Costa Rica
+
+This file is part of the numerical analysis lecture C\+E3102 at T\+EC
+
+\+: Alexis Gavriel \+: 07.\+10.\+2018
+
+Copyright (C) 2018 Área Académica de Ingeniería en Computadoras, I\+T\+CR, Costa Rica
+
+This file is part of the numerical analysis lecture C\+E3102 at T\+EC
+
+\+:  \+: 03.\+03.\+2018
+
+Copyright (C) 2018 Área Académica de Ingeniería en Computadoras, I\+T\+CR, Costa Rica
+
+This file is part of the numerical analysis lecture C\+E3102 at T\+EC
+
+\+: Crisptofer Fernandez \+: Alexis Gavriel  \+: 07.\+10.\+2018
+
+Copyright (C) 2017 Área Académica de Ingeniería en Computadoras, I\+T\+CR, Costa Rica
+
+This file is part of the numerical analysis lecture C\+E3102 at T\+EC
+
+\+: Pablo Alvarado  \+: 28.\+12.\+2017
+
+Copyright (C) 2017 Área Académica de Ingeniería en Computadoras, T\+EC, Costa Rica
+
+This file is part of the C\+E3102 Numerical Analysis lecture at T\+EC
+
+Plotting methods, wrapping Matplotlib (Python) \begin{DoxyAuthor}{Autor}
+\+: David Badilla S. \+: \href{mailto:davbs94@gmail.com}{\tt davbs94@gmail.\+com} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+\+: 15.\+07.\+2017
+\end{DoxyDate}
+Copyright (C) 2018 Área Académica de Ingeniería en Computadoras, T\+EC, Costa Rica
+
+This file is part of the C\+E3102 Numerical Analysis lecture at T\+EC
+
+\begin{DoxyAuthor}{Autor}
+\+: Crisptofer Fernandez 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+\+: 07.\+10.\+2018
+\end{DoxyDate}
+Copyright (C) 2017 Área Académica de Ingeniería en Computadoras, T\+EC, Costa Rica
+
+This file is part of the C\+E3102 Numerical Analysis lecture at T\+EC
+
+\+: Pablo Alvarado  \+: 10.\+02.\+2018 
+
+\subsection{Documentación de las enumeraciones}
+\mbox{\Hypertarget{namespaceanpi_a57664960c64a6275e3bf1c70d6fab177}\label{namespaceanpi_a57664960c64a6275e3bf1c70d6fab177}} 
+\index{anpi@{anpi}!Initialization\+Type@{Initialization\+Type}}
+\index{Initialization\+Type@{Initialization\+Type}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{Initialization\+Type}{InitializationType}}
+{\footnotesize\ttfamily enum \hyperlink{namespaceanpi_a57664960c64a6275e3bf1c70d6fab177}{anpi\+::\+Initialization\+Type}}
+
+Type to make explicit a desired unitialized matrix \begin{DoxyEnumFields}{Valores de enumeraciones}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Do\+Not\+Initialize@{Do\+Not\+Initialize}!anpi@{anpi}}\index{anpi@{anpi}!Do\+Not\+Initialize@{Do\+Not\+Initialize}}}\mbox{\Hypertarget{namespaceanpi_a57664960c64a6275e3bf1c70d6fab177ae52a283781be1305088afb0aeb8c8d9a}\label{namespaceanpi_a57664960c64a6275e3bf1c70d6fab177ae52a283781be1305088afb0aeb8c8d9a}} 
+Do\+Not\+Initialize&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Documentación de las funciones}
+\mbox{\Hypertarget{namespaceanpi_a51f75d22ef46354c73e5620dd720f249}\label{namespaceanpi_a51f75d22ef46354c73e5620dd720f249}} 
+\index{anpi@{anpi}!backward\+Subs@{backward\+Subs}}
+\index{backward\+Subs@{backward\+Subs}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{backward\+Subs()}{backwardSubs()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::backward\+Subs (\begin{DoxyParamCaption}\item[{\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&}]{A,  }\item[{std\+::vector$<$ T $>$ \&}]{x,  }\item[{std\+::vector$<$ T $>$ \&}]{b }\end{DoxyParamCaption})}
+
+
+
+used to solve a superior triangular matrix by backward substitution. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em A} & matrix that contains the superior triangular matrix. \\
+\hline
+{\em x} & unknowns vector. \\
+\hline
+{\em b} & result vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceanpi_a3113babdff0dbc4eef36bd0b713a7f25}\label{namespaceanpi_a3113babdff0dbc4eef36bd0b713a7f25}} 
+\index{anpi@{anpi}!forward\+Subs@{forward\+Subs}}
+\index{forward\+Subs@{forward\+Subs}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{forward\+Subs()}{forwardSubs()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::forward\+Subs (\begin{DoxyParamCaption}\item[{\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&}]{A,  }\item[{std\+::vector$<$ T $>$ \&}]{x,  }\item[{std\+::vector$<$ T $>$ \&}]{b }\end{DoxyParamCaption})}
+
+
+
+used to solve a lower triangular matrix by forward substitution. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em A} & matrix that contains the superior triangular matrix. \\
+\hline
+{\em x} & unknowns vector. \\
+\hline
+{\em b} & result vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceanpi_aa4460e71e1b9b94142b19fb1515b5fe6}\label{namespaceanpi_aa4460e71e1b9b94142b19fb1515b5fe6}} 
+\index{anpi@{anpi}!G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+PE@{G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+PE}}
+\index{G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+PE@{G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+PE}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+P\+E()}{GENERATE\_HAS\_TYPE()}}
+{\footnotesize\ttfamily anpi\+::\+G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+PE (\begin{DoxyParamCaption}\item[{row\+\_\+aligned}]{ }\end{DoxyParamCaption})}
+
+Create metafunction has\+\_\+type\+\_\+row\+\_\+aligned$<$\+T$>$ \mbox{\Hypertarget{namespaceanpi_abbb8fed95bcd00af841bd25da38893b0}\label{namespaceanpi_abbb8fed95bcd00af841bd25da38893b0}} 
+\index{anpi@{anpi}!identity\+Matrix@{identity\+Matrix}}
+\index{identity\+Matrix@{identity\+Matrix}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{identity\+Matrix()}{identityMatrix()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$T$>$ anpi\+::identity\+Matrix (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{rows,  }\item[{const size\+\_\+t}]{cols }\end{DoxyParamCaption})}
+
+
+
+generate a identity matrix. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em rows} & number of rows. \\
+\hline
+{\em cols} & number of columns \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+A identity matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceanpi_a7b13e1af574b2eb816cb8f65cc2e6c56}\label{namespaceanpi_a7b13e1af574b2eb816cb8f65cc2e6c56}} 
+\index{anpi@{anpi}!invert@{invert}}
+\index{invert@{invert}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{invert()}{invert()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::invert (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&}]{A,  }\item[{\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&}]{Ai }\end{DoxyParamCaption})}
+
+
+
+invert matrix 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em A} & matrix to invert. \\
+\hline
+{\em Ai} & inverted matrix. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceanpi_a5a07147896ea864598b821b8a57401d4}\label{namespaceanpi_a5a07147896ea864598b821b8a57401d4}} 
+\index{anpi@{anpi}!lu@{lu}}
+\index{lu@{lu}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{lu()}{lu()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::lu (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{A,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{LU,  }\item[{std\+::vector$<$ size\+\_\+t $>$ \&}]{permut }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Using to choose between LU decomposition with S\+I\+MD xor LU decomposition without S\+I\+MD. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em A} & A matrix. \\
+\hline
+{\em LU} & LU matrix. \\
+\hline
+{\em permut} & permut vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceanpi_ac00c57424db725979943eb8807e53a6e}\label{namespaceanpi_ac00c57424db725979943eb8807e53a6e}} 
+\index{anpi@{anpi}!lu\+Crout@{lu\+Crout}}
+\index{lu\+Crout@{lu\+Crout}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{lu\+Crout()}{luCrout()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::lu\+Crout (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{A,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{LU,  }\item[{std\+::vector$<$ size\+\_\+t $>$ \&}]{permut }\end{DoxyParamCaption})}
+
+Decompose the matrix A into a lower triangular matrix L and an upper triangular matrix U. The matrices L and U are packed into a single matrix LU.
+
+Crout\textquotesingle{}s way of packing assumes a diagonal of 1\textquotesingle{}s in the U matrix.
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\tt in}  & {\em A} & a square matrix \\
+\hline
+\mbox{\tt out}  & {\em LU} & matrix encoding the L and U matrices \\
+\hline
+\mbox{\tt out}  & {\em permut} & permutation vector, holding the indices of the original matrix falling into the corresponding element. For example if permut\mbox{[}5\mbox{]}==3 holds, then the fifth row of the LU decomposition in fact is dealing with the third row of the original matrix.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em \hyperlink{classanpi_1_1Exception}{anpi\+::\+Exception}} & if matrix cannot be decomposed, or input matrix is not square. \\
+\hline
+\end{DoxyExceptions}
+Verifying if the matrix is a 0x0 matrix
+
+verifying if the matrix A is a squared matrix
+
+setting the permut vector as 1,2,3,4.... n-\/1, with n the size of matrix nxn
+
+Allocating the matrix LU L\+U.\+allocate(A.\+rows(), A.\+rows()); Setting the initial values of LU, First row and first col
+
+setting the values for L
+
+setting the values for U
+
+use epsilon \mbox{\Hypertarget{namespaceanpi_abaf1f0f8854af4b136dbfade58f959e6}\label{namespaceanpi_abaf1f0f8854af4b136dbfade58f959e6}} 
+\index{anpi@{anpi}!lu\+Doolittle@{lu\+Doolittle}}
+\index{lu\+Doolittle@{lu\+Doolittle}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{lu\+Doolittle()}{luDoolittle()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::lu\+Doolittle (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{A,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{LU,  }\item[{std\+::vector$<$ size\+\_\+t $>$ \&}]{permut }\end{DoxyParamCaption})}
+
+Decompose the matrix A into a lower triangular matrix L and an upper triangular matrix U. The matrices L and U are packed into a single matrix LU.
+
+The L matrix will have in the Doolittle\textquotesingle{}s LU decomposition a diagonal of 1\textquotesingle{}sc
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\tt in}  & {\em A} & a square matrix \\
+\hline
+\mbox{\tt out}  & {\em LU} & matrix encoding the L and U matrices \\
+\hline
+\mbox{\tt out}  & {\em permut} & permutation vector, holding the indices of the original matrix falling into the corresponding element. For example if permut\mbox{[}5\mbox{]}==3 holds, then the fifth row of the LU decomposition in fact is dealing with the third row of the original matrix.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em \hyperlink{classanpi_1_1Exception}{anpi\+::\+Exception}} & if matrix cannot be decomposed, or input matrix is not square. \\
+\hline
+\end{DoxyExceptions}
+Initialize the permutation vector
+
+Add elements to permutation vector
+
+Rows number and Columns number, counter
+
+f = factors for the lower triangular matrix
+
+Pivoting
+
+ax value of the current column
+
+index of the max value at current column
+
+We can swap the current row and the row which we have found the max value of the current col. Remember, the current col is also the current row.
+
+Setting LU for each row, where row $>$ col.
+
+verifing if the current element is zero.
+
+Making the factor.
+
+U part of LU matrix
+
+L part of U matrix \mbox{\Hypertarget{namespaceanpi_afa95d4a99d0176f086ca7babb01c4e55}\label{namespaceanpi_afa95d4a99d0176f086ca7babb01c4e55}} 
+\index{anpi@{anpi}!matrix\+\_\+show@{matrix\+\_\+show}}
+\index{matrix\+\_\+show@{matrix\+\_\+show}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{matrix\+\_\+show()}{matrix\_show()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static void anpi\+::matrix\+\_\+show (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{m,  }\item[{const std\+::string \&}]{str = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+used to print the matrix 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em m} & matrix to print \\
+\hline
+{\em str} & string to print with matrix \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceanpi_a18764748dc82a28d7d9d890332fb703a}\label{namespaceanpi_a18764748dc82a28d7d9d890332fb703a}} 
+\index{anpi@{anpi}!matrix\+\_\+show\+\_\+file@{matrix\+\_\+show\+\_\+file}}
+\index{matrix\+\_\+show\+\_\+file@{matrix\+\_\+show\+\_\+file}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{matrix\+\_\+show\+\_\+file()}{matrix\_show\_file()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static void anpi\+::matrix\+\_\+show\+\_\+file (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{m,  }\item[{bool}]{novisuals }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespaceanpi_a0864d768e170ecba07b469f4795ecf59}\label{namespaceanpi_a0864d768e170ecba07b469f4795ecf59}} 
+\index{anpi@{anpi}!matrix\+\_\+show\+\_\+int@{matrix\+\_\+show\+\_\+int}}
+\index{matrix\+\_\+show\+\_\+int@{matrix\+\_\+show\+\_\+int}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{matrix\+\_\+show\+\_\+int()}{matrix\_show\_int()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static void anpi\+::matrix\+\_\+show\+\_\+int (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{m,  }\item[{const std\+::string \&}]{str = {\ttfamily \char`\"{}\char`\"{}},  }\item[{int}]{maxsize = {\ttfamily 3} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespaceanpi_a2b732f1fc647ede34024f3441c37ae45}\label{namespaceanpi_a2b732f1fc647ede34024f3441c37ae45}} 
+\index{anpi@{anpi}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , class Alloc $>$ \\
+\hyperlink{classanpi_1_1Matrix}{Matrix}$<$T,Alloc$>$ anpi\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{a,  }\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceanpi_a1f9baeaf135f590f648d63c1a019670c}\label{namespaceanpi_a1f9baeaf135f590f648d63c1a019670c}} 
+\index{anpi@{anpi}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , class Alloc $>$ \\
+std\+::vector$<$T$>$ anpi\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{a,  }\item[{const std\+::vector$<$ T $>$ \&}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceanpi_a423316157aca85d7aefff3fcee900a5e}\label{namespaceanpi_a423316157aca85d7aefff3fcee900a5e}} 
+\index{anpi@{anpi}!operator+@{operator+}}
+\index{operator+@{operator+}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$typename T , class Alloc $>$ \\
+\hyperlink{classanpi_1_1Matrix}{Matrix}$<$T,Alloc$>$ anpi\+::operator+ (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{a,  }\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceanpi_a96bd9f3072f6ea35a1d8b5a3f2ff09ae}\label{namespaceanpi_a96bd9f3072f6ea35a1d8b5a3f2ff09ae}} 
+\index{anpi@{anpi}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily template$<$typename T , class Alloc $>$ \\
+\hyperlink{classanpi_1_1Matrix}{Matrix}$<$T,Alloc$>$ anpi\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{a,  }\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceanpi_a28b5b58719a454e2a5e8343a9c035d06}\label{namespaceanpi_a28b5b58719a454e2a5e8343a9c035d06}} 
+\index{anpi@{anpi}!pivot@{pivot}}
+\index{pivot@{pivot}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{pivot()}{pivot()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::pivot (\begin{DoxyParamCaption}\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{A,  }\item[{size\+\_\+t}]{column\+Index,  }\item[{size\+\_\+t}]{column\+Start,  }\item[{size\+\_\+t}]{row\+Start,  }\item[{std\+::vector$<$ size\+\_\+t $>$ \&}]{permut }\end{DoxyParamCaption})}
+
+
+
+used to swap some rows to reduce numerical errors. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em A} & matrix to we want apply pivoting process. \\
+\hline
+{\em column\+Index} & index of the column to apply the pivot. \\
+\hline
+{\em column\+Start} & column where to start the pivoting process. \\
+\hline
+{\em row\+Start} & row where to start the pivoting process. \\
+\hline
+{\em permut} & permutation vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceanpi_a924781fa0b7a5031d898921010dbd01c}\label{namespaceanpi_a924781fa0b7a5031d898921010dbd01c}} 
+\index{anpi@{anpi}!pymat\+\_\+row@{pymat\+\_\+row}}
+\index{pymat\+\_\+row@{pymat\+\_\+row}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{pymat\+\_\+row()}{pymat\_row()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string anpi\+::pymat\+\_\+row (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{m,  }\item[{size\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceanpi_a6764a07c6b16cedf0489a10e2650cc51}\label{namespaceanpi_a6764a07c6b16cedf0489a10e2650cc51}} 
+\index{anpi@{anpi}!solve\+LU@{solve\+LU}}
+\index{solve\+LU@{solve\+LU}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{solve\+L\+U()}{solveLU()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::solve\+LU (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&}]{A,  }\item[{std\+::vector$<$ T $>$ \&}]{x,  }\item[{const std\+::vector$<$ T $>$ \&}]{b }\end{DoxyParamCaption})}
+
+
+
+LU solver. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em A} & matrix that contains the superior triangular matrix. \\
+\hline
+{\em x} & unknowns vector. \\
+\hline
+{\em b} & result vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceanpi_a7b518e385d9e5b7eb141d31fce717247}\label{namespaceanpi_a7b518e385d9e5b7eb141d31fce717247}} 
+\index{anpi@{anpi}!swap\+Rows@{swap\+Rows}}
+\index{swap\+Rows@{swap\+Rows}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{swap\+Rows()}{swapRows()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::swap\+Rows (\begin{DoxyParamCaption}\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{A,  }\item[{size\+\_\+t}]{row1\+Index,  }\item[{size\+\_\+t}]{row2\+Index,  }\item[{size\+\_\+t}]{start }\end{DoxyParamCaption})}
+
+
+
+Matrices. 
+
+Used to swap the rows of any matrix
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em A} & The matrix that we want to swap yours rows \\
+\hline
+{\em row1\+Index} & Index of the row 1 \\
+\hline
+{\em row2\+Index} & Index of the row 2 \\
+\hline
+{\em start} & value where we want to start. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceanpi_a02b3ba58e1fd11d7b703dceae3032eb0}\label{namespaceanpi_a02b3ba58e1fd11d7b703dceae3032eb0}} 
+\index{anpi@{anpi}!unpack@{unpack}}
+\index{unpack@{unpack}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{unpack()}{unpack()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::unpack (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{LU,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{L,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{U }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+used to decompose LU matrix in L matrix and U matrix. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em LU} & LU matrix. \\
+\hline
+{\em L} & L matrix. \\
+\hline
+{\em U} & U matrix. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceanpi_a86ce2c50ec12569f9ba21aba793d2eb7}\label{namespaceanpi_a86ce2c50ec12569f9ba21aba793d2eb7}} 
+\index{anpi@{anpi}!unpack\+Crout@{unpack\+Crout}}
+\index{unpack\+Crout@{unpack\+Crout}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{unpack\+Crout()}{unpackCrout()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::unpack\+Crout (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{LU,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{L,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{U }\end{DoxyParamCaption})}
+
+Auxiliary method used to debug LU decomposition.
+
+It separates a packed LU matrix into the lower triangular matrix L and the upper triangular matrix U, such that the diagonal of U is composed by 1\textquotesingle{}s.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em LU} & LU matrix. \\
+\hline
+{\em L} & L matrix. \\
+\hline
+{\em U} & U matrix. \\
+\hline
+\end{DoxyParams}
+iteraring rows
+
+iterating cols
+
+if element on the upper side
+
+if element on the lower side
+
+if element on the diagonal \mbox{\Hypertarget{namespaceanpi_a64a55390c2c65ca78b464bc429823512}\label{namespaceanpi_a64a55390c2c65ca78b464bc429823512}} 
+\index{anpi@{anpi}!unpack\+Doolittle@{unpack\+Doolittle}}
+\index{unpack\+Doolittle@{unpack\+Doolittle}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{unpack\+Doolittle()}{unpackDoolittle()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::unpack\+Doolittle (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{LU,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{L,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{U }\end{DoxyParamCaption})}
+
+Auxiliary method used to debug LU decomposition.
+
+It separates a packed LU matrix into the lower triangular matrix L and the upper triangular matrix U, such that the diagonal of L is composed by 1\textquotesingle{}s. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em LU} & LU matrix. \\
+\hline
+{\em L} & L matrix. \\
+\hline
+{\em U} & U matrix. \\
+\hline
+\end{DoxyParams}
+Columns number;
+
+Rows Iterator;
+
+Columns Iterator;
+
+If current position is above the diagonal;
+
+Add number from LU to U in the correspond space;
+
+Setting zero the space in the L matrix;
+
+If current position is in the diagonal;
+
+Setting U\textquotesingle{}s diagonal with LU\textquotesingle{}s number;
+
+Setting in one the L\textquotesingle{}s diagonal;
+
+If current position is under the diagonal;
+
+Setting zero the space in the U matrix;
+
+dd number from LU to U in the correspond space; \mbox{\Hypertarget{namespaceanpi_ad64921bbe93aae4680e7283db73b136d}\label{namespaceanpi_ad64921bbe93aae4680e7283db73b136d}} 
+\index{anpi@{anpi}!vector\+\_\+show@{vector\+\_\+show}}
+\index{vector\+\_\+show@{vector\+\_\+show}!anpi@{anpi}}
+\subsubsection{\texorpdfstring{vector\+\_\+show()}{vector\_show()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static void anpi\+::vector\+\_\+show (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{vect }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+function to print a vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em vect} & vector to print. \\
+\hline
+\end{DoxyParams}

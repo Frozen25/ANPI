@@ -1,0 +1,41 @@
+\hypertarget{Utilities_8hpp}{}\section{Referencia del Archivo include/\+Utilities.hpp}
+\label{Utilities_8hpp}\index{include/\+Utilities.\+hpp@{include/\+Utilities.\+hpp}}
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include \char`\"{}Exception.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Matrix.\+hpp\char`\"{}}\newline
+Dependencia gráfica adjunta para Utilities.\+hpp\+:
+% FIG 0
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+% FIG 1
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceanpi}{anpi}
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a7b518e385d9e5b7eb141d31fce717247}{anpi\+::swap\+Rows} (Matrix$<$ T $>$ \&A, size\+\_\+t row1\+Index, size\+\_\+t row2\+Index, size\+\_\+t start)
+\begin{DoxyCompactList}\small\item\em Matrices. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a28b5b58719a454e2a5e8343a9c035d06}{anpi\+::pivot} (Matrix$<$ T $>$ \&A, size\+\_\+t column\+Index, size\+\_\+t column\+Start, size\+\_\+t row\+Start, std\+::vector$<$ size\+\_\+t $>$ \&permut)
+\begin{DoxyCompactList}\small\item\em used to swap some rows to reduce numerical errors. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\static void \hyperlink{namespaceanpi_afa95d4a99d0176f086ca7babb01c4e55}{anpi\+::matrix\+\_\+show} (const Matrix$<$ T $>$ \&m, const std\+::string \&str=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em used to print the matrix \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\static void \hyperlink{namespaceanpi_a0864d768e170ecba07b469f4795ecf59}{anpi\+::matrix\+\_\+show\+\_\+int} (const Matrix$<$ T $>$ \&m, const std\+::string \&str=\char`\"{}\char`\"{}, int maxsize=3)
+\item 
+{\footnotesize template$<$typename T $>$ }\\static void \hyperlink{namespaceanpi_a18764748dc82a28d7d9d890332fb703a}{anpi\+::matrix\+\_\+show\+\_\+file} (const Matrix$<$ T $>$ \&m, bool novisuals)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \hyperlink{namespaceanpi_a924781fa0b7a5031d898921010dbd01c}{anpi\+::pymat\+\_\+row} (const Matrix$<$ T $>$ \&m, size\+\_\+t i)
+\item 
+{\footnotesize template$<$typename T $>$ }\\\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \hyperlink{namespaceanpi_abbb8fed95bcd00af841bd25da38893b0}{anpi\+::identity\+Matrix} (const size\+\_\+t rows, const size\+\_\+t cols)
+\begin{DoxyCompactList}\small\item\em generate a identity matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\static void \hyperlink{namespaceanpi_ad64921bbe93aae4680e7283db73b136d}{anpi\+::vector\+\_\+show} (const std\+::vector$<$ T $>$ \&vect)
+\begin{DoxyCompactList}\small\item\em function to print a vector. \end{DoxyCompactList}\end{DoxyCompactItemize}

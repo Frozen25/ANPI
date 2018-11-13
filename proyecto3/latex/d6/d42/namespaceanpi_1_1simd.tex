@@ -1,0 +1,93 @@
+\hypertarget{namespaceanpi_1_1simd}{}\section{Referencia del Namespace anpi\+:\+:simd}
+\label{namespaceanpi_1_1simd}\index{anpi\+::simd@{anpi\+::simd}}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , class reg\+Type $>$ }\\reg\+Type \hyperlink{namespaceanpi_1_1simd_a806b5ccd28c228e97b86cc94662c73b1}{mm\+\_\+add} (reg\+Type, reg\+Type)
+\begin{DoxyCompactList}\small\item\em We wrap the intrinsics methods to be polymorphic versions. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , class Alloc , typename reg\+Type $>$ }\\void \hyperlink{namespaceanpi_1_1simd_a68e80d90707dc4526ef25ded81768ad0}{add\+S\+I\+MD} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&a, const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b}, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&c)
+\item 
+{\footnotesize template$<$typename T , class Alloc , typename std\+::enable\+\_\+if$<$ is\+\_\+simd\+\_\+type$<$ T $>$\+::value, int $>$\+::type  = 0$>$ }\\void \hyperlink{namespaceanpi_1_1simd_ae4ef1d42aea6476578a669fb8c7109a1}{add} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&a, const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b}, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&c)
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\void \hyperlink{namespaceanpi_1_1simd_a254bbb0c28defbf2348e5197607d61bc}{add} (\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&a, const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\item 
+{\footnotesize template$<$typename T , class reg\+Type $>$ }\\reg\+Type \hyperlink{namespaceanpi_1_1simd_a666e87726d6f06b283cf78e9635e0158}{mm\+\_\+sub} (reg\+Type, reg\+Type)
+\item 
+{\footnotesize template$<$typename T , class Alloc , typename reg\+Type $>$ }\\void \hyperlink{namespaceanpi_1_1simd_a6637f725450fe3bbc39506a28152264f}{sub\+S\+I\+MD} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&a, const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b}, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&c)
+\item 
+{\footnotesize template$<$typename T , class Alloc , typename std\+::enable\+\_\+if$<$ is\+\_\+simd\+\_\+type$<$ T $>$\+::value, int $>$\+::type  = 0$>$ }\\void \hyperlink{namespaceanpi_1_1simd_a78848ed9be16434f4e6ee7ca6f56f14d}{subtract} (const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&a, const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b}, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&c)
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\void \hyperlink{namespaceanpi_1_1simd_a623f6cf02845caed74338093e0162ef9}{subtract} (\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&a, const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\item 
+{\footnotesize template$<$typename T , class reg\+Type $>$ }\\reg\+Type \hyperlink{namespaceanpi_1_1simd_aa7ebdb38c8e4fc5fa991bba556974de5}{mm\+\_\+mul} (reg\+Type, reg\+Type)
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de las funciones}
+\mbox{\Hypertarget{namespaceanpi_1_1simd_ae4ef1d42aea6476578a669fb8c7109a1}\label{namespaceanpi_1_1simd_ae4ef1d42aea6476578a669fb8c7109a1}} 
+\index{anpi\+::simd@{anpi\+::simd}!add@{add}}
+\index{add@{add}!anpi\+::simd@{anpi\+::simd}}
+\subsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , class Alloc , typename std\+::enable\+\_\+if$<$ is\+\_\+simd\+\_\+type$<$ T $>$\+::value, int $>$\+::type  = 0$>$ \\
+void anpi\+::simd\+::add (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{a,  }\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{b,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespaceanpi_1_1simd_a254bbb0c28defbf2348e5197607d61bc}\label{namespaceanpi_1_1simd_a254bbb0c28defbf2348e5197607d61bc}} 
+\index{anpi\+::simd@{anpi\+::simd}!add@{add}}
+\index{add@{add}!anpi\+::simd@{anpi\+::simd}}
+\subsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , class Alloc $>$ \\
+void anpi\+::simd\+::add (\begin{DoxyParamCaption}\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{a,  }\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespaceanpi_1_1simd_a68e80d90707dc4526ef25ded81768ad0}\label{namespaceanpi_1_1simd_a68e80d90707dc4526ef25ded81768ad0}} 
+\index{anpi\+::simd@{anpi\+::simd}!add\+S\+I\+MD@{add\+S\+I\+MD}}
+\index{add\+S\+I\+MD@{add\+S\+I\+MD}!anpi\+::simd@{anpi\+::simd}}
+\subsubsection{\texorpdfstring{add\+S\+I\+M\+D()}{addSIMD()}}
+{\footnotesize\ttfamily template$<$typename T , class Alloc , typename reg\+Type $>$ \\
+void anpi\+::simd\+::add\+S\+I\+MD (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{a,  }\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{b,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespaceanpi_1_1simd_a806b5ccd28c228e97b86cc94662c73b1}\label{namespaceanpi_1_1simd_a806b5ccd28c228e97b86cc94662c73b1}} 
+\index{anpi\+::simd@{anpi\+::simd}!mm\+\_\+add@{mm\+\_\+add}}
+\index{mm\+\_\+add@{mm\+\_\+add}!anpi\+::simd@{anpi\+::simd}}
+\subsubsection{\texorpdfstring{mm\+\_\+add()}{mm\_add()}}
+{\footnotesize\ttfamily template$<$typename T , class reg\+Type $>$ \\
+reg\+Type anpi\+::simd\+::mm\+\_\+add (\begin{DoxyParamCaption}\item[{reg\+Type}]{,  }\item[{reg\+Type}]{ }\end{DoxyParamCaption})}
+
+
+
+We wrap the intrinsics methods to be polymorphic versions. 
+
+\mbox{\Hypertarget{namespaceanpi_1_1simd_aa7ebdb38c8e4fc5fa991bba556974de5}\label{namespaceanpi_1_1simd_aa7ebdb38c8e4fc5fa991bba556974de5}} 
+\index{anpi\+::simd@{anpi\+::simd}!mm\+\_\+mul@{mm\+\_\+mul}}
+\index{mm\+\_\+mul@{mm\+\_\+mul}!anpi\+::simd@{anpi\+::simd}}
+\subsubsection{\texorpdfstring{mm\+\_\+mul()}{mm\_mul()}}
+{\footnotesize\ttfamily template$<$typename T , class reg\+Type $>$ \\
+reg\+Type anpi\+::simd\+::mm\+\_\+mul (\begin{DoxyParamCaption}\item[{reg\+Type}]{,  }\item[{reg\+Type}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceanpi_1_1simd_a666e87726d6f06b283cf78e9635e0158}\label{namespaceanpi_1_1simd_a666e87726d6f06b283cf78e9635e0158}} 
+\index{anpi\+::simd@{anpi\+::simd}!mm\+\_\+sub@{mm\+\_\+sub}}
+\index{mm\+\_\+sub@{mm\+\_\+sub}!anpi\+::simd@{anpi\+::simd}}
+\subsubsection{\texorpdfstring{mm\+\_\+sub()}{mm\_sub()}}
+{\footnotesize\ttfamily template$<$typename T , class reg\+Type $>$ \\
+reg\+Type anpi\+::simd\+::mm\+\_\+sub (\begin{DoxyParamCaption}\item[{reg\+Type}]{,  }\item[{reg\+Type}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceanpi_1_1simd_a6637f725450fe3bbc39506a28152264f}\label{namespaceanpi_1_1simd_a6637f725450fe3bbc39506a28152264f}} 
+\index{anpi\+::simd@{anpi\+::simd}!sub\+S\+I\+MD@{sub\+S\+I\+MD}}
+\index{sub\+S\+I\+MD@{sub\+S\+I\+MD}!anpi\+::simd@{anpi\+::simd}}
+\subsubsection{\texorpdfstring{sub\+S\+I\+M\+D()}{subSIMD()}}
+{\footnotesize\ttfamily template$<$typename T , class Alloc , typename reg\+Type $>$ \\
+void anpi\+::simd\+::sub\+S\+I\+MD (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{a,  }\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{b,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespaceanpi_1_1simd_a78848ed9be16434f4e6ee7ca6f56f14d}\label{namespaceanpi_1_1simd_a78848ed9be16434f4e6ee7ca6f56f14d}} 
+\index{anpi\+::simd@{anpi\+::simd}!subtract@{subtract}}
+\index{subtract@{subtract}!anpi\+::simd@{anpi\+::simd}}
+\subsubsection{\texorpdfstring{subtract()}{subtract()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , class Alloc , typename std\+::enable\+\_\+if$<$ is\+\_\+simd\+\_\+type$<$ T $>$\+::value, int $>$\+::type  = 0$>$ \\
+void anpi\+::simd\+::subtract (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{a,  }\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{b,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespaceanpi_1_1simd_a623f6cf02845caed74338093e0162ef9}\label{namespaceanpi_1_1simd_a623f6cf02845caed74338093e0162ef9}} 
+\index{anpi\+::simd@{anpi\+::simd}!subtract@{subtract}}
+\index{subtract@{subtract}!anpi\+::simd@{anpi\+::simd}}
+\subsubsection{\texorpdfstring{subtract()}{subtract()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , class Alloc $>$ \\
+void anpi\+::simd\+::subtract (\begin{DoxyParamCaption}\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{a,  }\item[{const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T, Alloc $>$ \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+

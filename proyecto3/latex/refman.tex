@@ -1,0 +1,232 @@
+\documentclass[twoside]{book}
+
+% Packages required by doxygen
+\usepackage{fixltx2e}
+\usepackage{calc}
+\usepackage{doxygen}
+\usepackage[export]{adjustbox} % also loads graphicx
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{multirow}
+\PassOptionsToPackage{warn}{textcomp}
+\usepackage{textcomp}
+\usepackage[nointegrals]{wasysym}
+\usepackage[table]{xcolor}
+
+% NLS support packages
+\usepackage[spanish]{babel}
+% Font selection
+\usepackage[T1]{fontenc}
+\usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+\usepackage{amssymb}
+\usepackage{sectsty}
+\renewcommand{\familydefault}{\sfdefault}
+\allsectionsfont{%
+  \fontseries{bc}\selectfont%
+  \color{darkgray}%
+}
+\renewcommand{\DoxyLabelFont}{%
+  \fontseries{bc}\selectfont%
+  \color{darkgray}%
+}
+\newcommand{\+}{\discretionary{\mbox{\scriptsize$\hookleftarrow$}}{}{}}
+
+% Page & text layout
+\usepackage{geometry}
+\geometry{%
+  a4paper,%
+  top=2.5cm,%
+  bottom=2.5cm,%
+  left=2.5cm,%
+  right=2.5cm%
+}
+\tolerance=750
+\hfuzz=15pt
+\hbadness=750
+\setlength{\emergencystretch}{15pt}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{3ex plus 2ex minus 2ex}
+\makeatletter
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}{0ex}{-1.0ex}{1.0ex}{%
+    \normalfont\normalsize\bfseries\SS@parafont%
+  }%
+}
+\renewcommand{\subparagraph}{%
+  \@startsection{subparagraph}{5}{0ex}{-1.0ex}{1.0ex}{%
+    \normalfont\normalsize\bfseries\SS@subparafont%
+  }%
+}
+\makeatother
+
+% Headers & footers
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhead[LE]{\fancyplain{}{\bfseries\thepage}}
+\fancyhead[CE]{\fancyplain{}{}}
+\fancyhead[RE]{\fancyplain{}{\bfseries\leftmark}}
+\fancyhead[LO]{\fancyplain{}{\bfseries\rightmark}}
+\fancyhead[CO]{\fancyplain{}{}}
+\fancyhead[RO]{\fancyplain{}{\bfseries\thepage}}
+\fancyfoot[LE]{\fancyplain{}{}}
+\fancyfoot[CE]{\fancyplain{}{}}
+\fancyfoot[RE]{\fancyplain{}{\bfseries\scriptsize Generado por Doxygen }}
+\fancyfoot[LO]{\fancyplain{}{\bfseries\scriptsize Generado por Doxygen }}
+\fancyfoot[CO]{\fancyplain{}{}}
+\fancyfoot[RO]{\fancyplain{}{}}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\chaptermark}[1]{%
+  \markboth{#1}{}%
+}
+\renewcommand{\sectionmark}[1]{%
+  \markright{\thesection\ #1}%
+}
+
+% Indices & bibliography
+\usepackage{natbib}
+\usepackage[titles]{tocloft}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{5}
+\makeindex
+
+% Hyperlinks (required, but should be loaded last)
+\usepackage{ifpdf}
+\ifpdf
+  \usepackage[pdftex,pagebackref=true]{hyperref}
+\else
+  \usepackage[ps2pdf,pagebackref=true]{hyperref}
+\fi
+\hypersetup{%
+  colorlinks=true,%
+  linkcolor=blue,%
+  citecolor=blue,%
+  unicode%
+}
+
+% Custom commands
+\newcommand{\clearemptydoublepage}{%
+  \newpage{\pagestyle{empty}\cleardoublepage}%
+}
+
+\usepackage{caption}
+\captionsetup{labelsep=space,justification=centering,font={bf},singlelinecheck=off,skip=4pt,position=top}
+
+%===== C O N T E N T S =====
+
+\begin{document}
+
+% Titlepage & ToC
+\hypersetup{pageanchor=false,
+             bookmarksnumbered=true,
+             pdfencoding=unicode
+            }
+\pagenumbering{alph}
+\begin{titlepage}
+\vspace*{7cm}
+\begin{center}%
+{\Large Proyecto3 \\[1ex]\large 1.\+0 }\\
+\vspace*{1cm}
+{\large Generado por Doxygen 1.8.13}\\
+\end{center}
+\end{titlepage}
+\clearemptydoublepage
+\pagenumbering{roman}
+\tableofcontents
+\clearemptydoublepage
+\pagenumbering{arabic}
+\hypersetup{pageanchor=true}
+
+%--- Begin generated contents ---
+\chapter{Indice de namespaces}
+\input{namespaces}
+\chapter{Indice jerárquico}
+\input{hierarchy}
+\chapter{Índice de clases}
+\input{annotated}
+\chapter{Indice de archivos}
+\input{files}
+\chapter{Documentación de namespaces}
+\input{dd/d18/namespaceanpi}
+\input{dc/de2/namespaceanpi_1_1benchmark}
+\input{d6/d4d/namespaceanpi_1_1fallback}
+\input{d6/d42/namespaceanpi_1_1simd}
+\input{da/dd4/namespaceanpi_1_1test}
+\input{de/dc1/namespacetk}
+\chapter{Documentación de las clases}
+\input{d8/df4/structanpi_1_1Matrix_1_1__Matrix__impl}
+\input{d4/d2f/classanpi_1_1aligned__allocator}
+\input{d4/df0/classanpi_1_1aligned__row__allocator}
+\input{d9/d9d/classbenchAdd}
+\input{db/d21/classbenchAddInPlaceFallback}
+\input{d1/d8e/classbenchAddInPlaceSIMD}
+\input{d2/d31/classbenchAddOnCopyFallback}
+\input{d4/d60/classbenchAddOnCopySIMD}
+\input{d6/dfc/classbenchSub}
+\input{d0/d6c/classbenchSubInPlaceFallback}
+\input{d5/d11/classbenchSubInPlaceSIMD}
+\input{d7/d6f/classbenchSubOnCopyFallback}
+\input{de/dc0/classbenchSubOnCopySIMD}
+\input{de/d35/classanpi_1_1Exception}
+\input{d1/da2/structanpi_1_1extract__alignment}
+\input{d6/dd5/structanpi_1_1extract__alignment_3_01Alloc_3_01T_00_01Align_01_4_01_4}
+\input{d8/d38/structanpi_1_1is__aligned__alloc}
+\input{d7/dd2/structanpi_1_1is__aligned__alloc_3_01anpi_1_1aligned__allocator_3_01T_00_01A_01_4_01_4}
+\input{d7/ddf/structanpi_1_1is__aligned__alloc_3_01anpi_1_1aligned__row__allocator_3_01T_00_01A_01_4_01_4}
+\input{de/d2e/structis__simd__type}
+\input{de/dee/classanpi_1_1Matrix}
+\input{d9/d9d/structanpi_1_1benchmark_1_1measurement}
+\input{d6/dfc/classanpi_1_1Plot2d}
+\input{d5/d57/structanpi_1_1aligned__allocator_1_1rebind}
+\input{db/de5/structanpi_1_1aligned__row__allocator_1_1rebind}
+\input{dd/d67/classanpi_1_1ThermalPlate}
+\chapter{Documentación de archivos}
+\input{df/d08/benchmarkFramework_8cpp}
+\input{dc/dcc/benchmarkFramework_8hpp}
+\input{d0/d36/benchmarkMain_8cpp}
+\input{db/d8c/benchmarkMatrixAdd_8cpp}
+\input{d0/da9/benchmarkMatrixSub_8cpp}
+\input{dc/dc9/thermalGraph_8cpp}
+\input{d6/d83/CMakeCXXCompilerId_8cpp}
+\input{dd/d6e/feature__tests_8cxx}
+\input{de/d68/OpenMPCheckVersion_8cpp}
+\input{d5/d29/OpenMPTryFlag_8cpp}
+\input{d8/d2d/Allocator_8hpp}
+\input{d5/dad/AnpiConfig_8hpp}
+\input{d4/ddf/MatrixArithmetic_8hpp}
+\input{da/d42/Exception_8hpp}
+\input{d2/d8b/HasType_8hpp}
+\input{d1/dc4/Intrinsics_8hpp}
+\input{d9/d76/IntrinsicsM_8hpp}
+\input{d6/dcf/LU_8hpp}
+\input{d8/dc0/LUCrout_8hpp}
+\input{df/db9/LUDoolittle_8hpp}
+\input{d9/d1c/Matrix_8hpp}
+\input{d4/d27/Matrix_8tpp}
+\input{d9/dfb/PlotPy_8hpp}
+\input{d8/d09/PlotPy_8tpp}
+\input{d1/d19/Solver_8hpp}
+\input{dc/d67/Spline_8h}
+\input{dd/de8/ThermalPlate_8hpp}
+\input{db/d8f/Utilities_8hpp}
+\input{df/df5/program__options_8cpp}
+\input{df/d0a/main_8cpp}
+\input{d4/dd4/testAllocator_8cpp}
+\input{d6/d21/testInvert_8cpp}
+\input{d9/d82/testLU_8cpp}
+\input{d1/d69/testMain_8cpp}
+\input{dc/dbd/testMatrix_8cpp}
+\input{dd/dd7/testThermal_8cpp}
+%--- End generated contents ---
+
+% Index
+\backmatter
+\newpage
+\phantomsection
+\clearemptydoublepage
+\addcontentsline{toc}{chapter}{Índice}
+\printindex
+
+\end{document}

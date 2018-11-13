@@ -1,0 +1,7 @@
+digraph "Representación gráfica de la clase"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="anpi::aligned_row_allocator\l\< T, Align \>::rebind\< U \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/de5/structanpi_1_1aligned__row__allocator_1_1rebind.html",tooltip="Change the stored type. "];
+}

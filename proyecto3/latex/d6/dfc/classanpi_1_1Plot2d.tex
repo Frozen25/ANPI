@@ -1,0 +1,254 @@
+\hypertarget{classanpi_1_1Plot2d}{}\section{Referencia de la plantilla de la Clase anpi\+:\+:Plot2d$<$ T $>$}
+\label{classanpi_1_1Plot2d}\index{anpi\+::\+Plot2d$<$ T $>$@{anpi\+::\+Plot2d$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Plot\+Py.\+hpp$>$}
+
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classanpi_1_1Plot2d_ac6fb0ae9c26f3779b408f239026455ba}{initialize} (int id)
+\item 
+void \hyperlink{classanpi_1_1Plot2d_a4346f9f252a2637696ef94ce3755d04a}{set\+Title} (const std\+::string \&title)
+\begin{DoxyCompactList}\small\item\em Set plot title. \end{DoxyCompactList}\item 
+void \hyperlink{classanpi_1_1Plot2d_a64b1163ea264ff3eec9f222d82b92052}{set\+X\+Label} (const std\+::string \&label)
+\begin{DoxyCompactList}\small\item\em Set label for the X axis. \end{DoxyCompactList}\item 
+void \hyperlink{classanpi_1_1Plot2d_a689b16faa995ca545fe13088cbd382a5}{set\+Y\+Label} (const std\+::string \&label)
+\begin{DoxyCompactList}\small\item\em Set label for the Y axis. \end{DoxyCompactList}\item 
+void \hyperlink{classanpi_1_1Plot2d_a24be2607e97fdf82267c53f1cdc1c620}{set\+Grid\+Size} (const T sizegrid)
+\begin{DoxyCompactList}\small\item\em Set the grid size. \end{DoxyCompactList}\item 
+void \hyperlink{classanpi_1_1Plot2d_aad762639127c43070ba584a3c438cf52}{set\+X\+Range} (const T xi, const T xs)
+\begin{DoxyCompactList}\small\item\em Set initial and final limits of the X axis. \end{DoxyCompactList}\item 
+void \hyperlink{classanpi_1_1Plot2d_a5bac0f99358cd81f048cc5c5bc69ffda}{set\+Y\+Range} (const T yi, const T ys)
+\begin{DoxyCompactList}\small\item\em Set initial and final limits of the Y axis. \end{DoxyCompactList}\item 
+void \hyperlink{classanpi_1_1Plot2d_a0b04dd4c40f9f623789fa688bd3c593d}{plot} (const std\+::vector$<$ T $>$ \&datax, const std\+::vector$<$ T $>$ \&datay, const std\+::string \&legend, const std\+::string \&color=\char`\"{}\char`\"{})
+\item 
+void \hyperlink{classanpi_1_1Plot2d_ab2d6160a61a3c1173588765eeccb0491}{quiver} (const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&datax, const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&datay, const std\+::string \&color=\char`\"{}\char`\"{})
+\item 
+void \hyperlink{classanpi_1_1Plot2d_ad70dc094e12bc263dc196c1b96656f47}{quiver1D} (const std\+::vector$<$ T $>$ \&datax, const std\+::vector$<$ T $>$ \&datay, const std\+::string \&color)
+\item 
+void \hyperlink{classanpi_1_1Plot2d_aea73e92ff640dc6e16fbe0fd3e588667}{plot\+Thermal} ()
+\item 
+void \hyperlink{classanpi_1_1Plot2d_ad7978a6d763c92036ca249982a041dd1}{plot} (const std\+::vector$<$ T $>$ \&datax, const std\+::vector$<$ T $>$ \&averagey, const std\+::vector$<$ T $>$ \&miny, const std\+::vector$<$ T $>$ \&maxy, const std\+::string \&legend, const std\+::string \&color=\char`\"{}r\char`\"{})
+\item 
+void \hyperlink{classanpi_1_1Plot2d_a41165ac70edb258fa0fbcce04ddf7025}{show} ()
+\end{DoxyCompactItemize}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classanpi_1_1Plot2d_a0d7d01999364a90882de6b19bdd0245b}{Plot2d} ()
+\begin{DoxyCompactList}\small\item\em Constructors. \end{DoxyCompactList}\item 
+\hyperlink{classanpi_1_1Plot2d_a0a9ba35b064aef73a9c6f601b2345734}{$\sim$\+Plot2d} ()
+\end{DoxyCompactItemize}
+
+\subsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{classanpi_1_1Plot2d_a95db211aec89f0e66b28ad01ce74d2ae}{\+\_\+title}
+\item 
+std\+::string \hyperlink{classanpi_1_1Plot2d_a6537d8a33bb34a55a3e2c9e052eba10e}{\+\_\+xlabel}
+\item 
+std\+::string \hyperlink{classanpi_1_1Plot2d_a82ade43ab875298e8b84eceab8bf8a35}{\+\_\+ylabel}
+\item 
+T \hyperlink{classanpi_1_1Plot2d_a2730a5c9f7b2b120c897672209aa580e}{\+\_\+size\+Grid}
+\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+\subsubsection*{template$<$typename T$>$\newline
+class anpi\+::\+Plot2d$<$ T $>$}
+
+Two-\/dimensional plots
+
+Given a set of x coordinates and a corresponding set of y values, plot a line between each point (x,y).
+
+You give a pair of vectors with the x and y values with the \hyperlink{classanpi_1_1Plot2d_a0b04dd4c40f9f623789fa688bd3c593d}{plot()} method to plot a curve. You may overlay as many curves as you need simply by calling \hyperlink{classanpi_1_1Plot2d_a0b04dd4c40f9f623789fa688bd3c593d}{plot()} as many times as you need to.
+
+Finally, you call \hyperlink{classanpi_1_1Plot2d_a41165ac70edb258fa0fbcce04ddf7025}{show()} to display the window with all plotted curves. 
+
+\subsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classanpi_1_1Plot2d_a0d7d01999364a90882de6b19bdd0245b}\label{classanpi_1_1Plot2d_a0d7d01999364a90882de6b19bdd0245b}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!Plot2d@{Plot2d}}
+\index{Plot2d@{Plot2d}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{Plot2d()}{Plot2d()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::\hyperlink{classanpi_1_1Plot2d}{Plot2d} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructors. 
+
+\mbox{\Hypertarget{classanpi_1_1Plot2d_a0a9ba35b064aef73a9c6f601b2345734}\label{classanpi_1_1Plot2d_a0a9ba35b064aef73a9c6f601b2345734}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!````~Plot2d@{$\sim$\+Plot2d}}
+\index{````~Plot2d@{$\sim$\+Plot2d}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{$\sim$\+Plot2d()}{~Plot2d()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::$\sim$\hyperlink{classanpi_1_1Plot2d}{Plot2d} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classanpi_1_1Plot2d_ac6fb0ae9c26f3779b408f239026455ba}\label{classanpi_1_1Plot2d_ac6fb0ae9c26f3779b408f239026455ba}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!initialize@{initialize}}
+\index{initialize@{initialize}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::initialize (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+Initialize a plot window.
+
+Each id is associated with a different plot window. \mbox{\Hypertarget{classanpi_1_1Plot2d_a0b04dd4c40f9f623789fa688bd3c593d}\label{classanpi_1_1Plot2d_a0b04dd4c40f9f623789fa688bd3c593d}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!plot@{plot}}
+\index{plot@{plot}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{plot()}{plot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::plot (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{datax,  }\item[{const std\+::vector$<$ T $>$ \&}]{datay,  }\item[{const std\+::string \&}]{legend,  }\item[{const std\+::string \&}]{color = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+Plot a curve by drawing line segments from the sequence of points (datax\mbox{[}i\mbox{]},datay\mbox{[}i\mbox{]}). The curve will have the given legend \mbox{\Hypertarget{classanpi_1_1Plot2d_ad7978a6d763c92036ca249982a041dd1}\label{classanpi_1_1Plot2d_ad7978a6d763c92036ca249982a041dd1}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!plot@{plot}}
+\index{plot@{plot}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{plot()}{plot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::plot (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{datax,  }\item[{const std\+::vector$<$ T $>$ \&}]{averagey,  }\item[{const std\+::vector$<$ T $>$ \&}]{miny,  }\item[{const std\+::vector$<$ T $>$ \&}]{maxy,  }\item[{const std\+::string \&}]{legend,  }\item[{const std\+::string \&}]{color = {\ttfamily \char`\"{}r\char`\"{}} }\end{DoxyParamCaption})}
+
+Plot an area range between the min and max values and the average data inbetween. 
+\begin{DoxyParams}{Parámetros}
+{\em datax} & values of x \\
+\hline
+{\em averagey} & average values of y, corresponding to each x \\
+\hline
+{\em miny} & minimum values of y, corresponding to each x \\
+\hline
+{\em maxy} & maximum values of y, corresponding to each x \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classanpi_1_1Plot2d_aea73e92ff640dc6e16fbe0fd3e588667}\label{classanpi_1_1Plot2d_aea73e92ff640dc6e16fbe0fd3e588667}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!plot\+Thermal@{plot\+Thermal}}
+\index{plot\+Thermal@{plot\+Thermal}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{plot\+Thermal()}{plotThermal()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::plot\+Thermal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classanpi_1_1Plot2d_ab2d6160a61a3c1173588765eeccb0491}\label{classanpi_1_1Plot2d_ab2d6160a61a3c1173588765eeccb0491}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!quiver@{quiver}}
+\index{quiver@{quiver}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{quiver()}{quiver()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::quiver (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&}]{datax,  }\item[{const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&}]{datay,  }\item[{const std\+::string \&}]{color = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classanpi_1_1Plot2d_ad70dc094e12bc263dc196c1b96656f47}\label{classanpi_1_1Plot2d_ad70dc094e12bc263dc196c1b96656f47}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!quiver1D@{quiver1D}}
+\index{quiver1D@{quiver1D}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{quiver1\+D()}{quiver1D()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::quiver1D (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{datax,  }\item[{const std\+::vector$<$ T $>$ \&}]{datay,  }\item[{const std\+::string \&}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classanpi_1_1Plot2d_a24be2607e97fdf82267c53f1cdc1c620}\label{classanpi_1_1Plot2d_a24be2607e97fdf82267c53f1cdc1c620}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!set\+Grid\+Size@{set\+Grid\+Size}}
+\index{set\+Grid\+Size@{set\+Grid\+Size}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{set\+Grid\+Size()}{setGridSize()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::set\+Grid\+Size (\begin{DoxyParamCaption}\item[{const T}]{sizegrid }\end{DoxyParamCaption})}
+
+
+
+Set the grid size. 
+
+\mbox{\Hypertarget{classanpi_1_1Plot2d_a4346f9f252a2637696ef94ce3755d04a}\label{classanpi_1_1Plot2d_a4346f9f252a2637696ef94ce3755d04a}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!set\+Title@{set\+Title}}
+\index{set\+Title@{set\+Title}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{set\+Title()}{setTitle()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::set\+Title (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{title }\end{DoxyParamCaption})}
+
+
+
+Set plot title. 
+
+\mbox{\Hypertarget{classanpi_1_1Plot2d_a64b1163ea264ff3eec9f222d82b92052}\label{classanpi_1_1Plot2d_a64b1163ea264ff3eec9f222d82b92052}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!set\+X\+Label@{set\+X\+Label}}
+\index{set\+X\+Label@{set\+X\+Label}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{set\+X\+Label()}{setXLabel()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::set\+X\+Label (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{label }\end{DoxyParamCaption})}
+
+
+
+Set label for the X axis. 
+
+\mbox{\Hypertarget{classanpi_1_1Plot2d_aad762639127c43070ba584a3c438cf52}\label{classanpi_1_1Plot2d_aad762639127c43070ba584a3c438cf52}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!set\+X\+Range@{set\+X\+Range}}
+\index{set\+X\+Range@{set\+X\+Range}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{set\+X\+Range()}{setXRange()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::set\+X\+Range (\begin{DoxyParamCaption}\item[{const T}]{xi,  }\item[{const T}]{xs }\end{DoxyParamCaption})}
+
+
+
+Set initial and final limits of the X axis. 
+
+\mbox{\Hypertarget{classanpi_1_1Plot2d_a689b16faa995ca545fe13088cbd382a5}\label{classanpi_1_1Plot2d_a689b16faa995ca545fe13088cbd382a5}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!set\+Y\+Label@{set\+Y\+Label}}
+\index{set\+Y\+Label@{set\+Y\+Label}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{set\+Y\+Label()}{setYLabel()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::set\+Y\+Label (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{label }\end{DoxyParamCaption})}
+
+
+
+Set label for the Y axis. 
+
+\mbox{\Hypertarget{classanpi_1_1Plot2d_a5bac0f99358cd81f048cc5c5bc69ffda}\label{classanpi_1_1Plot2d_a5bac0f99358cd81f048cc5c5bc69ffda}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!set\+Y\+Range@{set\+Y\+Range}}
+\index{set\+Y\+Range@{set\+Y\+Range}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{set\+Y\+Range()}{setYRange()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::set\+Y\+Range (\begin{DoxyParamCaption}\item[{const T}]{yi,  }\item[{const T}]{ys }\end{DoxyParamCaption})}
+
+
+
+Set initial and final limits of the Y axis. 
+
+\mbox{\Hypertarget{classanpi_1_1Plot2d_a41165ac70edb258fa0fbcce04ddf7025}\label{classanpi_1_1Plot2d_a41165ac70edb258fa0fbcce04ddf7025}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!show@{show}}
+\index{show@{show}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::show (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Show all curves plotted so far. 
+
+\subsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classanpi_1_1Plot2d_a2730a5c9f7b2b120c897672209aa580e}\label{classanpi_1_1Plot2d_a2730a5c9f7b2b120c897672209aa580e}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!\+\_\+size\+Grid@{\+\_\+size\+Grid}}
+\index{\+\_\+size\+Grid@{\+\_\+size\+Grid}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{\+\_\+size\+Grid}{\_sizeGrid}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::\+\_\+size\+Grid\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classanpi_1_1Plot2d_a95db211aec89f0e66b28ad01ce74d2ae}\label{classanpi_1_1Plot2d_a95db211aec89f0e66b28ad01ce74d2ae}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!\+\_\+title@{\+\_\+title}}
+\index{\+\_\+title@{\+\_\+title}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{\+\_\+title}{\_title}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::\+\_\+title\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classanpi_1_1Plot2d_a6537d8a33bb34a55a3e2c9e052eba10e}\label{classanpi_1_1Plot2d_a6537d8a33bb34a55a3e2c9e052eba10e}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!\+\_\+xlabel@{\+\_\+xlabel}}
+\index{\+\_\+xlabel@{\+\_\+xlabel}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{\+\_\+xlabel}{\_xlabel}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::\+\_\+xlabel\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classanpi_1_1Plot2d_a82ade43ab875298e8b84eceab8bf8a35}\label{classanpi_1_1Plot2d_a82ade43ab875298e8b84eceab8bf8a35}} 
+\index{anpi\+::\+Plot2d@{anpi\+::\+Plot2d}!\+\_\+ylabel@{\+\_\+ylabel}}
+\index{\+\_\+ylabel@{\+\_\+ylabel}!anpi\+::\+Plot2d@{anpi\+::\+Plot2d}}
+\subsubsection{\texorpdfstring{\+\_\+ylabel}{\_ylabel}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string \hyperlink{classanpi_1_1Plot2d}{anpi\+::\+Plot2d}$<$ T $>$\+::\+\_\+ylabel\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{PlotPy_8hpp}{Plot\+Py.\+hpp}\end{DoxyCompactItemize}

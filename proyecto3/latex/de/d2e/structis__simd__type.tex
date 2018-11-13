@@ -1,0 +1,50 @@
+\hypertarget{structis__simd__type}{}\section{Referencia de la plantilla de la Estructura is\+\_\+simd\+\_\+type$<$ T $>$}
+\label{structis__simd__type}\index{is\+\_\+simd\+\_\+type$<$ T $>$@{is\+\_\+simd\+\_\+type$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Intrinsics.\+hpp$>$}
+
+\subsection*{Atributos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr bool \hyperlink{structis__simd__type_aa7be8981b3d01e0ca0f163c4d7266a44}{value}
+\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+\subsubsection*{template$<$typename T$>$\newline
+struct is\+\_\+simd\+\_\+type$<$ T $>$}
+
+Copyright (C) 2017 Área Académica de Ingeniería en Computadoras, I\+T\+CR, Costa Rica
+
+This file is part of the numerical analysis lecture C\+E3102 at T\+EC
+
+\+: Pablo Alvarado \+: 28.\+12.\+2017 Include the proper intrinsics headers for the current architecture 
+
+\subsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{structis__simd__type_aa7be8981b3d01e0ca0f163c4d7266a44}\label{structis__simd__type_aa7be8981b3d01e0ca0f163c4d7266a44}} 
+\index{is\+\_\+simd\+\_\+type@{is\+\_\+simd\+\_\+type}!value@{value}}
+\index{value@{value}!is\+\_\+simd\+\_\+type@{is\+\_\+simd\+\_\+type}}
+\subsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr bool \hyperlink{structis__simd__type}{is\+\_\+simd\+\_\+type}$<$ T $>$\+::value\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}
+=
+    std::is\_same<T,double>::value        ||
+    std::is\_same<T,float>::value         ||
+    std::is\_same<T,std::int64\_t>::value  ||
+    std::is\_same<T,std::uint64\_t>::value ||    
+    std::is\_same<T,std::int32\_t>::value  ||
+    std::is\_same<T,std::uint32\_t>::value ||
+    std::is\_same<T,std::int16\_t>::value  ||
+    std::is\_same<T,std::uint16\_t>::value ||
+    std::is\_same<T,std::int8\_t>::value   ||
+    std::is\_same<T,std::uint8\_t>::value
+\end{DoxyCode}
+
+
+La documentación para esta estructura fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{Intrinsics_8hpp}{Intrinsics.\+hpp}\end{DoxyCompactItemize}

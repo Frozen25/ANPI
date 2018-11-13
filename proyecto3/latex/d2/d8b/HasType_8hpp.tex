@@ -1,0 +1,70 @@
+\hypertarget{HasType_8hpp}{}\section{Referencia del Archivo include/\+Has\+Type.hpp}
+\label{HasType_8hpp}\index{include/\+Has\+Type.\+hpp@{include/\+Has\+Type.\+hpp}}
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+% FIG 0
+\subsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{HasType_8hpp_a93f0fe37d49ea1f40e56e2397720332b}{G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+PE}(Type)
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de los \textquotesingle{}defines\textquotesingle{}}
+\mbox{\Hypertarget{HasType_8hpp_a93f0fe37d49ea1f40e56e2397720332b}\label{HasType_8hpp_a93f0fe37d49ea1f40e56e2397720332b}} 
+\index{Has\+Type.\+hpp@{Has\+Type.\+hpp}!G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+PE@{G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+PE}}
+\index{G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+PE@{G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+PE}!Has\+Type.\+hpp@{Has\+Type.\+hpp}}
+\subsubsection{\texorpdfstring{G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+PE}{GENERATE\_HAS\_TYPE}}
+{\footnotesize\ttfamily \#define G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+A\+S\+\_\+\+T\+Y\+PE(\begin{DoxyParamCaption}\item[{}]{Type }\end{DoxyParamCaption})}
+
+{\bfseries Valor\+:}
+\begin{DoxyCode}
+\textcolor{keyword}{namespace }detail \{                                                    \(\backslash\)
+    template < class T >                                                \(\backslash\)
+    class HasType\_##Type \{                                              \(\backslash\)
+    private:                                                            \(\backslash\)
+      \textcolor{comment}{/* Check based on these types' sizes */}                           \(\backslash\)
+      using Yes = \textcolor{keywordtype}{char}[2];                                              \(\backslash\)
+      using No  = \textcolor{keywordtype}{char}[1];                                              \(\backslash\)
+                                                                        \(\backslash\)
+      \textcolor{comment}{/* Fallback defines the type to cause ambiguity later */}          \(\backslash\)
+      struct Fallback \{ \textcolor{keyword}{struct }Type \{ \}; \};                             \(\backslash\)
+      \textcolor{comment}{/* Derived class will have twice the Type except if NOT defined*/} \(\backslash\)
+      struct Derived : T, Fallback \{ \};                                 \(\backslash\)
+                                                                        \(\backslash\)
+      \textcolor{comment}{/* SFINAE hinders instantiation of this if ambiguous */}           \(\backslash\)
+      template < class U >                                              \(\backslash\)
+      static No& test ( \textcolor{keyword}{typename} U::Type* );                            \(\backslash\)
+      \textcolor{comment}{/* SFINAE falls back to this in case of ambiguity */}              \(\backslash\)
+      template < typename U >                                           \(\backslash\)
+      static Yes& test ( U* );                                          \(\backslash\)
+    public:                                                             \(\backslash\)
+      static constexpr \textcolor{keywordtype}{bool} value =                                     \(\backslash\)
+        sizeof(test<Derived>(\textcolor{keyword}{nullptr})) == \textcolor{keyword}{sizeof}(Yes);                  \(\backslash\)
+    \};                                                                  \(\backslash\)
+  \} \textcolor{comment}{/* namespace detail */}                                              \(\backslash\)
+                                                                        \(\backslash\)
+  template < class T >                                                  \(\backslash\)
+  struct has\_type\_##Type                                                \(\backslash\)
+    : \textcolor{keyword}{public} std::integral\_constant<bool,                               \(\backslash\)
+                                    detail::HasType\_##Type<T>::value> \{ \(\backslash\)
+  \}
+\end{DoxyCode}
+Copyright (C) 2017 Área Académica de Ingeniería en Computadoras, I\+T\+CR, Costa Rica
+
+This file is part of the numerical analysis lecture C\+E3102 at T\+EC
+
+\begin{DoxyAuthor}{Autor}
+Pablo Alvarado 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+15.\+12.\+2017 Generates a metafunction to check if a class has an internal type.
+\end{DoxyDate}
+For example\+:
+
+
+\begin{DoxyCode}
+\hyperlink{HasType_8hpp_a93f0fe37d49ea1f40e56e2397720332b}{GENERATE\_HAS\_TYPE}(foobar)
+\end{DoxyCode}
+
+
+generates a metafunction, such that {\ttfamily has\+\_\+type\+\_\+foobar$<$\+T$>$\+::value} is true iff T\+::foobar is an existing type, or false otherwise. 

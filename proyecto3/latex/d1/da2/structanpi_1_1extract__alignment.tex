@@ -1,0 +1,54 @@
+\hypertarget{structanpi_1_1extract__alignment}{}\section{Referencia de la plantilla de la Estructura anpi\+:\+:extract\+\_\+alignment$<$ Alloc $>$}
+\label{structanpi_1_1extract__alignment}\index{anpi\+::extract\+\_\+alignment$<$ Alloc $>$@{anpi\+::extract\+\_\+alignment$<$ Alloc $>$}}
+
+
+{\ttfamily \#include $<$Allocator.\+hpp$>$}
+
+\subsection*{Atributos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr size\+\_\+t \hyperlink{structanpi_1_1extract__alignment_aba8462924cf727c3c7df27fa3f32e41f}{value} = sizeof(typename Alloc\+::value\+\_\+type)
+\item 
+static constexpr bool \hyperlink{structanpi_1_1extract__alignment_a88d37e5eb4f071220ab7f2b09945b096}{aligned} = false
+\item 
+static constexpr bool \hyperlink{structanpi_1_1extract__alignment_a4e7985310e7f1be7c2277e665bb62a13}{row\+\_\+aligned} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+\subsubsection*{template$<$class Alloc$>$\newline
+struct anpi\+::extract\+\_\+alignment$<$ Alloc $>$}
+
+Extract alignment of an allocator
+
+We assume that the first template type of the allocator corresponds to the type of the elements of the allocated space.
+
+If a second integral template parameter is provided, it will be assume to correspond to the alignment. 
+
+\subsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{structanpi_1_1extract__alignment_a88d37e5eb4f071220ab7f2b09945b096}\label{structanpi_1_1extract__alignment_a88d37e5eb4f071220ab7f2b09945b096}} 
+\index{anpi\+::extract\+\_\+alignment@{anpi\+::extract\+\_\+alignment}!aligned@{aligned}}
+\index{aligned@{aligned}!anpi\+::extract\+\_\+alignment@{anpi\+::extract\+\_\+alignment}}
+\subsubsection{\texorpdfstring{aligned}{aligned}}
+{\footnotesize\ttfamily template$<$class Alloc $>$ \\
+constexpr bool \hyperlink{structanpi_1_1extract__alignment}{anpi\+::extract\+\_\+alignment}$<$ Alloc $>$\+::aligned = false\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{structanpi_1_1extract__alignment_a4e7985310e7f1be7c2277e665bb62a13}\label{structanpi_1_1extract__alignment_a4e7985310e7f1be7c2277e665bb62a13}} 
+\index{anpi\+::extract\+\_\+alignment@{anpi\+::extract\+\_\+alignment}!row\+\_\+aligned@{row\+\_\+aligned}}
+\index{row\+\_\+aligned@{row\+\_\+aligned}!anpi\+::extract\+\_\+alignment@{anpi\+::extract\+\_\+alignment}}
+\subsubsection{\texorpdfstring{row\+\_\+aligned}{row\_aligned}}
+{\footnotesize\ttfamily template$<$class Alloc $>$ \\
+constexpr bool \hyperlink{structanpi_1_1extract__alignment}{anpi\+::extract\+\_\+alignment}$<$ Alloc $>$\+::row\+\_\+aligned = false\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{structanpi_1_1extract__alignment_aba8462924cf727c3c7df27fa3f32e41f}\label{structanpi_1_1extract__alignment_aba8462924cf727c3c7df27fa3f32e41f}} 
+\index{anpi\+::extract\+\_\+alignment@{anpi\+::extract\+\_\+alignment}!value@{value}}
+\index{value@{value}!anpi\+::extract\+\_\+alignment@{anpi\+::extract\+\_\+alignment}}
+\subsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily template$<$class Alloc $>$ \\
+constexpr size\+\_\+t \hyperlink{structanpi_1_1extract__alignment}{anpi\+::extract\+\_\+alignment}$<$ Alloc $>$\+::value = sizeof(typename Alloc\+::value\+\_\+type)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+La documentación para esta estructura fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{Allocator_8hpp}{Allocator.\+hpp}\end{DoxyCompactItemize}

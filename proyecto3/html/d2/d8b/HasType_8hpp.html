@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Proyecto3: Referencia del Archivo include/HasType.hpp</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Proyecto3
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">AplicacióndelmétodoLiebmannparalasolucióndelaecuacióndiferencialparcialelíptica,enunaestructura“piramidal”.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Buscar');
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">defines</a>  </div>
+  <div class="headertitle">
+<div class="title">Referencia del Archivo HasType.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><div class="dynheader">
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d2/d76/HasType_8hpp__dep__incl.png" border="0" usemap="#include_2HasType_8hppdep" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div>
+<p><a href="../../d2/d8b/HasType_8hpp_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a93f0fe37d49ea1f40e56e2397720332b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d8b/HasType_8hpp.html#a93f0fe37d49ea1f40e56e2397720332b">GENERATE_HAS_TYPE</a>(Type)</td></tr>
+<tr class="separator:a93f0fe37d49ea1f40e56e2397720332b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentación de los 'defines'</h2>
+<a id="a93f0fe37d49ea1f40e56e2397720332b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93f0fe37d49ea1f40e56e2397720332b">&#9670;&nbsp;</a></span>GENERATE_HAS_TYPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GENERATE_HAS_TYPE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">Type</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line"><span class="keyword">namespace </span>detail {                                                    \</div><div class="line">    template &lt; class T &gt;                                                \</div><div class="line">    class HasType_##Type {                                              \</div><div class="line">    private:                                                            \</div><div class="line">      <span class="comment">/* Check based on these types&#39; sizes */</span>                           \</div><div class="line">      using Yes = <span class="keywordtype">char</span>[2];                                              \</div><div class="line">      using No  = <span class="keywordtype">char</span>[1];                                              \</div><div class="line">                                                                        \</div><div class="line">      <span class="comment">/* Fallback defines the type to cause ambiguity later */</span>          \</div><div class="line">      struct Fallback { <span class="keyword">struct </span>Type { }; };                             \</div><div class="line">      <span class="comment">/* Derived class will have twice the Type except if NOT defined*/</span> \</div><div class="line">      struct Derived : T, Fallback { };                                 \</div><div class="line">                                                                        \</div><div class="line">      <span class="comment">/* SFINAE hinders instantiation of this if ambiguous */</span>           \</div><div class="line">      template &lt; class U &gt;                                              \</div><div class="line">      static No&amp; test ( <span class="keyword">typename</span> U::Type* );                            \</div><div class="line">      <span class="comment">/* SFINAE falls back to this in case of ambiguity */</span>              \</div><div class="line">      template &lt; typename U &gt;                                           \</div><div class="line">      static Yes&amp; test ( U* );                                          \</div><div class="line">    public:                                                             \</div><div class="line">      static constexpr <span class="keywordtype">bool</span> value =                                     \</div><div class="line">        sizeof(test&lt;Derived&gt;(<span class="keyword">nullptr</span>)) == <span class="keyword">sizeof</span>(Yes);                  \</div><div class="line">    };                                                                  \</div><div class="line">  } <span class="comment">/* namespace detail */</span>                                              \</div><div class="line">                                                                        \</div><div class="line">  template &lt; class T &gt;                                                  \</div><div class="line">  struct has_type_##Type                                                \</div><div class="line">    : <span class="keyword">public</span> std::integral_constant&lt;bool,                               \</div><div class="line">                                    detail::HasType_##Type&lt;T&gt;::value&gt; { \</div><div class="line">  }</div></div><!-- fragment --><p>Copyright (C) 2017 Área Académica de Ingeniería en Computadoras, ITCR, Costa Rica</p>
+<p>This file is part of the numerical analysis lecture CE3102 at TEC</p>
+<dl class="section author"><dt>Autor</dt><dd>Pablo Alvarado </dd></dl>
+<dl class="section date"><dt>Fecha</dt><dd>15.12.2017 Generates a metafunction to check if a class has an internal type.</dd></dl>
+<p>For example:</p>
+<div class="fragment"><div class="line"><a class="code" href="../../d2/d8b/HasType_8hpp.html#a93f0fe37d49ea1f40e56e2397720332b">GENERATE_HAS_TYPE</a>(foobar)</div></div><!-- fragment --><p>generates a metafunction, such that <code>has_type_foobar&lt;T&gt;::value</code> is true iff T::foobar is an existing type, or false otherwise. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

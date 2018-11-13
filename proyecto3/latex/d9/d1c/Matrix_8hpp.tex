@@ -1,0 +1,48 @@
+\hypertarget{Matrix_8hpp}{}\section{Referencia del Archivo include/\+Matrix.hpp}
+\label{Matrix_8hpp}\index{include/\+Matrix.\+hpp@{include/\+Matrix.\+hpp}}
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$cassert$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$initializer\+\_\+list$>$}\newline
+{\ttfamily \#include $<$Anpi\+Config.\+hpp$>$}\newline
+{\ttfamily \#include $<$Allocator.\+hpp$>$}\newline
+{\ttfamily \#include \char`\"{}Exception.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$typeinfo$>$}\newline
+{\ttfamily \#include \char`\"{}Matrix.\+tpp\char`\"{}}\newline
+Dependencia gráfica adjunta para Matrix.\+hpp\+:
+% FIG 0
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+% FIG 1
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix$<$ T, Alloc $>$}
+\item 
+struct \hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl}{anpi\+::\+Matrix$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceanpi}{anpi}
+\end{DoxyCompactItemize}
+\subsection*{Enumeraciones}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceanpi_a57664960c64a6275e3bf1c70d6fab177}{anpi\+::\+Initialization\+Type} \{ \hyperlink{namespaceanpi_a57664960c64a6275e3bf1c70d6fab177ae52a283781be1305088afb0aeb8c8d9a}{anpi\+::\+Do\+Not\+Initialize}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{Indent}\textbf{ External arithmetic operators for matrices}\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\Matrix$<$ T, Alloc $>$ \hyperlink{namespaceanpi_a423316157aca85d7aefff3fcee900a5e}{anpi\+::operator+} (const Matrix$<$ T, Alloc $>$ \&a, const Matrix$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\Matrix$<$ T, Alloc $>$ \hyperlink{namespaceanpi_a96bd9f3072f6ea35a1d8b5a3f2ff09ae}{anpi\+::operator-\/} (const Matrix$<$ T, Alloc $>$ \&a, const Matrix$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\Matrix$<$ T, Alloc $>$ \hyperlink{namespaceanpi_a2b732f1fc647ede34024f3441c37ae45}{anpi\+::operator$\ast$} (const Matrix$<$ T, Alloc $>$ \&a, const Matrix$<$ T, Alloc $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\item 
+{\footnotesize template$<$typename T , class Alloc $>$ }\\std\+::vector$<$ T $>$ \hyperlink{namespaceanpi_a1f9baeaf135f590f648d63c1a019670c}{anpi\+::operator$\ast$} (const Matrix$<$ T, Alloc $>$ \&a, const std\+::vector$<$ T $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\end{DoxyCompactItemize}
+\end{Indent}

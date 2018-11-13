@@ -1,0 +1,125 @@
+\hypertarget{namespaceanpi_1_1benchmark}{}\section{Referencia del Namespace anpi\+:\+:benchmark}
+\label{namespaceanpi_1_1benchmark}\index{anpi\+::benchmark@{anpi\+::benchmark}}
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structanpi_1_1benchmark_1_1measurement}{measurement}
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a02a7668535c6dae4644ace1f7f6e2f75}{compute\+Stats} (const std\+::vector$<$ size\+\_\+t $>$ \&sizes, const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ std\+::chrono\+::duration$<$ double $>$ $>$ \&mat, std\+::vector$<$ \hyperlink{structanpi_1_1benchmark_1_1measurement}{measurement} $>$ \&times)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_acbe6f0f44f90b9b7861e08dc1e9231d3}{write} (std\+::ostream \&stream, const std\+::vector$<$ \hyperlink{structanpi_1_1benchmark_1_1measurement}{measurement} $>$ \&m)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a7ef3ea8c9c9a8b79e1e37df28b3615ce}{write} (const std\+::string \&filename, const std\+::vector$<$ \hyperlink{structanpi_1_1benchmark_1_1measurement}{measurement} $>$ \&m)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a2342edf4630c65e3bb493d4327aaf2e5}{plot} (const std\+::vector$<$ \hyperlink{structanpi_1_1benchmark_1_1measurement}{measurement} $>$ \&m, const std\+::string \&legend, const std\+::string \&color)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a9835c451c061a81b48e64c5c055c3768}{thermal} ()
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a7780fd16b79ca29deebddc3494da1886}{quiver} (const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ float $>$ \&datax, const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ float $>$ \&datay, const std\+::string \&color)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a5595edd07bd29c91ca3b040e2601efb7}{quiver1D} (const std\+::vector$<$ float $>$ \&datax, const std\+::vector$<$ float $>$ \&datay, const std\+::string \&color)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a58babb1b967728c138790779206a61a1}{plot\+Range} (const std\+::vector$<$ \hyperlink{structanpi_1_1benchmark_1_1measurement}{measurement} $>$ \&m, const std\+::string \&legend, const std\+::string \&color)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_ad790ffd5a54be367b4ffa1fd862f9ba2}{show} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \hyperlink{namespaceanpi_1_1benchmark_ad4af8012fb125ce95037fbf5e5d003eb}{sqr} (const T val)
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de las funciones}
+\mbox{\Hypertarget{namespaceanpi_1_1benchmark_a02a7668535c6dae4644ace1f7f6e2f75}\label{namespaceanpi_1_1benchmark_a02a7668535c6dae4644ace1f7f6e2f75}} 
+\index{anpi\+::benchmark@{anpi\+::benchmark}!compute\+Stats@{compute\+Stats}}
+\index{compute\+Stats@{compute\+Stats}!anpi\+::benchmark@{anpi\+::benchmark}}
+\subsubsection{\texorpdfstring{compute\+Stats()}{computeStats()}}
+{\footnotesize\ttfamily void anpi\+::benchmark\+::compute\+Stats (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{sizes,  }\item[{const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ std\+::chrono\+::duration$<$ double $>$ $>$ \&}]{mat,  }\item[{std\+::vector$<$ \hyperlink{structanpi_1_1benchmark_1_1measurement}{measurement} $>$ \&}]{times }\end{DoxyParamCaption})}
+
+Compute measurement statistics for each size \mbox{\Hypertarget{namespaceanpi_1_1benchmark_a2342edf4630c65e3bb493d4327aaf2e5}\label{namespaceanpi_1_1benchmark_a2342edf4630c65e3bb493d4327aaf2e5}} 
+\index{anpi\+::benchmark@{anpi\+::benchmark}!plot@{plot}}
+\index{plot@{plot}!anpi\+::benchmark@{anpi\+::benchmark}}
+\subsubsection{\texorpdfstring{plot()}{plot()}}
+{\footnotesize\ttfamily void anpi\+::benchmark\+::plot (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{structanpi_1_1benchmark_1_1measurement}{measurement} $>$ \&}]{m,  }\item[{const std\+::string \&}]{legend,  }\item[{const std\+::string \&}]{color }\end{DoxyParamCaption})}
+
+Plot measurements (average only)
+
+The meaning of the columns is as follows\+: \subsection*{Size}
+
+\subsection*{Average}
+
+\subsection*{Standard deviation}
+
+\subsection*{Minimum}
+
+\subsection*{Maximum}\mbox{\Hypertarget{namespaceanpi_1_1benchmark_a58babb1b967728c138790779206a61a1}\label{namespaceanpi_1_1benchmark_a58babb1b967728c138790779206a61a1}} 
+\index{anpi\+::benchmark@{anpi\+::benchmark}!plot\+Range@{plot\+Range}}
+\index{plot\+Range@{plot\+Range}!anpi\+::benchmark@{anpi\+::benchmark}}
+\subsubsection{\texorpdfstring{plot\+Range()}{plotRange()}}
+{\footnotesize\ttfamily void anpi\+::benchmark\+::plot\+Range (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{structanpi_1_1benchmark_1_1measurement}{measurement} $>$ \&}]{m,  }\item[{const std\+::string \&}]{legend,  }\item[{const std\+::string \&}]{color }\end{DoxyParamCaption})}
+
+Plot measurements (average only)
+
+The meaning of the columns is as follows\+: \subsection*{Size}
+
+\subsection*{Average}
+
+\subsection*{Standard deviation}
+
+\subsection*{Minimum}
+
+\subsection*{Maximum}\mbox{\Hypertarget{namespaceanpi_1_1benchmark_a7780fd16b79ca29deebddc3494da1886}\label{namespaceanpi_1_1benchmark_a7780fd16b79ca29deebddc3494da1886}} 
+\index{anpi\+::benchmark@{anpi\+::benchmark}!quiver@{quiver}}
+\index{quiver@{quiver}!anpi\+::benchmark@{anpi\+::benchmark}}
+\subsubsection{\texorpdfstring{quiver()}{quiver()}}
+{\footnotesize\ttfamily void anpi\+::benchmark\+::quiver (\begin{DoxyParamCaption}\item[{const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ float $>$ \&}]{datax,  }\item[{const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ float $>$ \&}]{datay,  }\item[{const std\+::string \&}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceanpi_1_1benchmark_a5595edd07bd29c91ca3b040e2601efb7}\label{namespaceanpi_1_1benchmark_a5595edd07bd29c91ca3b040e2601efb7}} 
+\index{anpi\+::benchmark@{anpi\+::benchmark}!quiver1D@{quiver1D}}
+\index{quiver1D@{quiver1D}!anpi\+::benchmark@{anpi\+::benchmark}}
+\subsubsection{\texorpdfstring{quiver1\+D()}{quiver1D()}}
+{\footnotesize\ttfamily void anpi\+::benchmark\+::quiver1D (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ float $>$ \&}]{datax,  }\item[{const std\+::vector$<$ float $>$ \&}]{datay,  }\item[{const std\+::string \&}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceanpi_1_1benchmark_ad790ffd5a54be367b4ffa1fd862f9ba2}\label{namespaceanpi_1_1benchmark_ad790ffd5a54be367b4ffa1fd862f9ba2}} 
+\index{anpi\+::benchmark@{anpi\+::benchmark}!show@{show}}
+\index{show@{show}!anpi\+::benchmark@{anpi\+::benchmark}}
+\subsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void anpi\+::benchmark\+::show (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Show all registered plots. \mbox{\Hypertarget{namespaceanpi_1_1benchmark_ad4af8012fb125ce95037fbf5e5d003eb}\label{namespaceanpi_1_1benchmark_ad4af8012fb125ce95037fbf5e5d003eb}} 
+\index{anpi\+::benchmark@{anpi\+::benchmark}!sqr@{sqr}}
+\index{sqr@{sqr}!anpi\+::benchmark@{anpi\+::benchmark}}
+\subsubsection{\texorpdfstring{sqr()}{sqr()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T anpi\+::benchmark\+::sqr (\begin{DoxyParamCaption}\item[{const T}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespaceanpi_1_1benchmark_a9835c451c061a81b48e64c5c055c3768}\label{namespaceanpi_1_1benchmark_a9835c451c061a81b48e64c5c055c3768}} 
+\index{anpi\+::benchmark@{anpi\+::benchmark}!thermal@{thermal}}
+\index{thermal@{thermal}!anpi\+::benchmark@{anpi\+::benchmark}}
+\subsubsection{\texorpdfstring{thermal()}{thermal()}}
+{\footnotesize\ttfamily void anpi\+::benchmark\+::thermal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceanpi_1_1benchmark_acbe6f0f44f90b9b7861e08dc1e9231d3}\label{namespaceanpi_1_1benchmark_acbe6f0f44f90b9b7861e08dc1e9231d3}} 
+\index{anpi\+::benchmark@{anpi\+::benchmark}!write@{write}}
+\index{write@{write}!anpi\+::benchmark@{anpi\+::benchmark}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void anpi\+::benchmark\+::write (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const std\+::vector$<$ \hyperlink{structanpi_1_1benchmark_1_1measurement}{measurement} $>$ \&}]{m }\end{DoxyParamCaption})}
+
+Save a file with each measurement in a row.
+
+The meaning of the columns is as follows\+: \subsection*{Size}
+
+\subsection*{Average}
+
+\subsection*{Standard deviation}
+
+\subsection*{Minimum}
+
+\subsection*{Maximum}\mbox{\Hypertarget{namespaceanpi_1_1benchmark_a7ef3ea8c9c9a8b79e1e37df28b3615ce}\label{namespaceanpi_1_1benchmark_a7ef3ea8c9c9a8b79e1e37df28b3615ce}} 
+\index{anpi\+::benchmark@{anpi\+::benchmark}!write@{write}}
+\index{write@{write}!anpi\+::benchmark@{anpi\+::benchmark}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void anpi\+::benchmark\+::write (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{const std\+::vector$<$ \hyperlink{structanpi_1_1benchmark_1_1measurement}{measurement} $>$ \&}]{m }\end{DoxyParamCaption})}
+
+Save a file with each measurement in a row 

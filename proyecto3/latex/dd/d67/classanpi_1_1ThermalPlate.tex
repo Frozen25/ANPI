@@ -1,0 +1,454 @@
+\hypertarget{classanpi_1_1ThermalPlate}{}\section{Referencia de la Clase anpi\+:\+:Thermal\+Plate}
+\label{classanpi_1_1ThermalPlate}\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+
+
+thermal plate class  
+
+
+
+
+{\ttfamily \#include $<$Thermal\+Plate.\+hpp$>$}
+
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classanpi_1_1ThermalPlate_a39bd162b401db270c8c304efc5bb98c1}{Thermal\+Plate} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{classanpi_1_1ThermalPlate_ac48332c6a6deef37d73a60a1cf6fe3b7}{Thermal\+Plate} (bool \hyperlink{classanpi_1_1ThermalPlate_ac592cd574059aedf1eb2cb27e626b51a}{isolated\+Top}, bool \hyperlink{classanpi_1_1ThermalPlate_af4a6a4bdaecee9a414226d08a9ef1a72}{isolated\+Bottom}, bool \hyperlink{classanpi_1_1ThermalPlate_adbf8ddb9cecdf113e73107400836faf5}{isolated\+Left}, bool \hyperlink{classanpi_1_1ThermalPlate_ace940ae1c50cc8dfff9f2e715a7646b5}{isolated\+Right}, std\+::vector$<$ float $>$ \&\hyperlink{classanpi_1_1ThermalPlate_af33d6fdc473b7c702a170219add449f0}{top}, std\+::vector$<$ float $>$ \&\hyperlink{classanpi_1_1ThermalPlate_a0ab76c4f095790d763aa7d1eadbde70c}{bottom}, std\+::vector$<$ float $>$ \&\hyperlink{classanpi_1_1ThermalPlate_ab0a7fdc0fa86b01ea917291940de2c5e}{left}, std\+::vector$<$ float $>$ \&\hyperlink{classanpi_1_1ThermalPlate_acc521430da00ad61b016ddb4300462d3}{right}, bool \hyperlink{classanpi_1_1ThermalPlate_a71037bf9aaa9f0ea7098a0ff635a186e}{show\+Thermal\+Flow}, bool \hyperlink{classanpi_1_1ThermalPlate_a1730343425724196f24a3340487f078d}{no\+Visuals}, int \hyperlink{classanpi_1_1ThermalPlate_a09c6cb5df28bbc7ce19b0361ffdd20f3}{grid}, int \hyperlink{classanpi_1_1ThermalPlate_a915dd59f0f630a5e2c1bd46bc129ec6d}{horizontal}, int \hyperlink{classanpi_1_1ThermalPlate_a852ee99fadbce99f511a372c47c2d3ee}{vertical})
+\item 
+float \hyperlink{classanpi_1_1ThermalPlate_a06b979536f63310dc7c7dddd18eca8a5}{cubic\+Spline} (std\+::vector$<$ float $>$ $\ast$border, float \&position)
+\item 
+float \hyperlink{classanpi_1_1ThermalPlate_a8894638c9cce3fc9b615a6930ca0d8cd}{Top\+Bar} (float x)
+\item 
+float \hyperlink{classanpi_1_1ThermalPlate_a15aec2411c038bca312b29a5a21a3a75}{Bottom\+Bar} (float x)
+\item 
+float \hyperlink{classanpi_1_1ThermalPlate_ab3c568d0af480ce66ecce50564d3b464}{Left\+Bar} (float x)
+\item 
+float \hyperlink{classanpi_1_1ThermalPlate_a227bb49bbfb8de325707360f88a1be01}{Right\+Bar} (float x)
+\item 
+size\+\_\+t \hyperlink{classanpi_1_1ThermalPlate_a8d8872e95750a5cd5ae6e1a89b60cbd8}{new\+\_\+index} (size\+\_\+t Ax)
+\begin{DoxyCompactList}\small\item\em \mbox{[}calculates the corresponding matching index on the new matrix (Y)\mbox{]} \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{classanpi_1_1ThermalPlate_a249cb0a0909e3d47bbdf9e65db1e6a46}{old\+\_\+index} (size\+\_\+t Yx)
+\begin{DoxyCompactList}\small\item\em \mbox{[}calculates the corresponding matching index on the old matrix (A)\mbox{]} \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{classanpi_1_1ThermalPlate_aa971acba23c6ee4e136e095d719b2fe0}{fill\+\_\+borders} (\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&Mat)
+\begin{DoxyCompactList}\small\item\em fills the borders of the matrix with the corresponding values \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{classanpi_1_1ThermalPlate_af85b4a7783b8ff9b4660c8a3e959d0a9}{scale\+\_\+matrix} (\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&A, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&Y)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{classanpi_1_1ThermalPlate_af439080df5deeae14923d780e7d7dd3d}{calculate\+Plate} (\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&A, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&Y, float eps, size\+\_\+t max\+Iterations=14)
+\begin{DoxyCompactList}\small\item\em Default value of max iterations is set to 15. \end{DoxyCompactList}\item 
+float \hyperlink{classanpi_1_1ThermalPlate_a13e2c721d18c3b0ee1d6cc4377dd563e}{getmax} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{classanpi_1_1ThermalPlate_a2a172d26e8c9457222299e2fc2415ea2}{get\+UV} (\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&Y)
+\begin{DoxyCompactList}\small\item\em obtains the matrixes U and V \end{DoxyCompactList}\item 
+void \hyperlink{classanpi_1_1ThermalPlate_a8f3535a477baff44346118527ff42090}{solve\+Plate} (float eps=20.\+0f, int max\+Iterations=13, int save=1)
+\end{DoxyCompactItemize}
+\subsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classanpi_1_1ThermalPlate_a9435460d599abe8ed8e179e80f67ec99}{epsilon} = 1.\+0001f
+\begin{DoxyCompactList}\small\item\em Epsilon used to calculate convergence. \end{DoxyCompactList}\item 
+bool \hyperlink{classanpi_1_1ThermalPlate_a39f11113f008b3aac37b4be610f83393}{convergence\+Flag} = false
+\item 
+bool \hyperlink{classanpi_1_1ThermalPlate_ac592cd574059aedf1eb2cb27e626b51a}{isolated\+Top} = false
+\begin{DoxyCompactList}\small\item\em Flags that indicates if a side of the plate is isolated. \end{DoxyCompactList}\item 
+bool \hyperlink{classanpi_1_1ThermalPlate_adbf8ddb9cecdf113e73107400836faf5}{isolated\+Left} = false
+\item 
+bool \hyperlink{classanpi_1_1ThermalPlate_af4a6a4bdaecee9a414226d08a9ef1a72}{isolated\+Bottom} = false
+\item 
+bool \hyperlink{classanpi_1_1ThermalPlate_ace940ae1c50cc8dfff9f2e715a7646b5}{isolated\+Right} = false
+\item 
+std\+::vector$<$ float $>$ \hyperlink{classanpi_1_1ThermalPlate_af33d6fdc473b7c702a170219add449f0}{top}
+\begin{DoxyCompactList}\small\item\em Vectors with the temperatures of the sides. \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \hyperlink{classanpi_1_1ThermalPlate_a0ab76c4f095790d763aa7d1eadbde70c}{bottom}
+\item 
+std\+::vector$<$ float $>$ \hyperlink{classanpi_1_1ThermalPlate_ab0a7fdc0fa86b01ea917291940de2c5e}{left}
+\item 
+std\+::vector$<$ float $>$ \hyperlink{classanpi_1_1ThermalPlate_acc521430da00ad61b016ddb4300462d3}{right}
+\item 
+bool \hyperlink{classanpi_1_1ThermalPlate_a71037bf9aaa9f0ea7098a0ff635a186e}{show\+Thermal\+Flow} \{\}
+\begin{DoxyCompactList}\small\item\em Flag to show the thermal flow of the plate. \end{DoxyCompactList}\item 
+bool \hyperlink{classanpi_1_1ThermalPlate_a1730343425724196f24a3340487f078d}{no\+Visuals} \{\}
+\begin{DoxyCompactList}\small\item\em Flag to show no visuals (overrides every other visual parameter) \end{DoxyCompactList}\item 
+int \hyperlink{classanpi_1_1ThermalPlate_a09c6cb5df28bbc7ce19b0361ffdd20f3}{grid} \{\}
+\begin{DoxyCompactList}\small\item\em Size of the desired grid to show (it\textquotesingle{}s square) \end{DoxyCompactList}\item 
+int \hyperlink{classanpi_1_1ThermalPlate_a915dd59f0f630a5e2c1bd46bc129ec6d}{horizontal} \{\}
+\item 
+int \hyperlink{classanpi_1_1ThermalPlate_a852ee99fadbce99f511a372c47c2d3ee}{vertical} \{\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+thermal plate class 
+
+class \hyperlink{classanpi_1_1ThermalPlate}{Thermal\+Plate}
+
+This class is an abstraction of a thermal plate, is used to make the temperature gradient using the liebman method. 
+
+\subsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a39bd162b401db270c8c304efc5bb98c1}\label{classanpi_1_1ThermalPlate_a39bd162b401db270c8c304efc5bb98c1}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!Thermal\+Plate@{Thermal\+Plate}}
+\index{Thermal\+Plate@{Thermal\+Plate}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{Thermal\+Plate()}{ThermalPlate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily anpi\+::\+Thermal\+Plate\+::\+Thermal\+Plate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default constructor. 
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_ac48332c6a6deef37d73a60a1cf6fe3b7}\label{classanpi_1_1ThermalPlate_ac48332c6a6deef37d73a60a1cf6fe3b7}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!Thermal\+Plate@{Thermal\+Plate}}
+\index{Thermal\+Plate@{Thermal\+Plate}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{Thermal\+Plate()}{ThermalPlate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily anpi\+::\+Thermal\+Plate\+::\+Thermal\+Plate (\begin{DoxyParamCaption}\item[{bool}]{isolated\+Top,  }\item[{bool}]{isolated\+Bottom,  }\item[{bool}]{isolated\+Left,  }\item[{bool}]{isolated\+Right,  }\item[{std\+::vector$<$ float $>$ \&}]{top,  }\item[{std\+::vector$<$ float $>$ \&}]{bottom,  }\item[{std\+::vector$<$ float $>$ \&}]{left,  }\item[{std\+::vector$<$ float $>$ \&}]{right,  }\item[{bool}]{show\+Thermal\+Flow,  }\item[{bool}]{no\+Visuals,  }\item[{int}]{grid,  }\item[{int}]{horizontal,  }\item[{int}]{vertical }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor of the class. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of the matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em isolated\+Top} & used to determine if the top of the matrix is isolated. \\
+\hline
+{\em isolated\+Bottom} & used to determine if the bottom of the matrix is isolated. \\
+\hline
+{\em isolated\+Left} & used to determine if the left of the matrix is isolated. \\
+\hline
+{\em isolated\+Right} & used to determine if the right of the matrix is isolated. \\
+\hline
+{\em top} & This vector describe the thermal profile in the top of the thermal plate. \\
+\hline
+{\em bottom} & This vector describe the thermal profile in the bottom of the thermal plate. \\
+\hline
+{\em left} & This vector describe the thermal profile in the left of the thermal plate. \\
+\hline
+{\em right} & This vector describe the thermal profile in the right of the thermal plate. \\
+\hline
+{\em horizontal} & horizontal value. \\
+\hline
+{\em vertical} & vertical value. \\
+\hline
+{\em grid} & grid used to show the thermal flow. \\
+\hline
+{\em no\+Visuals} & Flag to show no visuals. \\
+\hline
+{\em show\+Thermal\+Flow} & flag used to visualize the thermal flow. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a15aec2411c038bca312b29a5a21a3a75}\label{classanpi_1_1ThermalPlate_a15aec2411c038bca312b29a5a21a3a75}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!Bottom\+Bar@{Bottom\+Bar}}
+\index{Bottom\+Bar@{Bottom\+Bar}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{Bottom\+Bar()}{BottomBar()}}
+{\footnotesize\ttfamily float anpi\+::\+Thermal\+Plate\+::\+Bottom\+Bar (\begin{DoxyParamCaption}\item[{float}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_af439080df5deeae14923d780e7d7dd3d}\label{classanpi_1_1ThermalPlate_af439080df5deeae14923d780e7d7dd3d}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!calculate\+Plate@{calculate\+Plate}}
+\index{calculate\+Plate@{calculate\+Plate}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{calculate\+Plate()}{calculatePlate()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::\+Thermal\+Plate\+::calculate\+Plate (\begin{DoxyParamCaption}\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{A,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{Y,  }\item[{float}]{eps,  }\item[{size\+\_\+t}]{max\+Iterations = {\ttfamily 14} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default value of max iterations is set to 15. 
+
+changes the output of printing a boolean \char`\"{}1\char`\"{} to \char`\"{}true\char`\"{}, and a \char`\"{}0\char`\"{} to \char`\"{}false\char`\"{}
+
+Function used to save the matrix in a file called matrix.\+txt \mbox{\Hypertarget{classanpi_1_1ThermalPlate_a06b979536f63310dc7c7dddd18eca8a5}\label{classanpi_1_1ThermalPlate_a06b979536f63310dc7c7dddd18eca8a5}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!cubic\+Spline@{cubic\+Spline}}
+\index{cubic\+Spline@{cubic\+Spline}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{cubic\+Spline()}{cubicSpline()}}
+{\footnotesize\ttfamily float anpi\+::\+Thermal\+Plate\+::cubic\+Spline (\begin{DoxyParamCaption}\item[{std\+::vector$<$ float $>$ $\ast$}]{border,  }\item[{float \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_aa971acba23c6ee4e136e095d719b2fe0}\label{classanpi_1_1ThermalPlate_aa971acba23c6ee4e136e095d719b2fe0}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!fill\+\_\+borders@{fill\+\_\+borders}}
+\index{fill\+\_\+borders@{fill\+\_\+borders}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{fill\+\_\+borders()}{fill\_borders()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::\+Thermal\+Plate\+::fill\+\_\+borders (\begin{DoxyParamCaption}\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{Mat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+fills the borders of the matrix with the corresponding values 
+
+\mbox{[}long description\mbox{]}
+
+
+\begin{DoxyParams}{Parámetros}
+{\em A} & A matrix that contains the thermal information. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value. \\
+\hline
+\end{DoxyTemplParams}
+The middle point of the block being filled is normalized with\+: (float)(2$\ast$\+V\+A\+L\+U\+E-\/1)/(2$\ast$(cols-\/2))
+
+This fills the Top Bar
+
+This fills the Bottom Bar
+
+This fills the Left Bar
+
+This fills the Right Bar \mbox{\Hypertarget{classanpi_1_1ThermalPlate_a13e2c721d18c3b0ee1d6cc4377dd563e}\label{classanpi_1_1ThermalPlate_a13e2c721d18c3b0ee1d6cc4377dd563e}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!getmax@{getmax}}
+\index{getmax@{getmax}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{getmax()}{getmax()}}
+{\footnotesize\ttfamily float anpi\+::\+Thermal\+Plate\+::getmax (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a2a172d26e8c9457222299e2fc2415ea2}\label{classanpi_1_1ThermalPlate_a2a172d26e8c9457222299e2fc2415ea2}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!get\+UV@{get\+UV}}
+\index{get\+UV@{get\+UV}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{get\+U\+V()}{getUV()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::\+Thermal\+Plate\+::get\+UV (\begin{DoxyParamCaption}\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{Y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+obtains the matrixes U and V 
+
+\mbox{[}long description\mbox{]}
+
+
+\begin{DoxyParams}{Parámetros}
+{\em Y} & \mbox{[}description\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & \mbox{[}description\mbox{]} \\
+\hline
+\end{DoxyTemplParams}
+creates the U and V matrix \mbox{\Hypertarget{classanpi_1_1ThermalPlate_ab3c568d0af480ce66ecce50564d3b464}\label{classanpi_1_1ThermalPlate_ab3c568d0af480ce66ecce50564d3b464}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!Left\+Bar@{Left\+Bar}}
+\index{Left\+Bar@{Left\+Bar}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{Left\+Bar()}{LeftBar()}}
+{\footnotesize\ttfamily float anpi\+::\+Thermal\+Plate\+::\+Left\+Bar (\begin{DoxyParamCaption}\item[{float}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a8d8872e95750a5cd5ae6e1a89b60cbd8}\label{classanpi_1_1ThermalPlate_a8d8872e95750a5cd5ae6e1a89b60cbd8}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!new\+\_\+index@{new\+\_\+index}}
+\index{new\+\_\+index@{new\+\_\+index}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{new\+\_\+index()}{new\_index()}}
+{\footnotesize\ttfamily size\+\_\+t anpi\+::\+Thermal\+Plate\+::new\+\_\+index (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{Ax }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{[}calculates the corresponding matching index on the new matrix (Y)\mbox{]} 
+
+\mbox{[}this is the mapping of the index from the small matrix to the bigger matrix\mbox{]}
+
+
+\begin{DoxyParams}{Parámetros}
+{\em yj} & \mbox{[}index in the matrix A\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+\mbox{[}index in the matrix Y\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a249cb0a0909e3d47bbdf9e65db1e6a46}\label{classanpi_1_1ThermalPlate_a249cb0a0909e3d47bbdf9e65db1e6a46}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!old\+\_\+index@{old\+\_\+index}}
+\index{old\+\_\+index@{old\+\_\+index}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{old\+\_\+index()}{old\_index()}}
+{\footnotesize\ttfamily size\+\_\+t anpi\+::\+Thermal\+Plate\+::old\+\_\+index (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{Yx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{[}calculates the corresponding matching index on the old matrix (A)\mbox{]} 
+
+\mbox{[}this is the inverse of mapping the index from the big matrix to the smaller matrix\mbox{]}
+
+
+\begin{DoxyParams}{Parámetros}
+{\em yj} & \mbox{[}index in the matrix Y\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+\mbox{[}index in the matrix A\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a227bb49bbfb8de325707360f88a1be01}\label{classanpi_1_1ThermalPlate_a227bb49bbfb8de325707360f88a1be01}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!Right\+Bar@{Right\+Bar}}
+\index{Right\+Bar@{Right\+Bar}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{Right\+Bar()}{RightBar()}}
+{\footnotesize\ttfamily float anpi\+::\+Thermal\+Plate\+::\+Right\+Bar (\begin{DoxyParamCaption}\item[{float}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_af85b4a7783b8ff9b4660c8a3e959d0a9}\label{classanpi_1_1ThermalPlate_af85b4a7783b8ff9b4660c8a3e959d0a9}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!scale\+\_\+matrix@{scale\+\_\+matrix}}
+\index{scale\+\_\+matrix@{scale\+\_\+matrix}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{scale\+\_\+matrix()}{scale\_matrix()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::\+Thermal\+Plate\+::scale\+\_\+matrix (\begin{DoxyParamCaption}\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{A,  }\item[{\hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&}]{Y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Creates a new matrix Y, which is float the size of the original inside its borders and fills it with the old matrix data, for every element in A there are 4 elements in Y 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of the matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em A} & old matrix (small one) \\
+\hline
+{\em Y} & new matrix (big one) \\
+\hline
+\end{DoxyParams}
+Default Initialized values
+
+I N T E R N A L B L O C K
+
+C O R N E R S
+
+T\+OP L\+E\+FT
+
+T\+OP R\+I\+G\+HT
+
+B\+O\+T\+T\+OM L\+E\+FT
+
+B\+O\+T\+T\+OM R\+I\+G\+HT
+
+B O R D E R S
+
+T\+OP B\+O\+R\+D\+ER
+
+B\+O\+T\+T\+OM B\+O\+R\+D\+ER
+
+L\+E\+FT B\+O\+R\+D\+ER
+
+R\+I\+G\+HT B\+O\+R\+D\+ER
+
+checks convergence, if it converges, the final result is true \mbox{\Hypertarget{classanpi_1_1ThermalPlate_a8f3535a477baff44346118527ff42090}\label{classanpi_1_1ThermalPlate_a8f3535a477baff44346118527ff42090}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!solve\+Plate@{solve\+Plate}}
+\index{solve\+Plate@{solve\+Plate}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{solve\+Plate()}{solvePlate()}}
+{\footnotesize\ttfamily void anpi\+::\+Thermal\+Plate\+::solve\+Plate (\begin{DoxyParamCaption}\item[{float}]{eps = {\ttfamily 20.0f},  }\item[{int}]{max\+Iterations = {\ttfamily 13},  }\item[{int}]{save = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a8894638c9cce3fc9b615a6930ca0d8cd}\label{classanpi_1_1ThermalPlate_a8894638c9cce3fc9b615a6930ca0d8cd}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!Top\+Bar@{Top\+Bar}}
+\index{Top\+Bar@{Top\+Bar}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{Top\+Bar()}{TopBar()}}
+{\footnotesize\ttfamily float anpi\+::\+Thermal\+Plate\+::\+Top\+Bar (\begin{DoxyParamCaption}\item[{float}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a0ab76c4f095790d763aa7d1eadbde70c}\label{classanpi_1_1ThermalPlate_a0ab76c4f095790d763aa7d1eadbde70c}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!bottom@{bottom}}
+\index{bottom@{bottom}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{bottom}{bottom}}
+{\footnotesize\ttfamily std\+::vector$<$float$>$ anpi\+::\+Thermal\+Plate\+::bottom\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a39f11113f008b3aac37b4be610f83393}\label{classanpi_1_1ThermalPlate_a39f11113f008b3aac37b4be610f83393}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!convergence\+Flag@{convergence\+Flag}}
+\index{convergence\+Flag@{convergence\+Flag}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{convergence\+Flag}{convergenceFlag}}
+{\footnotesize\ttfamily bool anpi\+::\+Thermal\+Plate\+::convergence\+Flag = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a9435460d599abe8ed8e179e80f67ec99}\label{classanpi_1_1ThermalPlate_a9435460d599abe8ed8e179e80f67ec99}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!epsilon@{epsilon}}
+\index{epsilon@{epsilon}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{epsilon}{epsilon}}
+{\footnotesize\ttfamily float anpi\+::\+Thermal\+Plate\+::epsilon = 1.\+0001f\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Epsilon used to calculate convergence. 
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a09c6cb5df28bbc7ce19b0361ffdd20f3}\label{classanpi_1_1ThermalPlate_a09c6cb5df28bbc7ce19b0361ffdd20f3}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!grid@{grid}}
+\index{grid@{grid}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily int anpi\+::\+Thermal\+Plate\+::grid \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Size of the desired grid to show (it\textquotesingle{}s square) 
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a915dd59f0f630a5e2c1bd46bc129ec6d}\label{classanpi_1_1ThermalPlate_a915dd59f0f630a5e2c1bd46bc129ec6d}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!horizontal@{horizontal}}
+\index{horizontal@{horizontal}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{horizontal}{horizontal}}
+{\footnotesize\ttfamily int anpi\+::\+Thermal\+Plate\+::horizontal \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_af4a6a4bdaecee9a414226d08a9ef1a72}\label{classanpi_1_1ThermalPlate_af4a6a4bdaecee9a414226d08a9ef1a72}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!isolated\+Bottom@{isolated\+Bottom}}
+\index{isolated\+Bottom@{isolated\+Bottom}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{isolated\+Bottom}{isolatedBottom}}
+{\footnotesize\ttfamily bool anpi\+::\+Thermal\+Plate\+::isolated\+Bottom = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_adbf8ddb9cecdf113e73107400836faf5}\label{classanpi_1_1ThermalPlate_adbf8ddb9cecdf113e73107400836faf5}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!isolated\+Left@{isolated\+Left}}
+\index{isolated\+Left@{isolated\+Left}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{isolated\+Left}{isolatedLeft}}
+{\footnotesize\ttfamily bool anpi\+::\+Thermal\+Plate\+::isolated\+Left = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_ace940ae1c50cc8dfff9f2e715a7646b5}\label{classanpi_1_1ThermalPlate_ace940ae1c50cc8dfff9f2e715a7646b5}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!isolated\+Right@{isolated\+Right}}
+\index{isolated\+Right@{isolated\+Right}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{isolated\+Right}{isolatedRight}}
+{\footnotesize\ttfamily bool anpi\+::\+Thermal\+Plate\+::isolated\+Right = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_ac592cd574059aedf1eb2cb27e626b51a}\label{classanpi_1_1ThermalPlate_ac592cd574059aedf1eb2cb27e626b51a}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!isolated\+Top@{isolated\+Top}}
+\index{isolated\+Top@{isolated\+Top}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{isolated\+Top}{isolatedTop}}
+{\footnotesize\ttfamily bool anpi\+::\+Thermal\+Plate\+::isolated\+Top = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flags that indicates if a side of the plate is isolated. 
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_ab0a7fdc0fa86b01ea917291940de2c5e}\label{classanpi_1_1ThermalPlate_ab0a7fdc0fa86b01ea917291940de2c5e}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!left@{left}}
+\index{left@{left}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{left}{left}}
+{\footnotesize\ttfamily std\+::vector$<$float$>$ anpi\+::\+Thermal\+Plate\+::left\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a1730343425724196f24a3340487f078d}\label{classanpi_1_1ThermalPlate_a1730343425724196f24a3340487f078d}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!no\+Visuals@{no\+Visuals}}
+\index{no\+Visuals@{no\+Visuals}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{no\+Visuals}{noVisuals}}
+{\footnotesize\ttfamily bool anpi\+::\+Thermal\+Plate\+::no\+Visuals \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag to show no visuals (overrides every other visual parameter) 
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_acc521430da00ad61b016ddb4300462d3}\label{classanpi_1_1ThermalPlate_acc521430da00ad61b016ddb4300462d3}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!right@{right}}
+\index{right@{right}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{right}{right}}
+{\footnotesize\ttfamily std\+::vector$<$float$>$ anpi\+::\+Thermal\+Plate\+::right\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a71037bf9aaa9f0ea7098a0ff635a186e}\label{classanpi_1_1ThermalPlate_a71037bf9aaa9f0ea7098a0ff635a186e}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!show\+Thermal\+Flow@{show\+Thermal\+Flow}}
+\index{show\+Thermal\+Flow@{show\+Thermal\+Flow}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{show\+Thermal\+Flow}{showThermalFlow}}
+{\footnotesize\ttfamily bool anpi\+::\+Thermal\+Plate\+::show\+Thermal\+Flow \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag to show the thermal flow of the plate. 
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_af33d6fdc473b7c702a170219add449f0}\label{classanpi_1_1ThermalPlate_af33d6fdc473b7c702a170219add449f0}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!top@{top}}
+\index{top@{top}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{top}{top}}
+{\footnotesize\ttfamily std\+::vector$<$float$>$ anpi\+::\+Thermal\+Plate\+::top\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vectors with the temperatures of the sides. 
+
+\mbox{\Hypertarget{classanpi_1_1ThermalPlate_a852ee99fadbce99f511a372c47c2d3ee}\label{classanpi_1_1ThermalPlate_a852ee99fadbce99f511a372c47c2d3ee}} 
+\index{anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}!vertical@{vertical}}
+\index{vertical@{vertical}!anpi\+::\+Thermal\+Plate@{anpi\+::\+Thermal\+Plate}}
+\subsubsection{\texorpdfstring{vertical}{vertical}}
+{\footnotesize\ttfamily int anpi\+::\+Thermal\+Plate\+::vertical \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{ThermalPlate_8hpp}{Thermal\+Plate.\+hpp}\end{DoxyCompactItemize}

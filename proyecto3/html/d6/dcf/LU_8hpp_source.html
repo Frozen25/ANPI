@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Proyecto3: Fichero Fuente include/LU.hpp</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Proyecto3
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">AplicacióndelmétodoLiebmannparalasolucióndelaecuacióndiferencialparcialelíptica,enunaestructura“piramidal”.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Buscar');
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">LU.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d6/dcf/LU_8hpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;limits&gt;</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../db/d8f/Utilities_8hpp.html">Utilities.hpp</a>&quot;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../da/d42/Exception_8hpp.html">Exception.hpp</a>&quot;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d9/d1c/Matrix_8hpp.html">Matrix.hpp</a>&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../df/db9/LUDoolittle_8hpp.html">LUDoolittle.hpp</a>&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifndef ANPI_LU_HPP</span></div><div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="../../d6/dcf/LU_8hpp.html#af951373acdeee8477120e7f95fa31f04">   14</a></span>&#160;<span class="preprocessor">#define ANPI_LU_HPP</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span><a class="code" href="../../dd/d18/namespaceanpi.html">anpi</a>{</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="../../dd/d18/namespaceanpi.html#a5a07147896ea864598b821b8a57401d4">   26</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="../../dd/d18/namespaceanpi.html#a5a07147896ea864598b821b8a57401d4">lu</a>(<span class="keyword">const</span> <a class="code" href="../../de/dee/classanpi_1_1Matrix.html">Matrix&lt;T&gt;</a>&amp; A,</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                   <a class="code" href="../../de/dee/classanpi_1_1Matrix.html">Matrix&lt;T&gt;</a>&amp; LU,</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                   std::vector&lt;size_t&gt;&amp; permut){</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">        #ifdef ANPI_ENABLE_SIMD</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">          #ifdef __AVX__</span></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            anpi::simd::luDoolittleSIMD&lt;T,  typename avx_traits&lt;T&gt;::reg_type&gt;(A, LU, permut);</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">          #else</span></div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <a class="code" href="../../dd/d18/namespaceanpi.html#abaf1f0f8854af4b136dbfade58f959e6">luDoolittle</a>(A, LU, permut);</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">          #endif</span></div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">        #else</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <a class="code" href="../../dd/d18/namespaceanpi.html#abaf1f0f8854af4b136dbfade58f959e6">luDoolittle</a>(A, LU, permut);</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">        #endif</span></div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="../../dd/d18/namespaceanpi.html#a02b3ba58e1fd11d7b703dceae3032eb0">   49</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="../../dd/d18/namespaceanpi.html#a02b3ba58e1fd11d7b703dceae3032eb0">unpack</a>(<span class="keyword">const</span> <a class="code" href="../../de/dee/classanpi_1_1Matrix.html">Matrix&lt;T&gt;</a>&amp; LU,</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                       <a class="code" href="../../de/dee/classanpi_1_1Matrix.html">Matrix&lt;T&gt;</a>&amp; L,</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                       <a class="code" href="../../de/dee/classanpi_1_1Matrix.html">Matrix&lt;T&gt;</a>&amp; U){</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="../../dd/d18/namespaceanpi.html#a64a55390c2c65ca78b464bc429823512">anpi::unpackDoolittle</a>(LU, L, U);</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif //ANPI_LU_HPP</span></div><div class="ttc" id="Matrix_8hpp_html"><div class="ttname"><a href="../../d9/d1c/Matrix_8hpp.html">Matrix.hpp</a></div></div>
+<div class="ttc" id="namespaceanpi_html"><div class="ttname"><a href="../../dd/d18/namespaceanpi.html">anpi</a></div><div class="ttdef"><b>Definition:</b> benchmarkFramework.cpp:13</div></div>
+<div class="ttc" id="namespaceanpi_html_a64a55390c2c65ca78b464bc429823512"><div class="ttname"><a href="../../dd/d18/namespaceanpi.html#a64a55390c2c65ca78b464bc429823512">anpi::unpackDoolittle</a></div><div class="ttdeci">void unpackDoolittle(const Matrix&lt; T &gt; &amp;LU, Matrix&lt; T &gt; &amp;L, Matrix&lt; T &gt; &amp;U)</div><div class="ttdef"><b>Definition:</b> LUDoolittle.hpp:41</div></div>
+<div class="ttc" id="namespaceanpi_html_abaf1f0f8854af4b136dbfade58f959e6"><div class="ttname"><a href="../../dd/d18/namespaceanpi.html#abaf1f0f8854af4b136dbfade58f959e6">anpi::luDoolittle</a></div><div class="ttdeci">void luDoolittle(const Matrix&lt; T &gt; &amp;A, Matrix&lt; T &gt; &amp;LU, std::vector&lt; size_t &gt; &amp;permut)</div><div class="ttdef"><b>Definition:</b> LUDoolittle.hpp:94</div></div>
+<div class="ttc" id="Exception_8hpp_html"><div class="ttname"><a href="../../da/d42/Exception_8hpp.html">Exception.hpp</a></div></div>
+<div class="ttc" id="namespaceanpi_html_a5a07147896ea864598b821b8a57401d4"><div class="ttname"><a href="../../dd/d18/namespaceanpi.html#a5a07147896ea864598b821b8a57401d4">anpi::lu</a></div><div class="ttdeci">void lu(const Matrix&lt; T &gt; &amp;A, Matrix&lt; T &gt; &amp;LU, std::vector&lt; size_t &gt; &amp;permut)</div><div class="ttdef"><b>Definition:</b> LU.hpp:26</div></div>
+<div class="ttc" id="namespaceanpi_html_a02b3ba58e1fd11d7b703dceae3032eb0"><div class="ttname"><a href="../../dd/d18/namespaceanpi.html#a02b3ba58e1fd11d7b703dceae3032eb0">anpi::unpack</a></div><div class="ttdeci">void unpack(const Matrix&lt; T &gt; &amp;LU, Matrix&lt; T &gt; &amp;L, Matrix&lt; T &gt; &amp;U)</div><div class="ttdoc">used to decompose LU matrix in L matrix and U matrix. </div><div class="ttdef"><b>Definition:</b> LU.hpp:49</div></div>
+<div class="ttc" id="classanpi_1_1Matrix_html"><div class="ttname"><a href="../../de/dee/classanpi_1_1Matrix.html">anpi::Matrix&lt; T &gt;</a></div></div>
+<div class="ttc" id="LUDoolittle_8hpp_html"><div class="ttname"><a href="../../df/db9/LUDoolittle_8hpp.html">LUDoolittle.hpp</a></div></div>
+<div class="ttc" id="Utilities_8hpp_html"><div class="ttname"><a href="../../db/d8f/Utilities_8hpp.html">Utilities.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

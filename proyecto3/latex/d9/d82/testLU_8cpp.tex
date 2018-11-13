@@ -1,0 +1,68 @@
+\hypertarget{testLU_8cpp}{}\section{Referencia del Archivo test/test\+LU.cpp}
+\label{testLU_8cpp}\index{test/test\+L\+U.\+cpp@{test/test\+L\+U.\+cpp}}
+{\ttfamily \#include $<$boost/test/unit\+\_\+test.\+hpp$>$}\newline
+{\ttfamily \#include \char`\"{}L\+U\+Crout.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}L\+U\+Doolittle.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}L\+U.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Solver.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$exception$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$complex$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+Dependencia gráfica adjunta para test\+L\+U.\+cpp\+:
+% FIG 0
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceanpi}{anpi}
+\item 
+ \hyperlink{namespaceanpi_1_1test}{anpi\+::test}
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_1_1test_a0baf1a43bc6d37c8b0bc22587b366656}{anpi\+::test\+::lu\+Test} (const std\+::function$<$ void(const Matrix$<$ T $>$ \&, Matrix$<$ T $>$ \&, std\+::vector$<$ size\+\_\+t $>$ \&)$>$ \&decomp, const std\+::function$<$ void(const Matrix$<$ T $>$ \&, Matrix$<$ T $>$ \&, Matrix$<$ T $>$ \&)$>$ \&unpack)
+\begin{DoxyCompactList}\small\item\em Test the given closed root finder. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_1_1test_a9d30d26dcfe2c4fe8c7c98c71546d734}{anpi\+::test\+::substitution\+Test} (const std\+::function$<$ void(\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&, std\+::vector$<$ T $>$ \&, std\+::vector$<$ T $>$ \&)$>$ \&backward\+Subs, const std\+::function$<$ void(\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&, std\+::vector$<$ T $>$ \&, std\+::vector$<$ T $>$ \&)$>$ \&forward\+Subs)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_1_1test_a48305a842ca50e8175b4baa93d9fc70e}{anpi\+::test\+::solve\+L\+U\+Test} (const std\+::function$<$ void(const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&, std\+::vector$<$ T $>$ \&, const std\+::vector$<$ T $>$ \&)$>$ \&solve\+LU)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_1_1test_a0befe6c5f1dbc4854338935efe425d06}{anpi\+::test\+::invert\+Test} (const std\+::function$<$ void(const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&, \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&)$>$ \&invert)
+\item 
+\hyperlink{testLU_8cpp_a072d87a61da0454350a27e1fd6199325}{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE} (lu)
+\item 
+\hyperlink{testLU_8cpp_a641579059773f274d8da5746a4f41c6d}{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE} (subtitution)
+\item 
+\hyperlink{testLU_8cpp_a23143cf4f007ee46fae88305fc9715bd}{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE} (solver)
+\item 
+\hyperlink{testLU_8cpp_aaf78ba0df86e219f62c9e2cbfa3482e6}{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE} (inverting)
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de las funciones}
+\mbox{\Hypertarget{testLU_8cpp_a072d87a61da0454350a27e1fd6199325}\label{testLU_8cpp_a072d87a61da0454350a27e1fd6199325}} 
+\index{test\+L\+U.\+cpp@{test\+L\+U.\+cpp}!B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}}
+\index{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}!test\+L\+U.\+cpp@{test\+L\+U.\+cpp}}
+\subsubsection{\texorpdfstring{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+S\+E()}{BOOST\_AUTO\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE (\begin{DoxyParamCaption}\item[{lu}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{testLU_8cpp_a641579059773f274d8da5746a4f41c6d}\label{testLU_8cpp_a641579059773f274d8da5746a4f41c6d}} 
+\index{test\+L\+U.\+cpp@{test\+L\+U.\+cpp}!B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}}
+\index{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}!test\+L\+U.\+cpp@{test\+L\+U.\+cpp}}
+\subsubsection{\texorpdfstring{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+S\+E()}{BOOST\_AUTO\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE (\begin{DoxyParamCaption}\item[{subtitution}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{testLU_8cpp_a23143cf4f007ee46fae88305fc9715bd}\label{testLU_8cpp_a23143cf4f007ee46fae88305fc9715bd}} 
+\index{test\+L\+U.\+cpp@{test\+L\+U.\+cpp}!B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}}
+\index{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}!test\+L\+U.\+cpp@{test\+L\+U.\+cpp}}
+\subsubsection{\texorpdfstring{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+S\+E()}{BOOST\_AUTO\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE (\begin{DoxyParamCaption}\item[{solver}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{testLU_8cpp_aaf78ba0df86e219f62c9e2cbfa3482e6}\label{testLU_8cpp_aaf78ba0df86e219f62c9e2cbfa3482e6}} 
+\index{test\+L\+U.\+cpp@{test\+L\+U.\+cpp}!B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}}
+\index{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}!test\+L\+U.\+cpp@{test\+L\+U.\+cpp}}
+\subsubsection{\texorpdfstring{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+S\+E()}{BOOST\_AUTO\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE (\begin{DoxyParamCaption}\item[{inverting}]{ }\end{DoxyParamCaption})}
+

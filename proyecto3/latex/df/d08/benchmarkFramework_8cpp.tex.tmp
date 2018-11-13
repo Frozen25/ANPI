@@ -1,0 +1,33 @@
+\hypertarget{benchmarkFramework_8cpp}{}\section{Referencia del Archivo benchmarks/benchmark\+Framework.cpp}
+\label{benchmarkFramework_8cpp}\index{benchmarks/benchmark\+Framework.\+cpp@{benchmarks/benchmark\+Framework.\+cpp}}
+{\ttfamily \#include \char`\"{}benchmark\+Framework.\+hpp\char`\"{}}\newline
+Dependencia gráfica adjunta para benchmark\+Framework.\+cpp\+:
+% FIG 0
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceanpi}{anpi}
+\item 
+ \hyperlink{namespaceanpi_1_1benchmark}{anpi\+::benchmark}
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a02a7668535c6dae4644ace1f7f6e2f75}{anpi\+::benchmark\+::compute\+Stats} (const std\+::vector$<$ size\+\_\+t $>$ \&sizes, const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ std\+::chrono\+::duration$<$ double $>$ $>$ \&mat, std\+::vector$<$ measurement $>$ \&times)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_acbe6f0f44f90b9b7861e08dc1e9231d3}{anpi\+::benchmark\+::write} (std\+::ostream \&stream, const std\+::vector$<$ measurement $>$ \&m)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a7ef3ea8c9c9a8b79e1e37df28b3615ce}{anpi\+::benchmark\+::write} (const std\+::string \&filename, const std\+::vector$<$ measurement $>$ \&m)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a2342edf4630c65e3bb493d4327aaf2e5}{anpi\+::benchmark\+::plot} (const std\+::vector$<$ measurement $>$ \&m, const std\+::string \&legend, const std\+::string \&color)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a9835c451c061a81b48e64c5c055c3768}{anpi\+::benchmark\+::thermal} ()
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a7780fd16b79ca29deebddc3494da1886}{anpi\+::benchmark\+::quiver} (const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ float $>$ \&datax, const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ float $>$ \&datay, const std\+::string \&color)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a5595edd07bd29c91ca3b040e2601efb7}{anpi\+::benchmark\+::quiver1D} (const std\+::vector$<$ float $>$ \&datax, const std\+::vector$<$ float $>$ \&datay, const std\+::string \&color)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a58babb1b967728c138790779206a61a1}{anpi\+::benchmark\+::plot\+Range} (const std\+::vector$<$ measurement $>$ \&m, const std\+::string \&legend, const std\+::string \&color)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_ad790ffd5a54be367b4ffa1fd862f9ba2}{anpi\+::benchmark\+::show} ()
+\end{DoxyCompactItemize}

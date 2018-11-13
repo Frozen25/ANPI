@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Proyecto3: Referencia del Namespace anpi::simd</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Proyecto3
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">AplicacióndelmétodoLiebmannparalasolucióndelaecuacióndiferencialparcialelíptica,enunaestructura“piramidal”.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Buscar');
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dd/d18/namespaceanpi.html">anpi</a></li><li class="navelem"><a class="el" href="../../d6/d42/namespaceanpi_1_1simd.html">simd</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funciones</a>  </div>
+  <div class="headertitle">
+<div class="title">Referencia del Namespace anpi::simd</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:a806b5ccd28c228e97b86cc94662c73b1"><td class="memTemplParams" colspan="2">template&lt;typename T , class regType &gt; </td></tr>
+<tr class="memitem:a806b5ccd28c228e97b86cc94662c73b1"><td class="memTemplItemLeft" align="right" valign="top">regType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d6/d42/namespaceanpi_1_1simd.html#a806b5ccd28c228e97b86cc94662c73b1">mm_add</a> (regType, regType)</td></tr>
+<tr class="memdesc:a806b5ccd28c228e97b86cc94662c73b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">We wrap the intrinsics methods to be polymorphic versions.  <a href="#a806b5ccd28c228e97b86cc94662c73b1">Más...</a><br /></td></tr>
+<tr class="separator:a806b5ccd28c228e97b86cc94662c73b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68e80d90707dc4526ef25ded81768ad0"><td class="memTemplParams" colspan="2">template&lt;typename T , class Alloc , typename regType &gt; </td></tr>
+<tr class="memitem:a68e80d90707dc4526ef25ded81768ad0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d6/d42/namespaceanpi_1_1simd.html#a68e80d90707dc4526ef25ded81768ad0">addSIMD</a> (const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;a, const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;<a class="el" href="../../df/df5/program__options_8cpp.html#a03799bd905ea96cd38435410694bf05b">b</a>, <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;c)</td></tr>
+<tr class="separator:a68e80d90707dc4526ef25ded81768ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4ef1d42aea6476578a669fb8c7109a1"><td class="memTemplParams" colspan="2">template&lt;typename T , class Alloc , typename std::enable_if&lt; is_simd_type&lt; T &gt;::value, int &gt;::type  = 0&gt; </td></tr>
+<tr class="memitem:ae4ef1d42aea6476578a669fb8c7109a1"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d6/d42/namespaceanpi_1_1simd.html#ae4ef1d42aea6476578a669fb8c7109a1">add</a> (const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;a, const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;<a class="el" href="../../df/df5/program__options_8cpp.html#a03799bd905ea96cd38435410694bf05b">b</a>, <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;c)</td></tr>
+<tr class="separator:ae4ef1d42aea6476578a669fb8c7109a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a254bbb0c28defbf2348e5197607d61bc"><td class="memTemplParams" colspan="2">template&lt;typename T , class Alloc &gt; </td></tr>
+<tr class="memitem:a254bbb0c28defbf2348e5197607d61bc"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d6/d42/namespaceanpi_1_1simd.html#a254bbb0c28defbf2348e5197607d61bc">add</a> (<a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;a, const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;<a class="el" href="../../df/df5/program__options_8cpp.html#a03799bd905ea96cd38435410694bf05b">b</a>)</td></tr>
+<tr class="separator:a254bbb0c28defbf2348e5197607d61bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a666e87726d6f06b283cf78e9635e0158"><td class="memTemplParams" colspan="2">template&lt;typename T , class regType &gt; </td></tr>
+<tr class="memitem:a666e87726d6f06b283cf78e9635e0158"><td class="memTemplItemLeft" align="right" valign="top">regType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d6/d42/namespaceanpi_1_1simd.html#a666e87726d6f06b283cf78e9635e0158">mm_sub</a> (regType, regType)</td></tr>
+<tr class="separator:a666e87726d6f06b283cf78e9635e0158"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6637f725450fe3bbc39506a28152264f"><td class="memTemplParams" colspan="2">template&lt;typename T , class Alloc , typename regType &gt; </td></tr>
+<tr class="memitem:a6637f725450fe3bbc39506a28152264f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d6/d42/namespaceanpi_1_1simd.html#a6637f725450fe3bbc39506a28152264f">subSIMD</a> (const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;a, const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;<a class="el" href="../../df/df5/program__options_8cpp.html#a03799bd905ea96cd38435410694bf05b">b</a>, <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;c)</td></tr>
+<tr class="separator:a6637f725450fe3bbc39506a28152264f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78848ed9be16434f4e6ee7ca6f56f14d"><td class="memTemplParams" colspan="2">template&lt;typename T , class Alloc , typename std::enable_if&lt; is_simd_type&lt; T &gt;::value, int &gt;::type  = 0&gt; </td></tr>
+<tr class="memitem:a78848ed9be16434f4e6ee7ca6f56f14d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d6/d42/namespaceanpi_1_1simd.html#a78848ed9be16434f4e6ee7ca6f56f14d">subtract</a> (const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;a, const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;<a class="el" href="../../df/df5/program__options_8cpp.html#a03799bd905ea96cd38435410694bf05b">b</a>, <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;c)</td></tr>
+<tr class="separator:a78848ed9be16434f4e6ee7ca6f56f14d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a623f6cf02845caed74338093e0162ef9"><td class="memTemplParams" colspan="2">template&lt;typename T , class Alloc &gt; </td></tr>
+<tr class="memitem:a623f6cf02845caed74338093e0162ef9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d6/d42/namespaceanpi_1_1simd.html#a623f6cf02845caed74338093e0162ef9">subtract</a> (<a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;a, const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;<a class="el" href="../../df/df5/program__options_8cpp.html#a03799bd905ea96cd38435410694bf05b">b</a>)</td></tr>
+<tr class="separator:a623f6cf02845caed74338093e0162ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7ebdb38c8e4fc5fa991bba556974de5"><td class="memTemplParams" colspan="2">template&lt;typename T , class regType &gt; </td></tr>
+<tr class="memitem:aa7ebdb38c8e4fc5fa991bba556974de5"><td class="memTemplItemLeft" align="right" valign="top">regType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d6/d42/namespaceanpi_1_1simd.html#aa7ebdb38c8e4fc5fa991bba556974de5">mm_mul</a> (regType, regType)</td></tr>
+<tr class="separator:aa7ebdb38c8e4fc5fa991bba556974de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentación de las funciones</h2>
+<a id="ae4ef1d42aea6476578a669fb8c7109a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4ef1d42aea6476578a669fb8c7109a1">&#9670;&nbsp;</a></span>add() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , class Alloc , typename std::enable_if&lt; is_simd_type&lt; T &gt;::value, int &gt;::type  = 0&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void anpi::simd::add </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a254bbb0c28defbf2348e5197607d61bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a254bbb0c28defbf2348e5197607d61bc">&#9670;&nbsp;</a></span>add() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , class Alloc &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void anpi::simd::add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a68e80d90707dc4526ef25ded81768ad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68e80d90707dc4526ef25ded81768ad0">&#9670;&nbsp;</a></span>addSIMD()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , class Alloc , typename regType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void anpi::simd::addSIMD </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a806b5ccd28c228e97b86cc94662c73b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a806b5ccd28c228e97b86cc94662c73b1">&#9670;&nbsp;</a></span>mm_add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , class regType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">regType anpi::simd::mm_add </td>
+          <td>(</td>
+          <td class="paramtype">regType&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">regType&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>We wrap the intrinsics methods to be polymorphic versions. </p>
+
+</div>
+</div>
+<a id="aa7ebdb38c8e4fc5fa991bba556974de5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7ebdb38c8e4fc5fa991bba556974de5">&#9670;&nbsp;</a></span>mm_mul()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , class regType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">regType anpi::simd::mm_mul </td>
+          <td>(</td>
+          <td class="paramtype">regType&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">regType&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a666e87726d6f06b283cf78e9635e0158"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a666e87726d6f06b283cf78e9635e0158">&#9670;&nbsp;</a></span>mm_sub()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , class regType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">regType anpi::simd::mm_sub </td>
+          <td>(</td>
+          <td class="paramtype">regType&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">regType&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6637f725450fe3bbc39506a28152264f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6637f725450fe3bbc39506a28152264f">&#9670;&nbsp;</a></span>subSIMD()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , class Alloc , typename regType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void anpi::simd::subSIMD </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78848ed9be16434f4e6ee7ca6f56f14d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78848ed9be16434f4e6ee7ca6f56f14d">&#9670;&nbsp;</a></span>subtract() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , class Alloc , typename std::enable_if&lt; is_simd_type&lt; T &gt;::value, int &gt;::type  = 0&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void anpi::simd::subtract </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a623f6cf02845caed74338093e0162ef9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a623f6cf02845caed74338093e0162ef9">&#9670;&nbsp;</a></span>subtract() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , class Alloc &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void anpi::simd::subtract </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/dee/classanpi_1_1Matrix.html">Matrix</a>&lt; T, Alloc &gt; &amp;&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

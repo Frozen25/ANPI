@@ -1,0 +1,7 @@
+digraph "Representación gráfica de la clase"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="anpi::extract_alignment\l\< Alloc\< T, Align \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/dd5/structanpi_1_1extract__alignment_3_01Alloc_3_01T_00_01Align_01_4_01_4.html"];
+}

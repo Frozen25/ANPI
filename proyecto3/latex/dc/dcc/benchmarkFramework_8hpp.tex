@@ -1,0 +1,86 @@
+\hypertarget{benchmarkFramework_8hpp}{}\section{Referencia del Archivo benchmarks/benchmark\+Framework.hpp}
+\label{benchmarkFramework_8hpp}\index{benchmarks/benchmark\+Framework.\+hpp@{benchmarks/benchmark\+Framework.\+hpp}}
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$ostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$Matrix.\+hpp$>$}\newline
+{\ttfamily \#include $<$Plot\+Py.\+hpp$>$}\newline
+Dependencia gráfica adjunta para benchmark\+Framework.\+hpp\+:
+% FIG 0
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+% FIG 1
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structanpi_1_1benchmark_1_1measurement}{anpi\+::benchmark\+::measurement}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceanpi}{anpi}
+\item 
+ \hyperlink{namespaceanpi_1_1benchmark}{anpi\+::benchmark}
+\end{DoxyCompactItemize}
+\subsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{benchmarkFramework_8hpp_ac92c101c2820680d2c3934979bdf3ae2}{A\+N\+P\+I\+\_\+\+B\+E\+N\+C\+H\+M\+A\+RK}(sizes,  rep,  times,  bench)
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \hyperlink{namespaceanpi_1_1benchmark_ad4af8012fb125ce95037fbf5e5d003eb}{anpi\+::benchmark\+::sqr} (const T val)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a02a7668535c6dae4644ace1f7f6e2f75}{anpi\+::benchmark\+::compute\+Stats} (const std\+::vector$<$ size\+\_\+t $>$ \&sizes, const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ std\+::chrono\+::duration$<$ double $>$ $>$ \&mat, std\+::vector$<$ measurement $>$ \&times)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_acbe6f0f44f90b9b7861e08dc1e9231d3}{anpi\+::benchmark\+::write} (std\+::ostream \&stream, const std\+::vector$<$ measurement $>$ \&m)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a7ef3ea8c9c9a8b79e1e37df28b3615ce}{anpi\+::benchmark\+::write} (const std\+::string \&filename, const std\+::vector$<$ measurement $>$ \&m)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a2342edf4630c65e3bb493d4327aaf2e5}{anpi\+::benchmark\+::plot} (const std\+::vector$<$ measurement $>$ \&m, const std\+::string \&legend, const std\+::string \&color)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a9835c451c061a81b48e64c5c055c3768}{anpi\+::benchmark\+::thermal} ()
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a7780fd16b79ca29deebddc3494da1886}{anpi\+::benchmark\+::quiver} (const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ float $>$ \&datax, const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ float $>$ \&datay, const std\+::string \&color)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a5595edd07bd29c91ca3b040e2601efb7}{anpi\+::benchmark\+::quiver1D} (const std\+::vector$<$ float $>$ \&datax, const std\+::vector$<$ float $>$ \&datay, const std\+::string \&color)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_a58babb1b967728c138790779206a61a1}{anpi\+::benchmark\+::plot\+Range} (const std\+::vector$<$ measurement $>$ \&m, const std\+::string \&legend, const std\+::string \&color)
+\item 
+void \hyperlink{namespaceanpi_1_1benchmark_ad790ffd5a54be367b4ffa1fd862f9ba2}{anpi\+::benchmark\+::show} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de los \textquotesingle{}defines\textquotesingle{}}
+\mbox{\Hypertarget{benchmarkFramework_8hpp_ac92c101c2820680d2c3934979bdf3ae2}\label{benchmarkFramework_8hpp_ac92c101c2820680d2c3934979bdf3ae2}} 
+\index{benchmark\+Framework.\+hpp@{benchmark\+Framework.\+hpp}!A\+N\+P\+I\+\_\+\+B\+E\+N\+C\+H\+M\+A\+RK@{A\+N\+P\+I\+\_\+\+B\+E\+N\+C\+H\+M\+A\+RK}}
+\index{A\+N\+P\+I\+\_\+\+B\+E\+N\+C\+H\+M\+A\+RK@{A\+N\+P\+I\+\_\+\+B\+E\+N\+C\+H\+M\+A\+RK}!benchmark\+Framework.\+hpp@{benchmark\+Framework.\+hpp}}
+\subsubsection{\texorpdfstring{A\+N\+P\+I\+\_\+\+B\+E\+N\+C\+H\+M\+A\+RK}{ANPI\_BENCHMARK}}
+{\footnotesize\ttfamily \#define A\+N\+P\+I\+\_\+\+B\+E\+N\+C\+H\+M\+A\+RK(\begin{DoxyParamCaption}\item[{}]{sizes,  }\item[{}]{rep,  }\item[{}]{times,  }\item[{}]{bench }\end{DoxyParamCaption})}
+
+Meassure the time for all given sizes. 
+\begin{DoxyParams}{Parámetros}
+{\em sizes} & vector with all sizes to be tested \\
+\hline
+{\em rep} & number of repetitions to meassure the time \\
+\hline
+{\em times} & measurement taken for each time its time must be anpi\+::\+Matrix$<$anpi\+::benchmark\+::measurement$>$ \\
+\hline
+{\em bench} & benchmark instance. See below for requirements\\
+\hline
+\end{DoxyParams}
+The  is an instance of a class that must provide at least the following\+:
+\begin{DoxyItemize}
+\item an void prepare(const size\+\_\+t size) method, that initializes the state of the instance as required for the evaluation. This method is called outside the performance measurements.
+\item an inline void eval() method that performs the evaluation.
+\end{DoxyItemize}
+
+The following variables are available in P\+R\+E\+F\+IX and C\+O\+DE\+:
+\begin{DoxyItemize}
+\item size holds the current evaluated size (type size\+\_\+t)
+\item s holds the index of the current evaluated size
+\item i index of the current repetition 
+\end{DoxyItemize}

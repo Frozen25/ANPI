@@ -1,0 +1,136 @@
+\hypertarget{classbenchAdd}{}\section{Referencia de la plantilla de la Clase bench\+Add$<$ T $>$}
+\label{classbenchAdd}\index{bench\+Add$<$ T $>$@{bench\+Add$<$ T $>$}}
+
+
+Benchmark for addition operations.  
+
+
+
+
+Diagrama de herencias de bench\+Add$<$ T $>$
+% FIG 0
+
+
+Diagrama de colaboración para bench\+Add$<$ T $>$\+:
+% FIG 1
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classbenchAdd_a87c319715895c7741c5450232a80a54d}{bench\+Add} (const size\+\_\+t max\+Size)
+\begin{DoxyCompactList}\small\item\em Construct. \end{DoxyCompactList}\item 
+void \hyperlink{classbenchAdd_a42b0ce6b2d78a84bb89e135517f65d4a}{prepare} (const size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Prepare the evaluation of given size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Atributos protegidos}
+\begin{DoxyCompactItemize}
+\item 
+const size\+\_\+t \hyperlink{classbenchAdd_a65b40e28442f3cdabcfaa40054f26ce6}{\+\_\+max\+Size}
+\begin{DoxyCompactList}\small\item\em Maximum allowed size for the square matrices. \end{DoxyCompactList}\item 
+\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \hyperlink{classbenchAdd_afb4633add18175ba74873700d3c21261}{\+\_\+data}
+\begin{DoxyCompactList}\small\item\em A large matrix holding. \end{DoxyCompactList}\item 
+\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \hyperlink{classbenchAdd_a133822bc19df3f71f9635d6e368ee592}{\+\_\+a}
+\begin{DoxyCompactList}\small\item\em State of the benchmarked evaluation. \end{DoxyCompactList}\item 
+\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \hyperlink{classbenchAdd_a334aa4e387cd9964869af2a6f53882b1}{\+\_\+b}
+\item 
+\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \hyperlink{classbenchAdd_a4f13657c7fb6a5d2f66ef0c9a9613005}{\+\_\+c}
+\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+\subsubsection*{template$<$typename T$>$\newline
+class bench\+Add$<$ T $>$}
+
+Benchmark for addition operations. 
+
+Copyright (C) 2017 Área Académica de Ingeniería en Computadoras, T\+EC, Costa Rica
+
+This file is part of the C\+E3102 Numerical Analysis lecture at T\+EC
+
+\begin{DoxyAuthor}{Autor}
+Pablo Alvarado 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+29.\+12.\+2017 Unit tests for the matrix class 
+\end{DoxyDate}
+
+
+\subsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classbenchAdd_a87c319715895c7741c5450232a80a54d}\label{classbenchAdd_a87c319715895c7741c5450232a80a54d}} 
+\index{bench\+Add@{bench\+Add}!bench\+Add@{bench\+Add}}
+\index{bench\+Add@{bench\+Add}!bench\+Add@{bench\+Add}}
+\subsubsection{\texorpdfstring{bench\+Add()}{benchAdd()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classbenchAdd}{bench\+Add}$<$ T $>$\+::\hyperlink{classbenchAdd}{bench\+Add} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{max\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct. 
+
+
+
+\subsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classbenchAdd_a42b0ce6b2d78a84bb89e135517f65d4a}\label{classbenchAdd_a42b0ce6b2d78a84bb89e135517f65d4a}} 
+\index{bench\+Add@{bench\+Add}!prepare@{prepare}}
+\index{prepare@{prepare}!bench\+Add@{bench\+Add}}
+\subsubsection{\texorpdfstring{prepare()}{prepare()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classbenchAdd}{bench\+Add}$<$ T $>$\+::prepare (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Prepare the evaluation of given size. 
+
+
+
+\subsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classbenchAdd_a133822bc19df3f71f9635d6e368ee592}\label{classbenchAdd_a133822bc19df3f71f9635d6e368ee592}} 
+\index{bench\+Add@{bench\+Add}!\+\_\+a@{\+\_\+a}}
+\index{\+\_\+a@{\+\_\+a}!bench\+Add@{bench\+Add}}
+\subsubsection{\texorpdfstring{\+\_\+a}{\_a}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$T$>$ \hyperlink{classbenchAdd}{bench\+Add}$<$ T $>$\+::\+\_\+a\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+State of the benchmarked evaluation. 
+
+\mbox{\Hypertarget{classbenchAdd_a334aa4e387cd9964869af2a6f53882b1}\label{classbenchAdd_a334aa4e387cd9964869af2a6f53882b1}} 
+\index{bench\+Add@{bench\+Add}!\+\_\+b@{\+\_\+b}}
+\index{\+\_\+b@{\+\_\+b}!bench\+Add@{bench\+Add}}
+\subsubsection{\texorpdfstring{\+\_\+b}{\_b}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$T$>$ \hyperlink{classbenchAdd}{bench\+Add}$<$ T $>$\+::\+\_\+b\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classbenchAdd_a4f13657c7fb6a5d2f66ef0c9a9613005}\label{classbenchAdd_a4f13657c7fb6a5d2f66ef0c9a9613005}} 
+\index{bench\+Add@{bench\+Add}!\+\_\+c@{\+\_\+c}}
+\index{\+\_\+c@{\+\_\+c}!bench\+Add@{bench\+Add}}
+\subsubsection{\texorpdfstring{\+\_\+c}{\_c}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$T$>$ \hyperlink{classbenchAdd}{bench\+Add}$<$ T $>$\+::\+\_\+c\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classbenchAdd_afb4633add18175ba74873700d3c21261}\label{classbenchAdd_afb4633add18175ba74873700d3c21261}} 
+\index{bench\+Add@{bench\+Add}!\+\_\+data@{\+\_\+data}}
+\index{\+\_\+data@{\+\_\+data}!bench\+Add@{bench\+Add}}
+\subsubsection{\texorpdfstring{\+\_\+data}{\_data}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$T$>$ \hyperlink{classbenchAdd}{bench\+Add}$<$ T $>$\+::\+\_\+data\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+A large matrix holding. 
+
+\mbox{\Hypertarget{classbenchAdd_a65b40e28442f3cdabcfaa40054f26ce6}\label{classbenchAdd_a65b40e28442f3cdabcfaa40054f26ce6}} 
+\index{bench\+Add@{bench\+Add}!\+\_\+max\+Size@{\+\_\+max\+Size}}
+\index{\+\_\+max\+Size@{\+\_\+max\+Size}!bench\+Add@{bench\+Add}}
+\subsubsection{\texorpdfstring{\+\_\+max\+Size}{\_maxSize}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const size\+\_\+t \hyperlink{classbenchAdd}{bench\+Add}$<$ T $>$\+::\+\_\+max\+Size\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Maximum allowed size for the square matrices. 
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+benchmarks/\hyperlink{benchmarkMatrixAdd_8cpp}{benchmark\+Matrix\+Add.\+cpp}\end{DoxyCompactItemize}

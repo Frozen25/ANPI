@@ -1,0 +1,270 @@
+\hypertarget{testMatrix_8cpp}{}\section{Referencia del Archivo test/test\+Matrix.cpp}
+\label{testMatrix_8cpp}\index{test/test\+Matrix.\+cpp@{test/test\+Matrix.\+cpp}}
+{\ttfamily \#include $<$boost/test/unit\+\_\+test.\+hpp$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$exception$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$complex$>$}\newline
+{\ttfamily \#include \char`\"{}Matrix.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Allocator.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bits/\+Matrix\+Arithmetic.\+hpp\char`\"{}}\newline
+Dependencia gráfica adjunta para test\+Matrix.\+cpp\+:
+% FIG 0
+\subsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{testMatrix_8cpp_a7bbb0c13cb9ed336990eff5c7817f4c9}{dispatch\+Test}(func)
+\end{DoxyCompactItemize}
+\subsection*{typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::complex$<$ double $>$ \hyperlink{testMatrix_8cpp_aa7b4cfa83fe868296abd1ba4d67d9563}{dcomplex}
+\item 
+typedef std\+::allocator$<$ float $>$ \hyperlink{testMatrix_8cpp_aa0210a8f1576ed219abb7ce3ee9f7dbe}{alloc}
+\item 
+typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ \hyperlink{testMatrix_8cpp_aa7b4cfa83fe868296abd1ba4d67d9563}{dcomplex}, \hyperlink{testMatrix_8cpp_aa0210a8f1576ed219abb7ce3ee9f7dbe}{alloc} $>$ \hyperlink{testMatrix_8cpp_aee253d69508f432c433649e3f9f55d76}{cmatrix}
+\item 
+typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ double,\hyperlink{testMatrix_8cpp_aa0210a8f1576ed219abb7ce3ee9f7dbe}{alloc} $>$ \hyperlink{testMatrix_8cpp_a1ceeaf72bfc7a6234b3e6eb6a60d3ef3}{dmatrix}
+\item 
+typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ float,\hyperlink{testMatrix_8cpp_aa0210a8f1576ed219abb7ce3ee9f7dbe}{alloc} $>$ \hyperlink{testMatrix_8cpp_a0d54924d5f62099bf9eaf1a591e903ef}{fmatrix}
+\item 
+typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ int,\hyperlink{testMatrix_8cpp_aa0210a8f1576ed219abb7ce3ee9f7dbe}{alloc} $>$ \hyperlink{testMatrix_8cpp_a3507523431407a8481f3ee8bf53c8e0d}{imatrix}
+\item 
+typedef \hyperlink{classanpi_1_1aligned__allocator}{anpi\+::aligned\+\_\+allocator}$<$ float $>$ \hyperlink{testMatrix_8cpp_a0a3d39824be1c62255aae96796b60648}{aalloc}
+\item 
+typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ \hyperlink{testMatrix_8cpp_aa7b4cfa83fe868296abd1ba4d67d9563}{dcomplex}, \hyperlink{testMatrix_8cpp_a0a3d39824be1c62255aae96796b60648}{aalloc} $>$ \hyperlink{testMatrix_8cpp_a9f59b4db752e9524f8b4f24de977c719}{acmatrix}
+\item 
+typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ double,\hyperlink{testMatrix_8cpp_a0a3d39824be1c62255aae96796b60648}{aalloc} $>$ \hyperlink{testMatrix_8cpp_ab20e1e6c157f1067677fea56c0c7d42d}{admatrix}
+\item 
+typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ float,\hyperlink{testMatrix_8cpp_a0a3d39824be1c62255aae96796b60648}{aalloc} $>$ \hyperlink{testMatrix_8cpp_a27e8c67c44f6eadadc9b02d43a1875b3}{afmatrix}
+\item 
+typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ int,\hyperlink{testMatrix_8cpp_a0a3d39824be1c62255aae96796b60648}{aalloc} $>$ \hyperlink{testMatrix_8cpp_aeeb7e5577bad2ebd6911e36c183df1d0}{aimatrix}
+\item 
+typedef \hyperlink{classanpi_1_1aligned__row__allocator}{anpi\+::aligned\+\_\+row\+\_\+allocator}$<$ float $>$ \hyperlink{testMatrix_8cpp_a2917e002ee374b4d472fdbed8cbcee07}{aralloc}
+\item 
+typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ \hyperlink{testMatrix_8cpp_aa7b4cfa83fe868296abd1ba4d67d9563}{dcomplex}, \hyperlink{testMatrix_8cpp_a2917e002ee374b4d472fdbed8cbcee07}{aralloc} $>$ \hyperlink{testMatrix_8cpp_aa308f9881f00e6236a2d00ca11d95e87}{arcmatrix}
+\item 
+typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ double,\hyperlink{testMatrix_8cpp_a2917e002ee374b4d472fdbed8cbcee07}{aralloc} $>$ \hyperlink{testMatrix_8cpp_a78c79cdc6573ae868ccb530692b7a74d}{ardmatrix}
+\item 
+typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ float,\hyperlink{testMatrix_8cpp_a2917e002ee374b4d472fdbed8cbcee07}{aralloc} $>$ \hyperlink{testMatrix_8cpp_ab69f85b8790d5aeae0c705e8d220d274}{arfmatrix}
+\item 
+typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ int,\hyperlink{testMatrix_8cpp_a2917e002ee374b4d472fdbed8cbcee07}{aralloc} $>$ \hyperlink{testMatrix_8cpp_a665622fb2df2ce065d71200d8403cea9}{arimatrix}
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class M $>$ }\\void \hyperlink{testMatrix_8cpp_abdd34c9253834ddbd54b4b5b0a070a40}{test\+Constructors} ()
+\item 
+\hyperlink{testMatrix_8cpp_a9a280f9277c100a10ca3f1c7a3dc1d98}{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE} (Constructors)
+\item 
+{\footnotesize template$<$class M $>$ }\\void \hyperlink{testMatrix_8cpp_a6908e553a5673d1e31fff72b8fdff7db}{test\+Comparison} ()
+\item 
+\hyperlink{testMatrix_8cpp_aaa7e1267b2095b0e559faa8b31e9e585}{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE} (Comparison)
+\item 
+{\footnotesize template$<$class M $>$ }\\void \hyperlink{testMatrix_8cpp_a6511448e831e8802408d21a5ccd67b82}{test\+Assignment} ()
+\item 
+\hyperlink{testMatrix_8cpp_a0912261ecffa87353de0856a5a7a17f0}{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE} (Assignment)
+\item 
+{\footnotesize template$<$class M $>$ }\\void \hyperlink{testMatrix_8cpp_ac136fd2699d3eaae7e83bc614ab1a029}{test\+Arithmetic} ()
+\item 
+\hyperlink{testMatrix_8cpp_a4d6716c25b8e545b092955c141125448}{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE} (Arithmetic)
+\item 
+{\footnotesize template$<$class M $>$ }\\void \hyperlink{testMatrix_8cpp_ac598b3b6de606c671db3acb3f86460be}{test\+Simd} ()
+\item 
+\hyperlink{testMatrix_8cpp_a7ddc70c1402536067b421b82923b2798}{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE} (Simd)
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de los \textquotesingle{}defines\textquotesingle{}}
+\mbox{\Hypertarget{testMatrix_8cpp_a7bbb0c13cb9ed336990eff5c7817f4c9}\label{testMatrix_8cpp_a7bbb0c13cb9ed336990eff5c7817f4c9}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!dispatch\+Test@{dispatch\+Test}}
+\index{dispatch\+Test@{dispatch\+Test}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{dispatch\+Test}{dispatchTest}}
+{\footnotesize\ttfamily \#define dispatch\+Test(\begin{DoxyParamCaption}\item[{}]{func }\end{DoxyParamCaption})}
+
+{\bfseries Valor\+:}
+\begin{DoxyCode}
+func<cmatrix>();          \(\backslash\)
+  func<dmatrix>();          \(\backslash\)
+  func<fmatrix>();          \(\backslash\)
+  func<imatrix>();          \(\backslash\)
+                            \(\backslash\)
+  func<acmatrix>();         \(\backslash\)
+  func<admatrix>();         \(\backslash\)
+  func<afmatrix>();         \(\backslash\)
+  func<aimatrix>();         \(\backslash\)
+                            \(\backslash\)
+  func<arcmatrix>();        \(\backslash\)
+  func<ardmatrix>();        \(\backslash\)
+  func<arfmatrix>();        \(\backslash\)
+  func<arimatrix>();
+\end{DoxyCode}
+
+
+\subsection{Documentación de los \textquotesingle{}typedefs\textquotesingle{}}
+\mbox{\Hypertarget{testMatrix_8cpp_a0a3d39824be1c62255aae96796b60648}\label{testMatrix_8cpp_a0a3d39824be1c62255aae96796b60648}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!aalloc@{aalloc}}
+\index{aalloc@{aalloc}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{aalloc}{aalloc}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1aligned__allocator}{anpi\+::aligned\+\_\+allocator}$<$float$>$ \hyperlink{testMatrix_8cpp_a0a3d39824be1c62255aae96796b60648}{aalloc}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_a9f59b4db752e9524f8b4f24de977c719}\label{testMatrix_8cpp_a9f59b4db752e9524f8b4f24de977c719}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!acmatrix@{acmatrix}}
+\index{acmatrix@{acmatrix}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{acmatrix}{acmatrix}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$\hyperlink{testMatrix_8cpp_aa7b4cfa83fe868296abd1ba4d67d9563}{dcomplex},\hyperlink{testMatrix_8cpp_a0a3d39824be1c62255aae96796b60648}{aalloc}$>$ \hyperlink{testMatrix_8cpp_a9f59b4db752e9524f8b4f24de977c719}{acmatrix}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_ab20e1e6c157f1067677fea56c0c7d42d}\label{testMatrix_8cpp_ab20e1e6c157f1067677fea56c0c7d42d}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!admatrix@{admatrix}}
+\index{admatrix@{admatrix}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{admatrix}{admatrix}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$double ,\hyperlink{testMatrix_8cpp_a0a3d39824be1c62255aae96796b60648}{aalloc}$>$ \hyperlink{testMatrix_8cpp_ab20e1e6c157f1067677fea56c0c7d42d}{admatrix}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_a27e8c67c44f6eadadc9b02d43a1875b3}\label{testMatrix_8cpp_a27e8c67c44f6eadadc9b02d43a1875b3}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!afmatrix@{afmatrix}}
+\index{afmatrix@{afmatrix}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{afmatrix}{afmatrix}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$float ,\hyperlink{testMatrix_8cpp_a0a3d39824be1c62255aae96796b60648}{aalloc}$>$ \hyperlink{testMatrix_8cpp_a27e8c67c44f6eadadc9b02d43a1875b3}{afmatrix}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_aeeb7e5577bad2ebd6911e36c183df1d0}\label{testMatrix_8cpp_aeeb7e5577bad2ebd6911e36c183df1d0}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!aimatrix@{aimatrix}}
+\index{aimatrix@{aimatrix}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{aimatrix}{aimatrix}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$int ,\hyperlink{testMatrix_8cpp_a0a3d39824be1c62255aae96796b60648}{aalloc}$>$ \hyperlink{testMatrix_8cpp_aeeb7e5577bad2ebd6911e36c183df1d0}{aimatrix}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_aa0210a8f1576ed219abb7ce3ee9f7dbe}\label{testMatrix_8cpp_aa0210a8f1576ed219abb7ce3ee9f7dbe}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!alloc@{alloc}}
+\index{alloc@{alloc}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily typedef std\+::allocator$<$float$>$ \hyperlink{testMatrix_8cpp_aa0210a8f1576ed219abb7ce3ee9f7dbe}{alloc}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_a2917e002ee374b4d472fdbed8cbcee07}\label{testMatrix_8cpp_a2917e002ee374b4d472fdbed8cbcee07}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!aralloc@{aralloc}}
+\index{aralloc@{aralloc}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{aralloc}{aralloc}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1aligned__row__allocator}{anpi\+::aligned\+\_\+row\+\_\+allocator}$<$float$>$ \hyperlink{testMatrix_8cpp_a2917e002ee374b4d472fdbed8cbcee07}{aralloc}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_aa308f9881f00e6236a2d00ca11d95e87}\label{testMatrix_8cpp_aa308f9881f00e6236a2d00ca11d95e87}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!arcmatrix@{arcmatrix}}
+\index{arcmatrix@{arcmatrix}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{arcmatrix}{arcmatrix}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$\hyperlink{testMatrix_8cpp_aa7b4cfa83fe868296abd1ba4d67d9563}{dcomplex},\hyperlink{testMatrix_8cpp_a2917e002ee374b4d472fdbed8cbcee07}{aralloc}$>$ \hyperlink{testMatrix_8cpp_aa308f9881f00e6236a2d00ca11d95e87}{arcmatrix}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_a78c79cdc6573ae868ccb530692b7a74d}\label{testMatrix_8cpp_a78c79cdc6573ae868ccb530692b7a74d}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!ardmatrix@{ardmatrix}}
+\index{ardmatrix@{ardmatrix}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{ardmatrix}{ardmatrix}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$double ,\hyperlink{testMatrix_8cpp_a2917e002ee374b4d472fdbed8cbcee07}{aralloc}$>$ \hyperlink{testMatrix_8cpp_a78c79cdc6573ae868ccb530692b7a74d}{ardmatrix}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_ab69f85b8790d5aeae0c705e8d220d274}\label{testMatrix_8cpp_ab69f85b8790d5aeae0c705e8d220d274}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!arfmatrix@{arfmatrix}}
+\index{arfmatrix@{arfmatrix}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{arfmatrix}{arfmatrix}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$float ,\hyperlink{testMatrix_8cpp_a2917e002ee374b4d472fdbed8cbcee07}{aralloc}$>$ \hyperlink{testMatrix_8cpp_ab69f85b8790d5aeae0c705e8d220d274}{arfmatrix}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_a665622fb2df2ce065d71200d8403cea9}\label{testMatrix_8cpp_a665622fb2df2ce065d71200d8403cea9}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!arimatrix@{arimatrix}}
+\index{arimatrix@{arimatrix}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{arimatrix}{arimatrix}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$int ,\hyperlink{testMatrix_8cpp_a2917e002ee374b4d472fdbed8cbcee07}{aralloc}$>$ \hyperlink{testMatrix_8cpp_a665622fb2df2ce065d71200d8403cea9}{arimatrix}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_aee253d69508f432c433649e3f9f55d76}\label{testMatrix_8cpp_aee253d69508f432c433649e3f9f55d76}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!cmatrix@{cmatrix}}
+\index{cmatrix@{cmatrix}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{cmatrix}{cmatrix}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$\hyperlink{testMatrix_8cpp_aa7b4cfa83fe868296abd1ba4d67d9563}{dcomplex},\hyperlink{testMatrix_8cpp_aa0210a8f1576ed219abb7ce3ee9f7dbe}{alloc}$>$ \hyperlink{testMatrix_8cpp_aee253d69508f432c433649e3f9f55d76}{cmatrix}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_aa7b4cfa83fe868296abd1ba4d67d9563}\label{testMatrix_8cpp_aa7b4cfa83fe868296abd1ba4d67d9563}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!dcomplex@{dcomplex}}
+\index{dcomplex@{dcomplex}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{dcomplex}{dcomplex}}
+{\footnotesize\ttfamily typedef std\+::complex$<$double$>$ \hyperlink{testMatrix_8cpp_aa7b4cfa83fe868296abd1ba4d67d9563}{dcomplex}}
+
+Copyright (C) 2017 Área Académica de Ingeniería en Computadoras, T\+EC, Costa Rica
+
+This file is part of the C\+E3102 Numerical Analysis lecture at T\+EC Unit tests for the matrix class \mbox{\Hypertarget{testMatrix_8cpp_a1ceeaf72bfc7a6234b3e6eb6a60d3ef3}\label{testMatrix_8cpp_a1ceeaf72bfc7a6234b3e6eb6a60d3ef3}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!dmatrix@{dmatrix}}
+\index{dmatrix@{dmatrix}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{dmatrix}{dmatrix}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$double ,\hyperlink{testMatrix_8cpp_aa0210a8f1576ed219abb7ce3ee9f7dbe}{alloc}$>$ \hyperlink{testMatrix_8cpp_a1ceeaf72bfc7a6234b3e6eb6a60d3ef3}{dmatrix}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_a0d54924d5f62099bf9eaf1a591e903ef}\label{testMatrix_8cpp_a0d54924d5f62099bf9eaf1a591e903ef}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!fmatrix@{fmatrix}}
+\index{fmatrix@{fmatrix}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{fmatrix}{fmatrix}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$float ,\hyperlink{testMatrix_8cpp_aa0210a8f1576ed219abb7ce3ee9f7dbe}{alloc}$>$ \hyperlink{testMatrix_8cpp_a0d54924d5f62099bf9eaf1a591e903ef}{fmatrix}}
+
+\mbox{\Hypertarget{testMatrix_8cpp_a3507523431407a8481f3ee8bf53c8e0d}\label{testMatrix_8cpp_a3507523431407a8481f3ee8bf53c8e0d}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!imatrix@{imatrix}}
+\index{imatrix@{imatrix}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{imatrix}{imatrix}}
+{\footnotesize\ttfamily typedef \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$int ,\hyperlink{testMatrix_8cpp_aa0210a8f1576ed219abb7ce3ee9f7dbe}{alloc}$>$ \hyperlink{testMatrix_8cpp_a3507523431407a8481f3ee8bf53c8e0d}{imatrix}}
+
+
+
+\subsection{Documentación de las funciones}
+\mbox{\Hypertarget{testMatrix_8cpp_a9a280f9277c100a10ca3f1c7a3dc1d98}\label{testMatrix_8cpp_a9a280f9277c100a10ca3f1c7a3dc1d98}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}}
+\index{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+S\+E()}{BOOST\_AUTO\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE (\begin{DoxyParamCaption}\item[{Constructors}]{ }\end{DoxyParamCaption})}
+
+Instantiate and test the methods of the Matrix class \mbox{\Hypertarget{testMatrix_8cpp_aaa7e1267b2095b0e559faa8b31e9e585}\label{testMatrix_8cpp_aaa7e1267b2095b0e559faa8b31e9e585}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}}
+\index{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+S\+E()}{BOOST\_AUTO\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE (\begin{DoxyParamCaption}\item[{Comparison}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{testMatrix_8cpp_a0912261ecffa87353de0856a5a7a17f0}\label{testMatrix_8cpp_a0912261ecffa87353de0856a5a7a17f0}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}}
+\index{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+S\+E()}{BOOST\_AUTO\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE (\begin{DoxyParamCaption}\item[{Assignment}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{testMatrix_8cpp_a4d6716c25b8e545b092955c141125448}\label{testMatrix_8cpp_a4d6716c25b8e545b092955c141125448}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}}
+\index{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+S\+E()}{BOOST\_AUTO\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE (\begin{DoxyParamCaption}\item[{Arithmetic}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{testMatrix_8cpp_a7ddc70c1402536067b421b82923b2798}\label{testMatrix_8cpp_a7ddc70c1402536067b421b82923b2798}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}}
+\index{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+S\+E()}{BOOST\_AUTO\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE (\begin{DoxyParamCaption}\item[{Simd}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{testMatrix_8cpp_ac136fd2699d3eaae7e83bc614ab1a029}\label{testMatrix_8cpp_ac136fd2699d3eaae7e83bc614ab1a029}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!test\+Arithmetic@{test\+Arithmetic}}
+\index{test\+Arithmetic@{test\+Arithmetic}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{test\+Arithmetic()}{testArithmetic()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+void test\+Arithmetic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{testMatrix_8cpp_a6511448e831e8802408d21a5ccd67b82}\label{testMatrix_8cpp_a6511448e831e8802408d21a5ccd67b82}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!test\+Assignment@{test\+Assignment}}
+\index{test\+Assignment@{test\+Assignment}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{test\+Assignment()}{testAssignment()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+void test\+Assignment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{testMatrix_8cpp_a6908e553a5673d1e31fff72b8fdff7db}\label{testMatrix_8cpp_a6908e553a5673d1e31fff72b8fdff7db}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!test\+Comparison@{test\+Comparison}}
+\index{test\+Comparison@{test\+Comparison}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{test\+Comparison()}{testComparison()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+void test\+Comparison (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{testMatrix_8cpp_abdd34c9253834ddbd54b4b5b0a070a40}\label{testMatrix_8cpp_abdd34c9253834ddbd54b4b5b0a070a40}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!test\+Constructors@{test\+Constructors}}
+\index{test\+Constructors@{test\+Constructors}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{test\+Constructors()}{testConstructors()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+void test\+Constructors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{testMatrix_8cpp_ac598b3b6de606c671db3acb3f86460be}\label{testMatrix_8cpp_ac598b3b6de606c671db3acb3f86460be}} 
+\index{test\+Matrix.\+cpp@{test\+Matrix.\+cpp}!test\+Simd@{test\+Simd}}
+\index{test\+Simd@{test\+Simd}!test\+Matrix.\+cpp@{test\+Matrix.\+cpp}}
+\subsubsection{\texorpdfstring{test\+Simd()}{testSimd()}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+void test\+Simd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+

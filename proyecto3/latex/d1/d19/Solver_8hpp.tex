@@ -1,0 +1,44 @@
+\hypertarget{Solver_8hpp}{}\section{Referencia del Archivo include/\+Solver.hpp}
+\label{Solver_8hpp}\index{include/\+Solver.\+hpp@{include/\+Solver.\+hpp}}
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}Exception.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Matrix.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}L\+U.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Utilities.\+hpp\char`\"{}}\newline
+Dependencia gráfica adjunta para Solver.\+hpp\+:
+% FIG 0
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+% FIG 1
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceanpi}{anpi}
+\end{DoxyCompactItemize}
+\subsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Solver_8hpp_a6d331c9de915c72f3b549942259de276}{A\+N\+P\+I\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+PP}
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a51f75d22ef46354c73e5620dd720f249}{anpi\+::backward\+Subs} (\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&A, std\+::vector$<$ T $>$ \&x, std\+::vector$<$ T $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\begin{DoxyCompactList}\small\item\em used to solve a superior triangular matrix by backward substitution. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a3113babdff0dbc4eef36bd0b713a7f25}{anpi\+::forward\+Subs} (\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&A, std\+::vector$<$ T $>$ \&x, std\+::vector$<$ T $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\begin{DoxyCompactList}\small\item\em used to solve a lower triangular matrix by forward substitution. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a6764a07c6b16cedf0489a10e2650cc51}{anpi\+::solve\+LU} (const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&A, std\+::vector$<$ T $>$ \&x, const std\+::vector$<$ T $>$ \&\hyperlink{program__options_8cpp_a03799bd905ea96cd38435410694bf05b}{b})
+\begin{DoxyCompactList}\small\item\em LU solver. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_a7b13e1af574b2eb816cb8f65cc2e6c56}{anpi\+::invert} (const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&A, \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&Ai)
+\begin{DoxyCompactList}\small\item\em invert matrix \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de los \textquotesingle{}defines\textquotesingle{}}
+\mbox{\Hypertarget{Solver_8hpp_a6d331c9de915c72f3b549942259de276}\label{Solver_8hpp_a6d331c9de915c72f3b549942259de276}} 
+\index{Solver.\+hpp@{Solver.\+hpp}!A\+N\+P\+I\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+PP@{A\+N\+P\+I\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+PP}}
+\index{A\+N\+P\+I\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+PP@{A\+N\+P\+I\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+PP}!Solver.\+hpp@{Solver.\+hpp}}
+\subsubsection{\texorpdfstring{A\+N\+P\+I\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+PP}{ANPI\_SOLVER\_HPP}}
+{\footnotesize\ttfamily \#define A\+N\+P\+I\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+H\+PP}
+

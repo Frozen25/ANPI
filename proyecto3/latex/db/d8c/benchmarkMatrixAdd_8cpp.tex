@@ -1,0 +1,40 @@
+\hypertarget{benchmarkMatrixAdd_8cpp}{}\section{Referencia del Archivo benchmarks/benchmark\+Matrix\+Add.cpp}
+\label{benchmarkMatrixAdd_8cpp}\index{benchmarks/benchmark\+Matrix\+Add.\+cpp@{benchmarks/benchmark\+Matrix\+Add.\+cpp}}
+{\ttfamily \#include $<$boost/test/unit\+\_\+test.\+hpp$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$exception$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$complex$>$}\newline
+{\ttfamily \#include \char`\"{}benchmark\+Framework.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Matrix.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Allocator.\+hpp\char`\"{}}\newline
+Dependencia gráfica adjunta para benchmark\+Matrix\+Add.\+cpp\+:
+% FIG 0
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classbenchAdd}{bench\+Add$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em Benchmark for addition operations. \end{DoxyCompactList}\item 
+class \hyperlink{classbenchAddInPlaceFallback}{bench\+Add\+In\+Place\+Fallback$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em Provide the evaluation method for in-\/place addition. \end{DoxyCompactList}\item 
+class \hyperlink{classbenchAddOnCopyFallback}{bench\+Add\+On\+Copy\+Fallback$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em Provide the evaluation method for on-\/copy addition. \end{DoxyCompactList}\item 
+class \hyperlink{classbenchAddInPlaceSIMD}{bench\+Add\+In\+Place\+S\+I\+M\+D$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em Provide the evaluation method for in-\/place addition. \end{DoxyCompactList}\item 
+class \hyperlink{classbenchAddOnCopySIMD}{bench\+Add\+On\+Copy\+S\+I\+M\+D$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em Provide the evaluation method for on-\/copy addition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{benchmarkMatrixAdd_8cpp_ad254440355a743cc472615fad520adc9}{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE} (Add)
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de las funciones}
+\mbox{\Hypertarget{benchmarkMatrixAdd_8cpp_ad254440355a743cc472615fad520adc9}\label{benchmarkMatrixAdd_8cpp_ad254440355a743cc472615fad520adc9}} 
+\index{benchmark\+Matrix\+Add.\+cpp@{benchmark\+Matrix\+Add.\+cpp}!B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}}
+\index{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE@{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE}!benchmark\+Matrix\+Add.\+cpp@{benchmark\+Matrix\+Add.\+cpp}}
+\subsubsection{\texorpdfstring{B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+S\+E()}{BOOST\_AUTO\_TEST\_CASE()}}
+{\footnotesize\ttfamily B\+O\+O\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+SE (\begin{DoxyParamCaption}\item[{Add}]{ }\end{DoxyParamCaption})}
+
+Instantiate and test the methods of the Matrix class 

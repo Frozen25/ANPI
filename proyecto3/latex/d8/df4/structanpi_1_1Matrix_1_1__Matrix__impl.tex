@@ -1,0 +1,186 @@
+\hypertarget{structanpi_1_1Matrix_1_1__Matrix__impl}{}\section{Referencia de la Estructura anpi\+:\+:Matrix$<$ T, Alloc $>$\+:\+:\+\_\+\+Matrix\+\_\+impl}
+\label{structanpi_1_1Matrix_1_1__Matrix__impl}\index{anpi\+::\+Matrix$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl}}
+
+
+{\ttfamily \#include $<$Matrix.\+hpp$>$}
+
+
+
+Diagrama de herencias de anpi\+:\+:Matrix$<$ T, Alloc $>$\+:\+:\+\_\+\+Matrix\+\_\+impl
+% FIG 0
+
+
+Diagrama de colaboración para anpi\+:\+:Matrix$<$ T, Alloc $>$\+:\+:\+\_\+\+Matrix\+\_\+impl\+:
+% FIG 1
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl_af9a5caaabb241f1acb9b275e3a0898ad}{tentries} () const
+\begin{DoxyCompactList}\small\item\em Return the total number of entries (i.\+e. real buffer size) \end{DoxyCompactList}\item 
+void \hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl_ac7fa3cfa2d4ee9e2a1f9b77671169601}{\+\_\+swap\+\_\+data} (\hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl}{\+\_\+\+Matrix\+\_\+impl} \&\+\_\+x) noexcept
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Default constructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl_a7ee30810c49444c8eb481d22c0a82274}{\+\_\+\+Matrix\+\_\+impl} ()
+\item 
+\hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl_a1451d484426e27bf75cd914342f8cb20}{\+\_\+\+Matrix\+\_\+impl} (\hyperlink{classanpi_1_1Matrix_a3574b7528e3ddfb2f7cdf446be8286c1}{allocator\+\_\+type} const \&\+\_\+a) noexcept
+\item 
+\hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl_a6d2a88ab7ffecd955a5d624f38e96752}{\+\_\+\+Matrix\+\_\+impl} (\hyperlink{classanpi_1_1Matrix_a3574b7528e3ddfb2f7cdf446be8286c1}{allocator\+\_\+type} \&\&\+\_\+a) noexcept
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classanpi_1_1Matrix_a6d2754ddec71081f6e1c0e4c320e8f8e}{pointer} \hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl_ae23d12dd9622f7a0b608625265c60052}{\+\_\+data}
+\begin{DoxyCompactList}\small\item\em All matrix data. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl_ab46b4a556e1471d7dcafd68669124863}{\+\_\+rows}
+\begin{DoxyCompactList}\small\item\em Number of rows. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl_a0449efda7c550cf9a8329d40240237a3}{\+\_\+cols}
+\begin{DoxyCompactList}\small\item\em Effective number of columns. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl_ae39deaa80d98414407f4c567b93e535d}{\+\_\+dcols}
+\begin{DoxyCompactList}\small\item\em Dominant (real) number of columns. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Atributos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr size\+\_\+t \hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl_abaf34526e81f2208ca054d4b88599409}{alignment}
+\begin{DoxyCompactList}\small\item\em Alignment in use for the rows. \end{DoxyCompactList}\item 
+static constexpr bool \hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl_ad932bc30dc20263904a41747ec51532a}{row\+Align}
+\begin{DoxyCompactList}\small\item\em Allocator indicates we must align each row. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+\subsubsection*{template$<$typename T, class Alloc = anpi\+::aligned\+\_\+row\+\_\+allocator$<$\+T$>$$>$\newline
+struct anpi\+::\+Matrix$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl}
+
+Data is held in an instance of this.
+
+This class has limited functionality but ensures exception safety. 
+
+\subsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{structanpi_1_1Matrix_1_1__Matrix__impl_a7ee30810c49444c8eb481d22c0a82274}\label{structanpi_1_1Matrix_1_1__Matrix__impl_a7ee30810c49444c8eb481d22c0a82274}} 
+\index{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}!\+\_\+\+Matrix\+\_\+impl@{\+\_\+\+Matrix\+\_\+impl}}
+\index{\+\_\+\+Matrix\+\_\+impl@{\+\_\+\+Matrix\+\_\+impl}!anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}}
+\subsubsection{\texorpdfstring{\+\_\+\+Matrix\+\_\+impl()}{\_Matrix\_impl()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T, class Alloc = anpi\+::aligned\+\_\+row\+\_\+allocator$<$\+T$>$$>$ \\
+\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl\+::\+\_\+\+Matrix\+\_\+impl (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{structanpi_1_1Matrix_1_1__Matrix__impl_a1451d484426e27bf75cd914342f8cb20}\label{structanpi_1_1Matrix_1_1__Matrix__impl_a1451d484426e27bf75cd914342f8cb20}} 
+\index{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}!\+\_\+\+Matrix\+\_\+impl@{\+\_\+\+Matrix\+\_\+impl}}
+\index{\+\_\+\+Matrix\+\_\+impl@{\+\_\+\+Matrix\+\_\+impl}!anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}}
+\subsubsection{\texorpdfstring{\+\_\+\+Matrix\+\_\+impl()}{\_Matrix\_impl()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T, class Alloc = anpi\+::aligned\+\_\+row\+\_\+allocator$<$\+T$>$$>$ \\
+\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl\+::\+\_\+\+Matrix\+\_\+impl (\begin{DoxyParamCaption}\item[{\hyperlink{classanpi_1_1Matrix_a3574b7528e3ddfb2f7cdf446be8286c1}{allocator\+\_\+type} const \&}]{\+\_\+a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{structanpi_1_1Matrix_1_1__Matrix__impl_a6d2a88ab7ffecd955a5d624f38e96752}\label{structanpi_1_1Matrix_1_1__Matrix__impl_a6d2a88ab7ffecd955a5d624f38e96752}} 
+\index{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}!\+\_\+\+Matrix\+\_\+impl@{\+\_\+\+Matrix\+\_\+impl}}
+\index{\+\_\+\+Matrix\+\_\+impl@{\+\_\+\+Matrix\+\_\+impl}!anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}}
+\subsubsection{\texorpdfstring{\+\_\+\+Matrix\+\_\+impl()}{\_Matrix\_impl()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T, class Alloc = anpi\+::aligned\+\_\+row\+\_\+allocator$<$\+T$>$$>$ \\
+\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl\+::\+\_\+\+Matrix\+\_\+impl (\begin{DoxyParamCaption}\item[{\hyperlink{classanpi_1_1Matrix_a3574b7528e3ddfb2f7cdf446be8286c1}{allocator\+\_\+type} \&\&}]{\+\_\+a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+\subsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{structanpi_1_1Matrix_1_1__Matrix__impl_ac7fa3cfa2d4ee9e2a1f9b77671169601}\label{structanpi_1_1Matrix_1_1__Matrix__impl_ac7fa3cfa2d4ee9e2a1f9b77671169601}} 
+\index{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}!\+\_\+swap\+\_\+data@{\+\_\+swap\+\_\+data}}
+\index{\+\_\+swap\+\_\+data@{\+\_\+swap\+\_\+data}!anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}}
+\subsubsection{\texorpdfstring{\+\_\+swap\+\_\+data()}{\_swap\_data()}}
+{\footnotesize\ttfamily template$<$typename T, class Alloc = anpi\+::aligned\+\_\+row\+\_\+allocator$<$\+T$>$$>$ \\
+void \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl\+::\+\_\+swap\+\_\+data (\begin{DoxyParamCaption}\item[{\hyperlink{structanpi_1_1Matrix_1_1__Matrix__impl}{\+\_\+\+Matrix\+\_\+impl} \&}]{\+\_\+x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{structanpi_1_1Matrix_1_1__Matrix__impl_af9a5caaabb241f1acb9b275e3a0898ad}\label{structanpi_1_1Matrix_1_1__Matrix__impl_af9a5caaabb241f1acb9b275e3a0898ad}} 
+\index{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}!tentries@{tentries}}
+\index{tentries@{tentries}!anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}}
+\subsubsection{\texorpdfstring{tentries()}{tentries()}}
+{\footnotesize\ttfamily template$<$typename T, class Alloc = anpi\+::aligned\+\_\+row\+\_\+allocator$<$\+T$>$$>$ \\
+size\+\_\+t \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl\+::tentries (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the total number of entries (i.\+e. real buffer size) 
+
+
+
+\subsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{structanpi_1_1Matrix_1_1__Matrix__impl_a0449efda7c550cf9a8329d40240237a3}\label{structanpi_1_1Matrix_1_1__Matrix__impl_a0449efda7c550cf9a8329d40240237a3}} 
+\index{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}!\+\_\+cols@{\+\_\+cols}}
+\index{\+\_\+cols@{\+\_\+cols}!anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}}
+\subsubsection{\texorpdfstring{\+\_\+cols}{\_cols}}
+{\footnotesize\ttfamily template$<$typename T, class Alloc = anpi\+::aligned\+\_\+row\+\_\+allocator$<$\+T$>$$>$ \\
+size\+\_\+t \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl\+::\+\_\+cols}
+
+
+
+Effective number of columns. 
+
+\mbox{\Hypertarget{structanpi_1_1Matrix_1_1__Matrix__impl_ae23d12dd9622f7a0b608625265c60052}\label{structanpi_1_1Matrix_1_1__Matrix__impl_ae23d12dd9622f7a0b608625265c60052}} 
+\index{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}!\+\_\+data@{\+\_\+data}}
+\index{\+\_\+data@{\+\_\+data}!anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}}
+\subsubsection{\texorpdfstring{\+\_\+data}{\_data}}
+{\footnotesize\ttfamily template$<$typename T, class Alloc = anpi\+::aligned\+\_\+row\+\_\+allocator$<$\+T$>$$>$ \\
+\hyperlink{classanpi_1_1Matrix_a6d2754ddec71081f6e1c0e4c320e8f8e}{pointer} \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl\+::\+\_\+data}
+
+
+
+All matrix data. 
+
+\mbox{\Hypertarget{structanpi_1_1Matrix_1_1__Matrix__impl_ae39deaa80d98414407f4c567b93e535d}\label{structanpi_1_1Matrix_1_1__Matrix__impl_ae39deaa80d98414407f4c567b93e535d}} 
+\index{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}!\+\_\+dcols@{\+\_\+dcols}}
+\index{\+\_\+dcols@{\+\_\+dcols}!anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}}
+\subsubsection{\texorpdfstring{\+\_\+dcols}{\_dcols}}
+{\footnotesize\ttfamily template$<$typename T, class Alloc = anpi\+::aligned\+\_\+row\+\_\+allocator$<$\+T$>$$>$ \\
+size\+\_\+t \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl\+::\+\_\+dcols}
+
+
+
+Dominant (real) number of columns. 
+
+\mbox{\Hypertarget{structanpi_1_1Matrix_1_1__Matrix__impl_ab46b4a556e1471d7dcafd68669124863}\label{structanpi_1_1Matrix_1_1__Matrix__impl_ab46b4a556e1471d7dcafd68669124863}} 
+\index{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}!\+\_\+rows@{\+\_\+rows}}
+\index{\+\_\+rows@{\+\_\+rows}!anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}}
+\subsubsection{\texorpdfstring{\+\_\+rows}{\_rows}}
+{\footnotesize\ttfamily template$<$typename T, class Alloc = anpi\+::aligned\+\_\+row\+\_\+allocator$<$\+T$>$$>$ \\
+size\+\_\+t \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl\+::\+\_\+rows}
+
+
+
+Number of rows. 
+
+\mbox{\Hypertarget{structanpi_1_1Matrix_1_1__Matrix__impl_abaf34526e81f2208ca054d4b88599409}\label{structanpi_1_1Matrix_1_1__Matrix__impl_abaf34526e81f2208ca054d4b88599409}} 
+\index{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}!alignment@{alignment}}
+\index{alignment@{alignment}!anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}}
+\subsubsection{\texorpdfstring{alignment}{alignment}}
+{\footnotesize\ttfamily template$<$typename T, class Alloc = anpi\+::aligned\+\_\+row\+\_\+allocator$<$\+T$>$$>$ \\
+constexpr size\+\_\+t \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl\+::alignment\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}
+=
+        \hyperlink{structanpi_1_1extract__alignment_aba8462924cf727c3c7df27fa3f32e41f}{extract\_alignment<allocator\_type>::value}
+\end{DoxyCode}
+
+
+Alignment in use for the rows. 
+
+\mbox{\Hypertarget{structanpi_1_1Matrix_1_1__Matrix__impl_ad932bc30dc20263904a41747ec51532a}\label{structanpi_1_1Matrix_1_1__Matrix__impl_ad932bc30dc20263904a41747ec51532a}} 
+\index{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}!row\+Align@{row\+Align}}
+\index{row\+Align@{row\+Align}!anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl@{anpi\+::\+Matrix\+::\+\_\+\+Matrix\+\_\+impl}}
+\subsubsection{\texorpdfstring{row\+Align}{rowAlign}}
+{\footnotesize\ttfamily template$<$typename T, class Alloc = anpi\+::aligned\+\_\+row\+\_\+allocator$<$\+T$>$$>$ \\
+constexpr bool \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T, Alloc $>$\+::\+\_\+\+Matrix\+\_\+impl\+::row\+Align\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}
+=
+        \hyperlink{structanpi_1_1extract__alignment_a4e7985310e7f1be7c2277e665bb62a13}{extract\_alignment<allocator\_type>::row\_aligned}
+\end{DoxyCode}
+
+
+Allocator indicates we must align each row. 
+
+
+
+La documentación para esta estructura fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{Matrix_8hpp}{Matrix.\+hpp}\end{DoxyCompactItemize}

@@ -1,0 +1,80 @@
+\hypertarget{namespaceanpi_1_1test}{}\section{Referencia del Namespace anpi\+:\+:test}
+\label{namespaceanpi_1_1test}\index{anpi\+::test@{anpi\+::test}}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_1_1test_aacf0f9fee77d3af9798f523f4230d8bf}{invert\+Test} (const std\+::function$<$ void(const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&A, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&Ai)$>$ \&\hyperlink{namespaceanpi_a7b13e1af574b2eb816cb8f65cc2e6c56}{invert})
+\begin{DoxyCompactList}\small\item\em Method that check the correct function of Unpack\+Doolittle method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_1_1test_a0baf1a43bc6d37c8b0bc22587b366656}{lu\+Test} (const std\+::function$<$ void(const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&, std\+::vector$<$ size\+\_\+t $>$ \&)$>$ \&decomp, const std\+::function$<$ void(const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&)$>$ \&\hyperlink{namespaceanpi_a02b3ba58e1fd11d7b703dceae3032eb0}{unpack})
+\begin{DoxyCompactList}\small\item\em Test the given closed root finder. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_1_1test_a9d30d26dcfe2c4fe8c7c98c71546d734}{substitution\+Test} (const std\+::function$<$ void(\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&, std\+::vector$<$ T $>$ \&, std\+::vector$<$ T $>$ \&)$>$ \&\hyperlink{namespaceanpi_a51f75d22ef46354c73e5620dd720f249}{backward\+Subs}, const std\+::function$<$ void(\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&, std\+::vector$<$ T $>$ \&, std\+::vector$<$ T $>$ \&)$>$ \&\hyperlink{namespaceanpi_a3113babdff0dbc4eef36bd0b713a7f25}{forward\+Subs})
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_1_1test_a48305a842ca50e8175b4baa93d9fc70e}{solve\+L\+U\+Test} (const std\+::function$<$ void(const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&, std\+::vector$<$ T $>$ \&, const std\+::vector$<$ T $>$ \&)$>$ \&\hyperlink{namespaceanpi_a6764a07c6b16cedf0489a10e2650cc51}{solve\+LU})
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceanpi_1_1test_a0befe6c5f1dbc4854338935efe425d06}{invert\+Test} (const std\+::function$<$ void(const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&, \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&)$>$ \&\hyperlink{namespaceanpi_a7b13e1af574b2eb816cb8f65cc2e6c56}{invert})
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de las funciones}
+\mbox{\Hypertarget{namespaceanpi_1_1test_aacf0f9fee77d3af9798f523f4230d8bf}\label{namespaceanpi_1_1test_aacf0f9fee77d3af9798f523f4230d8bf}} 
+\index{anpi\+::test@{anpi\+::test}!invert\+Test@{invert\+Test}}
+\index{invert\+Test@{invert\+Test}!anpi\+::test@{anpi\+::test}}
+\subsubsection{\texorpdfstring{invert\+Test()}{invertTest()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::test\+::invert\+Test (\begin{DoxyParamCaption}\item[{const std\+::function$<$ void(const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&A, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&Ai)$>$ \&}]{invert }\end{DoxyParamCaption})}
+
+
+
+Method that check the correct function of Unpack\+Doolittle method. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template value. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parámetros}
+{\em invert} & Unpack\+Doolittle method. \\
+\hline
+\end{DoxyParams}
+factorized matrix in LU form with Doolittle
+
+Test with 3x3 matrix
+
+Real Ai matrix
+
+Test each element one by one \mbox{\Hypertarget{namespaceanpi_1_1test_a0befe6c5f1dbc4854338935efe425d06}\label{namespaceanpi_1_1test_a0befe6c5f1dbc4854338935efe425d06}} 
+\index{anpi\+::test@{anpi\+::test}!invert\+Test@{invert\+Test}}
+\index{invert\+Test@{invert\+Test}!anpi\+::test@{anpi\+::test}}
+\subsubsection{\texorpdfstring{invert\+Test()}{invertTest()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::test\+::invert\+Test (\begin{DoxyParamCaption}\item[{const std\+::function$<$ void(const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&, \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&)$>$ \&}]{invert }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceanpi_1_1test_a0baf1a43bc6d37c8b0bc22587b366656}\label{namespaceanpi_1_1test_a0baf1a43bc6d37c8b0bc22587b366656}} 
+\index{anpi\+::test@{anpi\+::test}!lu\+Test@{lu\+Test}}
+\index{lu\+Test@{lu\+Test}!anpi\+::test@{anpi\+::test}}
+\subsubsection{\texorpdfstring{lu\+Test()}{luTest()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::test\+::lu\+Test (\begin{DoxyParamCaption}\item[{const std\+::function$<$ void(const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&, std\+::vector$<$ size\+\_\+t $>$ \&)$>$ \&}]{decomp,  }\item[{const std\+::function$<$ void(const \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&, \hyperlink{classanpi_1_1Matrix}{Matrix}$<$ T $>$ \&)$>$ \&}]{unpack }\end{DoxyParamCaption})}
+
+
+
+Test the given closed root finder. 
+
+\mbox{\Hypertarget{namespaceanpi_1_1test_a48305a842ca50e8175b4baa93d9fc70e}\label{namespaceanpi_1_1test_a48305a842ca50e8175b4baa93d9fc70e}} 
+\index{anpi\+::test@{anpi\+::test}!solve\+L\+U\+Test@{solve\+L\+U\+Test}}
+\index{solve\+L\+U\+Test@{solve\+L\+U\+Test}!anpi\+::test@{anpi\+::test}}
+\subsubsection{\texorpdfstring{solve\+L\+U\+Test()}{solveLUTest()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::test\+::solve\+L\+U\+Test (\begin{DoxyParamCaption}\item[{const std\+::function$<$ void(const \hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&, std\+::vector$<$ T $>$ \&, const std\+::vector$<$ T $>$ \&)$>$ \&}]{solve\+LU }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceanpi_1_1test_a9d30d26dcfe2c4fe8c7c98c71546d734}\label{namespaceanpi_1_1test_a9d30d26dcfe2c4fe8c7c98c71546d734}} 
+\index{anpi\+::test@{anpi\+::test}!substitution\+Test@{substitution\+Test}}
+\index{substitution\+Test@{substitution\+Test}!anpi\+::test@{anpi\+::test}}
+\subsubsection{\texorpdfstring{substitution\+Test()}{substitutionTest()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void anpi\+::test\+::substitution\+Test (\begin{DoxyParamCaption}\item[{const std\+::function$<$ void(\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&, std\+::vector$<$ T $>$ \&, std\+::vector$<$ T $>$ \&)$>$ \&}]{backward\+Subs,  }\item[{const std\+::function$<$ void(\hyperlink{classanpi_1_1Matrix}{anpi\+::\+Matrix}$<$ T $>$ \&, std\+::vector$<$ T $>$ \&, std\+::vector$<$ T $>$ \&)$>$ \&}]{forward\+Subs }\end{DoxyParamCaption})}
+
+testing backward\+Subs
+
+testing forward\+Subs 
