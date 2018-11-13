@@ -33,7 +33,7 @@ También, se cuentan con archivos con perfiles de temperatura predefinidos que p
 Esto sirve para obtener los valores de temperatura en la placa. Para observar las gráficas de ellas, se corre únicamente el siguiente comandos puesto que las demás banderas definidas
 con anterioridad han sido guardadas para este proceso.
 
-> ./benchmark -t thermalGrid
+> ./benchmark -t thermalGraphs
 
 ------------------------------------------------
 

@@ -133,7 +133,7 @@ int main(int argc, const char *argv[]) {
 		po::store(po::parse_command_line(argc, argv, desc), vm);
 		po::notify(vm);
     
-    
+    //Creacion de archivo para guardar las flags
     std::ofstream flags;
     flags.open ("flags.txt");
 
