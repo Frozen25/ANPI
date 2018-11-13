@@ -34,12 +34,6 @@ namespace anpi{
   private:
     
 
-    /// Epsilon used to calculate convergence
-    float epsilon = 1.0001f;
-
-    // Convergence flag
-    bool convergenceFlag = false;
-
     /// Flags that indicates if a side of the plate is isolated
     bool isolatedTop = false, 
          isolatedLeft = false, 
@@ -261,11 +255,9 @@ namespace anpi{
       float Aij_L = 0.0f;
       float Aij_T = 0.0f;
       float Aij_R = 0.0f; 
-      float Aij_D = 0.0f; 
-
-      bool convergenceFlagParallel = true;
+      float Aij_D = 0.0f;
       
-      #pragma omp parallel for default(none) private(Aij_L, Aij_T, Aij_R, Aij_D) shared(A , Y, yrows, ycols, convergenceFlagParallel)
+      #pragma omp parallel for default(none) private(Aij_L, Aij_T, Aij_R, Aij_D) shared(A , Y, yrows, ycols)
       for (size_t yi = 1; yi < yrows-1; ++yi){
         for(size_t yj = 1; yj < ycols-1; ++yj ){
           
@@ -511,15 +503,8 @@ namespace anpi{
               Y[yi][yj] = (Aij_L + Aij_T + Aij_R + Aij_D)/4;
             }
           }
-
-          /// checks convergence, if it converges, the final result is true
-          if(std::abs ( Y[yi][yj] - A[(yi-1)/2+1][(yj-1)/2+1] ) > epsilon  ){
-            convergenceFlagParallel = false;
-          }
-
         }// for yj
       }// for yi
-      convergenceFlag = convergenceFlagParallel;
     }// scale matrix
 
 
@@ -528,31 +513,17 @@ namespace anpi{
     template<typename T>
     void calculatePlate(Matrix<T>&  A, Matrix<T>&  Y , float eps, size_t maxIterations = 14){
       
-      if (eps)
-        epsilon = eps;
-
-      //anpi::Matrix<float> A;
-      //anpi::Matrix<float> Y;
       A.allocate(3,3);
       fill_borders(A);
       A[1][1] = ( A[0][1] + A[1][0] + A[1][2] + A[2][1] )/4;
       Y = A;
-      for (size_t k = 0; (k < maxIterations && (!convergenceFlag)); ++k){
+      for (size_t k = 0; k < maxIterations; ++k){
         A.clear();
         A = Y;
         Y.clear();
         scale_matrix(A,Y);        
         std::cout << "iteration: "<< k+1 << "\tnumber of rows = "<< A.rows() << std::endl;          
       }
-
-
-      /// changes the output of printing a boolean "1" to "true", and a "0" to "false"
-      //std::cout << std::boolalpha;
-      //std::cout << "convergence: " <<convergenceFlag << std::endl;
-
-      /// Function used to save the matrix in a file called  matrix.txt
-      //matrix_show_file(Y);
-
     }
 
     
@@ -608,9 +579,9 @@ namespace anpi{
         //generating U matrix (X changes)
         for(size_t i = 1; i< rows-1 ; ++i){
           for(size_t j = 1; j<cols-1; ++j){
-            valueX = ( Y[i][j-1] - Y[i][j+1] )/(4*max);
+            valueX = ( Y[i][j-1] - Y[i][j+1] )/(max);
             Umatrix << valueX << ' ';
-            valueY = ( Y[i+1][j] - Y[i-1][j] )/(4*max);
+            valueY = ( Y[i+1][j] - Y[i-1][j] )/(max);
             Vmatrix << valueY << ' ';
           }
           Umatrix << '\n';
