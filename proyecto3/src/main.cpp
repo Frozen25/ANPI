@@ -232,7 +232,39 @@ int main(int argc, const char *argv[]) {
                                     (explicitLeft||left.empty()),(explicitRight||right.empty()),
                                     top, bottom, left, right, activateFlow, quitVisuals,
                                     grid, horizontal, vertical);
-    thermalPlate.solvePlate( 20.0f , 6, 1);
+    
+    int iterations; //Cantidad de iteraciones a realizar según el tamaño deseado de la gráfica
+    
+    if((horizontal || vertical)>4098){
+      iterations = 13;
+    } else if((horizontal>2050)||(vertical>2050)){
+      iterations = 12;
+    } else if((horizontal>1026)||(vertical>1026)){
+      iterations = 11;
+    } else if((horizontal>514)||(vertical>514)){
+      iterations = 10;
+    } else if((horizontal>258)||(vertical>258)){
+      iterations = 9;
+    } else if((horizontal>130)||(vertical>130)){
+      iterations = 8;
+    } else if((horizontal>66)||(vertical>66)){
+      iterations = 7;
+    } else if((horizontal>34)||(vertical>34)){
+      iterations = 6;
+    } else if((horizontal>18)||(vertical>18)){
+      iterations = 5;
+    } else if((horizontal>10)||(vertical>10)){
+      iterations = 4;
+    } else if((horizontal>6)||(vertical>6)){
+      iterations = 3;
+    } else if((horizontal>4)||(vertical>4)){
+      iterations = 2;
+    } else if((horizontal>3)||(vertical>3)){
+      iterations = 1;
+    } else {
+      iterations = 0;
+    }
+    thermalPlate.solvePlate( 20.0f , iterations, 1);
     
 	} catch (const anpi::Exception &exc) {
 		std::cerr << exc.what() << '\n';
