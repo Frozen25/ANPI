@@ -12,13 +12,14 @@
 
 #include <AnpiConfig.hpp>
 #include <Spline.h>
-
+#include <fstream>
 #include <Matrix.hpp>
 #include <Exception.hpp>
 #include "Solver.hpp"
 #include "Utilities.hpp"
 #include "omp.h"
 #include "PlotPy.hpp"
+#include <algorithm>
 
 namespace anpi{
 
@@ -555,7 +556,78 @@ namespace anpi{
     }
 
     
-    void solvePlate(float eps = 20.0f , int maxIterations = 15, int save = 0){
+    float getmax(){
+      float max = 0.0f;
+      float maxI = 0.0f;
+      if( !top.empty() ){
+        maxI = *std::max_element(top.begin(), top.end());
+        max = ((max > maxI) ? max : maxI);
+      }
+      if( !bottom.empty() ){
+        maxI = *std::max_element(bottom.begin(), bottom.end());
+        max = ((max > maxI) ? max : maxI);
+      }
+      if( !left.empty() ){
+        maxI = *std::max_element(left.begin(), left.end());
+        max = ((max > maxI) ? max : maxI);
+      }
+      if( !right.empty() ){
+        maxI = *std::max_element(right.begin(), right.end());
+        max = ((max > maxI) ? max : maxI);
+      }
+      return max;
+
+    }
+
+
+
+    /**
+     * @brief obtains the matrixes U and V
+     * @details [long description]
+     * 
+     * @param Y [description]
+     * @tparam T [description]
+     */
+    template<typename T>
+    void getUV(Matrix<T>&  Y){
+      float max = getmax();
+
+      
+
+      size_t rows = Y.rows();
+      size_t cols = Y.cols();
+
+
+
+      /// creates the U and V matrix
+      std::ofstream Umatrix;
+      std::ofstream Vmatrix;
+
+      Umatrix.open ("Umatrix.txt");
+      Vmatrix.open ("Vmatrix.txt");
+
+      float valueX  = 0.0f, valueY = 0.0f;
+      //generating U matrix (X changes)
+      for(size_t i = 1; i< rows-1 ; ++i){
+        for(size_t j = 1; j<cols-1; ++j){
+          valueX = ( Y[i][j-1] - Y[i][j+1] )/(4*max);
+          Umatrix << valueX << ' ';
+          valueY = ( Y[i+1][j] - Y[i-1][j] )/(4*max);
+          Vmatrix << valueY << ' ';
+        }
+        Umatrix << '\n';
+        Vmatrix << '\n';
+      }
+      Umatrix << '\n';
+      Vmatrix << '\n';
+      
+      Umatrix.close();
+      Vmatrix.close();
+
+    }
+
+
+    void solvePlate(float eps = 20.0f , int maxIterations = 13, int save = 1){
       
 
       anpi::Matrix<float> A;
@@ -565,11 +637,14 @@ namespace anpi{
       if (save){
         matrix_show_file(Y);
         std::cout << "Saved matix to file: matrix.txt\n";
+        A.clear();
+        getUV(Y);
+        std::cout << "Saved matix U and V !\n";
+        Y.clear();
       }
+            
       
-      
-
-
+      //plot
 
 
     }    

@@ -99,7 +99,7 @@ namespace anpi {
                        const std::vector<T>& datay,
                        const std::string& color) ;
 
-
+    void plotThermal();
     /**
      * Plot an area range between the min and max values
      * and the average data inbetween.

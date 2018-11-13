@@ -153,6 +153,37 @@ namespace anpi {
 
   }
 
+
+  template <typename T>
+  void Plot2d<T>::plotThermal() {
+    
+
+    PyRun_SimpleString("import numpy as np");
+    PyRun_SimpleString("import matplotlib");
+    PyRun_SimpleString("import matplotlib.pyplot as plt");
+
+
+
+    PyRun_SimpleString("ThermalMatrix = np.loadtxt('matrix.txt')");
+    PyRun_SimpleString("fig, ax = plt.subplots()");
+    PyRun_SimpleString("im = ax.imshow(ThermalMatrix)");
+    PyRun_SimpleString("ax.set_title('Temperature Distribution')");
+    PyRun_SimpleString("fig.tight_layout()");
+
+
+    PyRun_SimpleString("ThermalChangeU = np.loadtxt('Umatrix.txt')");
+    PyRun_SimpleString("ThermalChangeV = np.loadtxt('Vmatrix.txt')");
+
+    PyRun_SimpleString("q = ax.quiver(ThermalChangeU,ThermalChangeV)");
+
+
+    PyRun_SimpleString("plt.show()");
+
+
+
+  }
+
+
   template <typename T>
   void Plot2d<T>::quiver1D(const std::vector<T>& datax,
                        const std::vector<T>& datay,
